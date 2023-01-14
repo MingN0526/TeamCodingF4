@@ -21,7 +21,7 @@ namespace TeamCodingF4.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("TeamCodingF4.Models.articalModel", b =>
+            modelBuilder.Entity("TeamCodingF4.Models.ArticalModel", b =>
                 {
                     b.Property<int>("ArticalId")
                         .ValueGeneratedOnAdd()

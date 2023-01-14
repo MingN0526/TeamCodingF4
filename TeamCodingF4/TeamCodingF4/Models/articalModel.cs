@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TeamCodingF4.Models
 {
     [Table("ArticalModel")]
-    public class articalModel
+    public class ArticalModel
     {
         [Key]
         public int ArticalId { get; set; }
