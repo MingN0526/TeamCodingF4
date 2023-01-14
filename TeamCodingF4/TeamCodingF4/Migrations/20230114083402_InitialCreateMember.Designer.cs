@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeamCodingF4.Models;
 
@@ -10,9 +11,10 @@ using TeamCodingF4.Models;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(TeamCodingProjectContext))]
-    partial class TeamCodingProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20230114083402_InitialCreateMember")]
+    partial class InitialCreateMember
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,34 +22,6 @@ namespace TeamCodingF4.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("TeamCodingF4.Models.ArticalModel", b =>
-                {
-                    b.Property<int>("ArticalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticalId"), 1L, 1);
-
-                    b.Property<string>("AriticalDate")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("ArticleCategory")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("ArticlePublisher")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("ArticalId");
-
-                    b.ToTable("ArticalModel");
-                });
 
             modelBuilder.Entity("TeamCodingF4.Models.MemberModel", b =>
                 {

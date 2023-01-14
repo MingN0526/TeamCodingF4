@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeamCodingF4.Models;
 
@@ -10,9 +11,10 @@ using TeamCodingF4.Models;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(TeamCodingProjectContext))]
-    partial class TeamCodingProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20230114083610_InitialCreateArtical")]
+    partial class InitialCreateArtical
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+//連線至專案的資料庫
 var TeamCodingProjectconnectionString = builder.Configuration.GetConnectionString("TeamCodingProject");
 builder.Services.AddDbContext<TeamCodingProjectContext>(options =>
     options.UseSqlServer(TeamCodingProjectconnectionString));
