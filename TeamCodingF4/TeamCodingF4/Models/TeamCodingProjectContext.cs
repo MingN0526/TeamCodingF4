@@ -8,8 +8,8 @@ namespace TeamCodingF4.Models
         {
 
         }
-        DbSet<MemberModel> MemberModels { get; set; }
-        DbSet<ArticalModel> ArticalModels { get; set; }
+        public DbSet<MemberModel> MemberModels { get; set; }
+        public DbSet<ArticalModel> ArticalModels { get; set; }
         
 
     }
