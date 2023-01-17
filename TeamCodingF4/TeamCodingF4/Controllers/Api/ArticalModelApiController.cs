@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TeamCodingF4.Data;
 using TeamCodingF4.Models;
 
 namespace TeamCodingF4.Controllers.Api
@@ -13,9 +9,9 @@ namespace TeamCodingF4.Controllers.Api
     [ApiController]
     public class ArticalModelApiController : ControllerBase
     {
-        private readonly TeamCodingProjectContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ArticalModelApiController(TeamCodingProjectContext context)
+        public ArticalModelApiController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -24,14 +20,14 @@ namespace TeamCodingF4.Controllers.Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ArticalModel>>> GetArticalModels()
         {
-            return await _context.ArticalModels.ToListAsync();
+            return await _context.ArticalModel.ToListAsync();
         }
 
         // GET: api/ArticalModelApi/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticalModel>> GetArticalModel(int id)
         {
-            var articalModel = await _context.ArticalModels.FindAsync(id);
+            var articalModel = await _context.ArticalModel.FindAsync(id);
 
             if (articalModel == null)
             {
@@ -77,7 +73,7 @@ namespace TeamCodingF4.Controllers.Api
         [HttpPost]
         public async Task<ActionResult<ArticalModel>> PostArticalModel(ArticalModel articalModel)
         {
-            _context.ArticalModels.Add(articalModel);
+            _context.ArticalModel.Add(articalModel);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetArticalModel", new { id = articalModel.ArticalId }, articalModel);
@@ -87,13 +83,13 @@ namespace TeamCodingF4.Controllers.Api
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticalModel(int id)
         {
-            var articalModel = await _context.ArticalModels.FindAsync(id);
+            var articalModel = await _context.ArticalModel.FindAsync(id);
             if (articalModel == null)
             {
                 return NotFound();
             }
 
-            _context.ArticalModels.Remove(articalModel);
+            _context.ArticalModel.Remove(articalModel);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +97,7 @@ namespace TeamCodingF4.Controllers.Api
 
         private bool ArticalModelExists(int id)
         {
-            return _context.ArticalModels.Any(e => e.ArticalId == id);
+            return _context.ArticalModel.Any(e => e.ArticalId == id);
         }
     }
 }

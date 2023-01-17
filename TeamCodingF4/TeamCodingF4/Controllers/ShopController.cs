@@ -4,7 +4,7 @@ namespace TeamCodingF4.Controllers
 {
     public class ShopController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int xxx,string xxxaaa)
         {
             return View();
         }
