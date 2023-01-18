@@ -4,9 +4,8 @@
         <div class="col-lg-7 mb-5">
             <div class="contact-form bg-light p-30">
                 <div id="success"></div>
-                <form name="sentMessage" id="contactForm" action="/estate/upload" method="post" enctype="multipart/form-data" >
+                <form name="sentMessage" id="contactForm" action="/estate/upload" method="post" enctype="multipart/form-data">
                     <div id="demo">
-                        
                     </div>
                     <div class="control-group">
                         <input type="file" class="form-control" id="fileggg" name="file"
@@ -20,20 +19,20 @@
             </div>
             <div class="contact-form bg-light p-30">
                 <div id="success"></div>
-                <form name="sentMessage" id="contactForm" action="/estate/upload2" method="post" enctype="multipart/form-data" >
+                <form name="sentMessage" id="contactForm" action="/estate/upload2" method="post" enctype="multipart/form-data">
                     <div class="control-group">
                         <input type="file" class="form-control" id="file" name="files" multiple
                                required="required" data-validation-required-message="Please enter your name" />
                         <p class="help-block text-danger"></p>
-                    </div>                    
+                    </div>
                     <div>
                         <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">送出</button>
                     </div>
                 </form>
             </div>
-             <div class="contact-form bg-light p-30">
+            <div class="contact-form bg-light p-30">
                 <div id="success"></div>
-                <form name="sentMessage" id="contactForm" action="/estate/upload3" method="post" enctype="multipart/form-data" >
+                <form name="sentMessage" id="contactForm" action="/estate/upload3" method="post" enctype="multipart/form-data">
                     <div class="control-group">
                         <input type="file" class="form-control" id="file" name="files" multiple
                                required="required" data-validation-required-message="Please enter your name" />
@@ -54,6 +53,25 @@
                     </div>
                 </form>
             </div>
+            <!--Vue-->
+            <div class="contact-form bg-light p-30" id="app">
+                <div id="success"></div>
+                <form name="sentMessage" id="contactForm">
+                    <div class="control-group">
+                        <input type="file" class="form-control" id="file" name="files" multiple v-on:change="updateImg" />
+                    </div>
+                    <div class="control-group">
+                        <input type="email" class="form-control" v-model="email" />
+                    </div>
+                    <div class="control-group">
+                        <input type="text" class="form-control" v-model="subject" />
+                    </div>
+                    <div>
+                        <button class="btn btn-primary py-2 px-4" type="button" v-on:click="send">送出</button>
+                    </div>
+                </form>
+            </div>
+            <!--Vue-->
         </div>
         <div class="col-lg-5 mb-5">
             <div class="bg-light p-30 mb-30">
@@ -70,7 +88,61 @@
     </div>
 </div>
 
+
+@section Scripts{
 <script>
+    let app =new Vue({
+        el:"#app",
+        data:{
+            email:"",
+            subject:"",
+            img:[]
+        },
+        methods:{
+            send:function(){
+                let self = this;
+                var data  = new FormData();
+                data.append("Email",self.email);
+                data.append("Subject",self.subject);
+                for(var i=0; i<self.img.length;i++){
+                    data.append("files",self.img[i]);
+                }
+
+                fetch("/estate/upload3",{
+                    method:'post',
+                    body:data
+                }).then(function(response){return response.json()})
+                .then(function(result){
+                    if(result.status){
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: result.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: result.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+
+                });
+            },
+            updateImg:function(e){
+                console.log(e.target.files);
+                this.img = e.target.files;
+            }
+        }
+    });
+
+
+
+
     var inp = document.getElementById("fileggg");
     inp.addEventListener("change",function(e){
         var file = e.target.files[0];
@@ -88,3 +160,6 @@
         fr.readAsDataURL(file);
     })
 </script>
+
+
+}
