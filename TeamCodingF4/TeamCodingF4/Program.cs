@@ -5,7 +5,7 @@ using TeamCodingF4.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var TeamCodingProjectconnectionString = builder.Configuration.GetConnectionString("TeamCodingProject");
+var TeamCodingProjectconnectionString = builder.Configuration.GetConnectionString("Remote");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(TeamCodingProjectconnectionString));
 

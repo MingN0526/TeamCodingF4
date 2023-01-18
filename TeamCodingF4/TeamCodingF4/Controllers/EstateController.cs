@@ -80,11 +80,11 @@ namespace TeamCodingF4.Controllers
         }
 
         [HttpPost]
-        public string Upload3(UploadModel model)
+        public ApiResult Upload3(UploadModel model)
         {
-            if (model.files == null) return "要有東西";
-            if (model.files.Sum(x => x.Length) >= 1024000000) return "太大了";
-            if (model.files.Any(x => x.ContentType != "image/png")) return "不接受";
+            if (model.files == null) return new ApiResult(false, "要有東西");
+            if (model.files.Sum(x => x.Length) >= 1024000000) return new ApiResult(false, "太大了");
+            if (model.files.Any(x => x.ContentType != "image/png")) return new ApiResult(false, "不接受");
 
             var root = environment.WebRootPath;
             foreach (var file in model.files)
@@ -103,7 +103,7 @@ namespace TeamCodingF4.Controllers
                 });
             }
             db.SaveChanges();
-            return model.Email;
+            return new ApiResult(true,"新增成功");
         }
     }
 }
