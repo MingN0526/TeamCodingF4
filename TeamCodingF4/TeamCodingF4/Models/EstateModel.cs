@@ -14,13 +14,13 @@ namespace TeamCodingF4.Models
         public string Meters { get; set; }
         public int Car { get; set; }
         public int Motorcycle { get; set; }
-        public int AirConditioner { get; set; }
-        public int Television { get; set; }
-        public int WetDry { get; set; }
-        public int Balcony { get; set; }
-        public int WashingMachine { get; set; }
-        public int WaterDispenser { get; set; }
-        public int Refrigerator { get; set; }
+        public bool AirConditioner { get; set; }
+        public bool Television { get; set; }
+        public bool WetDry { get; set; }
+        public bool Balcony { get; set; }
+        public bool WashingMachine { get; set; }
+        public bool WaterDispenser { get; set; }
+        public bool Refrigerator { get; set; }
         public string Lease { get; set; }
         public string EstatePicture { get; set; }
         public string EstateVideo { get; set; }
