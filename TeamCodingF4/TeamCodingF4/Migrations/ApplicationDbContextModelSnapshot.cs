@@ -189,7 +189,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasKey("ArticalId");
 
-                    b.ToTable("Articals");
+                    b.ToTable("Articals", (string)null);
 
                     b.HasData(
                         new
@@ -216,87 +216,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EstateImage");
-                });
-
-            modelBuilder.Entity("TeamCodingF4.Models.EstateModel", b =>
-                {
-                    b.Property<int>("EstateId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstateId"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AirConditioner")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Balcony")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Car")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EstatePicture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EstateTittle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EstateVideo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EststePrice")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lease")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Meters")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Miscellaneous")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Motorcycle")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Refrigerator")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RoomType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Television")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WashingMachine")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WaterDispenser")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WetDry")
-                        .HasColumnType("int");
-
-                    b.Property<string>("message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EstateId");
-
-                    b.ToTable("Estates");
+                    b.ToTable("EstateImage", (string)null);
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.MemberLike", b =>
@@ -322,7 +242,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("MemberLikes");
+                    b.ToTable("MemberLikes", (string)null);
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.MemberModel", b =>

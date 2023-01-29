@@ -14,7 +14,6 @@ namespace TeamCodingF4.Data
         public DbSet<Artical> Articals { get; set; }
         public DbSet<MemberModel> Members { get; set; }
         public DbSet<MemberLike> MemberLikes { get; set; }
-        public DbSet<EstateModel> Estates { get; set; }
 
         public DbSet<EstateImage> EstateImage { get; set; }
 
