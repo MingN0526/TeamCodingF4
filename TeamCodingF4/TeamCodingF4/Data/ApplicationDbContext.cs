@@ -11,9 +11,10 @@ namespace TeamCodingF4.Data
             : base(options)
         {
         }
-        public DbSet<Artical> ArticalModel { get; set; }
+        public DbSet<Artical> Articals { get; set; }
         public DbSet<MemberModel> Members { get; set; }
         public DbSet<MemberLike> MemberLikes { get; set; }
+        public DbSet<EstateModel> Estates { get; set; }
 
         public DbSet<EstateImage> EstateImage { get; set; }
 
