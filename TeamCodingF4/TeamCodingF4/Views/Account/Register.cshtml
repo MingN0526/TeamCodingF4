@@ -1,0 +1,52 @@
+﻿@model TeamCodingF4.Models.Account.RegisterModel
+
+@{
+    ViewData["Title"] = "會員註冊";
+}
+
+<h1>會員註冊</h1>
+<div id="Vuepage">
+    <div class="row">
+        <div class="col-md-4">
+            <section>
+                <form id="account" method="post">
+                    <h2>請註冊一個帳號</h2>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-floating">
+                        <input asp-for="UserName" class="form-control" autocomplete="username" aria-required="true" />
+                        <label asp-for="UserName" class="form-label">使用者名稱</label>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <label asp-for="Email" class="form-label">信箱</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <label asp-for="Password" class="form-label">密碼</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="PasswordConfirmed" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <label asp-for="PasswordConfirmed" class="form-label">再次確認密碼</label>
+                        <span asp-validation-for="PasswordConfirmed" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">註冊</button>
+                    </div>
+                    <div>
+                        @*                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">重新寄發認證信</a>
+                        </p>*@
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

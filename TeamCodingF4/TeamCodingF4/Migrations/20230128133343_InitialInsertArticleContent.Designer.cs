@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeamCodingF4.Data;
 
@@ -11,9 +12,10 @@ using TeamCodingF4.Data;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230128133343_InitialInsertArticleContent")]
+    partial class InitialInsertArticleContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,17 +191,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasKey("ArticalId");
 
-                    b.ToTable("Articals", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ArticalId = 1,
-                            AriticalDate = "2022/01/10",
-                            ArticleCategory = "心得分享",
-                            ArticleContent = "加油!",
-                            ArticlePublisher = "Jacky"
-                        });
+                    b.ToTable("Articals");
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.EstateImage", b =>
@@ -216,7 +208,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EstateImage", (string)null);
+                    b.ToTable("EstateImage");
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.MemberLike", b =>
@@ -242,7 +234,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("MemberLikes", (string)null);
+                    b.ToTable("MemberLikes");
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.MemberModel", b =>

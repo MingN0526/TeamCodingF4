@@ -11,12 +11,25 @@ namespace TeamCodingF4.Data
             : base(options)
         {
         }
-        public DbSet<ArticalModel> ArticalModel { get; set; }
+        public DbSet<Artical> Articals { get; set; }
         public DbSet<MemberModel> Members { get; set; }
         public DbSet<MemberLike> MemberLikes { get; set; }
 
         public DbSet<EstateImage> EstateImage { get; set; }
         public DbSet<EstateModel> EstateModel { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Artical>().HasData(new Artical
+            {
+                ArticalId=1,
+                AriticalDate="2022/01/10",
+                ArticlePublisher="Jacky",
+                ArticleCategory="心得分享",
+                ArticleContent="加油!"
+            });
+        }
 
     }
 }

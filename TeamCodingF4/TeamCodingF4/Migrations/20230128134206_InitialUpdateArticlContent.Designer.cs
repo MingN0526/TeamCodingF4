@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeamCodingF4.Data;
 
@@ -11,9 +12,10 @@ using TeamCodingF4.Data;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230128134206_InitialUpdateArticlContent")]
+    partial class InitialUpdateArticlContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,7 +191,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasKey("ArticalId");
 
-                    b.ToTable("Articals", (string)null);
+                    b.ToTable("Articals");
 
                     b.HasData(
                         new
@@ -216,7 +218,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EstateImage", (string)null);
+                    b.ToTable("EstateImage");
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.MemberLike", b =>
@@ -242,7 +244,7 @@ namespace TeamCodingF4.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("MemberLikes", (string)null);
+                    b.ToTable("MemberLikes");
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.MemberModel", b =>
