@@ -1,9 +1,5 @@
 ﻿@model TeamCodingF4.Models.Account.RegisterModel
 
-@{
-    ViewData["Title"] = "會員註冊";
-}
-
 <h1>會員註冊</h1>
 <div id="Vuepage">
     <div class="row">
@@ -29,9 +25,9 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-floating">
-                        <input asp-for="PasswordConfirmed" class="form-control" autocomplete="current-password" aria-required="true" />
-                        <label asp-for="PasswordConfirmed" class="form-label">再次確認密碼</label>
-                        <span asp-validation-for="PasswordConfirmed" class="text-danger"></span>
+                        <input asp-for="ConfirmePassword" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <label asp-for="ConfirmePassword" class="form-label">再次確認密碼</label>
+                        <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
                     </div>
                     <div>
                         <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">註冊</button>
@@ -48,5 +44,5 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
