@@ -9,7 +9,7 @@ namespace TeamCodingF4.Models
         [Key]
         public int ArticalId { get; set; }
         [StringLength(64)]
-        public string AriticalDate { get; set; }
+        public string ArticalDate { get; set; }
         [StringLength(64)]
         public string ArticlePublisher { get; set; }
         [StringLength(64)]
@@ -17,5 +17,8 @@ namespace TeamCodingF4.Models
         [MaxLength(4000)]
         [Column(TypeName ="nvarchar")]
         public string ArticleContent { get; set; }
+        [MaxLength(60)]
+        [Column(TypeName = "nvarchar")]
+        public string ArticleTitle { get; set; }
     }
 }

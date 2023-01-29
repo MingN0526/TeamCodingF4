@@ -4,10 +4,18 @@
 
 namespace TeamCodingF4.Migrations
 {
-    public partial class InitialUpdateArticlContent : Migration
+    public partial class InitialCreateModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<string>(
+                name: "ArticleContent",
+                table: "Articals",
+                type: "nvarchar(4000)",
+                maxLength: 4000,
+                nullable: false,
+                defaultValue: "");
+
             migrationBuilder.InsertData(
                 table: "Articals",
                 columns: new[] { "ArticalId", "AriticalDate", "ArticleCategory", "ArticleContent", "ArticlePublisher" },
@@ -20,6 +28,10 @@ namespace TeamCodingF4.Migrations
                 table: "Articals",
                 keyColumn: "ArticalId",
                 keyValue: 1);
+
+            migrationBuilder.DropColumn(
+                name: "ArticleContent",
+                table: "Articals");
         }
     }
 }
