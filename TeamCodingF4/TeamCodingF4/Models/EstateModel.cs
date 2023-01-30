@@ -24,7 +24,7 @@ namespace TeamCodingF4.Models
         public string Lease { get; set; }
         public string EstatePicture { get; set; }
         public string EstateVideo { get; set; }
-        public string message { get; set; }
+        public string? message { get; set; }
 
     }
 }

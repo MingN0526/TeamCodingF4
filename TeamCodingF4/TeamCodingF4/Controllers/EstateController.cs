@@ -19,13 +19,11 @@ namespace TeamCodingF4.Controllers
             _context = context;
         }
 
-        // GET: EstateModels
         public async Task<IActionResult> Index()
         {
               return View(await _context.EstateModel.ToListAsync());
         }
 
-        // GET: EstateModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.EstateModel == null)
@@ -43,15 +41,11 @@ namespace TeamCodingF4.Controllers
             return View(estateModel);
         }
 
-        // GET: EstateModels/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: EstateModels/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstatePicture,EstateVideo,message")] EstateModel estateModel)
@@ -65,7 +59,6 @@ namespace TeamCodingF4.Controllers
             return View(estateModel);
         }
 
-        // GET: EstateModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.EstateModel == null)
@@ -81,9 +74,6 @@ namespace TeamCodingF4.Controllers
             return View(estateModel);
         }
 
-        // POST: EstateModels/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstatePicture,EstateVideo,message")] EstateModel estateModel)
@@ -116,7 +106,6 @@ namespace TeamCodingF4.Controllers
             return View(estateModel);
         }
 
-        // GET: EstateModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.EstateModel == null)
@@ -134,7 +123,6 @@ namespace TeamCodingF4.Controllers
             return View(estateModel);
         }
 
-        // POST: EstateModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
