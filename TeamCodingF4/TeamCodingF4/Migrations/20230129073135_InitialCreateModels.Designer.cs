@@ -12,8 +12,8 @@ using TeamCodingF4.Data;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230128134206_InitialUpdateArticlContent")]
-    partial class InitialUpdateArticlContent
+    [Migration("20230129073135_InitialCreateModels")]
+    partial class InitialCreateModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

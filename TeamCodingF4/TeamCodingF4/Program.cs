@@ -20,13 +20,14 @@ builder.Services.AddDefaultIdentity<MemberModel>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(opt =>  //指定用cookie的方式做登入
+    .AddCookie(opt => 
     {
-        opt.AccessDeniedPath = "/system/accessdenied";   //AccessDeniedPath是已登入但沒權限
-        opt.LoginPath = "/account/login"; //沒登入的話會自動導到此頁面要求登入
-        opt.ExpireTimeSpan = TimeSpan.FromSeconds(300);
+        opt.AccessDeniedPath = "/system/accessdenied";
+        opt.LoginPath = "/account/login";
+        opt.LogoutPath = "/Account/Logout"; //TODO logout page
+        opt.ExpireTimeSpan = TimeSpan.FromMinutes(60);
         opt.Cookie.Name = "loginSuccess";
-        opt.Cookie.HttpOnly = true; //設定為true的話JavaScript不會讀到
+        opt.Cookie.HttpOnly = true;
     }
     );
 
@@ -49,6 +50,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCookiePolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 

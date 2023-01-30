@@ -12,8 +12,8 @@ using TeamCodingF4.Data;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230129052621_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230129084533_InsertArtical")]
+    partial class InsertArtical
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,7 +169,7 @@ namespace TeamCodingF4.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticalId"), 1L, 1);
 
-                    b.Property<string>("AriticalDate")
+                    b.Property<string>("ArticalDate")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
@@ -189,6 +189,11 @@ namespace TeamCodingF4.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<string>("ArticleTitle")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
                     b.HasKey("ArticalId");
 
                     b.ToTable("Articals");
@@ -197,10 +202,11 @@ namespace TeamCodingF4.Migrations
                         new
                         {
                             ArticalId = 1,
-                            AriticalDate = "2022/01/10",
+                            ArticalDate = "2022/01/10",
                             ArticleCategory = "心得分享",
                             ArticleContent = "加油!",
-                            ArticlePublisher = "Jacky"
+                            ArticlePublisher = "Jacky",
+                            ArticleTitle = "範例"
                         });
                 });
 

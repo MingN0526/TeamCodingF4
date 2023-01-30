@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TeamCodingF4.Models.Account;
+using AutoMapper.Execution;
 
 namespace TeamCodingF4.Controllers
 {
@@ -13,14 +14,37 @@ namespace TeamCodingF4.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
-            ViewData["Title"] = "會員註冊";
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel model)
+        [ValidateAntiForgeryToken]
+        public IActionResult Register([Bind("UserName, Email, Password, ConfirmePassword")] RegisterModel registerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(registerModel);
+            }
+            else
+            {
+                TempData["registerModel"] = registerModel;
+                return RedirectToAction("Result");
+            }
+        }
+
+        public ActionResult Result()
+        {
+            var model = TempData["registerModel"] as RegisterModel;
+            return View(model);
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginModel loginModel)
         {
 
             var dbAccount = "a790712a@gmail.com";
@@ -28,7 +52,7 @@ namespace TeamCodingF4.Controllers
 
             //資料庫比對
             //_db.user.where(x=> x.account && x.pwd == model.password
-            if (model.Email == dbAccount && model.Password == dbPassword)
+            if (loginModel.Email == dbAccount && loginModel.Password == dbPassword)
             {
                 var claims = new List<Claim>
                 {
