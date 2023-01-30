@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
-<body>
-    <div class="container">
+
+<div class="container" id="articleIndex" >
         <div class="main-body p-0">
             <div class="inner-wrapper">
                 <div class="inner-sidebar">
@@ -41,22 +41,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="inner-main">
+                <div class="inner-main" >
                     <div class="inner-main-header">
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Thinking">心得分享</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Thinking">心得分享</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Question">發文解惑</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Question">發文解惑</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Chat">閒聊專區</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Chat">閒聊專區</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Complain">抱怨專區</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Complain">抱怨專區</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Roommate">找尋室友</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Roommate">找尋室友</a></button>
                         </div>
                         <div class="col-2">
                             <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
@@ -70,23 +70,23 @@
 
 
 
-                    <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+                <div class="inner-main-body p-2 p-sm-3 collapse forum-content show" >
                         <div class="card mb-2">
                             <div class="card-body p-2 p-sm-3">
-                                <div class="media forum-item">
-                                    <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                    <div class="media-body">
-                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">Realtime fetching data</a></h6>
-                                        <p class="text-secondary">
-                                            lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-                                        </p>
-                                        <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
-                                    </div>
-                                    <div class="text-muted small text-center align-self-center">
-                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                                        <span><i class="far fa-comment ml-2"></i> 3</span>
-                                    </div>
+                            <div class="media forum-item">
+                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                <div class="media-body" v-for="article in articles" @*:key="key"*@>
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">文章標題{{article.ArticleTitle}}</a></h6>
+                                    <p style="color:black">
+                                        文章內容{{article.ArticleContent}}
+                                    </p>
+                                    <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
                                 </div>
+                                <div class="text-muted small text-center align-self-center">
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
+                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="card mb-2">
@@ -448,6 +448,27 @@
             padding: 1rem;
         }
     </style>
-   
 
-</body>
+@section Scripts
+{
+    <script>
+        let articleIndex = new Vue({
+            el: '#articleIndex',
+            data: {
+                articles: [],
+                //key:new Date().getTime(),
+            },
+            mounted: function () {
+                console.log("Hi~~~~~~~~~~")
+                let _self = this
+                fetch("/api/article/getall")
+                    .then(function (response) {return response.json() })
+                    .then(function (result) {
+                     console.log(result)
+                     this.articles = result
+                     this.$forceUpdate(articles)
+                    })
+            }            
+        });
+    </script>
+}

@@ -2,7 +2,7 @@
 
 namespace TeamCodingF4.Controllers
 {
-    public class ArticalController : Controller
+    public class ArticleController : Controller
     {
         public IActionResult Index()
         {

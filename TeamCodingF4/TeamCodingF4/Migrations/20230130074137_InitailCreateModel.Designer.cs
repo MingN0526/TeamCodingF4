@@ -12,8 +12,8 @@ using TeamCodingF4.Data;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230129073359_InsertArticalTitle")]
-    partial class InsertArticalTitle
+    [Migration("20230130074137_InitailCreateModel")]
+    partial class InitailCreateModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,18 +161,13 @@ namespace TeamCodingF4.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TeamCodingF4.Models.Artical", b =>
+            modelBuilder.Entity("TeamCodingF4.Models.Article", b =>
                 {
-                    b.Property<int>("ArticalId")
+                    b.Property<int>("ArticleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticalId"), 1L, 1);
-
-                    b.Property<string>("AriticalDate")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleId"), 1L, 1);
 
                     b.Property<string>("ArticleCategory")
                         .IsRequired()
@@ -184,6 +179,11 @@ namespace TeamCodingF4.Migrations
                         .HasMaxLength(4000)
                         .HasColumnType("nvarchar(4000)");
 
+                    b.Property<string>("ArticleDate")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
                     b.Property<string>("ArticlePublisher")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -194,9 +194,20 @@ namespace TeamCodingF4.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.HasKey("ArticalId");
+                    b.HasKey("ArticleId");
 
-                    b.ToTable("Articals");
+                    b.ToTable("Articles");
+
+                    b.HasData(
+                        new
+                        {
+                            ArticleId = 1,
+                            ArticleCategory = "心得分享",
+                            ArticleContent = "加油!",
+                            ArticleDate = "2022/01/10",
+                            ArticlePublisher = "Jacky",
+                            ArticleTitle = "範例"
+                        });
                 });
 
             modelBuilder.Entity("TeamCodingF4.Models.EstateImage", b =>
