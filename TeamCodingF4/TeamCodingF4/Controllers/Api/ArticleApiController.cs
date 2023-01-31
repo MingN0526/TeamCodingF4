@@ -5,20 +5,20 @@ using TeamCodingF4.Models.ApiModel;
 
 namespace TeamCodingF4.Controllers.Api
 {
-    [Route("api/artical/[action]")]
+    [Route("api/article/[action]")]
     [ApiController]
-    public class ArticalApiController : ControllerBase
+    public class ArticleApiController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
-        public ArticalApiController(ApplicationDbContext context)
+        public ArticleApiController(ApplicationDbContext context)
         {
             _db = context;
         }
-        public List<ArticalModel> GetAll()
+        public List<ArticleModel> GetAll()
         {
-            return _db.Articals.Select(x=> new ArticalModel
+            return _db.Articles.Select(x=> new ArticleModel
             {
-                ArticalDate=x.ArticalDate,
+                ArticleDate=x.ArticleDate,
                 ArticleContent=x.ArticleContent,
                 ArticlePublisher=x.ArticlePublisher,
                 ArticleTitle=x.ArticleTitle,

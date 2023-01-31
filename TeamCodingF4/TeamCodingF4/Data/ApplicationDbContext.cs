@@ -14,7 +14,7 @@ namespace TeamCodingF4.Data
             : base(options)
         {
         }
-        public DbSet<Artical> Articals { get; set; }
+        public DbSet<Article> Articles { get; set; }
         public DbSet<MemberModel> Members { get; set; }
         public DbSet<MemberLike> MemberLikes { get; set; }
 
@@ -29,13 +29,13 @@ namespace TeamCodingF4.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Artical>().HasData(new Artical
+            modelBuilder.Entity<Article>().HasData(new Article
             {
-                ArticalId = 1,
-                ArticalDate = "2022/01/10",
+                ArticleId = 1,
+                ArticleDate = "2022/01/10",
                 ArticlePublisher = "Jacky",
                 ArticleCategory = "心得分享",
-                ArticleContent = "加油!",
+                ArticleContent = "心得分享!",
                 ArticleTitle = "範例"
             });
         }
