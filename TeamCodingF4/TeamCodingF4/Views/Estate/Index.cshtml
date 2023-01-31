@@ -1,26 +1,4 @@
-﻿<style>
-    /* 讓第二個之後的Item隱藏 */
-    .dropdown .item + .item {
-        display: none;
-    }
-
-    /* 滑鼠移到任何Item時，顯示 */
-    .dropdown:hover .item {
-        border: 1px solid #ccc;
-        margin: -1px 0px 0px;
-        padding: 0px 10px;
-        box-sizing: border-box;
-        box-shadow: 0 0 3px #ccc;
-        background: #fff;
-        display: block;
-    }
-
-    /* 讓lebal為空的時候顯示文字 */
-    .dropdown .text label:empty:after {
-        content: '請選擇設備';
-        color: #ccc;
-    }
-</style>
+﻿@model IEnumerable<TeamCodingF4.Models.EstateModel>
 
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
@@ -28,145 +6,211 @@
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
                 <a class="breadcrumb-item text-dark" href="#">首頁</a>
-                <span class="breadcrumb-item active">物件刊登</span>
+                <span class="breadcrumb-item active">我的物件</span>
             </nav>
         </div>
     </div>
 </div>
-
+<!-- Breadcrumb End -->
+<!-- Cart Start -->
 <div class="container-fluid">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">物件刊登</span></h2>
-    <form action="/Estate/Create" method="post">
-        <div class="row px-xl-5 ">
-            <div class="col-lg-12 mb-5">
-                <div class="contact-form bg-light p-30">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <div class="control-group">
-                                <label>標題</label>
-                                <input type="text" class="form-control" name="EstateTittle" id="EstateTittle" placeholder="仁愛街新裝潢套房！離捷運站近"
-                                       required="required" data-validation-required-message="請輸入標題" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>房型</label>
-                                <select class="form-control" name="RoomType" id="RoomType" required="required" data-validation-required-message="請選擇房型">
-                                    <option>透天</option>
-                                    <option>套房</option>
-                                    <option>雅房</option>
-                                    <option>其他</option>
-                                </select>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>地址</label>
-                                <input type="text" class="form-control" name="Address" id="Address" placeholder="台北市中正區XX路X號X樓"
-                                       required="required" data-validation-required-message="請輸入地址" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>價格(NT)</label>
-                                <input type="number" min="0" class="form-control" name="EststePrice" id="EststePrice"
-                                       required="required" data-validation-required-message="請輸入價格" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>雜費(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous"
-                                       required="required" data-validation-required-message="請輸入雜費" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>坪數</label>
-                                <input type="number" min="1" class="form-control" name="Meters" id="Meters"
-                                       required="required" data-validation-required-message="請輸入坪數" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>車位</label>
-                                <div class="row">
-                                    <span class="col-2">汽車:</span>
-                                    <input type="number" value="0" class="form-control col-3" name="Car" id="Car"
-                                           required="required" data-validation-required-message="請輸入車位" />
-                                    <span class="col-2">機車:</span>
-                                    <input type="number" value="0" class="form-control col-3" name="Motorcycle" id="Motorcycle"
-                                           required="required" data-validation-required-message="請輸入車位" />
-                                </div>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <div class="control-group">
-                                <label>設備</label>
-                                <div class="dropdown form-control">
-                                    <div class="item text">
-                                        <label></label>
-                                    </div>
-                                    <div class="item">
-                                        <input type="checkbox" name="AirConditioner" id="AirConditioner" value="1" />
-                                        <label for="AirConditioner">冷氣</label>
-                                    </div>
-                                    <div class="item">
-                                        <input type="checkbox" name="Television" id="Television" value="1" />
-                                        <label for="Television">電視</label>
-                                    </div>
-                                    <div class="item">
-                                        <input type="checkbox" name="WetDry" id="WetDry " value="1" />
-                                        <label for="WetDry">乾溼分離</label>
-                                    </div>
-                                    <div class="item">
-                                        <input type="checkbox" name="Balcony" id="Balcony" value="1" />
-                                        <label for="Balcony">陽台</label>
-                                    </div>
-                                    <div class="item">
-                                        <input type="checkbox" name="WashingMachine" id="WashingMachine" value="1" />
-                                        <label for="WashingMachine">洗衣機</label>
-                                    </div>
-                                    <div class="item">
-                                        <input type="checkbox" name="WaterDispenser" id="WaterDispenser" value="1" />
-                                        <label for="WaterDispenser">飲水機</label>
-                                    </div>
-                                    <div class="item">
-                                        <input type="checkbox" name="Refrigerator" id="Refrigerator" value="1" />
-                                        <label for="Refrigerator">冰箱</label>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <p class="help-block text-danger"></p>
-                            <div class="control-group">
-                                <label>租約期(月)</label>
-                                <input type="number" min="1" class="form-control" name="Lease" id="Lease"
-                                       required="required" data-validation-required-message="請輸入租約期" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>照片</label>
-                                <input type="file" class="form-control" name="EstatePicture" id="EstatePicture" multiple
-                                       required="required" data-validation-required-message="請選擇照片" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>影片</label>
-                                <input type="file" class="form-control" name="EstateVideo" id="EstateVideo"
-                                       required="required" data-validation-required-message="請選擇影片" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>其他資訊</label>
-                                <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message"></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <button class="btn py-2 px-4" type="reset" id="reset" style="background-color:cornflowerblue;color:white">
-                                重設
-                            </button>
-                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendEstateButton">
-                                送出
-                            </button>
-                        </div>
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>標題</th>
+                        <th>房型</th>
+                        <th>地址</th>
+                        <th>價格</th>
+                        <th>其他</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="align-middle"><img src="" alt="" style="width: 50px;"> @Html.DisplayFor(modelItem => item.EstateTittle)</td>
+                            <td class="align-middle"> @Html.DisplayFor(modelItem => item.RoomType)</td>
+                            <td class="align-middle">@Html.DisplayFor(modelItem => item.Address)</td>
+                            <td class="align-middle">@Html.DisplayFor(modelItem => item.EststePrice)</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fa fa-times">
+                                        <a asp-action="Delete" asp-route-id="@item.EstateId">Delete</a>
+                                    </i>
+                                </button>
+                                <a asp-action="Edit" asp-route-id="@item.EstateId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.EstateId">Details</a> |
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <form class="mb-30" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Apply Coupon</button>
                     </div>
+                </div>
+            </form>
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Subtotal</h6>
+                        <h6>$150</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Total</h5>
+                        <h5>$160</h5>
+                    </div>
+                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
+<!-- Cart End -->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EstateTittle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EststePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miscellaneous)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meters)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Motorcycle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirConditioner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Television)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WetDry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balcony)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WashingMachine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WaterDispenser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Refrigerator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lease)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstatePicture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstateVideo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.message)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstateTittle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EststePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miscellaneous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meters)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motorcycle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AirConditioner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Television)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WetDry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balcony)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WashingMachine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WaterDispenser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Refrigerator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstatePicture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstateVideo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.message)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EstateId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EstateId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EstateId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

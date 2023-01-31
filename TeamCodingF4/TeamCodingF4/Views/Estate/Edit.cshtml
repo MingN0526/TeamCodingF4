@@ -1,0 +1,124 @@
+﻿@model TeamCodingF4.Models.EstateModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>EstateModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EstateId" />
+            <div class="form-group">
+                <label asp-for="EstateTittle" class="control-label"></label>
+                <input asp-for="EstateTittle" class="form-control" />
+                <span asp-validation-for="EstateTittle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomType" class="control-label"></label>
+                <input asp-for="RoomType" class="form-control" />
+                <span asp-validation-for="RoomType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EststePrice" class="control-label"></label>
+                <input asp-for="EststePrice" class="form-control" />
+                <span asp-validation-for="EststePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Miscellaneous" class="control-label"></label>
+                <input asp-for="Miscellaneous" class="form-control" />
+                <span asp-validation-for="Miscellaneous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Meters" class="control-label"></label>
+                <input asp-for="Meters" class="form-control" />
+                <span asp-validation-for="Meters" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Car" class="control-label"></label>
+                <input asp-for="Car" class="form-control" />
+                <span asp-validation-for="Car" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Motorcycle" class="control-label"></label>
+                <input asp-for="Motorcycle" class="form-control" />
+                <span asp-validation-for="Motorcycle" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AirConditioner" /> @Html.DisplayNameFor(model => model.AirConditioner)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Television" /> @Html.DisplayNameFor(model => model.Television)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="WetDry" /> @Html.DisplayNameFor(model => model.WetDry)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Balcony" /> @Html.DisplayNameFor(model => model.Balcony)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="WashingMachine" /> @Html.DisplayNameFor(model => model.WashingMachine)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="WaterDispenser" /> @Html.DisplayNameFor(model => model.WaterDispenser)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Refrigerator" /> @Html.DisplayNameFor(model => model.Refrigerator)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease" class="control-label"></label>
+                <input asp-for="Lease" class="form-control" />
+                <span asp-validation-for="Lease" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstatePicture" class="control-label"></label>
+                <input asp-for="EstatePicture" class="form-control" />
+                <span asp-validation-for="EstatePicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstateVideo" class="control-label"></label>
+                <input asp-for="EstateVideo" class="form-control" />
+                <span asp-validation-for="EstateVideo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="message" class="control-label"></label>
+                <input asp-for="message" class="form-control" />
+                <span asp-validation-for="message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
