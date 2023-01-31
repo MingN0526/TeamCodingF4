@@ -30,8 +30,13 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td class="align-middle"><img src="" alt="" style="width: 50px;"> @Html.DisplayFor(modelItem => item.EstateTittle)</td>
-                            <td class="align-middle"> @Html.DisplayFor(modelItem => item.RoomType)</td>
+                            <td class="align-middle">
+                                <img src="" alt="" style="width: 50px;">
+                                @Html.DisplayFor(modelItem => item.EstateTittle)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => item.RoomType)
+                            </td>
                             <td class="align-middle">@Html.DisplayFor(modelItem => item.Address)</td>
                             <td class="align-middle">@Html.DisplayFor(modelItem => item.EststePrice)</td>
                             <td class="align-middle">
@@ -82,7 +87,7 @@
 </div>
 <!-- Cart End -->
 
-<table class="table">
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -146,71 +151,73 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstateTittle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EststePrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Miscellaneous)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Meters)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Car)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Motorcycle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AirConditioner)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Television)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WetDry)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Balcony)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WashingMachine)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WaterDispenser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Refrigerator)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lease)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstatePicture)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstateVideo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.message)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EstateId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EstateId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EstateId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstateTittle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EststePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Miscellaneous)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meters)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Motorcycle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirConditioner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Television)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WetDry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balcony)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WashingMachine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WaterDispenser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Refrigerator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lease)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstatePicture)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstateVideo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.message)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EstateId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EstateId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EstateId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+*@
