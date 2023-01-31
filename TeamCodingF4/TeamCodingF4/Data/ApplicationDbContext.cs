@@ -35,7 +35,7 @@ namespace TeamCodingF4.Data
                 ArticleDate = "2022/01/10",
                 ArticlePublisher = "Jacky",
                 ArticleCategory = "心得分享",
-                ArticleContent = "加油!",
+                ArticleContent = "心得分享!",
                 ArticleTitle = "範例"
             });
         }
