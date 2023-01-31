@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
-<body>
-    <div class="container">
+
+<div class="container" id="articleIndex" >
         <div class="main-body p-0">
             <div class="inner-wrapper">
                 <div class="inner-sidebar">
@@ -18,13 +18,6 @@
                                         <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                             <div class="simplebar-content" style="padding: 16px;">
                                                 <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                    <select class="custom-select custom-select-sm w-auto mr-1">
-                                                        <option selected="">Latest</option>
-                                                        <option value="1">Popular</option>
-                                                        <option value="3">Solved</option>
-                                                        <option value="3">Unsolved</option>
-                                                        <option value="3">No Replies Yet</option>
-                                                    </select>
                                                     <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a>
                                                     <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">最新文章</a>
                                                     <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日熱門文章</a>
@@ -41,22 +34,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="inner-main">
+                <div class="inner-main" >
                     <div class="inner-main-header">
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Thinking">心得分享</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="article" asp-action="Thinking">心得分享</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Question">發文解惑</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Question">發文解惑</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Chat">閒聊專區</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Chat">閒聊專區</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Complain">抱怨專區</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Complain">抱怨專區</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Artical" asp-action="Roommate">找尋室友</a></button>
+                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Roommate">找尋室友</a></button>
                         </div>
                         <div class="col-2">
                             <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
@@ -70,23 +63,23 @@
 
 
 
-                    <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+                <div class="inner-main-body p-2 p-sm-3 collapse forum-content show" >
                         <div class="card mb-2">
                             <div class="card-body p-2 p-sm-3">
-                                <div class="media forum-item">
-                                    <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                    <div class="media-body">
-                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">Realtime fetching data</a></h6>
-                                        <p class="text-secondary">
-                                            lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-                                        </p>
-                                        <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
-                                    </div>
-                                    <div class="text-muted small text-center align-self-center">
-                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                                        <span><i class="far fa-comment ml-2"></i> 3</span>
-                                    </div>
+                            <div class="media forum-item">
+                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                <div class="media-body" v-for="article in articles" >
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">{{article.articleTitle}}</a></h6>
+                                    <p style="color:black">
+                                        {{article.articleContent}}
+                                    </p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a> <span class="text-secondary font-weight-bold"></span></p>
                                 </div>
+                                <div class="text-muted small text-center align-self-center">
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
+                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="card mb-2">
@@ -448,7 +441,24 @@
             padding: 1rem;
         }
     </style>
-    <script type="text/javascript">
 
+@section Scripts
+{
+    <script>
+        let app = new Vue({
+            el: '#articleIndex',
+            data: {
+                articles: [],                
+            },
+            mounted: function () {               
+                let _self = this
+                fetch("/api/article/getall")
+                    .then(function (response) {return response.json() })
+                    .then(function (result) {
+                     console.log(result)
+                      _self.articles = result                     
+                    })
+            }            
+        });
     </script>
-</body>
+}

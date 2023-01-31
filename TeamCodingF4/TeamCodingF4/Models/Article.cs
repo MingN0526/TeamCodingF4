@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TeamCodingF4.Models
 {
-    [Table("Articals")]
-    public class Artical
+    [Table("Articles")]
+    public class Article
     {
         [Key]
-        public int ArticalId { get; set; }
+        public int ArticleId { get; set; }
         [StringLength(64)]
-        public string ArticalDate { get; set; }
+        public string ArticleDate { get; set; }
         [StringLength(64)]
         public string ArticlePublisher { get; set; }
         [StringLength(64)]

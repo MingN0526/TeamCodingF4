@@ -5,23 +5,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TeamCodingF4.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ArticalModel",
+                name: "Articles",
                 columns: table => new
                 {
-                    ArticalId = table.Column<int>(type: "int", nullable: false)
+                    ArticleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AriticalDate = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    ArticleDate = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     ArticlePublisher = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    ArticleCategory = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false)
+                    ArticleCategory = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    ArticleContent = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    ArticleTitle = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArticalModel", x => x.ArticalId);
+                    table.PrimaryKey("PK_Articles", x => x.ArticleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,6 +70,50 @@ namespace TeamCodingF4.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EstateImage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EstateImage", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EstateModel",
+                columns: table => new
+                {
+                    EstateId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EstateTittle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EststePrice = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Miscellaneous = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Meters = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Car = table.Column<int>(type: "int", nullable: false),
+                    Motorcycle = table.Column<int>(type: "int", nullable: false),
+                    AirConditioner = table.Column<bool>(type: "bit", nullable: false),
+                    Television = table.Column<bool>(type: "bit", nullable: false),
+                    WetDry = table.Column<bool>(type: "bit", nullable: false),
+                    Balcony = table.Column<bool>(type: "bit", nullable: false),
+                    WashingMachine = table.Column<bool>(type: "bit", nullable: false),
+                    WaterDispenser = table.Column<bool>(type: "bit", nullable: false),
+                    Refrigerator = table.Column<bool>(type: "bit", nullable: false),
+                    Lease = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EstatePicture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EstateVideo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    message = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EstateModel", x => x.EstateId);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,6 +243,11 @@ namespace TeamCodingF4.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Articles",
+                columns: new[] { "ArticleId", "ArticleCategory", "ArticleContent", "ArticleDate", "ArticlePublisher", "ArticleTitle" },
+                values: new object[] { 1, "心得分享", "心得分享!", "2022/01/10", "Jacky", "範例" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -245,7 +296,7 @@ namespace TeamCodingF4.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ArticalModel");
+                name: "Articles");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -261,6 +312,12 @@ namespace TeamCodingF4.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "EstateImage");
+
+            migrationBuilder.DropTable(
+                name: "EstateModel");
 
             migrationBuilder.DropTable(
                 name: "MemberLikes");
