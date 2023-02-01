@@ -1,8 +1,11 @@
-﻿namespace TeamCodingF4.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace TeamCodingF4.Models
 {
     public class EstateVideo
     {
-        public int Id { get; set; }
-        public string Path { get; set; }
+        public int VideoId { get; set; }
+        public string VideoPath { get; set; }
     }
 }

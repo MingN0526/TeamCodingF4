@@ -69,7 +69,7 @@ namespace TeamCodingF4.Controllers
                         picture.CopyTo(System.IO.File.Create(picturepath));
                         _context.EstateImage.Add(new EstateImage()
                         {
-                            Path = $@"\Picture\{pictureName}",
+                            ImagePath = $@"\Picture\{pictureName}",
                         });
                     }
                     var videoName = DateTime.Now.Ticks + ev.FileName;
@@ -77,7 +77,7 @@ namespace TeamCodingF4.Controllers
                     ev.CopyTo(System.IO.File.Create(videopath));
                     _context.EstateVideo.Add(new EstateVideo()
                     {
-                        Path = $@"\Video\{videoName}",
+                        VideoPath = $@"\Video\{videoName}",
                     });
 
                     _context.Add(estateModel);
