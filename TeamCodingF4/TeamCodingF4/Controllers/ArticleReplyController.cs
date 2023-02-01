@@ -8,5 +8,10 @@ namespace TeamCodingF4.Controllers
         {
             return View();
         }
+
+        public IActionResult ReplyContent()
+        {
+            return View();
+        }
     }
 }
