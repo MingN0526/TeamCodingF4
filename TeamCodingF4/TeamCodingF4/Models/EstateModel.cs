@@ -38,9 +38,9 @@ namespace TeamCodingF4.Models
         public string Lease { get; set; }
 
         [Required(ErrorMessage = "請選擇圖片")]
-        public string EstatePicture { get; set; }
+        public List<IFormFile> EstatePicture { get; set; }
 
-        public string EstateVideo { get; set; }
+        public IFormFile EstateVideo { get; set; }
         public string? message { get; set; }
 
     }

@@ -28,6 +28,8 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\Video\" />
+    <Folder Include="wwwroot\Picture\" />
     <Folder Include="wwwroot\Upload\" />
   </ItemGroup>
 
