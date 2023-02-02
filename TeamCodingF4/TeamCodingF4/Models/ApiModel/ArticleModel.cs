@@ -2,11 +2,12 @@
 {
     public class ArticleModel
     {
-        public int ArticleId { get; set; }
-        public string ArticleDate { get; set; }
-        public string ArticlePublisher { get; set; }
-        public string ArticleContent { get; set; }
-        public string ArticleTitle { get; set; }
-        public string ArticleCategory { get; set; }
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public int PublisherId { get; set; }
+        public string Content { get; set; }
+        public string Title { get; set; }
+        public string Category { get; set; }
+        public int ViewCount { get; set; }
     }
 }

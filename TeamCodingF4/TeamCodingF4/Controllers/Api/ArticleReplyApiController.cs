@@ -18,9 +18,8 @@ namespace TeamCodingF4.Controllers.Api
         {
             return _db.ArticlesReply.Select(x => new ArticleReplyModel
             {
-                ReplyContent=x.ReplyContent,
-                ReplyDate=x.ReplyDate,
-                ReplyPublisher=x.ReplyPublisher
+                Content=x.Content,
+                Date=x.Date
             }).ToList();
         }
     }

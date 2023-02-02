@@ -1,47 +1,41 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TeamCodingF4.Models
+namespace TeamCodingF4.Data.Entity
 {
-    [Table("Articles")]
-    public class Article
+    public class Articles
     {
         /// <summary>
         /// 文章ID
         /// </summary>
         [Key]
-        public int ArticleId { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// 文章日期
         /// </summary>
-        [MaxLength(12)]
-        [Column(TypeName = "varchar")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         /// <summary>
         /// 文章發佈者
         /// </summary>
-        [MaxLength(60)]
-        [Column(TypeName = "nvarchar")]
-        public string Publisher { get; set; }
+        [ForeignKey("Member")]
+        public int PublisherId { get; set; }
         /// <summary>
         /// 文章分類
         /// </summary>
-        [MaxLength(21)]
-        [Column(TypeName = "nvarchar")]
         public string Category { get; set; }
         /// <summary>
         /// 文章內容
         /// </summary>
-        [MaxLength(1200)]
-        [Column(TypeName ="nvarchar")]
         public string Content { get; set; }
         /// <summary>
         /// 文章標題
         /// </summary>
-        [MaxLength(60)]
-        [Column(TypeName = "nvarchar")]
         public string Title { get; set; }
 
+        public int ViewCount { get; set; }
+
+        public virtual Member Member { get; set; }
         public virtual ICollection<ArticleReply> ArticleReplies { get; set; }
+        public virtual ICollection<ArticleLike> ArticleLikes { get; set; }
     }
 }

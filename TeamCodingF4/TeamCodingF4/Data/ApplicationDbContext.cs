@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TeamCodingF4.Models;
-using TeamCodingF4.Models.ApiModel;
+using TeamCodingF4.Data.Entity;
 
 namespace TeamCodingF4.Data
 {
@@ -12,12 +11,21 @@ namespace TeamCodingF4.Data
             : base(options)
         {
         }
-        public DbSet<Article> Articles { get; set; }
-        public DbSet<ArticleReply> ArticlesReply { get; set; }
-        public DbSet<MemberModel> Members { get; set; }
-        public DbSet<MemberLike> MemberLikes { get; set; }
 
-        public DbSet<EstateModel> EstateModel { get; set; }
+
+
+
+        public DbSet<ArticleLike> ArticleLikes { get; set; }
+        public DbSet<ArticleReply> ArticlesReply { get; set; }
+        public DbSet<Articles> Articles { get; set; }
+        public DbSet<Condition> Conditions { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<Estate> Estates { get; set; }
+        public DbSet<EstateImage> EstateImages { get; set; }
+        public DbSet<EstateLike> EstateLikes { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<RoomType> RoomTypes { get; set; }
+
 
         //public IEnumerable<object> Artical { get; internal set; }
 
@@ -26,85 +34,85 @@ namespace TeamCodingF4.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Article>().HasData(new Article
+            modelBuilder.Entity<Articles>().HasData(new Articles
             {
-                ArticleId = 1,
-                Date = "2022/01/10",
-                Publisher = "Jacky",
+                Id = 1,
+                Date = new DateTime(2008, 3, 1, 7, 0, 1),
+                PublisherId = 1,
                 Category = "心得分享",
                 Content = "心得分享!",
                 Title = "範例"
             });
-            modelBuilder.Entity<Article>().HasData(new Article
+            modelBuilder.Entity<Articles>().HasData(new Articles
             {
-                ArticleId = 2,
-                Date = "2022/01/11",
-                Publisher = "Amy",
+                Id = 2,
+                Date = new DateTime(2008, 3, 1, 7, 0, 2),
+                PublisherId = 2,
                 Category = "發文解惑",
                 Content = "發文解惑~",
                 Title = "範例"
             });
-            modelBuilder.Entity<Article>().HasData(new Article
+            modelBuilder.Entity<Articles>().HasData(new Articles
             {
-                ArticleId = 3,
-                Date = "2022/01/12",
-                Publisher = "Ken",
+                Id = 3,
+                Date = new DateTime(2008, 3, 1, 7, 0, 3),
+                PublisherId = 3,
                 Category = "閒聊專區",
                 Content = "閒聊專區~",
                 Title = "範例"
             });
-            modelBuilder.Entity<Article>().HasData(new Article
+            modelBuilder.Entity<Articles>().HasData(new Articles
             {
-                ArticleId = 4,
-                Date = "2022/01/13",
-                Publisher = "YO",
+                Id = 4,
+                Date = new DateTime(2008, 3, 1, 7, 0, 4),
+                PublisherId = 4,
                 Category = "抱怨專區",
                 Content = "抱怨專區~",
                 Title = "範例"
             });
-            modelBuilder.Entity<Article>().HasData(new Article
+            modelBuilder.Entity<Articles>().HasData(new Articles
             {
-                ArticleId = 5,
-                Date = "2022/01/13",
-                Publisher = "MIMI",
+                Id = 5,
+                Date = new DateTime(2008, 3, 1, 7, 0, 4),
+                PublisherId = 5,
                 Category = "找尋室友",
                 Content = "找尋室友~",
                 Title = "範例"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ReplyId = 1,
-                ReplyDate = "2022/01/10",
-                ReplyPublisher = "Sam",
-                ReplyContent = "終於快寫好心得分享了~"
+                Id = 1,
+                Date = new DateTime(2008, 3, 1, 7, 0, 1),
+                PublisherId = 1,
+                Content = "終於快寫好心得分享了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ReplyId = 2,
-                ReplyDate = "2022/01/11",
-                ReplyPublisher = "Sam",
-                ReplyContent = "終於快寫好發文解惑了~"
+                Id = 2,
+                Date = new DateTime(2008, 3, 1, 7, 0, 2),
+                PublisherId = 2,
+                Content = "終於快寫好發文解惑了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ReplyId = 3,
-                ReplyDate = "2022/01/12",
-                ReplyPublisher = "Sam",
-                ReplyContent = "終於快寫好閒聊專區了~"
+                Id = 3,
+                Date = new DateTime(2008, 3, 1, 7, 0, 3),
+                PublisherId = 3,
+                Content = "終於快寫好閒聊專區了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ReplyId = 4,
-                ReplyDate = "2022/01/13",
-                ReplyPublisher = "Sam",
-                ReplyContent = "終於快寫好抱怨專區了~"
+                Id = 4,
+                Date = new DateTime(2008, 3, 1, 7, 0, 4),
+                PublisherId = 4,
+                Content = "終於快寫好抱怨專區了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ReplyId = 5,
-                ReplyDate = "2022/01/13",
-                ReplyPublisher = "Sam",
-                ReplyContent = "終於快寫好找尋室友了~"
+                Id = 5,
+                Date = new DateTime(2008, 3, 1, 7, 0, 4),
+                PublisherId = 5,
+                Content = "終於快寫好找尋室友了~"
             });
         }
 

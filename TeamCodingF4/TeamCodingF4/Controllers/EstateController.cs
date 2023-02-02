@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TeamCodingF4.Data;
-using TeamCodingF4.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
-using System.Runtime.CompilerServices;
+using TeamCodingF4.Data.Entity;
+using TeamCodingF4.Models.ApiModel;
 
 namespace TeamCodingF4.Controllers
 {
@@ -26,18 +19,18 @@ namespace TeamCodingF4.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.EstateModel.ToListAsync());
+            return View(await _context.Estates.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.EstateModel == null)
+            if (id == null || _context.Estates == null)
             {
                 return NotFound();
             }
 
-            var estateModel = await _context.EstateModel
-                .FirstOrDefaultAsync(m => m.EstateId == id);
+            var estateModel = await _context.Estates
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (estateModel == null)
             {
                 return NotFound();
@@ -52,121 +45,70 @@ namespace TeamCodingF4.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstateImage,EstateVideo,message")] EstateModel estateModel)
+        public async Task<IActionResult> Create(EstateCreateModel estateModel)
         {
-                var ep = estateModel.EstateImage;
-                var ev = estateModel.EstateVideo;
-                if (ep != null && ev!=null)
-                {
-                    var root = _environment.WebRootPath;
-                    foreach (var picture in ep)
-                    {
-                        var pictureName = DateTime.Now.Ticks + picture.FileName;
-                        var picturepath = $@"{root}\Picture\{pictureName}";
-                        picture.CopyTo(System.IO.File.Create(picturepath));
-                        _context.EstateImage.Add(new EstateImage()
-                        {
-                            ImagePath = $@"\Picture\{pictureName}",
-                        });
-                    }
-                    var videoName = DateTime.Now.Ticks + ev.FileName;
-                    var videopath = $@"{root}\Video\{videoName}";
-                    ev.CopyTo(System.IO.File.Create(videopath));
-                    _context.EstateVideo.Add(new EstateVideo()
-                    {
-                        VideoPath = $@"\Video\{videoName}",
-                    });
-
-                    _context.Add(estateModel);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-            return View(estateModel);
-        }
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.EstateModel == null)
+            var ep = estateModel.EstateImages;
+            var ev = estateModel.EstateVideo;
+            if (ep == null && ev == null)
             {
-                return NotFound();
+                return BadRequest("沒圖片/影片");
             }
 
-            var estateModel = await _context.EstateModel.FindAsync(id);
-            if (estateModel == null)
+            var insertData = new Estate()
             {
-                return NotFound();
-            }
-            return View(estateModel);
-        }
+                Car = estateModel.Car,
+                District = estateModel.District,
+                City = estateModel.City,
+                EstateImage = new List<EstateImage>(),
+                Address = estateModel.Address,
+                Conditions = new List<Condition>(),
+                Floor = estateModel.Floor,
+                Tittle = estateModel.Tittle,
+                Lease = estateModel.Lease,
+                Meters = estateModel.Meters,
+                Price = estateModel.Price,
+                Motorcycle = estateModel.Motorcycle,
+                Miscellaneous = estateModel.Miscellaneous,
+                message = estateModel.message,
+                RoomTypeId = estateModel.RoomTypeId,
+            };
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstateImage,EstateVideo,message")] EstateModel estateModel)
-        {
-            if (id != estateModel.EstateId)
+            var root = _environment.WebRootPath;
+            foreach (var picture in ep)
             {
-                return NotFound();
+                var pictureName = DateTime.Now.Ticks + picture.FileName;
+                var picturepath = $@"{root}\Picture\{pictureName}";
+                picture.CopyTo(System.IO.File.Create(picturepath));
+                insertData.EstateImage.Add(new EstateImage()
+                {                    
+                    ImagePath = $@"\Picture\{pictureName}"
+                });
             }
+            var videoName = DateTime.Now.Ticks + ev.FileName;
+            var videopath = $@"{root}\Video\{videoName}";
+            ev.CopyTo(System.IO.File.Create(videopath));
+            insertData.EstateVideoPath = $@"\Video\{videoName}";
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(estateModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EstateModelExists(estateModel.EstateId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(estateModel);
-        }
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.EstateModel == null)
-            {
-                return NotFound();
-            }
-
-            var estateModel = await _context.EstateModel
-                .FirstOrDefaultAsync(m => m.EstateId == id);
-            if (estateModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(estateModel);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.EstateModel == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.EstateModel'  is null.");
-            }
-            var estateModel = await _context.EstateModel.FindAsync(id);
-            if (estateModel != null)
-            {
-                _context.EstateModel.Remove(estateModel);
-            }
-
+            _context.Estates.Add(insertData);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EstateModelExists(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            return _context.EstateModel.Any(e => e.EstateId == id);
+            if (id == null || _context.Estates == null)
+            {
+                return NotFound();
+            }
+
+            var estateCreateModel = await _context.Estates.FindAsync(id);
+            if (estateCreateModel == null)
+            {
+                return NotFound();
+            }
+            return View(estateCreateModel);
         }
+
+        
     }
 }

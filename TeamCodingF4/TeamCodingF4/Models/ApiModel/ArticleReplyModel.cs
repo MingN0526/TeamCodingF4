@@ -2,8 +2,8 @@
 {
     public class ArticleReplyModel
     {
-        public string ReplyContent { get; set; }
-        public string ReplyPublisher { get; set; }
-        public string ReplyDate { get; set; }
+        public string Content { get; set; }
+        public int PublisherId { get; set; }
+        public DateTime Date { get; set; }
     }
 }
