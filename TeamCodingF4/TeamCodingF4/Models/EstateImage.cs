@@ -8,6 +8,8 @@ namespace TeamCodingF4.Models
         public int ImageId { get; set; }
 
         public string ImagePath { get; set; }
-
+        public virtual EstateModel EstateModel { get; set; }
     }
+
+
 }
