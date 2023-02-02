@@ -1,127 +1,94 @@
 ﻿@model TeamCodingF4.Models.EstateModel
 
-@{
-    ViewData["Title"] = "Delete";
-}
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">首頁</a>
+                <a class="breadcrumb-item text-dark" href="/estate/index">我的物件</a>
+                <span class="breadcrumb-item active">確定刪除</span>
+            </nav>
+        </div>
+    </div>
+</div>
 
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+
 <div>
-    <h4>EstateModel</h4>
-    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EstateTittle)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EstateTittle)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RoomType)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RoomType)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Address)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EststePrice)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EststePrice)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Miscellaneous)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Miscellaneous)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Meters)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Meters)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Car)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Car)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Motorcycle)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Motorcycle)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AirConditioner)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AirConditioner)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Television)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Television)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WetDry)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.WetDry)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Balcony)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Balcony)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WashingMachine)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.WashingMachine)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WaterDispenser)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.WaterDispenser)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Refrigerator)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Refrigerator)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lease)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Lease)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EstatePicture)
-        </dt>
+
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EstatePicture)
+            @Html.DisplayFor(model => model.EstateImage)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EstateVideo)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EstateVideo)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.message)
-        </dt>
+
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.message)
         </dd>
@@ -130,6 +97,5 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="EstateId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
     </form>
 </div>

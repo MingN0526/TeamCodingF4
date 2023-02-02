@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TeamCodingF4.Models
 {
     public class EstateModel
     {
-        [Key]
+        [KeyAttribute]
         public int EstateId { get; set; }
 
         [Required(ErrorMessage = "請輸入標題")]
@@ -37,10 +38,10 @@ namespace TeamCodingF4.Models
         [Required(ErrorMessage = "請輸入租約期")]
         public string Lease { get; set; }
 
-        [Required(ErrorMessage = "請選擇圖片")]
-        public string EstatePicture { get; set; }
+        public List<IFormFile> EstateImage { get; set; }
 
-        public string EstateVideo { get; set; }
+        [NotMapped]
+        public IFormFile EstateVideo { get; set; }
         public string? message { get; set; }
 
     }

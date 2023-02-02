@@ -19,6 +19,8 @@ namespace TeamCodingF4.Data
 
         public DbSet<EstateImage> EstateImage { get; set; }
 
+        public DbSet<EstateVideo> EstateVideo { get; set; }
+
         public DbSet<EstateModel> EstateModel { get; set; }
 
         //public IEnumerable<object> Artical { get; internal set; }

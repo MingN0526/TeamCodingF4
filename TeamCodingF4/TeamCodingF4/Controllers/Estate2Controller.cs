@@ -42,7 +42,7 @@ namespace TeamCodingF4.Controllers
                 }
                 db.EstateImage.Add(new EstateImage()
                 {
-                    Path = $@"\Upload\{fileName}",
+                    ImagePath = $@"\Upload\{fileName}",
                 });
                 db.SaveChanges();
                 return "成功";
@@ -72,7 +72,7 @@ namespace TeamCodingF4.Controllers
                 }
                 db.EstateImage.Add(new EstateImage()
                 {
-                    Path = $@"\Upload\{fileName}",
+                    ImagePath = $@"\Upload\{fileName}",
                 });                
             }
             db.SaveChanges();
@@ -99,7 +99,7 @@ namespace TeamCodingF4.Controllers
                 }
                 db.EstateImage.Add(new EstateImage()
                 {
-                    Path = $@"\Upload\{fileName}",
+                    ImagePath = $@"\Upload\{fileName}",
                 });
             }
             db.SaveChanges();

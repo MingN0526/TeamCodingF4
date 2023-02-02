@@ -349,7 +349,7 @@ namespace TeamCodingF4.Migrations
                     b.Property<int>("Car")
                         .HasColumnType("int");
 
-                    b.Property<string>("EstatePicture")
+                    b.Property<string>("EstateImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

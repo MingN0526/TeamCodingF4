@@ -1,62 +1,62 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
 
 <div class="container" id="articleIndex" >
-        <div class="main-body p-0">
-            <div class="inner-wrapper">
-                <div class="inner-sidebar">
-                    <div class="inner-sidebar-header justify-content-center">
-                        <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
-                            發表文章
-                        </button>
-                    </div>
-                    <div class="inner-sidebar-body p-0">
-                        <div class="p-3 h-100" data-simplebar="init">
-                            <div class="simplebar-wrapper" style="margin: -16px;">
-                                <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
-                                <div class="simplebar-mask">
-                                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                        <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
-                                            <div class="simplebar-content" style="padding: 16px;">
-                                                <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a>
-                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">最新文章</a>
-                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日熱門文章</a>
-                                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日精華文章</a>
-                                                </nav>
-                                            </div>
+    <div class="main-body p-0">
+        <div class="inner-wrapper">
+            <div class="inner-sidebar">
+                <div class="inner-sidebar-header justify-content-center">
+                    <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+                        發表文章
+                    </button>
+                </div>
+                <div class="inner-sidebar-body p-0">
+                    <div class="p-3 h-100" data-simplebar="init">
+                        <div class="simplebar-wrapper" style="margin: -16px;">
+                            <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                            <div class="simplebar-mask">
+                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                    <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                        <div class="simplebar-content" style="padding: 16px;">
+                                            <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a>
+                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">最新文章</a>
+                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日熱門文章</a>
+                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日精華文章</a>
+                                            </nav>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
                             </div>
-                            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
-                            <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+                            <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
                         </div>
+                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
+                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
                     </div>
                 </div>
-                <div class="inner-main" >
-                    <div class="inner-main-header">
-                        <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArtical('心得分享')" ><a style="color:black">心得分享</a></button>
-                        </div>
-                        <div class="col-2">
+            </div>
+            <div class="inner-main">
+                <div class="inner-main-header">
+                    <div class="col-2">
+                        <button type="button" class="btn btn-warning" v-on:click="showArtical('心得分享')"><a style="color:black">心得分享</a></button>
+                    </div>
+                    <div class="col-2">
                         <button type="button" class="btn btn-warning" v-on:click="showArtical('發文解惑')"><a style="color:black">發文解惑</a></button>
-                        </div>
-                        <div class="col-2">
+                    </div>
+                    <div class="col-2">
                         <button type="button" class="btn btn-warning" v-on:click="showArtical('閒聊專區')"><a style="color:black">閒聊專區</a></button>
-                        </div>
-                        <div class="col-2">
+                    </div>
+                    <div class="col-2">
                         <button type="button" class="btn btn-warning" v-on:click="showArtical('抱怨專區')"><a style="color:black">抱怨專區</a></button>
-                        </div>
-                        <div class="col-2">
+                    </div>
+                    <div class="col-2">
                         <button type="button" class="btn btn-warning" v-on:click="showArtical('找尋室友')"><a style="color:black">找尋室友</a></button>
-                        </div>
-                        <div class="col-2">
-                            <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                            <span class="input-icon input-icon-sm ml-auto w-auto">
-                                <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" />
-                            </span>
-                        </div>
+                    </div>
+                    <div class="col-2">
+                        <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
+                        <span class="input-icon input-icon-sm ml-auto w-auto">
+                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" />
+                        </span>
+                    </div>
 
 
                     </div>
@@ -73,10 +73,10 @@
                                     <p style="color:black">
                                         {{article.articleContent}}
                                     </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a>回覆<span class="text-secondary font-weight-bold">時間</span></p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span  @*class="text-secondary font-weight-bold"*@>{{article.articleDate}}</span></p>
                                 </div>
                                 <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
                                     <span><i class="far fa-comment ml-2"></i> 3</span>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                         <p class="text-secondary">
                                             
                                         </p>
-                                        <p class="text-muted"><a href="javascript:void(0)">回覆者</a>回覆<span class="text-secondary font-weight-bold">時間</span></p>
+                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                     </div>
                                     <div class="text-muted small text-center align-self-center">
                                         <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -109,7 +109,7 @@
                                         <p class="text-secondary">
                                             
                                         </p>
-                                        <p class="text-muted"><a href="javascript:void(0)">回覆者</a>回覆<span class="text-secondary font-weight-bold">時間</span></p>
+                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                     </div>
                                     <div class="text-muted small text-center align-self-center">
                                         <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -127,7 +127,7 @@
                                         <p class="text-secondary">
                                             
                                         </p>
-                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold">時間</span></p>
+                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                     </div>
                                     <div class="text-muted small text-center align-self-center">
                                         <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -143,7 +143,7 @@
                                 <div class="media-body">
                                     <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
                                     <p class="text-secondary">
-
+                                        
                                     </p>
                                     <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                 </div>
@@ -213,13 +213,13 @@
                                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
                                         <small class="d-block text-center text-muted"></small>
                                     </a>
-                                <div class="media-body ml-3" v-for="article in articles">
+                                <div class="media-body ml-3" v-for="article in show">
                                     <a href="javascript:void(0)" class="text-secondary"></a>
-                                    <small class="text-muted ml-2">時間</small>
+                                    <small class="text-muted ml-2">{{article.articleDate}}</small>
                                     <h5 class="mt-1"></h5>
-                                    <div class="mt-3 font-size-sm" v-for="article in articles">
+                                    <div class="mt-3 font-size-sm" >
                                         <p>
-                                           
+                                            {{article.articleContent}}
                                         </p>
                                     </div>
                                 </div>
@@ -254,7 +254,7 @@
                                             <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
                                         </div>                                        
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                                            <input type="submit" value="發文" class="btn btn-primary px-3">
                                         </div>
                                     </form>
                                 </div>
@@ -456,7 +456,7 @@
         let app = new Vue({
             el: '#articleIndex',
             data: {
-                articles: [],    
+                articles:[],    
                 show:[]
             },
             mounted: function () {               
@@ -470,16 +470,26 @@
             },
             methods:{
                 showArtical: function (type) {
-                    var temp = [];
+                   var temp = [];
                    for(let i = 0;i < this.articles.length;i++)
                    {
-                       console.log(this.articles[i])
-                        if (this.articles[i].articleCategory == type) {
+                       //console.log(this.articles[i])
+                        if (this.articles[i].articleCategory == type)
+                        {
                             temp.push(this.articles[i])
-                        }
+                        }                        
                    }
-                   this.show = temp;
-                }
+                   this.show = temp;                   
+                },
+                //showDate:function(date){
+                //    for (let i = 0; i < this.articles.articleDate;i++)
+                //    {
+                //        if(this.articles[i].articleDate == date){
+                //            temp.push(this.articles[i])
+                //        }
+                //    }
+                //    this.show = temp;  
+                //}
             },
         });
     </script>

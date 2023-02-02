@@ -3,11 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TeamCodingF4.Models
 {
-    public class EstateImage
+    public class EstateVideo
     {
-        public int ImageId { get; set; }
-
-        public string ImagePath { get; set; }
-
+        public int VideoId { get; set; }
+        public string VideoPath { get; set; }
     }
 }
