@@ -9,7 +9,7 @@ namespace TeamCodingF4.Data.Entity
         /// 文章ID
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        public int ArticleId { get; set; }
         /// <summary>
         /// 文章日期
         /// </summary>

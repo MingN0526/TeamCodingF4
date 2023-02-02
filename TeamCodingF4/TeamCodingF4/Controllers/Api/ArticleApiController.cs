@@ -18,7 +18,7 @@ namespace TeamCodingF4.Controllers.Api
         {
             return _db.Articles.Select(x=> new ArticleModel
             {
-                Id= x.Id,
+                Id= x.ArticleId,
                 Content= x.Content,
                 Date= DateTime.Now,
                 Title= x.Title,
