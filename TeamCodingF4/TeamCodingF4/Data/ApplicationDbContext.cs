@@ -35,86 +35,86 @@ namespace TeamCodingF4.Data
             modelBuilder.Entity<Article>().HasData(new Article
             {
                 ArticleId = 1,
-                ArticleDate = "2022/01/10",
-                ArticlePublisher = "Jacky",
-                ArticleCategory = "心得分享",
-                ArticleContent = "心得分享!",
-                ArticleTitle = "範例"
+                Date = "2022/01/10",
+                Publisher = "Jacky",
+                Category = "心得分享",
+                Content = "心得分享!",
+                Title = "範例"
             });
             modelBuilder.Entity<Article>().HasData(new Article
             {
                 ArticleId = 2,
-                ArticleDate = "2022/01/10",
-                ArticlePublisher = "Jacky",
-                ArticleCategory = "發文解惑",
-                ArticleContent = "發文解惑~",
-                ArticleTitle = "範例"
+                Date = "2022/01/11",
+                Publisher = "Amy",
+                Category = "發文解惑",
+                Content = "發文解惑~",
+                Title = "範例"
             });
             modelBuilder.Entity<Article>().HasData(new Article
             {
                 ArticleId = 3,
-                ArticleDate = "2022/01/10",
-                ArticlePublisher = "Jacky",
-                ArticleCategory = "閒聊專區",
-                ArticleContent = "閒聊專區~",
-                ArticleTitle = "範例"
+                Date = "2022/01/12",
+                Publisher = "Ken",
+                Category = "閒聊專區",
+                Content = "閒聊專區~",
+                Title = "範例"
             });
             modelBuilder.Entity<Article>().HasData(new Article
             {
                 ArticleId = 4,
-                ArticleDate = "2022/01/10",
-                ArticlePublisher = "Jacky",
-                ArticleCategory = "抱怨專區",
-                ArticleContent = "抱怨專區~",
-                ArticleTitle = "範例"
+                Date = "2022/01/13",
+                Publisher = "YO",
+                Category = "抱怨專區",
+                Content = "抱怨專區~",
+                Title = "範例"
             });
             modelBuilder.Entity<Article>().HasData(new Article
             {
                 ArticleId = 5,
-                ArticleDate = "2022/01/10",
-                ArticlePublisher = "Jacky",
-                ArticleCategory = "找尋室友",
-                ArticleContent = "找尋室友~",
-                ArticleTitle = "範例"
+                Date = "2022/01/13",
+                Publisher = "MIMI",
+                Category = "找尋室友",
+                Content = "找尋室友~",
+                Title = "範例"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ArticleReplyId = 1,
+                ReplyId = 1,
                 ReplyDate = "2022/01/10",
                 ReplyPublisher = "Sam",
                 ReplyContent = "終於快寫好心得分享了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ArticleReplyId = 2,
-                ReplyDate = "2022/01/10",
+                ReplyId = 2,
+                ReplyDate = "2022/01/11",
                 ReplyPublisher = "Sam",
                 ReplyContent = "終於快寫好發文解惑了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ArticleReplyId = 3,
-                ReplyDate = "2022/01/10",
+                ReplyId = 3,
+                ReplyDate = "2022/01/12",
                 ReplyPublisher = "Sam",
                 ReplyContent = "終於快寫好閒聊專區了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ArticleReplyId = 4,
-                ReplyDate = "2022/01/10",
+                ReplyId = 4,
+                ReplyDate = "2022/01/13",
                 ReplyPublisher = "Sam",
                 ReplyContent = "終於快寫好抱怨專區了~"
             });
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
-                ArticleReplyId = 5,
-                ReplyDate = "2022/01/10",
+                ReplyId = 5,
+                ReplyDate = "2022/01/13",
                 ReplyPublisher = "Sam",
                 ReplyContent = "終於快寫好找尋室友了~"
             });
         }
 
-        
+
 
 
     }

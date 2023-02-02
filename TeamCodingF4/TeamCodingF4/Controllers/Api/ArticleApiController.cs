@@ -19,11 +19,11 @@ namespace TeamCodingF4.Controllers.Api
             return _db.Articles.Select(x=> new ArticleModel
             {
                 ArticleId = x.ArticleId,
-                ArticleDate=x.ArticleDate,
-                ArticleContent=x.ArticleContent,
-                ArticlePublisher=x.ArticlePublisher,
-                ArticleTitle=x.ArticleTitle,
-                ArticleCategory=x.ArticleCategory
+                ArticleDate=x.Date,
+                ArticleContent=x.Content,
+                ArticlePublisher=x.Publisher,
+                ArticleTitle=x.Title,
+                ArticleCategory=x.Category
             }).ToList();
         }
     }

@@ -14,29 +14,34 @@ namespace TeamCodingF4.Models
         /// <summary>
         /// 文章日期
         /// </summary>
-        [StringLength(64)]
-        public string ArticleDate { get; set; }
+        [MaxLength(12)]
+        [Column(TypeName = "varchar")]
+        public string Date { get; set; }
         /// <summary>
         /// 文章發佈者
         /// </summary>
-        [StringLength(64)]
-        public string ArticlePublisher { get; set; }
+        [MaxLength(60)]
+        [Column(TypeName = "nvarchar")]
+        public string Publisher { get; set; }
         /// <summary>
         /// 文章分類
         /// </summary>
-        [StringLength(64)]
-        public string ArticleCategory { get; set; }
+        [MaxLength(21)]
+        [Column(TypeName = "nvarchar")]
+        public string Category { get; set; }
         /// <summary>
         /// 文章內容
         /// </summary>
-        [MaxLength(4000)]
+        [MaxLength(1200)]
         [Column(TypeName ="nvarchar")]
-        public string ArticleContent { get; set; }
+        public string Content { get; set; }
         /// <summary>
         /// 文章標題
         /// </summary>
         [MaxLength(60)]
         [Column(TypeName = "nvarchar")]
-        public string ArticleTitle { get; set; }
+        public string Title { get; set; }
+
+        public virtual ICollection<ArticleReply> ArticleReplies { get; set; }
     }
 }
