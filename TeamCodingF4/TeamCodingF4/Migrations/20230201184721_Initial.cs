@@ -4,7 +4,7 @@
 
 namespace TeamCodingF4.Migrations
 {
-    public partial class InitailDB : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

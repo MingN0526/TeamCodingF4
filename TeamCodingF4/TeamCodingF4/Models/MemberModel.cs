@@ -1,13 +1,46 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography.Pkcs;
 
 namespace TeamCodingF4.Models
 {
-    [Table("MemberModel")]
-    public class MemberModel : IdentityUser<int>
+    [Table("Members")]
+    public class MemberModel
     {
+        [Key]
+        public int MemberId { get; set; }
+
+        /// <summary>
+        /// 會員身分別
+        /// </summary>
+        public string MemberRole { get; set; }
+
+        /// <summary>
+        /// 會員姓名
+        /// </summary>
+        public string MemberName { get; set; }
+
+        /// <summary>
+        /// 會員電話
+        /// </summary>
+        public string MemberPhone { get; set; }
+
+        /// <summary>
+        /// 會員帳號
+        /// </summary>
+        public string MemberAccount { get; set; }
+
+        /// <summary>
+        /// 會員密碼
+        /// </summary>
+        public string MemberPassword { get; set; }
+
+        /// <summary>
+        /// 會員信箱
+        /// </summary>
+        [EmailAddress]
+        public string MemberEmail { get; set; }
+
         /// <summary>
         /// 會員身分證
         /// </summary>
@@ -23,7 +56,7 @@ namespace TeamCodingF4.Models
         /// 會員性別
         /// </summary>
         [StringLength(64)]
-        public string MemberSex { get; set; }
+        public string MemberGender { get; set; }
 
         /// <summary>
         /// 會員信用等級

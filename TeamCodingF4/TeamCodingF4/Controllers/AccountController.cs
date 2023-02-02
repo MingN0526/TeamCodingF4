@@ -28,48 +28,60 @@ namespace TeamCodingF4.Controllers
         {
             return View();
         }
+        public IActionResult Signin()
+        {
+            return View();
+        }
 
         /*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Register([Bind("UserName, Email, Password, ConfirmePassword")] RegisterModel registerModel)
-        {
-            if (ModelState.IsValid)
-            {
-                return View(registerModel);
-            }
-            else
-            {
-                TempData["registerModel"] = registerModel;
-                return RedirectToAction("Result");
-            }
-        }
+               [HttpPost]
+               [ValidateAntiForgeryToken]
+               public IActionResult Register([Bind("UserName, Email, Password, ConfirmePassword")] MemberModel membermodel)
+               {
+                   if (!ModelState.IsValid)
+                   {
+                       return View();
+                   }
+                   var member = _context.Members.Where(m => m.MemberEmail == Members.MemberEmail).FirstOrDefault();
+                   if (member == null)
+                   {
+                           _context.Members.Add(Members);
+                           _context.SaveChanges();
 
-        public ActionResult Result()
-        {
-            var model = TempData["registerModel"] as RegisterModel;
-            return View(model);
-        }
-        */
+                           return RedirectToAction("Login");
+                   }
+                   return Alert("帳號已被使用，請重新註冊");
+                   return View();
+                   
+               }
+               */
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("UserName, Email, Password, ConfirmePassword")] RegisterModel registerModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(registerModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                TempData["registerModel"] = registerModel;
-                return RedirectToAction("Result");
-            }
-            return View(registerModel);
-        }
+        /*
+ public IActionResult Result()
+ {
+     var model = TempData["registerModel"] as RegisterModel;
+     return View(model);
+ }
 
+
+ [HttpPost]
+ [ValidateAntiForgeryToken]
+ public async Task<IActionResult> Register([Bind("UserName, Email, Password, ConfirmePassword")] MemberModel memberModel)
+ {
+     if (!ModelState.IsValid)
+     {
+     _context.Add(memberModel);
+     await _context.SaveChangesAsync();
+     return RedirectToAction(nameof(Index));
+     }
+     else
+     {
+         TempData["registerModel"] = memberModel;
+         return RedirectToAction("Result");
+     }
+     return View(memberModel);
+ }
+   */
 
 
         [HttpPost]
@@ -101,6 +113,7 @@ namespace TeamCodingF4.Controllers
         }
 
     }
+    
 
 
 

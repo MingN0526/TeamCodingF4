@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TeamCodingF4.Models;
 using TeamCodingF4.Models.ApiModel;
 
 namespace TeamCodingF4.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<MemberModel,IdentityRole<int>,int>
+    public class ApplicationDbContext : DbContext
     {
         
 
