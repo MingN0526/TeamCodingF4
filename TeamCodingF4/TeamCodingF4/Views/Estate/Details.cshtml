@@ -1,14 +1,143 @@
 ﻿@model TeamCodingF4.Models.EstateModel
 
-@{
-    ViewData["Title"] = "Details";
-}
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">首頁</a>
+                <a class="breadcrumb-item text-dark" href="/estate/index">我的物件</a>
+                <span class="breadcrumb-item active">詳細資訊</span>
+            </nav>
+        </div>
+    </div>
+</div>
 
-<h1>Details</h1>
+
+<div class="container-fluid">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">詳細資訊</span></h2>
+        <div class="row px-xl-5 ">
+            <div class="col-lg-12 mb-5">
+                <div class="contact-form bg-light p-30">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <div class="control-group">
+                                <label>標題</label>
+                                <label type="text" class="form-control" name="EstateTittle" id="EstateTittle">
+
+                                </label>
+                                <p class="help-block text-danger"></p>
+
+                            </div>
+                            <div class="control-group">
+                                <label>房型</label>
+                                <label class="form-control" name="RoomType" id="RoomType">
+                                    
+                                </label>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>地址</label>
+                                <label type="text" class="form-control" name="Address" id="Address"  >
+
+                                </label>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>價格(NT)</label>
+                                <label type="number" class="form-control" name="EststePrice" id="EststePrice">
+
+                                </label>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>雜費(NT)</label>
+                                <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>坪數</label>
+                                <input type="number" min="1" class="form-control" name="Meters" id="Meters" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>車位</label>
+                                <div class="row">
+                                    <span class="col-2">汽車:</span>
+                                    <input type="number" value="0" class="form-control col-3" name="Car" id="Car" />
+                                    <span class="col-2">機車:</span>
+                                    <input type="number" value="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" />
+                                </div>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <div class="control-group">
+                                <label>設備</label>
+                                <div class="dropdown form-control">
+                                    <div class="item text">
+                                        <label></label>
+                                    </div>
+                                    <div class="item form-check">
+                                        <input type="checkbox" name="AirConditioner" id="AirConditioner" />
+                                        <label for="AirConditioner">冷氣</label>
+                                    </div>
+                                    <div class="item">
+                                        <input type="checkbox" name="Television" id="Television" />
+                                        <label for="Television">電視</label>
+                                    </div>
+                                    <div class="item">
+                                        <input type="checkbox" name="WetDry" id="WetDry " />
+                                        <label for="WetDry">乾溼分離</label>
+                                    </div>
+                                    <div class="item">
+                                        <input type="checkbox" name="Balcony" id="Balcony" />
+                                        <label for="Balcony">陽台</label>
+                                    </div>
+                                    <div class="item">
+                                        <input type="checkbox" name="WashingMachine" id="WashingMachine" />
+                                        <label for="WashingMachine">洗衣機</label>
+                                    </div>
+                                    <div class="item">
+                                        <input type="checkbox" name="WaterDispenser" id="WaterDispenser" />
+                                        <label for="WaterDispenser">飲水機</label>
+                                    </div>
+                                    <div class="item">
+                                        <input type="checkbox" name="Refrigerator" id="Refrigerator" />
+                                        <label for="Refrigerator">冰箱</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <label>租約期(月)</label>
+                                <input type="number" min="1" class="form-control" name="Lease" id="Lease" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>照片</label>
+                                <input type="file" class="form-control" name="EstateImage" id="EstateImage" multiple />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>影片</label>
+                                <input type="file" class="form-control" name="EstateVideo" id="EstateVideo" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>其他資訊</label>
+                                <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+</div>
 
 <div>
-    <h4>EstateModel</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EstateTittle)
@@ -125,8 +254,4 @@
             @Html.DisplayFor(model => model.message)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.EstateId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
