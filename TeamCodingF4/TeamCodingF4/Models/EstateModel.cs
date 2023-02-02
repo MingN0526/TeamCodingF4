@@ -38,9 +38,8 @@ namespace TeamCodingF4.Models
         [Required(ErrorMessage = "請輸入租約期")]
         public string Lease { get; set; }
 
-        [Required(ErrorMessage = "請選擇圖片")]
 
-        public List<IFormFile> EstatePicture { get; set; }
+        public List<IFormFile> EstateImage { get; set; }
 
         [NotMapped]
         public IFormFile EstateVideo { get; set; }

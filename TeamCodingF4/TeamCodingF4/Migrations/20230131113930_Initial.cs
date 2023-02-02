@@ -107,7 +107,7 @@ namespace TeamCodingF4.Migrations
                     WaterDispenser = table.Column<bool>(type: "bit", nullable: false),
                     Refrigerator = table.Column<bool>(type: "bit", nullable: false),
                     Lease = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EstatePicture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EstateImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EstateVideo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     message = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

@@ -52,12 +52,9 @@ namespace TeamCodingF4.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstatePicture,EstateVideo,message")] EstateModel estateModel)
+        public async Task<IActionResult> Create([Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstateImage,EstateVideo,message")] EstateModel estateModel)
         {
-
-            if (ModelState.IsValid)
-            {
-                var ep = estateModel.EstatePicture;
+                var ep = estateModel.EstateImage;
                 var ev = estateModel.EstateVideo;
                 if (ep != null && ev!=null)
                 {
@@ -84,7 +81,6 @@ namespace TeamCodingF4.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-            }
             return View(estateModel);
         }
 
@@ -104,7 +100,7 @@ namespace TeamCodingF4.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstatePicture,EstateVideo,message")] EstateModel estateModel)
+        public async Task<IActionResult> Edit(int id, [Bind("EstateId,EstateTittle,RoomType,Address,EststePrice,Miscellaneous,Meters,Car,Motorcycle,AirConditioner,Television,WetDry,Balcony,WashingMachine,WaterDispenser,Refrigerator,Lease,EstateImage,EstateVideo,message")] EstateModel estateModel)
         {
             if (id != estateModel.EstateId)
             {
