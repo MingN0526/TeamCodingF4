@@ -37,19 +37,19 @@
                 <div class="inner-main" >
                     <div class="inner-main-header">
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="article" asp-action="Thinking">心得分享</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArtical('心得分享')" ><a style="color:black">心得分享</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Question">發文解惑</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArtical('發文解惑')"><a style="color:black">發文解惑</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Chat">閒聊專區</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArtical('閒聊專區')"><a style="color:black">閒聊專區</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Complain">抱怨專區</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArtical('抱怨專區')"><a style="color:black">抱怨專區</a></button>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-warning"><a style="color:black" asp-controller="Article" asp-action="Roommate">找尋室友</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArtical('找尋室友')"><a style="color:black">找尋室友</a></button>
                         </div>
                         <div class="col-2">
                             <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
@@ -64,11 +64,11 @@
 
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content show" >
-                        <div class="card mb-2">
+                    <div class="card mb-2" v-for="article in show">
                             <div class="card-body p-2 p-sm-3">
                             <div class="media forum-item">
                                 <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body" v-for="article in articles" >
+                                <div class="media-body" >
                                     <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">{{article.articleTitle}}</a></h6>
                                     <p style="color:black">
                                         {{article.articleContent}}
@@ -127,7 +127,7 @@
                                         <p class="text-secondary">
                                             
                                         </p>
-                                        <p class="text-muted"><a href="javascript:void(0)">回覆者</a>回覆<span class="text-secondary font-weight-bold">時間</span></p>
+                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold">時間</span></p>
                                     </div>
                                     <div class="text-muted small text-center align-self-center">
                                         <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -145,7 +145,7 @@
                                     <p class="text-secondary">
 
                                     </p>
-                                    <p class="text-muted"><a href="javascript:void(0)">回覆者</a>回覆<span class="text-secondary font-weight-bold">時間</span></p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                 </div>
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -163,7 +163,7 @@
                                         <p class="text-secondary">
                                             
                                         </p>
-                                        <p class="text-muted"><a href="javascript:void(0)">回覆者</a>回覆<span class="text-secondary font-weight-bold">時間</span></p>
+                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                     </div>
                                     <div class="text-muted small text-center align-self-center">
                                         <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -181,7 +181,7 @@
                                     <p class="text-secondary">
 
                                     </p>
-                                    <p class="text-muted"><a href="javascript:void(0)">回覆者</a>回覆<span class="text-secondary font-weight-bold">時間</span></p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                 </div>
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -211,7 +211,7 @@
                                 <div class="media forum-item">
                                     <a href="javascript:void(0)" class="card-link">
                                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
-                                        <small class="d-block text-center text-muted">發布者</small>
+                                        <small class="d-block text-center text-muted"></small>
                                     </a>
                                 <div class="media-body ml-3" v-for="article in articles">
                                     <a href="javascript:void(0)" class="text-secondary"></a>
@@ -219,13 +219,13 @@
                                     <h5 class="mt-1"></h5>
                                     <div class="mt-3 font-size-sm" v-for="article in articles">
                                         <p>
-                                            {{article.articleContent}}
+                                           
                                         </p>
                                     </div>
                                 </div>
                                     <div class="text-muted small text-center">
-                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                                        <span><i class="far fa-comment ml-2"></i> 3</span>
+                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i></span>
+                                        <span><i class="far fa-comment ml-2"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -456,7 +456,8 @@
         let app = new Vue({
             el: '#articleIndex',
             data: {
-                articles: [],                
+                articles: [],    
+                show:[]
             },
             mounted: function () {               
                 let _self = this
@@ -468,7 +469,17 @@
                     })
             },
             methods:{
-
+                showArtical: function (type) {
+                    var temp = [];
+                   for(let i = 0;i < this.articles.length;i++)
+                   {
+                       console.log(this.articles[i])
+                        if (this.articles[i].articleCategory == type) {
+                            temp.push(this.articles[i])
+                        }
+                   }
+                   this.show = temp;
+                }
             },
         });
     </script>
