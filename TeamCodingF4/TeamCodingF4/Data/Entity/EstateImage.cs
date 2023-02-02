@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TeamCodingF4.Data.Entity
 {
     public class EstateImage
     {
+        [Key]
         public int ImageId { get; set; }
 
         [ForeignKey("Estate")]

@@ -82,6 +82,7 @@ namespace TeamCodingF4.Data
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
                 Id = 1,
+                ArticleId= 1,
                 Date = new DateTime(2008, 3, 1, 7, 0, 1),
                 PublisherId = 1,
                 Content = "終於快寫好心得分享了~"
@@ -89,6 +90,7 @@ namespace TeamCodingF4.Data
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
                 Id = 2,
+                ArticleId= 2,
                 Date = new DateTime(2008, 3, 1, 7, 0, 2),
                 PublisherId = 2,
                 Content = "終於快寫好發文解惑了~"
@@ -96,6 +98,7 @@ namespace TeamCodingF4.Data
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
                 Id = 3,
+                ArticleId = 3,
                 Date = new DateTime(2008, 3, 1, 7, 0, 3),
                 PublisherId = 3,
                 Content = "終於快寫好閒聊專區了~"
@@ -103,6 +106,7 @@ namespace TeamCodingF4.Data
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
                 Id = 4,
+                ArticleId= 4,   
                 Date = new DateTime(2008, 3, 1, 7, 0, 4),
                 PublisherId = 4,
                 Content = "終於快寫好抱怨專區了~"
@@ -110,6 +114,7 @@ namespace TeamCodingF4.Data
             modelBuilder.Entity<ArticleReply>().HasData(new ArticleReply
             {
                 Id = 5,
+                ArticleId= 5,
                 Date = new DateTime(2008, 3, 1, 7, 0, 4),
                 PublisherId = 5,
                 Content = "終於快寫好找尋室友了~"

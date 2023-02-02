@@ -23,6 +23,8 @@ namespace TeamCodingF4.Data.Entity
         /// 文章內容
         /// </summary>
         public string Content { get; set; }
+        [ForeignKey("Articles")]
+        public int ArticleId { get; set; }
 
 
         public virtual Member Member { get; set; }
