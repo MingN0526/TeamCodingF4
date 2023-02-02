@@ -6,16 +6,17 @@ namespace TeamCodingF4.Models
     public class ArticleReply
     {
         [Key]
-        public int ArticleReplyId { get; set; }
-        [MaxLength(4000)]
+        public int ReplyId { get; set; }
+        [MaxLength(1200)]
         [Column(TypeName ="nvarchar")]
         public string ReplyContent { get; set; }
-        [MaxLength(66)]
+        [MaxLength(60)]
         [Column(TypeName = "nvarchar")]
         public string ReplyPublisher { get; set; }
-        [MaxLength(66)]
+        [MaxLength(12)]
         [Column(TypeName = "varchar")]
         public string ReplyDate { get; set;}
+        public virtual Article Article { get; set; }
 
 
 
