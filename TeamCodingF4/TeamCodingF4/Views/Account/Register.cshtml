@@ -8,18 +8,18 @@
                 <hr />
                 <div class="text-danger"></div>
                 <div class="form-floating">
-                    <label name="userName" id="userName" class="form-label">使用者名稱</label>
-                    <input name="userName" id="userName" v-model="userName" class="form-control" autocomplete="username" placeholder="王小明" aria-required="true" />
+                    <label name="Name" id="Name" class="form-label">使用者名稱</label>
+                    <input name="Name" id="Name" v-model="Name" class="form-control" autocomplete="username" placeholder="王小明" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    <label name="email" id="email" class="form-label">信箱</label>
-                    <input name="email" id="email" v-model="email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" />
+                    <label name="Email" id="Email" class="form-label">信箱</label>
+                    <input name="Email" id="Email" v-model="Email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    <label name="pwd" id="pwd" class="form-label">密碼</label>
-                    <input name="pwd" id="pwd" v-model="pwd" class="form-control" autocomplete="current-password" placeholder="密碼" aria-required="true" />
+                    <label name="Password" id="Password" class="form-label">密碼</label>
+                    <input name="Password" id="Password" v-model="Password" class="form-control" autocomplete="current-password" placeholder="密碼" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
@@ -45,29 +45,36 @@
         let vuePage = ({
             el: "#vuePage",
             data: {
-                userName = "",
-                email = "",
-                pwd="",
-                confirmePwd="",
+                Name: "",
+                Email: "",
+                Password: "",
+                confirmePwd: "",
             },
             methods: {
                 DoRegister: function () {
                     let _self = this
-                    if (this.pwd == "" || this.pwd != this.confirmePwd) 
-                    {
+                    if (this.pwd == "" || this.pwd != this.confirmePwd) {
                         alert("密碼未設定或密碼不相同");
                         return;
                     }
 
-                    fetch('~/Account/Register', {
+                    fetch('Api/Account/PostToRegister', {
                         method: 'POST',
-                        body: JSON.stringify({
-
-                        })
+                        body: JSON.stringify(
+                            Name = this.Name,
+                            Email = this.Email,
+                            Password = this.Password,
+                        )
+                    }).then(function(response){
+                        return response.json()
+                    }).then(function(result){
+                        console.log(result)
                     })
 
                 }
             },
         })
+
+        
     </script>
 }
