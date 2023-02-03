@@ -25,8 +25,6 @@ namespace TeamCodingF4.Data.Entity
         public string Content { get; set; }
         [ForeignKey("Articles")]
         public int ArticleId { get; set; }
-
-
         public virtual Member Member { get; set; }
         public virtual Articles Article { get; set; }
     }
