@@ -17,27 +17,28 @@ namespace TeamCodingF4.Controllers
             _environment = environment;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Estates.ToListAsync());
+            return View();
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Estates == null)
-            {
-                return NotFound();
-            }
 
-            var estateModel = await _context.Estates
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (estateModel == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null || _context.Estates == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(estateModel);
-        }
+        //    var estateModel = await _context.Estates
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (estateModel == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(estateModel);
+        //}
 
         public IActionResult Create()
         {
@@ -56,6 +57,7 @@ namespace TeamCodingF4.Controllers
 
             var insertData = new Estate()
             {
+                Tittle = estateModel.Tittle,
                 Car = estateModel.Car,
                 District = estateModel.District,
                 City = estateModel.City,
@@ -63,7 +65,6 @@ namespace TeamCodingF4.Controllers
                 Address = estateModel.Address,
                 Conditions = new List<Condition>(),
                 Floor = estateModel.Floor,
-                Tittle = estateModel.Tittle,
                 Lease = estateModel.Lease,
                 Meters = estateModel.Meters,
                 Price = estateModel.Price,
@@ -94,20 +95,20 @@ namespace TeamCodingF4.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Estates == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null || _context.Estates == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var estateCreateModel = await _context.Estates.FindAsync(id);
-            if (estateCreateModel == null)
-            {
-                return NotFound();
-            }
-            return View(estateCreateModel);
-        }
+        //    var estateCreateModel = await _context.Estates.FindAsync(id);
+        //    if (estateCreateModel == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(estateCreateModel);
+        //}
 
         
     }

@@ -1,6 +1,4 @@
-﻿@*
-
-<!-- Breadcrumb Start -->
+﻿<!-- Breadcrumb Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
@@ -28,38 +26,39 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="align-middle">
-                                <img src="" alt="" style="width: 50px;">
-                                @Html.DisplayFor(modelItem => item.EstateTittle)
-                            </td>
-                            <td class="align-middle">
-                                @Html.DisplayFor(modelItem => item.RoomType)
-                            </td>
-                            <td class="align-middle">
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td class="align-middle">
-                                @Html.DisplayFor(modelItem => item.EstateImage)
-                            </td>
-                            <td class="align-middle">
-                                @Html.DisplayFor(modelItem => item.EststePrice)
-                            </td>
-                            <td class="align-middle">
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fa fa-times">
-                                        <a asp-action="Delete" asp-route-id="@item.EstateId">Delete</a>
-                                    </i>
-                                </button>
-                                <a asp-action="Edit" asp-route-id="@item.EstateId">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.EstateId">Details</a> |
-                            </td>
-                        </tr>
-                    }
+                    <tr>
+                        <td class="align-middle">
+                            <img src="" alt="" style="width: 50px;">
+
+                        </td>
+                        <td class="align-middle">
+                        </td>
+                        <td class="align-middle">
+                        </td>
+                        <td class="align-middle">
+                        </td>
+                        <td class="align-middle">
+                        </td>
+                        <td class="align-middle">
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fa fa-times">
+                                    <a action="Delete"></a>
+                                </i>
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fa fa-times">
+                                    <a action="Delete"></a>
+                                </i>
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fa fa-times">
+                                    <a action="Delete"></a>
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>*@
+</div>

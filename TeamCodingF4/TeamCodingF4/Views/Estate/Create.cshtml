@@ -23,7 +23,7 @@
     }
 </style>
 
-<div class="container-fluid" >
+<div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
@@ -36,7 +36,7 @@
 
 <div class="container-fluid" id="app">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">物件刊登</span></h2>
-    <form action="Create" method="post" name="Estate" enctype="multipart/form-data">
+    <form>
         <div class="row px-xl-5 ">
             <div class="col-lg-12 mb-5">
                 <div class="contact-form bg-light p-30">
@@ -46,7 +46,7 @@
                                 <label>標題</label>
                                 <input type="text" class="form-control" name="EstateTittle" id="EstateTittle" placeholder="仁愛街新裝潢套房！離捷運站近" v-model="EstateTittle" />
                                 <p class="help-block text-danger"></p>
-                                
+
                             </div>
                             <div class="control-group">
                                 <label>房型</label>
@@ -106,7 +106,7 @@
                                     </div>
                                     <div class="item">
                                         <input type="checkbox" name="WetDry" id="WetDry " v-model="WetDry" />
-                                        <label  for="WetDry">乾溼分離</label>
+                                        <label for="WetDry">乾溼分離</label>
                                     </div>
                                     <div class="item">
                                         <input type="checkbox" name="Balcony" id="Balcony" v-model="Balcony" />
@@ -148,10 +148,10 @@
                                 <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message" v-model="message"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <button class="btn py-2 px-4" type="reset" id="reset" style="background-color:cornflowerblue;color:white">
+                            <button class="btn py-2 px-4" type="reset">
                                 重設
                             </button>
-                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendEstateButton">
+                            <button class="btn btn-primary py-2 px-4" type="button" id="send">
                                 送出
                             </button>
                         </div>
@@ -161,34 +161,33 @@
         </div>
     </form>
 </div>
+
 @section Scripts
-{
+    {
     <script>
-        let app=new Vue({
-            el:"#app",
-            data:{
-                EstateTittle:"",
-                Address:"",
-                EststePrice:"",
-                Miscellaneous:"",
-                Meters:"",
-                Car:"",
-                Motorcycle:"",
-                AirConditioner:"",
-                Television:"",
-                WetDry:"",
-                Balcony:"",
-                WashingMachine:"",
-                WaterDispenser:"",
-                Refrigerator:"",
-                Lease:"",
-                EstateImage:"",
-                EstateVideo:"",
-                message:"",
+        let app = new Vue({
+            el: "#app",
+            data: {
+                EstateTittle: "",
+                Address: "",
+                EststePrice: "",
+                Miscellaneous: "",
+                Meters: "",
+                Car: "",
+                Motorcycle: "",
+                AirConditioner: "",
+                Television: "",
+                WetDry: "",
+                Balcony: "",
+                WashingMachine: "",
+                WaterDispenser: "",
+                Refrigerator: "",
+                Lease: "",
+                EstateImage: "",
+                EstateVideo: "",
+                message: "",
 
             },
-           
-
         })
     </script>
 }
