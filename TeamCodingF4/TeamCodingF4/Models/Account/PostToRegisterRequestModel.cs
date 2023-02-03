@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TeamCodingF4.Models.Account
 {
-    public class RegisterModel
+    public class PostToRegisterRequestModel
     {
         [Required(ErrorMessage = "請輸入使用者名稱")]
-        public string UserName { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "請輸入信箱")]
         [EmailAddress]

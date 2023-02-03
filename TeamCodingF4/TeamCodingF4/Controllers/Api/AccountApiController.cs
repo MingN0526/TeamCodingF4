@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamCodingF4.Data;
+using TeamCodingF4.Data.Entity;
+using TeamCodingF4.Models.Account;
 using TeamCodingF4.Models.ApiModel;
+using TeamCodingF4.Models.Common;
 
 namespace TeamCodingF4.Controllers.Api
 {
-    [Route("api/account/[action]")]
+    [Route("api/Account/[action]")]
     [ApiController]
     public class AccountApiController : ControllerBase
     {
@@ -15,14 +18,30 @@ namespace TeamCodingF4.Controllers.Api
             _context = context;
         }
         [HttpPost]
-        public List<AccountModel> PostToRegister()
+        public ResponseModel<PostToRegisterResponseModel> PostToRegister([FromBody]PostToRegisterRequestModel model)
         {
-            return _context.Members.Select(x => new AccountModel
+            var result = new ResponseModel<PostToRegisterResponseModel>(); ;
+            if (!ModelState.IsValid)
             {
-                Name = x.Name,
-                Email = x.Email,
-                Password = x.Password,
-            }).ToList();
+                result.IsOk = false;
+                return result;
+            }
+            else
+            {
+                var _register = new Member
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    Password = model.Password,
+                    Account = model.Email,
+                };
+
+                _context.Members.Add(_register);
+                _context.SaveChanges();
+
+                result.IsOk = true;
+                return result;
+            }
         }
     }
 }

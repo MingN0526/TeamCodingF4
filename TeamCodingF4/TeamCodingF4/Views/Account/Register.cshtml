@@ -1,4 +1,4 @@
-﻿<div id="Vuepage">
+﻿<div id="app">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -8,27 +8,29 @@
                 <hr />
                 <div class="text-danger"></div>
                 <div class="form-floating">
-                    <label name="Name" id="Name" class="form-label">使用者名稱</label>
+                    <label name="Name" class="form-label">使用者名稱</label>
                     <input name="Name" id="Name" v-model="Name" class="form-control" autocomplete="username" placeholder="王小明" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    <label name="Email" id="Email" class="form-label">信箱</label>
+                    <label name="Email"  class="form-label">信箱</label>
                     <input name="Email" id="Email" v-model="Email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    <label name="Password" id="Password" class="form-label">密碼</label>
+                    <label name="Password" class="form-label">密碼</label>
                     <input name="Password" id="Password" v-model="Password" class="form-control" autocomplete="current-password" placeholder="密碼" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    <label name="confirmePwd" id="confirmePwd" class="form-label">再次確認密碼</label>
-                    <input name="confirmePwd" id="confirmePwd" v-model="confirmePwd" class="form-control" autocomplete="current-password" placeholder="再次輸入密碼" aria-required="true" />
+                    <label name="ConfirmePassword" class="form-label">再次確認密碼</label>
+                    <input name="ConfirmePassword" id="ConfirmePassword" v-model="ConfirmePassword" class="form-control" autocomplete="current-password" placeholder="再次輸入密碼" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" v-on:click="DoRegister()" class="w-100 btn btn-lg btn-primary">註冊</button>
+                    <button id="login-submit"
+                            v-on:click="DoRegister()"
+                    class="w-100 btn btn-lg btn-primary">註冊</button>
                 </div>
                 <div>
                     @*                    <p>
@@ -42,29 +44,31 @@
 
 @section Scripts {
     <script>
-        let vuePage = ({
-            el: "#vuePage",
+        let app = new Vue({
+            el: '#app',
             data: {
                 Name: "",
                 Email: "",
                 Password: "",
-                confirmePwd: "",
+                ConfirmePassword: "",
             },
             methods: {
                 DoRegister: function () {
                     let _self = this
-                    if (this.pwd == "" || this.pwd != this.confirmePwd) {
+                    if (this.Password == "" || this.Password != this.ConfirmePassword) {
                         alert("密碼未設定或密碼不相同");
                         return;
                     }
 
-                    fetch('Api/Account/PostToRegister', {
-                        method: 'POST',
-                        body: JSON.stringify(
-                            Name = this.Name,
-                            Email = this.Email,
-                            Password = this.Password,
-                        )
+                    fetch('/api/Account/PostToRegister', {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            Name: this.Name,
+                            Email: this.Email,
+                            Password: this.Password,
+                            ConfirmePassword: this.ConfirmePassword
+                        })
                     }).then(function(response){
                         return response.json()
                     }).then(function(result){
