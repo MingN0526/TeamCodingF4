@@ -8,5 +8,10 @@ namespace TeamCodingF4.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Insert()
+        {
+            return View();
+        }
     }
 }

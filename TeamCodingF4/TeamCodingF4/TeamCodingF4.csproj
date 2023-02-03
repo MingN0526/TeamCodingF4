@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Content Remove="Views\Account\Login.cshtml" />
-    <Content Remove="Views\Article\Chat.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

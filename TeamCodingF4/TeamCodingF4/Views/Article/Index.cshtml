@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
 
-<div class="container" id="articleIndex" >
+<div class="container" id="articleIndex">
     <div class="main-body p-0">
         <div class="inner-wrapper">
             <div class="inner-sidebar">
@@ -37,19 +37,19 @@
             <div class="inner-main">
                 <div class="inner-main-header">
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArtical('心得分享')"><a style="color:black">心得分享</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArticle('心得分享')"><a style="color:black">心得分享</a></button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArtical('發文解惑')"><a style="color:black">發文解惑</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArticle('發文解惑')"><a style="color:black">發文解惑</a></button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArtical('閒聊專區')"><a style="color:black">閒聊專區</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArticle('閒聊專區')"><a style="color:black">閒聊專區</a></button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArtical('抱怨專區')"><a style="color:black">抱怨專區</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArticle('抱怨專區')"><a style="color:black">抱怨專區</a></button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArtical('找尋室友')"><a style="color:black">找尋室友</a></button>
+                        <button type="button" class="btn btn-warning" v-on:click="showArticle('找尋室友')"><a style="color:black">找尋室友</a></button>
                     </div>
                     <div class="col-2">
                         <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
@@ -57,105 +57,28 @@
                             <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" />
                         </span>
                     </div>
+                </div>
 
-
-                    </div>
-
-
-
-                <div class="inner-main-body p-2 p-sm-3 collapse forum-content show" >
+                <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
                     <div class="card mb-2" v-for="article in articles">
-                            <div class="card-body p-2 p-sm-3">
+                        <div class="card-body p-2 p-sm-3">
                             <div class="media forum-item">
                                 <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body" >
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">{{article.Title}}</a></h6>
+                                <div class="media-body">
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">{{article.title}}</a></h6>
                                     <p style="color:black">
-                                        {{article.Content}}
+                                        {{article.content}}
                                     </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span  @*class="text-secondary font-weight-bold"*@>{{article.articleDate}}</span></p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span @*class="text-secondary font-weight-bold"*@>{{article.date}}</span></p>
                                 </div>
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
                                     <span><i class="far fa-comment ml-2"></i> 3</span>
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-body p-2 p-sm-3">
-                                <div class="media forum-item">
-                                    <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                    <div class="media-body">
-                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                        <p class="text-secondary">
-                                            
-                                        </p>
-                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                    </div>
-                                    <div class="text-muted small text-center align-self-center">
-                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                        <span><i class="far fa-comment ml-2"></i> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-body p-2 p-sm-3">
-                                <div class="media forum-item">
-                                    <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                    <div class="media-body">
-                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                        <p class="text-secondary">
-                                            
-                                        </p>
-                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                    </div>
-                                    <div class="text-muted small text-center align-self-center">
-                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                        <span><i class="far fa-comment ml-2"></i> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-body p-2 p-sm-3">
-                                <div class="media forum-item">
-                                    <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                    <div class="media-body">
-                                        <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                        <p class="text-secondary">
-                                            
-                                        </p>
-                                        <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                    </div>
-                                    <div class="text-muted small text-center align-self-center">
-                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                        <span><i class="far fa-comment ml-2"></i> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-                                        
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                       
-                    <div class="card mb-2">
+                    @*<div class="card mb-2">
                         <div class="card-body p-2 p-sm-3">
                             <div class="media forum-item">
                                 <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
@@ -173,47 +96,120 @@
                             </div>
                         </div>
                     </div>
-                        <ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
-                            <li class="page-item disabled">
-                                <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                            <li class="page-item active"><span class="page-link">2</span></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link has-icon" href="javascript:void(0)"><i class="material-icons">下一頁</i></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body p-2 p-sm-3">
+                            <div class="media forum-item">
+                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                <div class="media-body">
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
+                                    <p class="text-secondary">
 
-
-                    <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
-                        <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <div class="media forum-item">
-                                    <a href="javascript:void(0)" class="card-link">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
-                                        <small class="d-block text-center text-muted"></small>
-                                    </a>
-                                <div class="media-body ml-3" v-for="article in show">
-                                    <a href="javascript:void(0)" class="text-secondary"></a>
-                                    <small class="text-muted ml-2">{{article.articleDate}}</small>
-                                    <h5 class="mt-1"></h5>
-                                    <div class="mt-3 font-size-sm" >
-                                        <p>
-                                            {{article.articleContent}}
-                                        </p>
-                                    </div>
+                                    </p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
                                 </div>
-                                    <div class="text-muted small text-center">
-                                        <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i></span>
-                                        <span><i class="far fa-comment ml-2"></i></span>
-                                    </div>
+                                <div class="text-muted small text-center align-self-center">
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
+                                    <span><i class="far fa-comment ml-2"></i> </span>
                                 </div>
                             </div>
                         </div>
-                    <div class="card mb-2 "  >
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body p-2 p-sm-3">
+                            <div class="media forum-item">
+                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                <div class="media-body">
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
+                                    <p class="text-secondary">
+
+                                    </p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
+                                </div>
+                                <div class="text-muted small text-center align-self-center">
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
+                                    <span><i class="far fa-comment ml-2"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body p-2 p-sm-3">
+                            <div class="media forum-item">
+                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                <div class="media-body">
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
+                                    <p class="text-secondary">
+
+                                    </p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
+                                </div>
+                                <div class="text-muted small text-center align-self-center">
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
+                                    <span><i class="far fa-comment ml-2"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-2">
+                        <div class="card-body p-2 p-sm-3">
+                            <div class="media forum-item">
+                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                <div class="media-body">
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
+                                    <p class="text-secondary">
+
+                                    </p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
+                                </div>
+                                <div class="text-muted small text-center align-self-center">
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
+                                    <span><i class="far fa-comment ml-2"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    <ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
+                        <li class="page-item disabled">
+                            <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+                        <li class="page-item active"><span class="page-link">2</span></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link has-icon" href="javascript:void(0)"><i class="material-icons">下一頁</i></a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
+                    <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <div class="media forum-item">
+                                <a href="javascript:void(0)" class="card-link">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                    <small class="d-block text-center text-muted"></small>
+                                </a>
+                                <div class="media-body ml-3" v-for="article in show">
+                                    <a href="javascript:void(0)" class="text-secondary"></a>
+                                    <small class="text-muted ml-2">{{article.date}}</small>
+                                    <h5 class="mt-1"></h5>
+                                    <div class="mt-3 font-size-sm">
+                                        <p>
+                                            {{article.content}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="text-muted small text-center">
+                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i></span>
+                                    <span><i class="far fa-comment ml-2"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-2 ">
                         <div class="card-body">
                             <div class="media forum-item">
                                 <a href="javascript:void(0)" class="card-link">
@@ -221,21 +217,21 @@
                                     <small class="d-block text-center text-muted">Pro</small>
                                 </a>
                                 @*<div class="media-body ml-3 row-cols-12">
-                                    <a href="javascript:void(0)" class="text-secondary">drewdan</a>
-                                    <small class="text-muted ml-2">1 hour ago</small>
-                                    <div class="mt-3 font-size-sm">
-                                        <p>What exactly doesn't work with your ajax calls?</p>
-                                        <p>Also, WebSockets are a great solution for realtime data on a dashboard. Laravel offers this out of the box using broadcasting</p>
-                                    </div>
-                                    <button class="btn btn-xs text-muted has-icon"><i class="fa fa-heart" aria-hidden="true"></i>1</button>
-                                    <a href="javascript:void(0)" class="text-muted small">Reply</a>
+                                <a href="javascript:void(0)" class="text-secondary">drewdan</a>
+                                <small class="text-muted ml-2">1 hour ago</small>
+                                <div class="mt-3 font-size-sm">
+                                <p>What exactly doesn't work with your ajax calls?</p>
+                                <p>Also, WebSockets are a great solution for realtime data on a dashboard. Laravel offers this out of the box using broadcasting</p>
+                                </div>
+                                <button class="btn btn-xs text-muted has-icon"><i class="fa fa-heart" aria-hidden="true"></i>1</button>
+                                <a href="javascript:void(0)" class="text-muted small">Reply</a>
                                 </div>*@
                                 <div class="media-body ml-3 row-cols-12">
                                     <form>
                                         <div class="form-group">
                                             <label for="message">你的回覆 *</label> <!--之後要改資料庫，改成Required-->
                                             <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                        </div>                                        
+                                        </div>
                                         <div class="form-group mb-0">
                                             <input type="submit" value="發文" class="btn btn-primary px-3">
                                         </div>
@@ -247,232 +243,223 @@
                 </div>
             </div>
 
-            </div>
-            <div class="modal fade" id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <form>
-                            <div class="modal-header d-flex align-items-center bg-primary text-white">
-                                <h6 class="modal-title mb-0" id="threadModalLabel">New Discussion</h6>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
+        </div>
+        <div class="modal fade" id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header d-flex align-items-center bg-primary text-white">
+                            <h6 class="modal-title mb-0" id="threadModalLabel">貼文</h6>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="threadTitle">標題</label>
+                                <input type="text" class="form-control" id="threadTitle" autofocus="" />
                             </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="threadTitle">Title</label>
-                                    <input type="text" class="form-control" id="threadTitle" placeholder="Enter title" autofocus="" />
-                                </div>
-                                <textarea class="form-control summernote" style="display: none;"></textarea>
-                                <div class="custom-file form-control-sm mt-3" style="max-width: 300px;">
-                                    <input type="file" class="custom-file-input" id="customFile" multiple="" />
-                                    <label class="custom-file-label" for="customFile">Attachment</label>
-                                </div>
+                            <textarea class="form-control summernote" placeholder="請輸入內文" style="display: none;"></textarea>
+                            <div class="form-group">
+                                <label for="message">你的貼文</label> <!--之後要改資料庫，改成Required-->
+                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary">Post</button>
-                            </div>
-                        </form>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                            <input type="submit" value="發文" class="btn btn-primary px-3">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <style type="text/css">
-        body {
-            margin-top: 20px;
-            color: #1a202c;
-            text-align: left;
-            background-color: #e2e8f0;
+</div>
+<style type="text/css">
+    body {
+        margin-top: 20px;
+        color: #1a202c;
+        text-align: left;
+        background-color: #e2e8f0;
+    }
+
+    .inner-wrapper {
+        position: relative;
+        height: calc(100vh - 3.5rem);
+        transition: transform 0.3s;
+    }
+
+    media (min-width: 992px) {
+        .sticky-navbar .inner-wrapper
+
+    {
+        height: calc(100vh - 3.5rem - 48px);
+    }
+
+    }
+
+    .inner-main,
+    .inner-sidebar {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inner-sidebar {
+        left: 0;
+        width: 235px;
+        border-right: 1px solid #cbd5e0;
+        background-color: #fff;
+        z-index: 1;
+    }
+
+    .inner-main {
+        right: 0;
+        left: 235px;
+    }
+
+    .inner-main-footer,
+    .inner-main-header,
+    .inner-sidebar-footer,
+    .inner-sidebar-header {
+        height: 3.5rem;
+        border-bottom: 1px solid #cbd5e0;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        flex-shrink: 0;
+    }
+
+    .inner-main-body,
+    .inner-sidebar-body {
+        padding: 1rem;
+        overflow-y: auto;
+        position: relative;
+        flex: 1 1 auto;
+    }
+
+        .inner-main-body .sticky-top,
+        .inner-sidebar-body .sticky-top {
+            z-index: 999;
         }
 
-        .inner-wrapper {
-            position: relative;
-            height: calc(100vh - 3.5rem);
-            transition: transform 0.3s;
-        }
+    .inner-main-footer,
+    .inner-main-header {
+        background-color: #fff;
+    }
 
-        media (min-width: 992px) {
-            .sticky-navbar .inner-wrapper
+    .inner-main-footer,
+    .inner-sidebar-footer {
+        border-top: 1px solid #cbd5e0;
+        border-bottom: 0;
+        height: auto;
+        min-height: 3.5rem;
+    }
 
-        {
-            height: calc(100vh - 3.5rem - 48px);
-        }
+    media (max-width: 767.98px) {
+        .inner-sidebar
 
-        }
+    {
+        left: -235px;
+    }
 
-        .inner-main,
-        .inner-sidebar {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-        }
+    .inner-main {
+        left: 0;
+    }
 
-        .inner-sidebar {
-            left: 0;
-            width: 235px;
-            border-right: 1px solid #cbd5e0;
-            background-color: #fff;
-            z-index: 1;
-        }
+    .inner-expand .main-body {
+        overflow: hidden;
+    }
 
-        .inner-main {
-            right: 0;
-            left: 235px;
-        }
+    .inner-expand .inner-wrapper {
+        transform: translate3d(235px, 0, 0);
+    }
 
-        .inner-main-footer,
-        .inner-main-header,
-        .inner-sidebar-footer,
-        .inner-sidebar-header {
-            height: 3.5rem;
-            border-bottom: 1px solid #cbd5e0;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-            flex-shrink: 0;
-        }
+    }
 
-        .inner-main-body,
-        .inner-sidebar-body {
-            padding: 1rem;
-            overflow-y: auto;
-            position: relative;
-            flex: 1 1 auto;
-        }
+    .nav .show > .nav-link.nav-link-faded, .nav-link.nav-link-faded.active, .nav-link.nav-link-faded:active, .nav-pills .nav-link.nav-link-faded.active, .navbar-nav .show > .nav-link.nav-link-faded {
+        color: #3367b5;
+        background-color: #c9d8f0;
+    }
 
-            .inner-main-body .sticky-top,
-            .inner-sidebar-body .sticky-top {
-                z-index: 999;
-            }
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: #fff;
+        background-color: #467bcb;
+    }
 
-        .inner-main-footer,
-        .inner-main-header {
-            background-color: #fff;
-        }
+    .nav-link.has-icon {
+        display: flex;
+        align-items: center;
+    }
 
-        .inner-main-footer,
-        .inner-sidebar-footer {
-            border-top: 1px solid #cbd5e0;
-            border-bottom: 0;
-            height: auto;
-            min-height: 3.5rem;
-        }
+    .nav-link.active {
+        color: #467bcb;
+    }
 
-        media (max-width: 767.98px) {
-            .inner-sidebar
+    .nav-pills .nav-link {
+        border-radius: .25rem;
+    }
 
-        {
-            left: -235px;
-        }
+    .nav-link {
+        color: #4a5568;
+    }
 
-        .inner-main {
-            left: 0;
-        }
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    }
 
-        .inner-expand .main-body {
-            overflow: hidden;
-        }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
 
-        .inner-expand .inner-wrapper {
-            transform: translate3d(235px, 0, 0);
-        }
-
-        }
-
-        .nav .show > .nav-link.nav-link-faded, .nav-link.nav-link-faded.active, .nav-link.nav-link-faded:active, .nav-pills .nav-link.nav-link-faded.active, .navbar-nav .show > .nav-link.nav-link-faded {
-            color: #3367b5;
-            background-color: #c9d8f0;
-        }
-
-        .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-            color: #fff;
-            background-color: #467bcb;
-        }
-
-        .nav-link.has-icon {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-link.active {
-            color: #467bcb;
-        }
-
-        .nav-pills .nav-link {
-            border-radius: .25rem;
-        }
-
-        .nav-link {
-            color: #4a5568;
-        }
-
-        .card {
-            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-        }
-
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border: 0 solid rgba(0,0,0,.125);
-            border-radius: .25rem;
-        }
-
-        .card-body {
-            flex: 1 1 auto;
-            min-height: 1px;
-            padding: 1rem;
-        }
-    </style>
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+    }
+</style>
 
 @section Scripts
-{
+    {
     <script>
         let app = new Vue({
             el: '#articleIndex',
             data: {
-                articles:[],    
-                show:[]
+                articles: [],
+                show: []
             },
-            mounted: function () {               
+            mounted: function () {
                 let _self = this
                 fetch("/api/article/getall")
-                    .then(function (response) {return response.json() })
+                    .then(function (response) { return response.json() })
                     .then(function (result) {
-                     console.log(result)
-                      _self.articles = result                     
+                        console.log(result)
+                        _self.articles = result
                     })
             },
-            methods:{
-                showArtical: function (type) {
-                   var temp = [];
-                   for(let i = 0;i < this.articles.length;i++)
-                   {
-                       //console.log(this.articles[i])
-                        if (this.articles[i].articleCategory == type)
-                        {
+            methods: {
+                showArticle: function (type) {
+                    var temp = [];
+                    for (let i = 0; i < this.articles.length; i++) {
+                        //console.log(this.articles[i])
+                        if (this.articles[i].category == type) {
                             temp.push(this.articles[i])
-                        }                        
-                   }
-                   this.show = temp;                   
+                        }
+                    }
+                    this.show = temp;
                 },
-                //showDate:function(date){
-                //    for (let i = 0; i < this.articles.articleDate;i++)
-                //    {
-                //        if(this.articles[i].articleDate == date){
-                //            temp.push(this.articles[i])
-                //        }
-                //    }
-                //    this.show = temp;  
-                //}
+                
             },
         });
     </script>
