@@ -189,29 +189,24 @@
 
 @section Scripts
     {
-    <script>
-        let app = new Vue({
-            el: "#app",
-            data: function(){
-               var data={
-                   form:{}
-               };
-               return data;
-            },
-            methods: {
-                send: function () {
-                    let self = this;
-                    var postData = {};
-                    postData['Tittle']=self.form.Tittle
+        <script>
+            let app = new Vue({
+                el: "#app",
+                data: function(){
+                   var data={
+                       form:{}
+                   };
+                   return data;
+                },
+                methods: {
+                    send: function () {
+                        let self = this;
+                        var postData = {};
+                        postData['Tittle']=self.form.Tittle
 
 
-
-                    fetch("/estate/create", {
-                        method: 'post',
-                        body: data
-                    })
+                    }
                 }
-            }
-        })
-    </script>
+            })
+        </script>
 }

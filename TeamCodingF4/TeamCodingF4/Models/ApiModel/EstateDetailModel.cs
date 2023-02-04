@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TeamCodingF4.Models.ApiModel
+﻿namespace TeamCodingF4.Models.ApiModel
 {
-    public class EstateCreateModel
+    public class EstateDetailModel
     {
         public int Id { get; set; }
         public string Tittle { get; set; }
@@ -17,6 +15,7 @@ namespace TeamCodingF4.Models.ApiModel
         public int Car { get; set; }
         public int Motorcycle { get; set; }
         public int Lease { get; set; }
+        public string EstateVideoPath { get; set; }
         public string? message { get; set; }
         public List<IFormFile> EstateImages { get; set; }
         public IFormFile EstateVideo { get; set; }
