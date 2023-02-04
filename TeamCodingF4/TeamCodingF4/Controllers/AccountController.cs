@@ -50,7 +50,7 @@ namespace TeamCodingF4.Controllers
 
                            return RedirectToAction("Login");
                    }
-                   return Alert("帳號已被使用，請重新註冊");
+                   Alert("帳號已被使用，請重新註冊");
                    return View();
                    
                }
