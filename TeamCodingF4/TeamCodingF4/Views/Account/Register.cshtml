@@ -74,8 +74,14 @@
                     }).then(function(result){
                         console.log(result)
                         if(result.isOk==false){
-                            swal('註冊結果', '信箱重複或輸入格式不正確!!', 'error')
+                            swal('註冊結果', '信箱重複註冊或輸入格式不正確，請檢查!!', 'error')
                         }
+                        else
+                        {
+                            swal('註冊結果', '註冊成功', 'success')
+                        }
+
+
                     }).catch((error) => {
                         swal('註冊結果', '不知原因錯誤，請洽管理員!!', 'error')
                     })
