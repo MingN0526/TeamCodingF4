@@ -230,10 +230,10 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="message">你的回覆 *</label> <!--之後要改資料庫，改成Required-->
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                            <textarea id="message"  cols="30" rows="5" class="form-control" ></textarea>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="發文" class="btn btn-primary px-3">
+                                            <input type="submit" value="發文"  class="btn btn-primary px-3" >
                                         </div>
                                     </form>
                                 </div>
@@ -249,26 +249,32 @@
                 <div class="modal-content">
                     <form>
                         <div class="modal-header d-flex align-items-center bg-primary text-white">
-                            <h6 class="modal-title mb-0" id="threadModalLabel">貼文</h6>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"></span>
-                            </button>
+                            <h6 class="modal-title mb-0" id="threadModalLabel">貼文</h6>                            
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="threadTitle">標題</label>
-                                <input type="text" class="form-control" id="threadTitle" autofocus="" />
+                                <label for="Title">標題</label>
+                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="title" />
                             </div>
-                            <textarea class="form-control summernote" placeholder="請輸入內文" style="display: none;"></textarea>
+                           @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
                             <div class="form-group">
-                                <label for="message">你的貼文</label> <!--之後要改資料庫，改成Required-->
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="message"></textarea>
                             </div>
-
+                            <div class="form-group">
+                                <select>
+                                    <option>請選擇文章類別</option>
+                                    <option>心得分享</option>
+                                    <option>發文解惑</option>
+                                    <option>閒聊專區</option>
+                                    <option>抱怨專區</option>
+                                    <option>找尋室友</option>
+                                </select>                       
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                            <input type="submit" value="發文" class="btn btn-primary px-3">
+                            <button type="button" class="btn btn-primary px-3" v-on:click="insertArticle(Title,Content)">發文</button>
                         </div>
                     </form>
                 </div>
@@ -437,7 +443,11 @@
             el: '#articleIndex',
             data: {
                 articles: [],
-                show: []
+                show: [],
+                message:"",
+                postReply:"",
+                Title: "",
+                postArticle:"",
             },
             mounted: function () {
                 let _self = this
@@ -459,6 +469,23 @@
                     }
                     this.show = temp;
                 },
+                insertArticle: function(title,message){
+                    //let _this=this;
+                    //var request=[];
+                    
+                    //request.title = this.articles;
+                    //request.message = this.articles;
+                    fetch("/api/article/postarticle", { 
+                        method: "POST" ,
+                        //body: JSON.stringify(request)
+                        headers:{"context-type":"application/json"}
+                    }).then(function(response) {return response.text()})
+                    .then(function(result) {
+                        alert(result)
+                        window.location = "/article/index"
+                    })
+
+                }
                 
             },
         });
