@@ -73,8 +73,12 @@
                         return response.json()
                     }).then(function(result){
                         console.log(result)
+                        if(result.isOk==false){
+                            swal('註冊結果', '信箱重複或輸入格式不正確!!', 'error')
+                        }
+                    }).catch((error) => {
+                        swal('註冊結果', '不知原因錯誤，請洽管理員!!', 'error')
                     })
-
                 }
             },
         })

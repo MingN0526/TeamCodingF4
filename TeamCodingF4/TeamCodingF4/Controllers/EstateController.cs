@@ -17,26 +17,9 @@ namespace TeamCodingF4.Controllers
             _environment = environment;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Estates.ToListAsync());
-        }
-
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Estates == null)
-            {
-                return NotFound();
-            }
-
-            var estateModel = await _context.Estates
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (estateModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(estateModel);
+            return View();
         }
 
         public IActionResult Create()
@@ -56,21 +39,20 @@ namespace TeamCodingF4.Controllers
 
             var insertData = new Estate()
             {
-                Car = estateModel.Car,
-                District = estateModel.District,
-                City = estateModel.City,
-                EstateImage = new List<EstateImage>(),
-                Address = estateModel.Address,
-                Conditions = new List<Condition>(),
-                Floor = estateModel.Floor,
                 Tittle = estateModel.Tittle,
-                Lease = estateModel.Lease,
-                Meters = estateModel.Meters,
-                Price = estateModel.Price,
-                Motorcycle = estateModel.Motorcycle,
-                Miscellaneous = estateModel.Miscellaneous,
-                message = estateModel.message,
                 RoomTypeId = estateModel.RoomTypeId,
+                City = estateModel.City,
+                District = estateModel.District,
+                Address = estateModel.Address,
+                Floor = estateModel.Floor,
+                Price = estateModel.Price,
+                Miscellaneous = estateModel.Miscellaneous,
+                Meters = estateModel.Meters,
+                Car = estateModel.Car,
+                Motorcycle = estateModel.Motorcycle,
+                Lease = estateModel.Lease,
+                Conditions = new List<Condition>(),               
+                message = estateModel.message,
             };
 
             var root = _environment.WebRootPath;
@@ -93,22 +75,30 @@ namespace TeamCodingF4.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Detail(int id,EstateDetailModel estateDetailModel)
         {
-            if (id == null || _context.Estates == null)
+            var EstateDetail = _context.Estates.Where(emp => emp.Id == id).Select(emp => new EstateDetailModel{
+                Id = emp.Id,
+                Tittle=emp.Tittle,
+                RoomTypeId=emp.RoomTypeId,
+                City=emp.City,
+                District=emp.District,
+                Address=emp.Address,
+                Floor=emp.Floor,
+                Price=emp.Price,
+                Miscellaneous=emp.Miscellaneous,
+                Meters=emp.Meters,
+                Car=emp.Car,
+                Motorcycle=emp.Motorcycle,
+                Lease=emp.Lease,
+            }).Single();
+
+            if (EstateDetail == null)
             {
-                return NotFound();
+                return null;
             }
 
-            var estateCreateModel = await _context.Estates.FindAsync(id);
-            if (estateCreateModel == null)
-            {
-                return NotFound();
-            }
-            return View(estateCreateModel);
+            return View(EstateDetail);
         }
-
-        
     }
 }
