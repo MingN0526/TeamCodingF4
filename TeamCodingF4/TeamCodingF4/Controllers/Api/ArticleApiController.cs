@@ -40,6 +40,7 @@ namespace TeamCodingF4.Controllers.Api
             {
                 Title = model.Title,
                 Content = model.Content,
+                Category= model.Category,
             };
             _db.Articles.Add(articles);
             await _db.SaveChangesAsync();
@@ -48,7 +49,7 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<string> DeleteArticle(int id)
         {

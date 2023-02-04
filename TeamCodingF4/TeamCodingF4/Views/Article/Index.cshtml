@@ -254,14 +254,14 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="Title">標題</label>
-                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="title" />
+                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="Title" />
                             </div>
                            @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
                             <div class="form-group">
                                 <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
-                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="message"></textarea>
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="Content"></textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="Category" name="Category">
                                 <select>
                                     <option>請選擇文章類別</option>
                                     <option>心得分享</option>
@@ -274,7 +274,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary px-3" v-on:click="insertArticle(Title,Content)">發文</button>
+                            <button type="button" class="btn btn-primary px-3" v-on:click="insertArticle(Title,Content,Category)">發文</button>
                         </div>
                     </form>
                 </div>
@@ -444,9 +444,11 @@
             data: {
                 articles: [],
                 show: [],
-                message:"",
+                
                 postReply:"",
                 Title: "",
+                Content: "",
+                Category: "",
                 postArticle:"",
             },
             mounted: function () {
@@ -469,24 +471,26 @@
                     }
                     this.show = temp;
                 },
-                insertArticle: function(title,message){
-                    //let _this=this;
-                    //var request=[];
-                    
-                    //request.title = this.articles;
-                    //request.message = this.articles;
+                insertArticle: function (Title,Content,Category) {
+                    var title = document.getElementById("Title")
+                    var content = document.getElementById("Content")
+                    var category = document.getElementById("Category")
+
+                    var data={
+                        Title:title.value,
+                        Content:content.value,
+                        Category:category.value
+                    }
                     fetch("/api/article/postarticle", { 
                         method: "POST" ,
-                        //body: JSON.stringify(request)
+                        body: JSON.stringify(data),
                         headers:{"context-type":"application/json"}
                     }).then(function(response) {return response.text()})
                     .then(function(result) {
                         alert(result)
                         window.location = "/article/index"
                     })
-
-                }
-                
+                },                
             },
         });
     </script>
