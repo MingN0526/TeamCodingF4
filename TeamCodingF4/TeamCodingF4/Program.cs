@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TeamCodingF4.Controllers.Services;
 using TeamCodingF4.Data;
 using TeamCodingF4.Models;
 
@@ -16,7 +17,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //{
 //    options.SignIn.RequireConfirmedAccount = true;
 //}).AddEntityFrameworkStores<ApplicationDbContext>();
-
+builder.Services.AddTransient<MailService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

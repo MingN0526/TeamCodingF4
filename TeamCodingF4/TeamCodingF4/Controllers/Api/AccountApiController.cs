@@ -9,6 +9,7 @@ using TeamCodingF4.Models.Common;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection.Metadata.Ecma335;
+using TeamCodingF4.Controllers.Services;
 
 namespace TeamCodingF4.Controllers.Api
 {
@@ -17,14 +18,17 @@ namespace TeamCodingF4.Controllers.Api
     public class AccountApiController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public AccountApiController(ApplicationDbContext context)
+        private readonly MailService mailService;
+
+        public AccountApiController(ApplicationDbContext context,MailService mailService)
         {
             _context = context;
+            this.mailService = mailService;
         }
         [HttpPost]
         public ResponseModel<PostToRegisterResponseModel> PostToRegister([FromBody]PostToRegisterRequestModel model)
         {
-            var result = new ResponseModel<PostToRegisterResponseModel>(); ;
+            var result = new ResponseModel<PostToRegisterResponseModel>();
             if (!ModelState.IsValid || _context.Members.Any(m => m.Email == model.Email))
             {
                 result.IsOk = false;
@@ -48,6 +52,9 @@ namespace TeamCodingF4.Controllers.Api
 
                 _context.Members.Add(_register);
                 _context.SaveChanges();
+
+
+                mailService.SendMail();
 
                 result.IsOk = true;
                 return result;
