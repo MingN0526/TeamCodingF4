@@ -56,7 +56,7 @@
                         </span>
                     </div>
                     <div class="col-2">
-                        <button type="button">
+                        <button type="button" @@click="filterArticles">
                             <span class=" text-primary">
                                 <i class="fa fa-search "></i>
                             </span>
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-                    <div class="card mb-2" v-for="article in articles">
+                    <div class="card mb-2" v-for="article in show">
                         <div class="card-body p-2 p-sm-3">
                             <div class="media forum-item">
                                 <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
@@ -83,12 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                   
-                   
-                   
-
-                    
+                                        
                     <ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
                         <li class="page-item disabled">
                             <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
@@ -379,6 +374,7 @@
                     .then(function (result) {
                         console.log(result)
                         _self.articles = result
+                        _self.show = result
                     })
             },
             methods: {
@@ -412,9 +408,37 @@
                             al.title="發佈失敗";
                         }
                         Swal.fire(al)
-                        //window.location = "/article/index"
+                        window.location = "/article/index"
                     })
-                },                
+                },
+                filterArticles:function(){
+                    var _self=this
+                    var temp = this.articles
+                    if(this.Filter.length > 0){
+                        temp=temp.filter
+                    }
+                },
+                //filterArticles:function(){
+                //    let _self=this
+                //    addArticle = this.addArticle
+                //    var request={};
+                //    request.Content = _self.addArticle.Content
+                //    fetch("/api/article/filterarticles",{
+                //        method: "POST",
+                //        body: JSON.stringify(addArticle),
+                //        headers: { "content-type": "application/json" }
+                //    }).then(function (response) { return response.json() })
+                //       .then(function (result) {
+                //            _self.show = result
+                //            var articlesList = [];
+                //            for(var i =0;i < _self.articles.length;i++){
+                //                var item={};
+                //                item = _self.articles[i];
+                //                articlesList.push(item)
+                //            }
+                //            _this.show = articlesList                           
+                //        })                      
+                //},
             },
         });
     </script>
