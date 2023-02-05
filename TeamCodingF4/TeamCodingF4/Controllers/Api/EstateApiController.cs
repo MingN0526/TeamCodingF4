@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using TeamCodingF4.Data;
 using TeamCodingF4.Data.Entity;
 using TeamCodingF4.Models.ApiModel;
 
 namespace TeamCodingF4.Controllers.Api
 {
+    [Route("Api/EstateApi/[action]")]
     public class EstateApiController : Controller
     {
         private readonly IWebHostEnvironment _environment;
@@ -15,6 +17,7 @@ namespace TeamCodingF4.Controllers.Api
             _context = context;
             _environment = environment;
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(EstateCreateModel estateModel)
         {
@@ -25,7 +28,7 @@ namespace TeamCodingF4.Controllers.Api
                 return BadRequest("沒圖片/影片");
             }
 
-            var insertData = new Estate()
+            var Data = new Estate()
             {
                 Tittle = estateModel.Tittle,
                 RoomTypeId = estateModel.RoomTypeId,
@@ -39,7 +42,6 @@ namespace TeamCodingF4.Controllers.Api
                 Car = estateModel.Car,
                 Motorcycle = estateModel.Motorcycle,
                 Lease = estateModel.Lease,
-                Conditions = new List<Condition>(),
                 message = estateModel.message,
             };
 
@@ -49,26 +51,37 @@ namespace TeamCodingF4.Controllers.Api
                 var pictureName = DateTime.Now.Ticks + picture.FileName;
                 var picturepath = $@"{root}\Picture\{pictureName}";
                 picture.CopyTo(System.IO.File.Create(picturepath));
-                insertData.EstateImage.Add(new EstateImage()
+                Data.EstateImage.Add(new EstateImage()
                 {
                     ImagePath = $@"\Picture\{pictureName}"
                 });
             }
-            var ee = estateModel.EquipmentId;
-            foreach (var Equiment in ee)
-            {
-                insertData.Equipment.Add(new Equipment()
-                {
 
+            var ee = estateModel.EquipmentName;
+            for (var i = 0; i < ee.Count; i++)
+            {
+                _context.Equipments.Add(new Equipment
+                {
+                    Name = ee[i]
+                });
+            }
+
+            var ec = estateModel.Condition;
+            for (var i = 0; i < ec.Count; i++)
+            {
+                _context.Conditions.Add(new Condition
+                {
+                    Name = ec[i]
                 });
             }
 
             var videoName = DateTime.Now.Ticks + ev.FileName;
             var videopath = $@"{root}\Video\{videoName}";
             ev.CopyTo(System.IO.File.Create(videopath));
-            insertData.EstateVideoPath = $@"\Video\{videoName}";
+            Data.EstateVideoPath = $@"\Video\{videoName}";
 
-            _context.Estates.Add(insertData);
+
+            _context.Estates.Add(Data);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
