@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using TeamCodingF4.Data;
 using TeamCodingF4.Data.Entity;
+using TeamCodingF4.Extension;
 using TeamCodingF4.Models;
 using TeamCodingF4.Models.ApiModel;
 
@@ -33,20 +36,34 @@ namespace TeamCodingF4.Controllers.Api
 
        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<string> PostArticle(ArticleInsertModel model)
+        public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
         {
+            //var memberId = User.Claims.GetMemberId();
             Articles articles = new Articles
             {
                 Title = model.Title,
                 Content = model.Content,
                 Category= model.Category,
-            };
+                Date = DateTime.Now,
+                ViewCount = 1,  //TODO Viewcount function
+                //PublisherId = memberId, TODO
+                PublisherId = 1,
+            };          
             _db.Articles.Add(articles);
             await _db.SaveChangesAsync();
 
-            return "發文成功!";
+            return new ApiResultModel
+            {
+                Status=true,
+                Message="加入成功"
+            };
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "加入失敗"
+            };
         }
+       
 
         
         [HttpPost("{id}"), ActionName("Delete")]

@@ -83,97 +83,12 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
+                    
+                   
+                   
+                   
 
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
+                    
                     <ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
                         <li class="page-item disabled">
                             <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
@@ -259,16 +174,16 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="Title">標題</label>
-                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="title" />
+                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="addArticle.Title" />
                             </div>
                            @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
                             <div class="form-group">
                                 <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
-                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="content"></textarea>
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticle.Content"></textarea>
                             </div>
-                            <div class="form-group" id="Category" name="Category">
-                                <select>
-                                    <option>請選擇文章類別</option>
+                            <div class="form-group" id="Category" name="Category" >
+                                <select v-model="addArticle.Category">
+                                    <option value="-1">請選擇文章類別</option>
                                     <option>心得分享</option>
                                     <option>發文解惑</option>
                                     <option>閒聊專區</option>
@@ -279,7 +194,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary px-3" @@click="insertArticle">發文</button>
+                            <button type="button" class="btn btn-primary px-3" v-on:click="insertArticle(addArticle)">發文</button>
                         </div>
                     </form>
                 </div>
@@ -450,38 +365,23 @@
                 articles: [],
                 show: [],
                 postReply:"",
-                //addArticle:{
-                //    Title: "",
-                //    Content: "",
-                //    Category: "",
-                //},
-                title:"",
-                content:"",
-                category:"",
+                addArticle:{
+                    Title: "",
+                    Content: "",
+                    Category: -1,
+                },
                 Filter:"",
             },
             mounted: function () {
-               let _this=this;
-                _this.getArticles();
+                let _self = this
+                fetch("/api/article/getall")
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result)
+                        _self.articles = result
+                    })
             },
-           
             methods: {
-                getArticles: function () {
-                    let _self = this
-                    fetch("/api/article/getall")
-                        .then(function (response) { return response.json() })
-                        .then(function (result) {
-                            console.log(result)
-                            _self.articles = result
-                            var articleList = [];
-                            for (var i = 0; i < this.articles.length; i++) {
-                                var content = {};
-                                content = _this.articles[i];
-                                articleList.push(content)
-                            }
-                            this.articles = articleList
-                        })
-                },
                 showArticle: function (type) {
                     var temp = [];
                     for (let i = 0; i < this.articles.length; i++) {
@@ -492,30 +392,29 @@
                     }
                     this.show = temp;
                 },
-                //insertArticle: function (addArticle) {          
-                //    fetch("/api/article/postarticle", { 
-                //        method: "POST" ,
-                //        body: JSON.stringify(addArticle),
-                //        headers:{"context-type":"application/json"}
-                //    }).then(function(response) {return response.text()})
-                //    .then(function(result) {
-                //        alert(result)
-                //        window.location = "/article/index"
-                //    })
-                //},
-                insertArticle: function () {
-                    let _this=this;
-                    var request={};
-                    request.Title=_this.title;
-                    request.Content=_this.content;
-                    request.Category=_this.category;
-                    fetch("/api/article/postarticle", {method: "POST"})
-                    .then(function (response) { return response.text() })
-                    .then(function (result) {
-                            alert(result)
-                            window.location = "/article/index"
-                        })
-                },
+                insertArticle: function (addArticle) {
+                    addArticle = this.addArticle
+                    fetch("/api/article/postarticle", { 
+                        method: "POST" ,
+                        body: JSON.stringify(addArticle),
+                        headers:{"content-type":"application/json"}
+                    }).then(function(response) {return response.json()})
+                    .then(function(result) { 
+                        var al={
+                                position: 'top-end',
+                                icon: 'success',
+                                title: '發佈成功',
+                                showConfirmButton: false,
+                                timer: 1500
+                        };
+                        if(!result.status){
+                            al.icon="error";
+                            al.title="發佈失敗";
+                        }
+                        Swal.fire(al)
+                        //window.location = "/article/index"
+                    })
+                },                
             },
         });
     </script>
