@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using TeamCodingF4.Models;
 
 namespace TeamCodingF4.Controllers
 {
@@ -9,9 +11,11 @@ namespace TeamCodingF4.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Insert()
+        
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            return View();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

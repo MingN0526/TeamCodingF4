@@ -48,14 +48,19 @@
                     <div class="col-2">
                         <button type="button" class="btn btn-warning" v-on:click="showArticle('抱怨專區')"><a style="color:black">抱怨專區</a></button>
                     </div>
-                    <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArticle('找尋室友')"><a style="color:black">找尋室友</a></button>
-                    </div>
-                    <div class="col-2">
+                    
+                    <div class="col-3">
                         <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
                         <span class="input-icon input-icon-sm ml-auto w-auto">
-                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" />
+                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" v-model="Filter"/>
                         </span>
+                    </div>
+                    <div class="col-2">
+                        <button type="button">
+                            <span class=" text-primary">
+                                <i class="fa fa-search "></i>
+                            </span>
+                        </button>
                     </div>
                 </div>
 
@@ -78,97 +83,12 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
+                    
+                   
+                   
+                   
 
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mb-2">
-                        <div class="card-body p-2 p-sm-3">
-                            <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body">
-                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"></a></h6>
-                                    <p class="text-secondary">
-
-                                    </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span class="text-secondary font-weight-bold"></span></p>
-                                </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
-                                    <span><i class="far fa-comment ml-2"></i> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
+                    
                     <ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
                         <li class="page-item disabled">
                             <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
@@ -230,10 +150,10 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="message">你的回覆 *</label> <!--之後要改資料庫，改成Required-->
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                            <textarea id="message"  cols="30" rows="5" class="form-control" ></textarea>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="發文" class="btn btn-primary px-3">
+                                            <input type="submit" value="發文"  class="btn btn-primary px-3" >
                                         </div>
                                     </form>
                                 </div>
@@ -249,26 +169,32 @@
                 <div class="modal-content">
                     <form>
                         <div class="modal-header d-flex align-items-center bg-primary text-white">
-                            <h6 class="modal-title mb-0" id="threadModalLabel">貼文</h6>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"></span>
-                            </button>
+                            <h6 class="modal-title mb-0" id="threadModalLabel">貼文</h6>                            
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="threadTitle">標題</label>
-                                <input type="text" class="form-control" id="threadTitle" autofocus="" />
+                                <label for="Title">標題</label>
+                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="addArticle.Title" />
                             </div>
-                            <textarea class="form-control summernote" placeholder="請輸入內文" style="display: none;"></textarea>
+                           @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
                             <div class="form-group">
-                                <label for="message">你的貼文</label> <!--之後要改資料庫，改成Required-->
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticle.Content"></textarea>
                             </div>
-
+                            <div class="form-group" id="Category" name="Category" >
+                                <select v-model="addArticle.Category">
+                                    <option value="-1">請選擇文章類別</option>
+                                    <option>心得分享</option>
+                                    <option>發文解惑</option>
+                                    <option>閒聊專區</option>
+                                    <option>抱怨專區</option>
+                                    <option>找尋室友</option>
+                                </select>                       
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                            <input type="submit" value="發文" class="btn btn-primary px-3">
+                            <button type="button" class="btn btn-primary px-3" v-on:click="insertArticle(addArticle)">發文</button>
                         </div>
                     </form>
                 </div>
@@ -437,7 +363,14 @@
             el: '#articleIndex',
             data: {
                 articles: [],
-                show: []
+                show: [],
+                postReply:"",
+                addArticle:{
+                    Title: "",
+                    Content: "",
+                    Category: -1,
+                },
+                Filter:"",
             },
             mounted: function () {
                 let _self = this
@@ -459,7 +392,29 @@
                     }
                     this.show = temp;
                 },
-                
+                insertArticle: function (addArticle) {
+                    addArticle = this.addArticle
+                    fetch("/api/article/postarticle", { 
+                        method: "POST" ,
+                        body: JSON.stringify(addArticle),
+                        headers:{"content-type":"application/json"}
+                    }).then(function(response) {return response.json()})
+                    .then(function(result) { 
+                        var al={
+                                position: 'top-end',
+                                icon: 'success',
+                                title: '發佈成功',
+                                showConfirmButton: false,
+                                timer: 1500
+                        };
+                        if(!result.status){
+                            al.icon="error";
+                            al.title="發佈失敗";
+                        }
+                        Swal.fire(al)
+                        //window.location = "/article/index"
+                    })
+                },                
             },
         });
     </script>

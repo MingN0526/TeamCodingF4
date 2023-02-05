@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using TeamCodingF4.Data;
 using TeamCodingF4.Data.Entity;
+using TeamCodingF4.Extension;
 using TeamCodingF4.Models;
 using TeamCodingF4.Models.ApiModel;
 
@@ -31,23 +34,40 @@ namespace TeamCodingF4.Controllers.Api
             }).ToList();
         }
 
-        // POST: api/PostArticle
+       
         [HttpPost]
-        public async Task<string> PostArticle(ArticleInsert model)
+        public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
         {
+            //var memberId = User.Claims.GetMemberId();
             Articles articles = new Articles
             {
-                Content = model.Content,
                 Title = model.Title,
-            };
+                Content = model.Content,
+                Category= model.Category,
+                Date = DateTime.Now,
+                ViewCount = 1,  //TODO Viewcount function
+                //PublisherId = memberId, TODO
+                PublisherId = 1,
+            };          
             _db.Articles.Add(articles);
             await _db.SaveChangesAsync();
 
-            return "發佈成功!";
+            return new ApiResultModel
+            {
+                Status=true,
+                Message="加入成功"
+            };
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "加入失敗"
+            };
         }
+       
 
-        // DELETE: api/EmployeesDTOes/5
-        [HttpDelete("{id}")]
+        
+        [HttpPost("{id}"), ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<string> DeleteArticle(int id)
         {
             Articles? articles = await _db.Articles.FindAsync(id);
@@ -62,8 +82,9 @@ namespace TeamCodingF4.Controllers.Api
             return "刪除成功!";
         }
 
-        // PUT: api/PutArticle/5
+        
         [HttpPut("{id}")]
+        [ValidateAntiForgeryToken]
         public async Task<string> PutArticle(int id, ArticleModel articleModel)
         {
             if (id != articleModel.Id)
@@ -93,8 +114,9 @@ namespace TeamCodingF4.Controllers.Api
             return "修改成功!";
         }
 
-        // GET: api/GetArticle
+       
         [HttpGet]
+        [ValidateAntiForgeryToken]
         public async Task<IEnumerable<ArticleModel>> GetArticle()
         {
             return _db.Articles.Select(
@@ -102,16 +124,15 @@ namespace TeamCodingF4.Controllers.Api
                 {
                     Title = articles.Title,
                     Content = articles.Content,
-                }).AsEnumerable();
+                }).ToList();
         }
 
-        // GET: api/GetArticle/5
+       
         [HttpGet("{id}")]
         public async Task<ArticleModel> GetArticle(int id)
         {
             var articleModel = _db.Articles.Where(articles => articles.ArticleId == id).Select(articles => new ArticleModel
             {
-
                 Content = articles.Content,
                 Title = articles.Title,
             }).FirstOrDefault();
