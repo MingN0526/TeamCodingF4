@@ -218,6 +218,70 @@ namespace TeamCodingF4.Data
                 Job = "行政人員",
                 PicturePath = "555",
             });
+            modelBuilder.Entity<Condition>().HasData(new Condition
+            {
+                Id=1,
+                Name="寵物"
+            });
+            modelBuilder.Entity<Equipment>().HasData(new Equipment
+            {
+                Id=1,
+                Name="冷氣"
+            });
+            modelBuilder.Entity<Equipment>().HasData(new Equipment
+            {
+                Id = 2,
+                Name = "電視"
+            });
+            modelBuilder.Entity<Equipment>().HasData(new Equipment
+            {
+                Id = 3,
+                Name = "乾溼分離"
+            });
+            modelBuilder.Entity<Equipment>().HasData(new Equipment
+            {
+                Id = 4,
+                Name = "陽台"
+            });
+            modelBuilder.Entity<Equipment>().HasData(new Equipment
+            {
+                Id = 5,
+                Name = "洗衣機"
+            });
+            modelBuilder.Entity<Equipment>().HasData(new Equipment
+            {
+                Id = 6,
+                Name = "飲水機"
+            });
+            modelBuilder.Entity<Equipment>().HasData(new Equipment
+            {
+                Id = 7,
+                Name = "冰箱"
+            });
+            modelBuilder.Entity<RoomType>().HasData(new RoomType
+            {
+                Id = 1,
+                Name = "透天",
+                IsActive=true,
+            });
+            modelBuilder.Entity<RoomType>().HasData(new RoomType
+            {
+                Id = 2,
+                Name = "套房",
+                IsActive = true,
+            });
+            modelBuilder.Entity<RoomType>().HasData(new RoomType
+            {
+                Id = 3,
+                Name = "雅房",
+                IsActive = true,
+            });
+            modelBuilder.Entity<RoomType>().HasData(new RoomType
+            {
+                Id = 4,
+                Name = "其他",
+                IsActive = true,
+            });
         }
 
 

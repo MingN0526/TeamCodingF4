@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using System.Collections.Generic;
 using TeamCodingF4.Data;
 using TeamCodingF4.Data.Entity;
@@ -19,19 +20,12 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(EstateCreateModel estateModel)
+        public IActionResult Create(EstateCreateModel estateModel)
         {
-            var ep = estateModel.EstateImages;
-            var ev = estateModel.EstateVideo;
-            if (ep == null && ev == null)
-            {
-                return BadRequest("沒圖片/影片");
-            }
-
             var Data = new Estate()
             {
                 Tittle = estateModel.Tittle,
-                RoomTypeId = estateModel.RoomTypeId,
+                RoomTypeId= estateModel.RoomTypeId,
                 City = estateModel.City,
                 District = estateModel.District,
                 Address = estateModel.Address,
@@ -46,6 +40,17 @@ namespace TeamCodingF4.Controllers.Api
             };
 
             var root = _environment.WebRootPath;
+            var ev = estateModel.EstateVideo;
+            if (ev != null)
+            {
+                var videoName = DateTime.Now.Ticks + ev.FileName;
+                var videopath = $@"{root}\Video\{videoName}";
+                ev.CopyTo(System.IO.File.Create(videopath));
+                Data.EstateVideoPath = $@"\Video\{videoName}";
+            }
+
+
+            var ep = estateModel.EstateImages;
             foreach (var picture in ep)
             {
                 var pictureName = DateTime.Now.Ticks + picture.FileName;
@@ -57,38 +62,15 @@ namespace TeamCodingF4.Controllers.Api
                 });
             }
 
-            var ee = estateModel.EquipmentName;
-            for (var i = 0; i < ee.Count; i++)
-            {
-                _context.Equipments.Add(new Equipment
-                {
-                    Name = ee[i]
-                });
-            }
-
-            var ec = estateModel.Condition;
-            for (var i = 0; i < ec.Count; i++)
-            {
-                _context.Conditions.Add(new Condition
-                {
-                    Name = ec[i]
-                });
-            }
-
-            var videoName = DateTime.Now.Ticks + ev.FileName;
-            var videopath = $@"{root}\Video\{videoName}";
-            ev.CopyTo(System.IO.File.Create(videopath));
-            Data.EstateVideoPath = $@"\Video\{videoName}";
-
-
             _context.Estates.Add(Data);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 
 
 
-        //public async Task<IActionResult> Detail(int id, EstateDetailModel estateDetailModel)
+        //public async Task<string> Detail(int id, EstateDetailModel estateDetailModel)
         //{
         //    var EstateDetail = _context.Estates.Where(emp => emp.Id == id).Select(emp => new EstateDetailModel
         //    {
@@ -112,7 +94,7 @@ namespace TeamCodingF4.Controllers.Api
         //        return null;
         //    }
 
-        //    return View(EstateDetail);
+        //    return EstateDetail.ToJson();
         //}
     }
 }
