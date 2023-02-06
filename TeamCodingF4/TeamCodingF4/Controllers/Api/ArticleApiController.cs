@@ -146,15 +146,15 @@ namespace TeamCodingF4.Controllers.Api
 
         }
 
-        // POST: api/EmployeesDTOes/Filter
+
         [HttpPost("Filter")]
         public async Task<IEnumerable<ArticleModel>> filterArticles(ArticleModel articleModel)
         {
             return _db.Articles.Where(articles => articles.Content.Contains(articleModel.Content)).Select(
             articles => new ArticleModel
             {
-                Content= articles.Content,
-                Title = articles.Title,
+                Title= articles.Title,
+                Content = articles.Content,
             });
         }
         private bool ArticleExists(int id)

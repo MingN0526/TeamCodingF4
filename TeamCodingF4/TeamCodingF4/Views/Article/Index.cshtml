@@ -52,7 +52,7 @@
                     <div class="col-3">
                         <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
                         <span class="input-icon input-icon-sm ml-auto w-auto">
-                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" v-model="Filter"/>
+                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" v-model="FilterBox"/>
                         </span>
                     </div>
                     <div class="col-2">
@@ -182,8 +182,7 @@
                                     <option>心得分享</option>
                                     <option>發文解惑</option>
                                     <option>閒聊專區</option>
-                                    <option>抱怨專區</option>
-                                    <option>找尋室友</option>
+                                    <option>抱怨專區</option>                                   
                                 </select>                       
                             </div>
                         </div>
@@ -366,6 +365,7 @@
                     Category: -1,
                 },
                 Filter:"",
+                FilterBox:"",
             },
             mounted: function () {
                 let _self = this
@@ -376,6 +376,17 @@
                         _self.articles = result
                         _self.show = result
                     })
+            },
+            computed:{
+                //filterArticles: function () {
+                //    var _self = this
+                //    var temp = this.articles
+                //    if (this.Filter.length > 0) {
+                //        temp = temp.filter(function (item) {
+                //            return item.Content.include(_self.Filter)
+                //        })
+                //    }
+                //},
             },
             methods: {
                 showArticle: function (type) {
@@ -411,19 +422,43 @@
                         window.location = "/article/index"
                     })
                 },
-                filterArticles:function(){
-                    var _self=this
+                filterArticles: function () {
+                    var _self = this
                     var temp = this.articles
-                    if(this.Filter.length > 0){
-                        temp=temp.filter
-                    }
+                    if (this.Filter.length > 0) {
+                        temp = temp.filter(function (item) {
+                             _self.FilterBox = _self.item.Content.include(_self.Filter)
+                             return FilterBox
+                        })
+                    }                   
                 },
                 //filterArticles:function(){
                 //    let _self=this
                 //    addArticle = this.addArticle
                 //    var request={};
                 //    request.Content = _self.addArticle.Content
-                //    fetch("/api/article/filterarticles",{
+                //    fetch("/api/article/Filter", {
+                //        method: "POST",
+                //        body: JSON.stringify(addArticle),
+                //        headers: { "content-type": "application/json" }
+                //    }).then(function (response) { return response.json() })
+                //       .then(function (result) {
+                //            _self.show = result
+                //            var articlesList = [];
+                //            for(var i =0;i < _self.articles.length;i++){
+                //                var item={};
+                //                item = _self.articles[i];
+                //                articlesList.push(item)
+                //            }
+                //            _this.show = articlesList                           
+                //        })                      
+                //},
+                //filterArticles:function(){
+                //    let _self=this
+                //    addArticle = this.addArticle
+                //    var request={};
+                //    request.Content = addArticle.Content
+                //    fetch("/api/article/Filter", {
                 //        method: "POST",
                 //        body: JSON.stringify(addArticle),
                 //        headers: { "content-type": "application/json" }
