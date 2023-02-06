@@ -4,9 +4,8 @@ namespace TeamCodingF4.Models.ApiModel
 {
     public class EstateCreateModel
     {
-        public int Id { get; set; }
         public string Tittle { get; set; }
-        public int RoomTypeId { get; set; }
+        public string RoomType { get; set; }
 
         public int Room { get; set; }
         public int hall { get; set; }

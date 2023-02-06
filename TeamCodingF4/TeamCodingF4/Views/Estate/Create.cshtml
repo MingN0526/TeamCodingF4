@@ -19,13 +19,14 @@
                         <div class="col-md-6 form-group">
                             <div class="control-group">
                                 <label>標題</label>
-                                <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" v-model="postdata.Tittle" />
+                                <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required v-model="postdata.Tittle" />
                                 <p class="help-block text-danger"></p>
 
                             </div>
                             <div class="control-group">
                                 <label>房型</label>
-                                <select class="form-control" name="RoomType" id="RoomType" v-model="postdata.RoomType">
+                                <select class="form-control" name="RoomType" id="RoomType" required v-model="postdata.RoomType">
+                                    <option></option>
                                     <option>透天</option>
                                     <option>套房</option>
                                     <option>雅房</option>
@@ -37,53 +38,53 @@
                                 <label>LDK</label>
                                 <div class="row">
                                     <span class="col-1">房:</span>
-                                    <input type="number" class="form-control col-2" name="Room" v-model="postdata.Room" />
+                                    <input type="number" class="form-control col-2" name="Room"  required v-model="postdata.Room" />
                                     <span class="col-1">廳:</span>
-                                    <input type="number" class="form-control col-2" name="hall" v-model="postdata.hall"/>
+                                    <input type="number" class="form-control col-2" name="hall" required v-model="postdata.hall"/>
                                     <span class="col-1">衛:</span>
-                                    <input type="number" class="form-control col-2" name="bathroom" v-model="postdata.bathroom" />
+                                    <input type="number" class="form-control col-2" name="bathroom" required v-model="postdata.bathroom" />
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>地址</label>
                                 <div class="row">
-                                    <span class="col-1">市:</span>
-                                    <input type="text" class="form-control col-2" name="City" v-model="postdata.City" />
-                                    <span class="col-1">區:</span>
-                                    <input type="text" class="form-control col-2" name="District" v-model="postdata.District" />
-                                    <span class="col-1">路:</span>
-                                    <input type="text" class="form-control col-2" name="Address" v-model="postdata.Address" />
+                                    <span class="col-2">市/縣:</span>
+                                    <input type="text" class="form-control col-3" name="City" required v-model="postdata.City" />
+                                    <span class="col-2">區/鎮/鄉:</span>
+                                    <input type="text" class="form-control col-3" name="District" required v-model="postdata.District" />
                                 </div>
                                 <p class="help-block text-danger"></p>
                                 <div class="row">
-                                    <span class="col-1">樓:</span>
-                                    <input type="text" class="form-control col-2" name="Floor" v-model="postdata.Floor" />
+                                    <span class="col-2">詳細:</span>
+                                    <input type="text" class="form-control col-3" name="Address" required v-model="postdata.Address" />
+                                    <span class="col-2">樓:</span>
+                                    <input type="text" class="form-control col-3" name="Floor" required v-model="postdata.Floor" />
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>價格(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Price" id="Price" v-model="postdata.Price" />
+                                <input type="number" min="0" class="form-control" name="Price" required id="Price" v-model="postdata.Price" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>雜費(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" v-model="postdata.Miscellaneous" />
+                                <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" required v-model="postdata.Miscellaneous" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>坪數</label>
-                                <input type="number" min="1" class="form-control" name="Meters" id="Meters" v-model="postdata.Meters" />
+                                <input type="number" min="1" class="form-control" name="Meters" id="Meters" required v-model="postdata.Meters" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>車位</label>
                                 <div class="row">
                                     <span class="col-2">汽車:</span>
-                                    <input type="number" value="0" class="form-control col-3" name="Car" id="Car" v-model="postdata.Car" />
+                                    <input type="number" min="0" class="form-control col-3" name="Car" id="Car" required v-model="postdata.Car" />
                                     <span class="col-2">機車:</span>
-                                    <input type="number" value="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" v-model="postdata.Motorcycle" />
+                                    <input type="number" min="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" required v-model="postdata.Motorcycle" />
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -92,34 +93,34 @@
                             <div class="control-group">
                                 <label>設備</label>
                                 <div class="form-control">
-                                <input type="checkbox" name="AirConditioner" id="AirConditioner" v-model="AirConditioner" />
+                                    <input type="checkbox" name="EquipmentName" value="冷氣" id="AirConditioner" v-model="AirConditioner" />
                                     <label for="AirConditioner">冷氣</label>
-                                    <input type="checkbox" name="Television" id="Television" v-model="Television" />
+                                    <input type="checkbox" name="EquipmentName" value="電視" id="Television" v-model="Television" />
                                     <label for="Television">電視</label>
-                                    <input type="checkbox" name="WetDry" id="WetDry " v-model="WetDry" />
+                                    <input type="checkbox" name="EquipmentName" value="乾溼分離" id="WetDry" v-model="WetDry" />
                                     <label for="WetDry">乾溼分離</label>
-                                    <input type="checkbox" name="Balcony" id="Balcony" v-model="Balcony" />
+                                    <input type="checkbox" name="EquipmentName" value="陽台" id="Balcony" v-model="Balcony" />
                                     <label for="Balcony">陽台</label>
-                                    <input type="checkbox" name="WashingMachine" id="WashingMachine" v-model="WashingMachine" />
+                                    <input type="checkbox" name="EquipmentName" value="洗衣機" id="WashingMachine" v-model="WashingMachine" />
                                     <label for="WashingMachine">洗衣機</label>
-                                    <input type="checkbox" name="WaterDispenser" id="WaterDispenser" v-model="WaterDispenser" />
+                                    <input type="checkbox" name="EquipmentName" value="飲水機" id="WaterDispenser" v-model="WaterDispenser" />
                                     <label for="WaterDispenser">飲水機</label>
-                                    <input type="checkbox" name="Refrigerator" id="Refrigerator" v-model="Refrigerator" />
+                                    <input type="checkbox" name="EquipmentName" value="冰箱" id="Refrigerator" v-model="Refrigerator" />
                                     <label for="Refrigerator">冰箱</label>
                                 </div>
                             </div>
                             <p class="help-block text-danger"></p>
                             <div class="control-group">
                                 <label>租約期(月)</label>
-                                <input type="number" min="1" class="form-control" name="Lease" id="Lease" v-model="postdata.Lease" />
+                                <input type="number" min="1" class="form-control" name="Lease" id="Lease" required v-model="postdata.Lease" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             
                             <div class="control-group">
                                 <label>條件</label>
                                 <div class="form-control">
-                                    <input type="checkbox" name="pet" id="pet" v-model="pet" />
-                                    <label for="AirConditioner">寵物</label>
+                                    <input type="checkbox" name="Condition" value="寵物" id="pet" v-model="pet" />
+                                    <label for="pet">寵物</label>
 
                                 </div>
                                 <p class="help-block text-danger"></p>
@@ -127,12 +128,12 @@
 
                             <div class="control-group">
                                 <label>照片</label>
-                                <input type="file" class="form-control" name="EstateImages" id="EstateImage" multiple v-model="postdata.EstateImages" />
+                                <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple v-model="postdata.EstateImages" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>影片</label>
-                                <input type="file" class="form-control" name="EstateVideo" id="EstateVideo" v-model="postdata.EstateVideo" />
+                                <input type="file" class="form-control" name="EstateVideo" id="EstateVideo"  v-model="postdata.EstateVideo" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
