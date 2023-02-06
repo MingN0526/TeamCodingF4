@@ -24,8 +24,8 @@ namespace TeamCodingF4.Models.ApiModel
         public string? message { get; set; }
         public List<IFormFile> EstateImages { get; set; }
         public IFormFile EstateVideo { get; set; }
-        public List<string> EquipmentName { get; set; }
+        public List<int> EquipmentId { get; set; }
 
-        public List<string> Condition { get; set; }
+        public List<int> ConditionId { get; set; }
     }
 }
