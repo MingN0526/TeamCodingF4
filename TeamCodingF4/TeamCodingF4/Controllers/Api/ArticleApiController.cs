@@ -115,48 +115,8 @@ namespace TeamCodingF4.Controllers.Api
         }
 
        
-        [HttpGet]
-        [ValidateAntiForgeryToken]
-        public async Task<IEnumerable<ArticleModel>> GetArticle()
-        {
-            return _db.Articles.Select(
-                articles => new ArticleModel
-                {
-                    Title = articles.Title,
-                    Content = articles.Content,
-                }).ToList();
-        }
+ 
 
-       
-        [HttpGet("{id}")]
-        public async Task<ArticleModel> GetArticle(int id)
-        {
-            var articleModel = _db.Articles.Where(articles => articles.ArticleId == id).Select(articles => new ArticleModel
-            {
-                Content = articles.Content,
-                Title = articles.Title,
-            }).FirstOrDefault();
-
-            if (articleModel == null)
-            {
-                return null;
-            }
-
-            return articleModel;
-
-        }
-
-
-        [HttpPost("Filter")]
-        public async Task<IEnumerable<ArticleModel>> filterArticles(ArticleModel articleModel)
-        {
-            return _db.Articles.Where(articles => articles.Content.Contains(articleModel.Content)).Select(
-            articles => new ArticleModel
-            {
-                Title= articles.Title,
-                Content = articles.Content,
-            });
-        }
         private bool ArticleExists(int id)
         {
             return _db.Articles.Any(x => x.ArticleId == id);
