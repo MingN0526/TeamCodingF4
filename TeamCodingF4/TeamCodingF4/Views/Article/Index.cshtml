@@ -18,10 +18,9 @@
                                     <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                         <div class="simplebar-content" style="padding: 16px;">
                                             <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a>
-                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">最新文章</a>
-                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日熱門文章</a>
-                                                <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日精華文章</a>
+                                                <button @@click="fullArticles"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a></button>
+                                                <button><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">最新文章</a></button>
+                                                <button><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日熱門文章</a></button>                                               
                                             </nav>
                                         </div>
                                     </div>
@@ -65,7 +64,7 @@
                 </div>
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-                    <div class="card mb-2" v-for="article in show">
+                    <div class="card mb-2" v-for="article in FilterBox">
                         <div class="card-body p-2 p-sm-3">
                             <div class="media forum-item">
                                 <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
@@ -79,6 +78,7 @@
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
                                     <span><i class="far fa-comment ml-2"></i> 3</span>
+                                    <button @@click="deleteArticle(article)">刪除</button>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
                                     <small class="d-block text-center text-muted"></small>
                                 </a>
-                                <div class="media-body ml-3" v-for="article in FilterBox">
+                                <div class="media-body ml-3" v-for="article in show">
                                     <a href="javascript:void(0)" class="text-secondary"></a>
                                     <small class="text-muted ml-2">{{article.date}}</small>
                                     <h5 class="mt-1"></h5>
@@ -366,6 +366,7 @@
                 },
                 Filter:"",
                 FilterBox:"",
+                articleId:"",
             },
             mounted: function () {
                 let _self = this
@@ -375,6 +376,7 @@
                         console.log(result)
                         _self.articles = result
                         _self.show = result
+                        _self.FilterBox = result
                     })
             },
             computed:{
@@ -390,6 +392,16 @@
                         }
                     }
                     this.show = temp;
+                },
+                filterArticles: function () {
+                    var _self = this
+                    var temp = this.articles
+                    if (this.Filter.length > 0) {
+                        temp = temp.filter(function (temp) {
+                            return temp.content.includes(_self.Filter)
+                        })         
+                    }
+                    _self.FilterBox = temp
                 },
                 insertArticle: function (addArticle) {
                     addArticle = this.addArticle
@@ -414,17 +426,34 @@
                         window.location = "/article/index"
                     })
                 },
-                filterArticles: function () {
-                    var _self = this
-                    var temp = this.articles
-                    if (this.Filter.length > 0) {
-                        temp = temp.filter(function (item) {
-                             _self.FilterBox = _self.item.Content.include(_self.Filter)
-                             return FilterBox
-                        })
-                    }                   
+                fullArticles:function () {
+                    let _self = this
+                    fetch("/api/article/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {
+                            console.log(result)                      
+                            _self.FilterBox = result
+                    })
                 },
-               
+                deleteArticle:function(id){
+                    let _self = this;
+                    fetch("/api/article/delete",{method:"POST"})
+                    .then(function(response){return response.text()
+                    .then(function(result){alert(result)})
+                    })
+                },
+                //deleteArticle:function(articleId){
+                //    let _self = this;
+                //    var ret=confirm("確定要刪除嗎?");
+                //    if (ret==true){
+                //        fetch(`/api/article/${articleId}`)
+                //        .then(function(response){return response.json()}
+                //        .then(function(result){
+                //            alert(result);                            
+                //            _self.cancel();
+                //        })                                                          
+                //    }
+                //},         
             },
         });
     </script>

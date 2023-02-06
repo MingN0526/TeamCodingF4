@@ -63,9 +63,19 @@ namespace TeamCodingF4.Controllers.Api
                 Message = "加入失敗"
             };
         }
-       
 
-        
+        public async Task<Articles> GetId(int id)
+        {
+            var articleId = _db.Articles.FirstOrDefault(x => x.ArticleId == id);
+            if (articleId == null)
+            {
+                return null;
+            }
+            return articleId;
+        }
+
+
+
         [HttpPost("{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<string> DeleteArticle(int id)
@@ -80,6 +90,7 @@ namespace TeamCodingF4.Controllers.Api
             await _db.SaveChangesAsync();
 
             return "刪除成功!";
+
         }
 
         
