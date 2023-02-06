@@ -20,6 +20,7 @@ namespace TeamCodingF4.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -32,57 +33,6 @@ namespace TeamCodingF4.Controllers
         {
             return View();
         }
-
-        /*
-               [HttpPost]
-               [ValidateAntiForgeryToken]
-               public IActionResult Register([Bind("UserName, Email, Password, ConfirmePassword")] MemberModel membermodel)
-               {
-                   if (!ModelState.IsValid)
-                   {
-                       return View();
-                   }
-                   var member = _context.Members.Where(m => m.MemberEmail == Members.MemberEmail).FirstOrDefault();
-                   if (member == null)
-                   {
-                           _context.Members.Add(Members);
-                           _context.SaveChanges();
-
-                           return RedirectToAction("Login");
-                   }
-                   Alert("帳號已被使用，請重新註冊");
-                   return View();
-                   
-               }
-               */
-
-        /*
- public IActionResult Result()
- {
-     var model = TempData["registerModel"] as RegisterModel;
-     return View(model);
- }
-
-
- [HttpPost]
- [ValidateAntiForgeryToken]
- public async Task<IActionResult> Register([Bind("UserName, Email, Password, ConfirmePassword")] MemberModel memberModel)
- {
-     if (!ModelState.IsValid)
-     {
-     _context.Add(memberModel);
-     await _context.SaveChangesAsync();
-     return RedirectToAction(nameof(Index));
-     }
-     else
-     {
-         TempData["registerModel"] = memberModel;
-         return RedirectToAction("Result");
-     }
-     return View(memberModel);
- }
-   */
-
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel loginModel)
@@ -111,6 +61,10 @@ namespace TeamCodingF4.Controllers
             TempData["error"] = "帳號密碼不正確";
             return RedirectToAction("login");
         }
+
+
+
+
 
     }
     
