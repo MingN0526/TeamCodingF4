@@ -18,7 +18,7 @@ namespace TeamCodingF4.Controllers.Services
         {
             var mail = new MailMessage();
 
-            var activationUrl = "http://localhost:7213/MySampleApplication/ActivateAccount.aspx?UserID=";
+            var activationUrl = "http://localhost:7213/api/ConfirmEmail/";
             //var activationUrl = "http://localhost:7213/MySampleApplication/ActivateAccount.aspx?UserID=" + FetchUserId(emailId) + "&EmailId=" + emailId;
 
             mail.Subject = "請點選會員認證信中的連結以完成會員認證。";
@@ -39,8 +39,7 @@ namespace TeamCodingF4.Controllers.Services
 
             var client = new SmtpClient();
             client.Host = "smtp.gmail.com";
-            //client.Port = 587;
-            client.Port = 465;
+            client.Port = 587;
             client.EnableSsl = true;
             client.Credentials = new NetworkCredential("TeamCodingF4@gmail.com", "ygaphhgrbffupffg");
 
