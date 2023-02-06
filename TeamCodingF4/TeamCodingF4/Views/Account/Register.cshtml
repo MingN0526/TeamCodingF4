@@ -74,9 +74,9 @@
                     }).then(function(result){
                         console.log(result)
                         if(result.isOk==false){
-                            swal({
+                            swal(
                                 '註冊結果', '信箱重複註冊或輸入格式不正確，請檢查。', 'error'
-                            });
+                            );
                         }
                         else
                         {
