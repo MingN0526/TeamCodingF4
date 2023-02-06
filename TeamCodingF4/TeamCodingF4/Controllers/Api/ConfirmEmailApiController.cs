@@ -19,11 +19,11 @@ namespace TeamCodingF4.Controllers.Api
             this.mailService = mailService;
         }
 
-        public IActionResult confirmEmail(string email)
-        {
+        //public IActionResult confirmEmail(string email)
+        //{
             
-            var existId = _context.Members.FirstOrDefault(m => m.Email == email);
-        }
+        //    var existId = _context.Members.FirstOrDefault(m => m.Email == email);
+        //}
 
 
     }
