@@ -64,66 +64,68 @@ namespace TeamCodingF4.Controllers.Api
             };
         }
 
-        public async Task<Articles> GetId(int id)
+        //public async Task<Articles> GetId(int id)
+        //{
+        //    var articleId = _db.Articles.FirstOrDefault(x => x.ArticleId == id);
+        //    if (articleId == null)
+        //    {
+        //        return null;
+        //    }
+        //    return articleId;
+        //}
+
+
+
+        [HttpPost("{id}")]
+        //[ValidateAntiForgeryToken]
+        public async Task<ApiResultModel> DeleteArticle(ArticleDeleteModel id)
         {
-            var articleId = _db.Articles.FirstOrDefault(x => x.ArticleId == id);
-            if (articleId == null)
-            {
-                return null;
-            }
-            return articleId;
-        }
-
-
-
-        [HttpPost("{id}"), ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<string> DeleteArticle(int id)
-        {
-            Articles? articles = await _db.Articles.FindAsync(id);
-            if (articles == null)
-            {
-                return "找不到欲刪除的紀錄!";
-            }
-
+            Articles articles = await _db.Articles.FindAsync(id);
             _db.Articles.Remove(articles);
-            await _db.SaveChangesAsync();
-
-            return "刪除成功!";
-
+            await _db.SaveChangesAsync();            
+                return new ApiResultModel
+                {
+                    Status = true,
+                    Message = "刪除成功"
+                };
+                return new ApiResultModel
+                {
+                    Status = false,
+                    Message = "刪除失敗"
+                };                                 
         }
 
         
-        [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<string> PutArticle(int id, ArticleModel articleModel)
-        {
-            if (id != articleModel.Id)
-            {
-                return null;
-            }
-            Articles? articles = await _db.Articles.FindAsync(articleModel.Id);
-            articles.Content = articleModel.Content;
-            articles.Title = articleModel.Title;
-            _db.Entry(articles).State = EntityState.Modified;
+        //[HttpPut("{id}")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<string> PutArticle(int id, ArticleModel articleModel)
+        //{
+        //    if (id != articleModel.Id)
+        //    {
+        //        return null;
+        //    }
+        //    Articles? articles = await _db.Articles.FindAsync(articleModel.Id);
+        //    articles.Content = articleModel.Content;
+        //    articles.Title = articleModel.Title;
+        //    _db.Entry(articles).State = EntityState.Modified;
 
-            try
-            {
-                await _db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ArticleExists(id))
-                {
-                    return "找不到欲修改的紀錄!";
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return "修改成功!";
-        }
+        //    try
+        //    {
+        //        await _db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ArticleExists(id))
+        //        {
+        //            return "找不到欲修改的紀錄!";
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    return "修改成功!";
+        //}
 
        
  
