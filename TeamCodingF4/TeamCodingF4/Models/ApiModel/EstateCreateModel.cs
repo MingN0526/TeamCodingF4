@@ -4,8 +4,9 @@ namespace TeamCodingF4.Models.ApiModel
 {
     public class EstateCreateModel
     {
+        public int Id { get; set; }
         public string Tittle { get; set; }
-        public string RoomType { get; set; }
+        public int RoomTypeId { get; set; }
 
         public int Room { get; set; }
         public int hall { get; set; }
@@ -23,8 +24,8 @@ namespace TeamCodingF4.Models.ApiModel
         public string? message { get; set; }
         public List<IFormFile> EstateImages { get; set; }
         public IFormFile EstateVideo { get; set; }
-        public List<string> EquipmentName { get; set; }
+        public List<int> EquipmentId { get; set; }
 
-        public List<string> Condition { get; set; }
+        public List<int> ConditionId { get; set; }
     }
 }

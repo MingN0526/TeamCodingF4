@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using System.Collections.Generic;
 using TeamCodingF4.Data;
 using TeamCodingF4.Data.Entity;
@@ -19,11 +20,12 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(EstateCreateModel estateModel)
+        public IActionResult Create(EstateCreateModel estateModel)
         {
             var Data = new Estate()
             {
                 Tittle = estateModel.Tittle,
+                RoomTypeId= estateModel.RoomTypeId,
                 City = estateModel.City,
                 District = estateModel.District,
                 Address = estateModel.Address,
@@ -37,52 +39,9 @@ namespace TeamCodingF4.Controllers.Api
                 message = estateModel.message,
             };
 
-            var er = estateModel.RoomType;
-            _context.RoomTypes.Add(new RoomType()
-            {
-                Name=er
-            });
-
-            var ee = estateModel.EquipmentName;
-            if (ee != null)
-            {
-                for (var i = 0; i < ee.Count; i++)
-                {
-                    _context.Equipments.Add(new Equipment
-                    {
-                        Name = ee[i]
-                    });
-                }
-            }
-
-            var ec = estateModel.Condition;
-            if (ec != null)
-            {
-                for (var i = 0; i < ec.Count; i++)
-                {
-                    _context.Conditions.Add(new Condition
-                    {
-                        Name = ec[i]
-                    });
-                }
-            }
-
             var root = _environment.WebRootPath;
-
-            //var ep = estateModel.EstateImages;
-            //foreach (var picture in ep)
-            //{
-            //    var pictureName = DateTime.Now.Ticks + picture.FileName;
-            //    var picturepath = $@"{root}\Picture\{pictureName}";
-            //    picture.CopyTo(System.IO.File.Create(picturepath));
-            //    _context.EstateImages.Add(new EstateImage()
-            //    {
-            //        ImagePath = $@"\Picture\{pictureName}"
-            //    });
-            //}
-
             var ev = estateModel.EstateVideo;
-            if (ev!=null)
+            if (ev != null)
             {
                 var videoName = DateTime.Now.Ticks + ev.FileName;
                 var videopath = $@"{root}\Video\{videoName}";
@@ -91,15 +50,27 @@ namespace TeamCodingF4.Controllers.Api
             }
 
 
-            _context.Estates.Add(Data);
-            await _context.SaveChangesAsync();
+            var ep = estateModel.EstateImages;
+            foreach (var picture in ep)
+            {
+                var pictureName = DateTime.Now.Ticks + picture.FileName;
+                var picturepath = $@"{root}\Picture\{pictureName}";
+                picture.CopyTo(System.IO.File.Create(picturepath));
+                Data.EstateImage.Add(new EstateImage()
+                {
+                    ImagePath = $@"\Picture\{pictureName}"
+                });
+            }
 
-            return View(nameof(Index));
+            _context.Estates.Add(Data);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
 
 
 
-        //public async Task<IActionResult> Detail(int id, EstateDetailModel estateDetailModel)
+        //public async Task<string> Detail(int id, EstateDetailModel estateDetailModel)
         //{
         //    var EstateDetail = _context.Estates.Where(emp => emp.Id == id).Select(emp => new EstateDetailModel
         //    {
@@ -123,7 +94,7 @@ namespace TeamCodingF4.Controllers.Api
         //        return null;
         //    }
 
-        //    return View(EstateDetail);
+        //    return EstateDetail.ToJson();
         //}
     }
 }

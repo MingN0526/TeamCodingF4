@@ -25,12 +25,12 @@
                             </div>
                             <div class="control-group">
                                 <label>房型</label>
-                                <select class="form-control" name="RoomType" id="RoomType" required v-model="postdata.RoomType">
+                                <select class="form-control" name="RoomTypeId" id="RoomTypeId" required v-model="postdata.RoomType">
                                     <option></option>
-                                    <option>透天</option>
-                                    <option>套房</option>
-                                    <option>雅房</option>
-                                    <option>其他</option>
+                                    <option value="1">透天</option>
+                                    <option value="2">套房</option>
+                                    <option value="3">雅房</option>
+                                    <option value="4">其他</option>
                                 </select>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -93,19 +93,19 @@
                             <div class="control-group">
                                 <label>設備</label>
                                 <div class="form-control">
-                                    <input type="checkbox" name="EquipmentName" value="冷氣" id="AirConditioner" v-model="AirConditioner" />
+                                    <input type="checkbox" name="EquipmentId" value="1" id="AirConditioner" v-model="AirConditioner" />
                                     <label for="AirConditioner">冷氣</label>
-                                    <input type="checkbox" name="EquipmentName" value="電視" id="Television" v-model="Television" />
+                                    <input type="checkbox" name="EquipmentId" value="2" id="Television" v-model="Television" />
                                     <label for="Television">電視</label>
-                                    <input type="checkbox" name="EquipmentName" value="乾溼分離" id="WetDry" v-model="WetDry" />
+                                    <input type="checkbox" name="EquipmentId" value="3" id="WetDry" v-model="WetDry" />
                                     <label for="WetDry">乾溼分離</label>
-                                    <input type="checkbox" name="EquipmentName" value="陽台" id="Balcony" v-model="Balcony" />
+                                    <input type="checkbox" name="EquipmentId" value="4" id="Balcony" v-model="Balcony" />
                                     <label for="Balcony">陽台</label>
-                                    <input type="checkbox" name="EquipmentName" value="洗衣機" id="WashingMachine" v-model="WashingMachine" />
+                                    <input type="checkbox" name="EquipmentId" value="5" id="WashingMachine" v-model="WashingMachine" />
                                     <label for="WashingMachine">洗衣機</label>
-                                    <input type="checkbox" name="EquipmentName" value="飲水機" id="WaterDispenser" v-model="WaterDispenser" />
+                                    <input type="checkbox" name="EquipmentId" value="6" id="WaterDispenser" v-model="WaterDispenser" />
                                     <label for="WaterDispenser">飲水機</label>
-                                    <input type="checkbox" name="EquipmentName" value="冰箱" id="Refrigerator" v-model="Refrigerator" />
+                                    <input type="checkbox" name="EquipmentId" value="7" id="Refrigerator" v-model="Refrigerator" />
                                     <label for="Refrigerator">冰箱</label>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                             <div class="control-group">
                                 <label>條件</label>
                                 <div class="form-control">
-                                    <input type="checkbox" name="Condition" value="寵物" id="pet" v-model="pet" />
+                                    <input type="checkbox" name="ConditionId" value="1" id="pet" v-model="pet" />
                                     <label for="pet">寵物</label>
 
                                 </div>
