@@ -21,7 +21,7 @@
                 <div class="bg-light p-4 mb-30">
                     <form>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="district-all">
+                            <input type="checkbox" class="custom-control-input" checked id="district-all" v-on:click="insertArticle">
                             <label class="custom-control-label" for="district-all">不限</label>
                             <span class="badge border font-weight-normal">1000</span>
                         </div>
@@ -282,7 +282,11 @@
                             <label class="custom-control-label" for="miscellaneous-2">水電費</label>
                             <span class="badge border font-weight-normal">150</span>
                         </div>
-
+                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="pet" v-model="pet">
+                            <label class="custom-control-label" for="pet">寵物</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
 
                     </form>
                 </div>
@@ -711,24 +715,72 @@
 
 @section Scripts
     {
-                <script>
-                    let app = new Vue({
-                        el: "#app",
-                        data: function(){
-                           var data={
-                               form:{}
-                           };
-                           return data;
-                        },
-                        methods: {
-                            send: function () {
-                                let self = this;
-                                var postData = {};
-                                postData['Tittle']=self.form.Tittle
-
-
-                            }
-                        }
+    <script>
+        let app = new Vue({
+            el: '#articleIndex',
+            data: {
+                articles: [],
+                show: [],
+                postReply:"",
+                addArticle:{
+                    Title: "",
+                    Content: "",
+                    Category: -1,
+                },
+                Filter:"",
+            },
+            mounted: function () {
+                let _self = this
+                fetch("/api/article/getall")
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result)
+                        _self.articles = result
+                        _self.show = result
                     })
-                </script>
+            },
+            methods: {
+                showArticle: function (type) {
+                    var temp = [];
+                    for (let i = 0; i < this.articles.length; i++) {
+                        //console.log(this.articles[i])
+                        if (this.articles[i].category == type) {
+                            temp.push(this.articles[i])
+                        }
+                    }
+                    this.show = temp;
+                },
+                insertArticle: function (addArticle) {
+                    addArticle = this.addArticle
+                    fetch("/api/article/postarticle", { 
+                        method: "POST" ,
+                        body: JSON.stringify(addArticle),
+                        headers:{"content-type":"application/json"}
+                    }).then(function(response) {return response.json()})
+                    .then(function(result) { 
+                        var al={
+                                position: 'top-end',
+                                icon: 'success',
+                                title: '發佈成功',
+                                showConfirmButton: false,
+                                timer: 1500
+                        };
+                        if(!result.status){
+                            al.icon="error";
+                            al.title="發佈失敗";
+                        }
+                        Swal.fire(al)
+                        window.location = "/article/index"
+                    })
+                },
+                filterArticles:function(){
+                    var _self=this
+                    var temp = this.articles
+                    if(this.Filter.length > 0){
+                        temp=temp.filter
+                    }
+                },
+                                },
+            });
+        </script>
 }
