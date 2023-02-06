@@ -20,6 +20,7 @@ namespace TeamCodingF4.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
