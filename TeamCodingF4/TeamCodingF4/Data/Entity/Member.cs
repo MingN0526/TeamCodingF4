@@ -68,6 +68,9 @@ namespace TeamCodingF4.Data.Entity
 
         public string PicturePath { get; set; }
 
+        public bool IsActive { get; set; }
+
+
         public virtual ICollection<ArticleLike> ArticleLikes { get; set; }
         public virtual ICollection<EstateLike> EstateLikes { get; set; }
     }
