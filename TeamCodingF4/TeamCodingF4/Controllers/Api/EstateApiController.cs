@@ -19,6 +19,20 @@ namespace TeamCodingF4.Controllers.Api
             _environment = environment;
         }
 
+        [HttpGet]
+        public List<EstateIndexModel> Index()
+        {
+            var data = _context.Estates.Select(x => new EstateIndexModel
+            {
+               Id = x.Id,
+               Tittle=x.Tittle,
+               RoomType=x.RoomType.Name,
+               Price=x.Price,
+               Miscellaneous=x.Miscellaneous,
+            }).ToList();
+            return data;
+        }
+
         [HttpPost]
         public IActionResult Create(EstateCreateModel estateModel)
         {
@@ -53,23 +67,6 @@ namespace TeamCodingF4.Controllers.Api
                 Data.EstateVideoPath = $@"\Video\{videoName}";
             }
 
-            var ee = estateModel.EquipmentId;
-            foreach(var em in ee)
-            {
-                Data.Equipment.Add(new Equipment()
-                {
-                    Id = em
-                });
-            }
-
-            var ec = estateModel.ConditionId;
-            foreach(var cd in ec)
-            {
-                Data.Conditions.Add(new Condition()
-                {
-                    Id = cd
-                });
-            }
 
             var ep = estateModel.EstateImages;
             foreach (var picture in ep)
