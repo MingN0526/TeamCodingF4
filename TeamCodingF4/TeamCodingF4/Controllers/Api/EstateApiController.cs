@@ -25,7 +25,10 @@ namespace TeamCodingF4.Controllers.Api
             var Data = new Estate()
             {
                 Tittle = estateModel.Tittle,
-                RoomTypeId= estateModel.RoomTypeId,
+                RoomTypeId = estateModel.RoomTypeId,
+                Room = estateModel.Room,
+                hall=estateModel.hall,
+                bathroom=estateModel.bathroom,
                 City = estateModel.City,
                 District = estateModel.District,
                 Address = estateModel.Address,
@@ -39,6 +42,7 @@ namespace TeamCodingF4.Controllers.Api
                 message = estateModel.message,
             };
 
+
             var root = _environment.WebRootPath;
             var ev = estateModel.EstateVideo;
             if (ev != null)
@@ -49,6 +53,23 @@ namespace TeamCodingF4.Controllers.Api
                 Data.EstateVideoPath = $@"\Video\{videoName}";
             }
 
+            var ee = estateModel.EquipmentId;
+            foreach(var em in ee)
+            {
+                Data.Equipment.Add(new Equipment()
+                {
+                    Id = em
+                });
+            }
+
+            var ec = estateModel.ConditionId;
+            foreach(var cd in ec)
+            {
+                Data.Conditions.Add(new Condition()
+                {
+                    Id = cd
+                });
+            }
 
             var ep = estateModel.EstateImages;
             foreach (var picture in ep)
