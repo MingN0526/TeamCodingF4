@@ -13,31 +13,34 @@
 <!-- Cart Start -->
 <div class="container-fluid" id="app">
     <div class="row px-xl-5">
-        <div class="col-lg-12 table-responsive mb-5">
+        <div class="col-lg-12 table-responsive mb-5" id="estateIndex">
             <table class="table table-light table-borderless table-hover text-center mb-0">
                 <thead class="thead-dark">
                     <tr>
                         <th>標題</th>
                         <th>房型</th>
-                        <th>地址</th>
                         <th>價格</th>
+                        <th>雜費</th>
                         <th>照片</th>
                         <th>其他</th>
                     </tr>
                 </thead>
-                <tbody class="align-middle">
+                <tbody class="align-middle" v-for="item in inf">
                     <tr>
                         <td class="align-middle">
-                            <img src="" alt="" style="width: 50px;">
-
+                            {{item.Tittle}}
                         </td>
                         <td class="align-middle">
+                            {{item.Roomtype}}
                         </td>
                         <td class="align-middle">
+                            {{item.Price}}
                         </td>
                         <td class="align-middle">
+                            {{item.Miscellaneous}}
                         </td>
                         <td class="align-middle">
+                            
                         </td>
                         <td class="align-middle">
                             <button class="btn btn-sm btn-danger">
@@ -54,7 +57,7 @@
                             </button>
                             <button class="btn btn-sm btn-danger">
                                 <i class="fa fa-times">
-                                    <a action="Estate/Detail"></a>
+                                    <a action="Estate/Create"></a>
                                 </i>
                             </button>
                         </td>
@@ -67,9 +70,22 @@
 
 @section Scripts
     {
-        <script>
-            let app=new vue({
-                el:"#app",
-            })
-        </script>
+    <script>
+        let app = new Vue({
+            el: "#estateIndex",
+            data: {
+                inf:[]
+            },
+            mounted: {
+                funtion(){
+                    let self=this;
+                    fetch("/api/EstateApi/Index")
+                    .then(function(res){self.inf=res.data})
+                }
+            },
+            mothods: {
+
+            },
+        })
+    </script>
     }
