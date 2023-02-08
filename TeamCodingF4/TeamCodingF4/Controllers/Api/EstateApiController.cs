@@ -19,6 +19,20 @@ namespace TeamCodingF4.Controllers.Api
             _environment = environment;
         }
 
+        [HttpGet]
+        public List<EstateIndexModel> Index()
+        {
+            var data = _context.Estates.Select(x => new EstateIndexModel
+            {
+               Id = x.Id,
+               Tittle=x.Tittle,
+               RoomType=x.RoomType.Name,
+               Price=x.Price,
+               Miscellaneous=x.Miscellaneous,
+            }).ToList();
+            return data;
+        }
+
         [HttpPost]
         public IActionResult Create(EstateCreateModel estateModel)
         {
@@ -40,6 +54,8 @@ namespace TeamCodingF4.Controllers.Api
                 Motorcycle = estateModel.Motorcycle,
                 Lease = estateModel.Lease,
                 message = estateModel.message,
+                Conditions=_context.Conditions.Where(x=>estateModel.ConditionId.Contains(x.Id)).ToList(),
+                Equipment= _context.Equipments.Where(x => estateModel.EquipmentId.Contains(x.Id)).ToList(),
             };
 
 
@@ -53,35 +69,24 @@ namespace TeamCodingF4.Controllers.Api
                 Data.EstateVideoPath = $@"\Video\{videoName}";
             }
 
-            var ee = estateModel.EquipmentId;
-            foreach(var em in ee)
-            {
-                Data.Equipment.Add(new Equipment()
-                {
-                    Id = em
-                });
-            }
-
-            var ec = estateModel.ConditionId;
-            foreach(var cd in ec)
-            {
-                Data.Conditions.Add(new Condition()
-                {
-                    Id = cd
-                });
-            }
 
             var ep = estateModel.EstateImages;
-            foreach (var picture in ep)
+            if (ep != null)
             {
-                var pictureName = DateTime.Now.Ticks + picture.FileName;
-                var picturepath = $@"{root}\Picture\{pictureName}";
-                picture.CopyTo(System.IO.File.Create(picturepath));
-                Data.EstateImage.Add(new EstateImage()
+                var pictureList = new List<EstateImage>();
+                foreach (var picture in ep)
                 {
-                    ImagePath = $@"\Picture\{pictureName}"
-                });
+                    var path = $@"\Picture\{DateTime.Now.Ticks}-{picture.FileName}";
+                    using (var stream = new FileStream($@"{root}{path}",FileMode.Create))
+                    {
+                        picture.CopyTo(stream);
+                    }
+                    pictureList.Add(new EstateImage() { ImagePath = path });
+                   
+                }
+                Data.EstateImage = pictureList;
             }
+           
 
             _context.Estates.Add(Data);
             _context.SaveChanges();
