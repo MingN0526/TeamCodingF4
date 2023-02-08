@@ -54,6 +54,8 @@ namespace TeamCodingF4.Controllers.Api
                 Motorcycle = estateModel.Motorcycle,
                 Lease = estateModel.Lease,
                 message = estateModel.message,
+                Conditions=_context.Conditions.Where(x=>estateModel.ConditionId.Contains(x.Id)).ToList(),
+                Equipment= _context.Equipments.Where(x => estateModel.EquipmentId.Contains(x.Id)).ToList(),
             };
 
 
@@ -69,16 +71,22 @@ namespace TeamCodingF4.Controllers.Api
 
 
             var ep = estateModel.EstateImages;
-            foreach (var picture in ep)
+            if (ep != null)
             {
-                var pictureName = DateTime.Now.Ticks + picture.FileName;
-                var picturepath = $@"{root}\Picture\{pictureName}";
-                picture.CopyTo(System.IO.File.Create(picturepath));
-                Data.EstateImage.Add(new EstateImage()
+                var pictureList = new List<EstateImage>();
+                foreach (var picture in ep)
                 {
-                    ImagePath = $@"\Picture\{pictureName}"
-                });
+                    var path = $@"\Picture\{DateTime.Now.Ticks}-{picture.FileName}";
+                    using (var stream = new FileStream($@"{root}{path}",FileMode.Create))
+                    {
+                        picture.CopyTo(stream);
+                    }
+                    pictureList.Add(new EstateImage() { ImagePath = path });
+                   
+                }
+                Data.EstateImage = pictureList;
             }
+           
 
             _context.Estates.Add(Data);
             _context.SaveChanges();
