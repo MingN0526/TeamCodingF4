@@ -438,10 +438,10 @@
                 deleteArticle: function (article) {
                     let _self = this;
                     console.log(article.id)
-                    var deleteArticleUrl = `/api/article/deletearticle/${article.id}`
+                    var deleteArticleUrl = `/api/article/deletearticle/`+`${article.id}`
                     fetch(deleteArticleUrl, {
                         method:"POST",
-                        //body:JSON.stringify(article),
+                        body: JSON.stringify(article.id),
                         headers:{"content-type":"application/json"}
                     }).then(function(response){return response.json()
                             .then(function (result) {
@@ -460,7 +460,25 @@
                             })                        
                     })
                 },
-                
+                editArticle: function (articleId) {
+                    let _self = this;
+                    var articleList = [];
+                    for (var i = 0; i < _this.articles.length; i++) {
+                        var item = {};
+                        item = _this.articles[i];
+                        if (employeeId == item.employeeId) {
+                            item.Edit = true;
+                            _this.originalFirstName = item.firstName;
+                            _this.originalLastName = item.lastName;
+                            _this.originalTitle = item.title;
+                        }
+                        else {
+                            item.Edit = false;
+                        }
+                        EmployeeList.push(item);
+                    }
+                    _this.EmployeesDTOes = EmployeeList;
+                },
             },
         });
     </script>

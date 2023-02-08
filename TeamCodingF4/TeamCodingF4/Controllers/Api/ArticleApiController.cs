@@ -34,7 +34,7 @@ namespace TeamCodingF4.Controllers.Api
             }).ToList();
         }
 
-       
+
         [HttpPost]
         public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
         {
@@ -43,19 +43,19 @@ namespace TeamCodingF4.Controllers.Api
             {
                 Title = model.Title,
                 Content = model.Content,
-                Category= model.Category,
+                Category = model.Category,
                 Date = DateTime.Now,
                 ViewCount = 1,  //TODO Viewcount function
                 //PublisherId = memberId, TODO
                 PublisherId = 1,
-            };          
+            };
             _db.Articles.Add(articles);
             await _db.SaveChangesAsync();
 
             return new ApiResultModel
             {
-                Status=true,
-                Message="加入成功"
+                Status = true,
+                Message = "加入成功"
             };
             return new ApiResultModel
             {
@@ -77,22 +77,27 @@ namespace TeamCodingF4.Controllers.Api
 
 
         [HttpPost("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<ApiResultModel> DeleteArticle(Int32 id)
+        //[ValidateAntiForgeryToken]
+        public async Task<ApiResultModel> DeleteArticle([FromBody] Int32 id)
         {
             Articles articles = await _db.Articles.FindAsync(id);
-            _db.Articles.Remove(articles);
-            await _db.SaveChangesAsync();            
+            if (articles != null)
+            {
+
+                _db.Articles.Remove(articles);
+                await _db.SaveChangesAsync();
                 return new ApiResultModel
                 {
                     Status = true,
                     Message = "刪除成功"
                 };
-                return new ApiResultModel
-                {
-                    Status = false,
-                    Message = "刪除失敗"
-                };                                 
+            }
+
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "刪除失敗"
+            };
         }
 
 
