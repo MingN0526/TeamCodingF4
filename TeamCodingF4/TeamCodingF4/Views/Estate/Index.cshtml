@@ -21,45 +21,35 @@
                         <th>房型</th>
                         <th>價格</th>
                         <th>雜費</th>
-                        <th>照片</th>
+                        <th>坪數</th>
                         <th>其他</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle" v-for="item in inf">
                     <tr>
                         <td class="align-middle">
-                            {{item.Tittle}}
+                            {{item.tittle}}
                         </td>
                         <td class="align-middle">
-                            {{item.Roomtype}}
+                            {{item.roomType}}
                         </td>
                         <td class="align-middle">
-                            {{item.Price}}
+                            {{item.price}}
                         </td>
                         <td class="align-middle">
-                            {{item.Miscellaneous}}
+                            {{item.miscellaneous}}
                         </td>
                         <td class="align-middle">
-                            
+                            {{item.meters}}
                         </td>
                         <td class="align-middle">
                             <button class="btn btn-sm btn-danger">
                                 <i class="fa fa-times">
-                                    <a action="Estate/Delete">
-                                        
-                                    </a>
+                                    <a action="Estate/Delete"></a>
                                 </i>
                             </button>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-times">
-                                    <a action="Estate/Edit"></a>
-                                </i>
-                            </button>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-times">
-                                    <a action="Estate/Create"></a>
-                                </i>
-                            </button>
+                            <a action="Estate/Edit">編輯物件</a>
+                            <a action="Estate/Detail">詳細資料</a>
                         </td>
                     </tr>
                 </tbody>
@@ -74,14 +64,16 @@
         let app = new Vue({
             el: "#estateIndex",
             data: {
-                inf:[]
+                inf: []
             },
-            mounted: {
-                funtion(){
-                    let self=this;
-                    fetch("/api/EstateApi/Index")
-                    .then(function(res){self.inf=res.data})
-                }
+            mounted: function () {
+                let self = this;
+                fetch(`/Api/EstateApi/Index`)
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result)
+                        self.inf = result
+                    })
             },
             mothods: {
 
