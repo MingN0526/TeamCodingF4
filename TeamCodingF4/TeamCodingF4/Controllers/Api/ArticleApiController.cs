@@ -77,8 +77,8 @@ namespace TeamCodingF4.Controllers.Api
 
 
         [HttpPost("{id}")]
-        //[ValidateAntiForgeryToken]
-        public async Task<ApiResultModel> DeleteArticle(ArticleDeleteModel id)
+        [ValidateAntiForgeryToken]
+        public async Task<ApiResultModel> DeleteArticle(Int32 id)
         {
             Articles articles = await _db.Articles.FindAsync(id);
             _db.Articles.Remove(articles);
@@ -95,40 +95,40 @@ namespace TeamCodingF4.Controllers.Api
                 };                                 
         }
 
-        
-        //[HttpPut("{id}")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<string> PutArticle(int id, ArticleModel articleModel)
-        //{
-        //    if (id != articleModel.Id)
-        //    {
-        //        return null;
-        //    }
-        //    Articles? articles = await _db.Articles.FindAsync(articleModel.Id);
-        //    articles.Content = articleModel.Content;
-        //    articles.Title = articleModel.Title;
-        //    _db.Entry(articles).State = EntityState.Modified;
 
-        //    try
-        //    {
-        //        await _db.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ArticleExists(id))
-        //        {
-        //            return "找不到欲修改的紀錄!";
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return "修改成功!";
-        //}
+        [HttpPut("{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<string> PutArticle(int id, ArticleModel articleModel)
+        {
+            if (id != articleModel.Id)
+            {
+                return null;
+            }
+            Articles? articles = await _db.Articles.FindAsync(articleModel.Id);
+            articles.Content = articleModel.Content;
+            articles.Title = articleModel.Title;
+            _db.Entry(articles).State = EntityState.Modified;
 
-       
- 
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ArticleExists(id))
+                {
+                    return "找不到欲修改的紀錄!";
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return "修改成功!";
+        }
+
+
+
 
         private bool ArticleExists(int id)
         {

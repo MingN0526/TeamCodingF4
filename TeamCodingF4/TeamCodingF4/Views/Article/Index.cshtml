@@ -440,7 +440,9 @@
                     console.log(article.id)
                     var deleteArticleUrl = `/api/article/deletearticle/${article.id}`
                     fetch(deleteArticleUrl, {
-                        method:"POST",        
+                        method:"POST",
+                        //body:JSON.stringify(article),
+                        headers:{"content-type":"application/json"}
                     }).then(function(response){return response.json()
                             .then(function (result) {
                                 var al = {
@@ -457,7 +459,8 @@
                                 Swal.fire(al)
                             })                        
                     })
-                },                 
+                },
+                
             },
         });
     </script>
