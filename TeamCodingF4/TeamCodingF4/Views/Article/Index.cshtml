@@ -78,7 +78,7 @@
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
                                     @*<span><i class="far fa-comment ml-2"></i> 3</span>*@
-                                    <button @@click="deleteArticle(article)">編輯</button>
+                                    <button data-target="#articleModal" data-toggle="modal" type="button" >編輯</button>
                                     <button @@click="deleteArticle(article)">刪除</button>
                                 </div>
                             </div>
@@ -101,14 +101,14 @@
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
                     <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
-                    <div class="card mb-2" >
+                    <div class="card mb-2" v-for="article in fullArticles">
                         <div class="card-body">
                             <div class="media forum-item">
                                 <a href="javascript:void(0)" class="card-link">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
                                     <small class="d-block text-center text-muted"></small>
                                 </a>
-                                <div class="media-body ml-3" v-for="article in show">
+                                <div class="media-body ml-3" >
                                     <a href="javascript:void(0)" class="text-secondary"></a>
                                     <small class="text-muted ml-2">{{article.date}}</small>
                                     <h5 class="mt-1"></h5>
@@ -190,6 +190,41 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
                             <button type="button" class="btn btn-primary px-3" v-on:click="insertArticle(addArticle)">發文</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document" >
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header d-flex align-items-center bg-primary text-white">
+                            <h6 class="modal-title mb-0" id="threadModalLabel">編輯文章</h6>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="Title">標題</label>
+                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="addArticle.Title" />
+                            </div>
+                            @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
+                            <div class="form-group">
+                                <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticle.Content"></textarea>
+                            </div>
+                            <div class="form-group" id="Category" name="Category">
+                                <select v-model="addArticle.Category">
+                                    <option value="-1">請選擇文章類別</option>
+                                    <option>心得分享</option>
+                                    <option>發文解惑</option>
+                                    <option>閒聊專區</option>
+                                    <option>抱怨專區</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary px-3" v-on:click="editArticle(fullArticles,addArticle)">回覆</button>
                         </div>
                     </form>
                 </div>
@@ -409,6 +444,7 @@
                     _self.fullArticles = _self.FilterBox
                 },
                 insertArticle: function (addArticle) {
+                    console.log(addArticle)
                     addArticle = this.addArticle
                     fetch("/api/article/postarticle", { 
                         method: "POST" ,
@@ -421,7 +457,7 @@
                                 icon: 'success',
                                 title: '發佈成功',
                                 showConfirmButton: false,
-                                timer: 1750
+                                timer: 3000
                         };
                         if(!result.status){
                             al.icon="error";
@@ -455,21 +491,25 @@
                                     icon: 'success',
                                     title: '刪除成功',
                                     showConfirmButton: false,
-                                    timer: 1750
+                                    timer: 3000
                                 };
                                 if (!result.status) {
                                     al.icon = "error";
                                     al.title = "刪除失敗";
                                 }
                                 Swal.fire(al)
+                                window.location = "/article/index"
                             })                        
                     })
                 },
-                editArticle: function (articleId) {
+                editArticle: function (fullArticles, addArticle) {
+                    console.log(fullArticles)
                     let _self = this;
-                    fetch("api/article/editarticle",{
+                    addArticle = _self.addArticle
+                    editArticleUrl = `/api/article/editarticle/`+`${fullArticles.id}`
+                    fetch(editArticleUrl, {
                         method:"POST",
-                        body:JSON.stringify(articleId),
+                        body: JSON.stringify(fullArticles.id, addArticle),
                         headers:{"content-type":"application/json"}
                     }).then(function(response){return response.json()})
                     .then(function(result){
@@ -478,11 +518,11 @@
                                 icon: 'success',
                                 title: '編輯成功',
                                 showConfirmButton: false,
-                                timer: 1750
+                                timer: 3000
                             };
                             if (!result.status) {
                                 al.icon = "error";
-                                al.title = "編輯";
+                                al.title = "編輯失敗";
                             }
                             Swal.fire(al)
                     })

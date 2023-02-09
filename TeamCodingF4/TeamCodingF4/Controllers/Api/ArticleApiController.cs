@@ -83,7 +83,6 @@ namespace TeamCodingF4.Controllers.Api
             Articles articles = await _db.Articles.FindAsync(id);
             if (articles != null)
             {
-
                 _db.Articles.Remove(articles);
                 await _db.SaveChangesAsync();
                 return new ApiResultModel
@@ -103,18 +102,17 @@ namespace TeamCodingF4.Controllers.Api
 
         [HttpPost("{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<ApiResultModel> EditArticle(int id,ArticleModel articleModel)
+        public async Task<ApiResultModel> EditArticle( Int32 id, [FromBody] ArticleModel articleModel)
         {
             if (id != articleModel.Id)
             {
                 return null;
             }
-            Articles? articles = await _db.Articles.FindAsync(articleModel.Id);
+            Articles articles = await _db.Articles.FindAsync(articleModel.Id);
             articles.Content = articleModel.Content;
             articles.Title = articleModel.Title;
             articles.Category = articleModel.Category;
             _db.Entry(articles).State = EntityState.Modified;
-
             try
             {
                 await _db.SaveChangesAsync();
@@ -125,7 +123,7 @@ namespace TeamCodingF4.Controllers.Api
                 {
                     return new ApiResultModel
                     {
-                        Status = true,
+                        Status = false,
                         Message = "找不到需編輯的文章"
                     };
                 }
@@ -136,7 +134,7 @@ namespace TeamCodingF4.Controllers.Api
             }
             return new ApiResultModel
             {
-                Status = false,
+                Status = true,
                 Message = "編輯成功"
             };
         }
