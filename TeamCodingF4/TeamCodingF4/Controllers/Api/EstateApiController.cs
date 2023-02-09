@@ -20,15 +20,17 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpGet]
+        
         public List<EstateIndexModel> Index()
         {
-            var data = _context.Estates.Select(x => new EstateIndexModel
+            var data= _context.Estates.Select(x => new EstateIndexModel
             {
                Id = x.Id,
                Tittle=x.Tittle,
                RoomType=x.RoomType.Name,
                Price=x.Price,
                Miscellaneous=x.Miscellaneous,
+               Meters=x.Meters,
             }).ToList();
             return data;
         }
@@ -41,8 +43,8 @@ namespace TeamCodingF4.Controllers.Api
                 Tittle = estateModel.Tittle,
                 RoomTypeId = estateModel.RoomTypeId,
                 Room = estateModel.Room,
-                hall=estateModel.hall,
-                bathroom=estateModel.bathroom,
+                hall = estateModel.hall,
+                bathroom = estateModel.bathroom,
                 City = estateModel.City,
                 District = estateModel.District,
                 Address = estateModel.Address,
@@ -54,8 +56,8 @@ namespace TeamCodingF4.Controllers.Api
                 Motorcycle = estateModel.Motorcycle,
                 Lease = estateModel.Lease,
                 message = estateModel.message,
-                Conditions=_context.Conditions.Where(x=>estateModel.ConditionId.Contains(x.Id)).ToList(),
-                Equipment= _context.Equipments.Where(x => estateModel.EquipmentId.Contains(x.Id)).ToList(),
+                Conditions = _context.Conditions.Where(x => estateModel.ConditionId.Contains(x.Id)).ToList(),
+                Equipment = _context.Equipments.Where(x => estateModel.EquipmentId.Contains(x.Id)).ToList(),
             };
 
 
@@ -77,21 +79,21 @@ namespace TeamCodingF4.Controllers.Api
                 foreach (var picture in ep)
                 {
                     var path = $@"\Picture\{DateTime.Now.Ticks}-{picture.FileName}";
-                    using (var stream = new FileStream($@"{root}{path}",FileMode.Create))
+                    using (var stream = new FileStream($@"{root}{path}", FileMode.Create))
                     {
                         picture.CopyTo(stream);
                     }
                     pictureList.Add(new EstateImage() { ImagePath = path });
-                   
+
                 }
                 Data.EstateImage = pictureList;
             }
-           
+
 
             _context.Estates.Add(Data);
             _context.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index","Estate");
         }
 
 

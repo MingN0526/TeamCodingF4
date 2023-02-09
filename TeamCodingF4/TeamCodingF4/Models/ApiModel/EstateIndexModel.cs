@@ -8,5 +8,6 @@
 
         public decimal Price { get; set; }
         public decimal Miscellaneous { get; set; }
+        public float Meters { get; set; }
     }
 }
