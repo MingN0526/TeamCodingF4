@@ -101,9 +101,9 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPost("{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<string> PutArticle(int id, ArticleModel articleModel)
+        public async Task<ApiResultModel> EditArticle(int id,ArticleModel articleModel)
         {
             if (id != articleModel.Id)
             {
@@ -112,6 +112,7 @@ namespace TeamCodingF4.Controllers.Api
             Articles? articles = await _db.Articles.FindAsync(articleModel.Id);
             articles.Content = articleModel.Content;
             articles.Title = articleModel.Title;
+            articles.Category = articleModel.Category;
             _db.Entry(articles).State = EntityState.Modified;
 
             try
@@ -122,14 +123,22 @@ namespace TeamCodingF4.Controllers.Api
             {
                 if (!ArticleExists(id))
                 {
-                    return "找不到欲修改的紀錄!";
+                    return new ApiResultModel
+                    {
+                        Status = true,
+                        Message = "找不到需編輯的文章"
+                    };
                 }
                 else
                 {
                     throw;
                 }
             }
-            return "修改成功!";
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "編輯成功"
+            };
         }
 
 
