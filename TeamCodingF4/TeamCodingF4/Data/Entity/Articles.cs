@@ -33,6 +33,8 @@ namespace TeamCodingF4.Data.Entity
         public string Title { get; set; }
 
         public int ViewCount { get; set; }
+        [ForeignKey("ArticleReply")]
+        public int ReplyId { get; set; }
 
         public virtual Member Member { get; set; }
         public virtual ICollection<ArticleReply> ArticleReplies { get; set; }

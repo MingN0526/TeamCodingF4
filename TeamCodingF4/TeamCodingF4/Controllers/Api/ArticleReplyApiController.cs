@@ -14,12 +14,15 @@ namespace TeamCodingF4.Controllers.Api
         {
             _db = context;
         }
-        public List<ArticleReplyModel> GetReplyContent()
+        public List<ArticleReplyModel> GetAllReply()
         {
-            return _db.ArticlesReply.Select(x => new ArticleReplyModel
+            return _db.Articles.Select(x => new ArticleReplyModel
             {
-                Content=x.Content,
-                Date=x.Date
+                Id = x.ReplyId,
+                PublisherId = x.PublisherId,
+                Content = x.Content,
+                Date = DateTime.Now,
+                ArticleId = x.ArticleId,                
             }).ToList();
         }
     }
