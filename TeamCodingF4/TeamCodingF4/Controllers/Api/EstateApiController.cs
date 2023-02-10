@@ -98,31 +98,13 @@ namespace TeamCodingF4.Controllers.Api
 
 
 
-        //public async Task<string> Detail(int id, EstateDetailModel estateDetailModel)
-        //{
-        //    var EstateDetail = _context.Estates.Where(emp => emp.Id == id).Select(emp => new EstateDetailModel
-        //    {
-        //        Id = emp.Id,
-        //        Tittle = emp.Tittle,
-        //        RoomTypeId = emp.RoomTypeId,
-        //        City = emp.City,
-        //        District = emp.District,
-        //        Address = emp.Address,
-        //        Floor = emp.Floor,
-        //        Price = emp.Price,
-        //        Miscellaneous = emp.Miscellaneous,
-        //        Meters = emp.Meters,
-        //        Car = emp.Car,
-        //        Motorcycle = emp.Motorcycle,
-        //        Lease = emp.Lease,
-        //    }).ToList();
-
-        //    if (EstateDetail == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    return EstateDetail.ToJson();
-        //}
+        public List<EstateDetailModel> Detail(EstateDetailModel estatedetailmodel)
+        {
+            var data = _context.Estates.Select(x => new EstateDetailModel
+            {
+                Id = x.Id,
+            }).ToList();
+            return data;
+        }
     }
 }

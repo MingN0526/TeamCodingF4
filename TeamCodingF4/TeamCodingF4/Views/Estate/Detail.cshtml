@@ -1,29 +1,4 @@
-﻿
-<style>
-    /* 讓第二個之後的Item隱藏 */
-    .dropdown .item + .item {
-        display: none;
-    }
-
-    /* 滑鼠移到任何Item時，顯示 */
-    .dropdown:hover .item {
-        border: 1px solid #ccc;
-        margin: -1px 0px 0px;
-        padding: 0px 10px;
-        box-sizing: border-box;
-        box-shadow: 0 0 3px #ccc;
-        background: #fff;
-        display: block;
-    }
-
-    /* 讓lebal為空的時候顯示文字 */
-    .dropdown .text label:empty:after {
-        content: '請選擇設備';
-        color: #ccc;
-    }
-</style>
-
-<div class="container-fluid">
+﻿<div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
@@ -34,143 +9,120 @@
     </div>
 </div>
 
-<div class="container-fluid" id="app">
+<div class="container-fluid" id="createEstate">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">物件刊登</span></h2>
     <div class="row px-xl-5 ">
-        <div class="col-lg-12 mb-5">
+        <div class="col-lg-12 mb-5" id="estateDetail">
             <div class="contact-form bg-light p-30">
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <div class="control-group">
-                            <label>標題</label>
-                            <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" v-model="form.Tittle" />
+                            <label>標題:</label>
+                            <span class="form-control">{{inf.tittle}}</span>
                             <p class="help-block text-danger"></p>
 
                         </div>
                         <div class="control-group">
-                            <label>房型</label>
-                            <select class="form-control" name="RoomType" id="RoomType" v-model="RoomType">
-                                <option>透天</option>
-                                <option>套房</option>
-                                <option>雅房</option>
-                                <option>其他</option>
-                            </select>
+                            <label>房型:</label>
+                            <span class="form-control">{{inf.roomType}}</span>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <label>LDK</label>
+                            <label>LDK:</label>
                             <div class="row">
                                 <span class="col-1">房:</span>
-                                <input type="number" class="form-control col-2" />
+                                <span class="form-control col-2">{{inf.room}}</span>
                                 <span class="col-1">廳:</span>
-                                <input type="number" class="form-control col-2" />
+                                <span class="form-control col-2">{{inf.hall}}</span>
                                 <span class="col-1">衛:</span>
-                                <input type="number" class="form-control col-2" />
-                                <p class="help-block text-danger"></p>
+                                <span class="form-control col-2">{{inf.bathroom}}</span>
                             </div>
+                            <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <label>地址</label>
+                            <label>地址:</label>
                             <div class="row">
-                                <span class="col-1">市:</span>
-                                <input type="text" class="form-control col-2" />
-                                <span class="col-1">區:</span>
-                                <input type="text" class="form-control col-2" />
-                                <span class="col-1">路:</span>
-                                <input type="text" class="form-control col-2" />
-                                <p class="help-block text-danger"></p>
+                                <span class="form-control col-3">{{inf.city}}</span>
+                                <span class="form-control col-3">{{inf.district}}</span>
+                                <span class="form-control col-3">{{inf.address}}</span>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <label>價格(NT)</label>
-                            <input type="number" min="0" class="form-control" name="Price" id="Price" v-model="Price" />
+                            <p class="help-block text-danger"></p>
+                            <div class="row">
+                                <span class="col-2">樓:</span>
+                                <span class="col-3 form-control">{{inf.floor}}</span>
+                            </div>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <label>雜費(NT)</label>
-                            <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" v-model="Miscellaneous" />
+                            <label>價格(NT):</label>
+                            <span class="form-control">{{inf.price}}</span>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <label>坪數</label>
-                            <input type="number" min="1" class="form-control" name="Meters" id="Meters" v-model="Meters" />
+                            <label>雜費(NT):</label>
+                            <span class="form-control">{{inf.miscellaneous}}</span>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <label>車位</label>
+                            <label>坪數:</label>
+                            <span class="form-control">{{inf.meters}}</span>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>車位:</label>
                             <div class="row">
                                 <span class="col-2">汽車:</span>
-                                <input type="number" value="0" class="form-control col-3" name="Car" id="Car" v-model="Car" />
+                                <span class="col-3 form-control">{{inf.car}}</span>
                                 <span class="col-2">機車:</span>
-                                <input type="number" value="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" v-model="Motorcycle" />
+                                <span class="col-3 form-control">{{inf.motorcycle}}</span>
                             </div>
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="col-md-6 form-group">
                         <div class="control-group">
-                            <label>設備</label>
-                            <div class="dropdown form-control">
-                                <div class="item text">
-                                    <label></label>
-                                </div>
-                                <div class="item form-check">
-                                    <input type="checkbox" name="AirConditioner" id="AirConditioner" v-model="AirConditioner" />
-                                    <label for="AirConditioner">冷氣</label>
-                                </div>
-                                <div class="item">
-                                    <input type="checkbox" name="Television" id="Television" v-model="Television" />
-                                    <label for="Television">電視</label>
-                                </div>
-                                <div class="item">
-                                    <input type="checkbox" name="WetDry" id="WetDry " v-model="WetDry" />
-                                    <label for="WetDry">乾溼分離</label>
-                                </div>
-                                <div class="item">
-                                    <input type="checkbox" name="Balcony" id="Balcony" v-model="Balcony" />
-                                    <label for="Balcony">陽台</label>
-                                </div>
-                                <div class="item">
-                                    <input type="checkbox" name="WashingMachine" id="WashingMachine" v-model="WashingMachine" />
-                                    <label for="WashingMachine">洗衣機</label>
-                                </div>
-                                <div class="item">
-                                    <input type="checkbox" name="WaterDispenser" id="WaterDispenser" v-model="WaterDispenser" />
-                                    <label for="WaterDispenser">飲水機</label>
-                                </div>
-                                <div class="item">
-                                    <input type="checkbox" name="Refrigerator" id="Refrigerator" v-model="Refrigerator" />
-                                    <label for="Refrigerator">冰箱</label>
-                                </div>
+                            <label>擁有設備:</label>
+                            <div class="form-control" v-for="item in inf.Equipment">
+                                <span>{{item}}</span>
+                            </div>
+                            <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <label>租約期(月):</label>
+                                <span class="form-control">{{inf.lease}}</span>
+                                <p class="help-block text-danger"></p>
                             </div>
 
-                        </div>
-                        <p class="help-block text-danger"></p>
-                        <div class="control-group">
-                            <label>租約期(月)</label>
-                            <input type="number" min="1" class="form-control" name="Lease" id="Lease" v-model="Lease" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <label>條件</label>
-                            <input type="text" class="form-control" />
-                            <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <label>條件:</label>
+                                <div class="form-control" v-for="item in inf.conditions">
+                                    <span>{{item}}</span>
+                                </div>
+                                <p class="help-block text-danger"></p>
+                            </div>
 
-                        </div>
-                        <div class="control-group">
-                            <label>照片</label>
-                            <input type="file" class="form-control" name="EstateImage" id="EstateImage" multiple v-model="EstateImage" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <label>影片</label>
-                            <input type="file" class="form-control" name="EstateVideo" id="EstateVideo" v-model="EstateVideo" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <label>其他資訊</label>
-                            <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message" v-model="message"></textarea>
-                            <p class="help-block text-danger"></p>
+                            <div class="control-group">
+                                <label>照片:</label>
+                                <div class="form-control" v-for="item in inf.estateImages">
+                                    <span>{{item}}</span>
+                                </div>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>影片:</label>
+                                <span class="form-control">{{inf.estateVideo}}</span>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label>其他資訊:</label>
+                                <span class="form-control">{{inf.message}}</span>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <button class="btn py-2 px-4" style="background-color:red;color:white" type="button">
+                                刪除
+                            </button>
+                            <button class="btn btn-primary py-2 px-4" style="background-color:cornflowerblue;color:white" type="button">
+                                修改
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -183,19 +135,22 @@
     {
     <script>
         let app = new Vue({
-            el: "#app",
-            data: function () {
-                var data = {
-                    form: {}
-                };
-                return data;
+            el: "#estateDetail",
+            data: {
+                inf: {}
+            },
+            mounted: function () {
+                let self = this;
+                fetch(`/Api/EstateApi/Detail`)
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result)
+                        self.inf = result
+                    })
             },
             methods: {
-                send: function () {
-                    let self = this;
-                    var data = {};
-                }
-            }
+
+            },
         })
     </script>
-}
+    }
