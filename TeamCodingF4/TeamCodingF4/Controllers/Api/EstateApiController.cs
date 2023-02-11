@@ -98,12 +98,9 @@ namespace TeamCodingF4.Controllers.Api
 
 
 
-        public List<EstateDetailModel> Detail(EstateDetailModel estatedetailmodel)
+        public string Detail(int id)
         {
-            var data = _context.Estates.Select(x => new EstateDetailModel
-            {
-                Id = x.Id,
-            }).ToList();
+            var data = _context.Estates.FirstOrDefault(x => x.Id == id).ToString();
             return data;
         }
     }

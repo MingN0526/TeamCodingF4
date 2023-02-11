@@ -43,7 +43,7 @@
                             {{item.meters}}
                         </td>
                         <td class="align-middle">
-                           <button v-on:click="detail">詳細資料</button>
+                            <a href="/estate/detail">詳細資料</a>
                         </td>
                     </tr>
                 </tbody>
@@ -69,11 +69,11 @@
                         self.inf = result
                     })
             },
-            methods: {
-                detail(){
-                    fetch(`/Api/EstateApi/Detail`)
+            methods:{
+                detail:function(){
+                    fetch(`/eatate/detail`)
                 }
-            },
+            }
         })
     </script>
     }
