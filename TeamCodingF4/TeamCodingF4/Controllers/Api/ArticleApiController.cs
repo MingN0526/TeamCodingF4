@@ -35,8 +35,6 @@ namespace TeamCodingF4.Controllers.Api
             }).ToList();
         }
 
-
-
         [HttpPost]
         public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
         {

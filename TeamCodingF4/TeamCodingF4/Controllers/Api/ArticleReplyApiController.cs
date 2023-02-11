@@ -27,15 +27,15 @@ namespace TeamCodingF4.Controllers.Api
             }).ToList();
         }
         [HttpPost]
-        public async Task<ApiResultModel> PostArticle(ArticleReplyInsertModel model)
+        public async Task<ApiResultModel> PostArticleReply(ArticleReplyInsertModel model)
         {
             
             ArticleReply articlesReply = new ArticleReply
             {
-                PublisherId= model.PublisherId,
-                ArticleId= model.ArticleId,
+                PublisherId= 1,
+                ArticleId= 1,
                 Content= model.Content,
-                Date= model.Date,
+                Date= DateTime.Now
             };
             _db.ArticlesReply.Add(articlesReply);
             await _db.SaveChangesAsync();

@@ -146,10 +146,10 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="message">你的回覆 *</label> <!--之後要改資料庫，改成Required-->
-                                            <textarea id="message"  cols="30" rows="5" class="form-control" ></textarea>
+                                            <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticleReply.Content"></textarea>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="發文"  class="btn btn-primary px-3" >
+                                            <button type="button" class="btn btn-primary px-3" v-on:click="insertArticleReply(addArticleReply)">發文</button>
                                         </div>
                                     </form>
                                 </div>
@@ -401,7 +401,6 @@
                     Category: -1,
                 },
                 addArticleReply: {
-                    Title: "",
                     Content: "", 
                 },
                 Filter:"",
@@ -478,12 +477,12 @@
                         window.location = "/article/index"
                     })
                 },
-                insertArticleReply: function (addArticle) {
-                    console.log(addArticle)
-                    addArticle = this.addArticle
-                    fetch("/api/article/postarticle", {
+                insertArticleReply: function (addArticleReply) {
+                    console.log(addArticleReply)
+                    addArticleReply = this.addArticleReply
+                    fetch("/api/articlereply/postarticlereply", {
                         method: "POST",
-                        body: JSON.stringify(addArticle),
+                        body: JSON.stringify(addArticleReply),
                         headers: { "content-type": "application/json" }
                     }).then(function (response) { return response.json() })
                         .then(function (result) {
