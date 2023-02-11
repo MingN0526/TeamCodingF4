@@ -101,7 +101,7 @@
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
                     <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
-                    <div class="card mb-2" v-for="articlereplys in articleReply">
+                    <div class="card mb-2" v-for="articleReplys in articleReply">
                         <div class="card-body">
                             <div class="media forum-item">
                                 <a href="javascript:void(0)" class="card-link">
@@ -110,17 +110,19 @@
                                 </a>
                                 <div class="media-body ml-3" >
                                     <a href="javascript:void(0)" class="text-secondary"></a>
-                                    <small class="text-muted ml-2">{{articlereplys.date}}</small>
+                                    <small class="text-muted ml-2">{{articleReplys.date}}</small>
                                     <h5 class="mt-1"></h5>
                                     <div class="mt-3 font-size-sm">
                                         <p>
-                                            {{articlereplys.content}}
+                                            {{articleReplys.content}}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="text-muted small text-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i></span>
-                                    <span><i class="far fa-comment ml-2"></i></span>
+                                    @*<span><i class="far fa-comment ml-2"></i></span>*@
+                                    <button data-target="#articleModal" data-toggle="modal" type="button">編輯</button>
+                                    <button @@click="deleteArticleReply(articleReplys)">刪除</button>
                                 </div>
                             </div>
                         </div>
@@ -517,6 +519,32 @@
                     fetch(deleteArticleUrl, {
                         method:"POST",
                         body: JSON.stringify(article.id),
+                        headers:{"content-type":"application/json"}
+                    }).then(function(response){return response.json()
+                            .then(function (result) {
+                                var al = {
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: '刪除成功',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                };
+                                if (!result.status) {
+                                    al.icon = "error";
+                                    al.title = "刪除失敗";
+                                }
+                                Swal.fire(al)
+                                window.location = "/article/index"
+                            })                        
+                    })
+                },
+                deleteArticleReply: function (articleReplys) {
+                    let _self = this;
+                    console.log(articleReplys.id)
+                    var deleteArticleReplyUrl = `/api/articlereply/deletearticlereply/`+`${articleReplys.id}`
+                    fetch(deleteArticleReplyUrl, {
+                        method:"POST",
+                        body: JSON.stringify(articleReplys.id),
                         headers:{"content-type":"application/json"}
                     }).then(function(response){return response.json()
                             .then(function (result) {

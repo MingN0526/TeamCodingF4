@@ -51,5 +51,27 @@ namespace TeamCodingF4.Controllers.Api
                 Message = "加入失敗"
             };
         }
+        [HttpPost("{id}")]
+        //[ValidateAntiForgeryToken]
+        public async Task<ApiResultModel> DeleteArticleReply([FromBody] Int32 id)
+        {
+            ArticleReply articlesReply = await _db.ArticlesReply.FindAsync(id);
+            if (articlesReply != null)
+            {
+                _db.ArticlesReply.Remove(articlesReply);
+                await _db.SaveChangesAsync();
+                return new ApiResultModel
+                {
+                    Status = true,
+                    Message = "刪除成功"
+                };
+            }
+
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "刪除失敗"
+            };
+        }
     }
 }
