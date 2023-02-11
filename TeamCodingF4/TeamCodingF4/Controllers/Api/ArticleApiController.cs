@@ -26,7 +26,7 @@ namespace TeamCodingF4.Controllers.Api
             {
                 Id = x.ArticleId,
                 Content = x.Content,
-                Date = DateTime.Now,
+                Date = DateTime.UtcNow,
                 Title = x.Title,
                 ViewCount = x.ViewCount,
                 Category = x.Category,
@@ -45,7 +45,7 @@ namespace TeamCodingF4.Controllers.Api
                 Title = model.Title,
                 Content = model.Content,
                 Category = model.Category,
-                Date = DateTime.Now,
+                Date = DateTime.UtcNow,
                 ViewCount = 1,  //TODO Viewcount function
                 //PublisherId = memberId, TODO
                 PublisherId = 1,                                    

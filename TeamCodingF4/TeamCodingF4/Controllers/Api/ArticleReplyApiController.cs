@@ -35,7 +35,7 @@ namespace TeamCodingF4.Controllers.Api
                 PublisherId= 1,
                 ArticleId= 1,
                 Content= model.Content,
-                Date= DateTime.Now
+                Date= DateTime.UtcNow
             };
             _db.ArticlesReply.Add(articlesReply);
             await _db.SaveChangesAsync();
