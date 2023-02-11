@@ -31,15 +31,17 @@ namespace TeamCodingF4.Controllers.Api
                 ViewCount = x.ViewCount,
                 Category = x.Category,
                 PublisherId = x.PublisherId,
+                ReplyId = x.ReplyId
             }).ToList();
         }
-        
+
 
 
         [HttpPost]
         public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
         {
             //var memberId = User.Claims.GetMemberId();
+            //var articleId = User.Claims.GetArticleId();
             Articles articles = new Articles
             {
                 Title = model.Title,
@@ -48,7 +50,7 @@ namespace TeamCodingF4.Controllers.Api
                 Date = DateTime.Now,
                 ViewCount = 1,  //TODO Viewcount function
                 //PublisherId = memberId, TODO
-                PublisherId = 1,
+                PublisherId = 1,                                    
             };
             _db.Articles.Add(articles);
             await _db.SaveChangesAsync();
@@ -103,7 +105,7 @@ namespace TeamCodingF4.Controllers.Api
 
         [HttpPost("{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<ApiResultModel> EditArticle( Int32 id, [FromBody] ArticleModel articleModel)
+        public async Task<ApiResultModel> EditArticle(Int32 id, [FromBody] ArticleModel articleModel)
         {
             if (id != articleModel.Id)
             {
@@ -139,9 +141,6 @@ namespace TeamCodingF4.Controllers.Api
                 Message = "編輯成功"
             };
         }
-
-
-
 
         private bool ArticleExists(int id)
         {
