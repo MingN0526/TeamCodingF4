@@ -21,7 +21,7 @@ namespace TeamCodingF4.Controllers.Api
             {
                 ArticleId = x.ArticleId,
                 Id= x.Id,
-                Date= x.Date,
+                Date= x.Date.ToString("d"),
                 Content= x.Content,
                 PublisherId= x.PublisherId,
             }).ToList();
