@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
-<link href="/path/to/bootstrap.min.css" rel="stylesheet">
-<link href="/path/to/buttons.css" rel="stylesheet">
+@*<link href="/path/to/bootstrap.min.css" rel="stylesheet">
+<link href="/path/to/buttons.css" rel="stylesheet">*@
 <div class="container" id="articleIndex">
     <div class="main-body p-0">
         <div class="inner-wrapper">
@@ -19,18 +19,18 @@
                                     <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                         <div class="simplebar-content" style="padding: 16px;">
                                             <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                <div class="row">
-                                                    <button type="button" class="btn btn-outline-warning btn-lg btn-radius" @@click="selectFullArticles"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a></button>
+                                                <div class="row mb-4 ml-5">
+                                                    <button type="button" class="btn btn-outline-warning btn-lg btn-radius h-40px h-100px" style="font-size:15px" @@click="selectFullArticles">所有文章</button>
                                                 </div>
-                                                <div></div>
-                                                <div class="row">
-                                                <button type="button" class="btn btn-outline-warning btn-lg btn-radius">最新文章</a></button>
-                                                 </div>
-                                                <div></div>
-                                                <div class="row">
-                                                 <button type="button" class="btn btn-outline-warning btn-lg btn-radius">本日熱門文章</a></button>
+
+                                                <div class="row mb-4 ml-5">
+                                                    <button type="button" class="btn btn-outline-warning btn-lg btn-radius " style="font-size:15px ">最新文章</a></button>
                                                 </div>
-                                             </nav>
+
+                                                <div class="row mb-4 ml-5">
+                                                    <button type="button" class="btn btn-outline-warning btn-lg btn-radius" style="font-size:15px">熱門文章</a></button>
+                                                </div>
+                                            </nav>
                                         </div>
                                     </div>
                                 </div>
@@ -45,16 +45,18 @@
             <div class="inner-main">
                 <div class="inner-main-header">
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArticle('心得分享')"><a style="color:black">心得分享</a></button>
+                        <button type="button" class="btn btn-outline-warning" v-on:click="showArticle('心得分享')">心得分享</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArticle('發文解惑')"><a style="color:black">發文解惑</a></button>
+                        <button type="button" class="btn btn-outline-warning" v-on:click="showArticle('發文解惑')">發文解惑</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArticle('閒聊專區')"><a style="color:black">閒聊專區</a></button>
+                        <button type="button" class="btn btn-outline-warning" v-on:click="showArticle('閒聊專區')">閒聊專區</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" v-on:click="showArticle('抱怨專區')"><a style="color:black">抱怨專區</a></button>
+                        <button type="button" class="btn btn-outline-warning ;" v-on:click="showArticle('抱怨專區')">
+                            抱怨專區
+                        </button>
                     </div>
 
                     <div class="col-3">
@@ -82,7 +84,7 @@
                                     <p style="color:black">
                                         {{article.content}}
                                     </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span @*class="text-secondary font-weight-bold"*@>{{getTime(article.date)}}</span></p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span @*class="text-secondary font-weight-bold"*@>{{article.date}}</span></p>
                                 </div>
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
@@ -95,15 +97,15 @@
                     </div>
 
                     @*<ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
-                        <li class="page-item disabled">
-                            <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                        <li class="page-item active"><span class="page-link">2</span></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link has-icon" href="javascript:void(0)"><i class="material-icons">下一頁</i></a>
-                        </li>
+                    <li class="page-item disabled">
+                    <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+                    <li class="page-item active"><span class="page-link">2</span></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                    <li class="page-item">
+                    <a class="page-link has-icon" href="javascript:void(0)"><i class="material-icons">下一頁</i></a>
+                    </li>
                     </ul>*@
                 </div>
 
@@ -418,7 +420,7 @@
                 FilterBox: "",
                 fullArticles: "",
                 articleReply: "",
-               
+
             },
             mounted: function () {
                 let _self = this
@@ -437,9 +439,6 @@
                         console.log(result)
                         _self.articleReply = result
                     })
-            },
-            computed: {
-
             },
             methods: {
                 showArticle: function (type) {
@@ -600,12 +599,12 @@
                             Swal.fire(al)
                         })
                 },
-                getTime:function(day){
-                    let date = new Date();
-                    let dateTime = [date]
-                    return dateTime.toLocaleString();
+                //getTime:function(day){
+                //    let date = new Date();
+                //    let dateTime = [date]
+                //    return dateTime.toLocaleString();
 
-                },
+                //},
             },
         });
     </script>

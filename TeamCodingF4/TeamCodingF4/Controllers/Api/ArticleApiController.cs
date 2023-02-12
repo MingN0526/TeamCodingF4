@@ -26,7 +26,7 @@ namespace TeamCodingF4.Controllers.Api
             {
                 Id = x.ArticleId,
                 Content = x.Content,
-                Date = DateTime.UtcNow,
+                Date = x.Date.ToString("d"),
                 Title = x.Title,
                 ViewCount = x.ViewCount,
                 Category = x.Category,
