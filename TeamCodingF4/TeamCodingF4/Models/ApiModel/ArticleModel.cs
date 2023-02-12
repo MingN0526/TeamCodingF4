@@ -9,5 +9,6 @@
         public string Title { get; set; }
         public string Category { get; set; }
         public int ViewCount { get; set; }
+        public int ReplyId { get; set; }
     }
 }

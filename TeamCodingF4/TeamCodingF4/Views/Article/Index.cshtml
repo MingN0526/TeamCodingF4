@@ -1,5 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
-
+<link href="/path/to/bootstrap.min.css" rel="stylesheet">
+<link href="/path/to/buttons.css" rel="stylesheet">
 <div class="container" id="articleIndex">
     <div class="main-body p-0">
         <div class="inner-wrapper">
@@ -18,10 +19,18 @@
                                     <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                         <div class="simplebar-content" style="padding: 16px;">
                                             <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                                <button @@click="selectFullArticles"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a></button>
-                                                <button><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">最新文章</a></button>
-                                                <button><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">本日熱門文章</a></button>                                               
-                                            </nav>
+                                                <div class="row">
+                                                    <button type="button" class="btn btn-outline-warning btn-lg btn-radius" @@click="selectFullArticles"><a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">所有文章</a></button>
+                                                </div>
+                                                <div></div>
+                                                <div class="row">
+                                                <button type="button" class="btn btn-outline-warning btn-lg btn-radius">最新文章</a></button>
+                                                 </div>
+                                                <div></div>
+                                                <div class="row">
+                                                 <button type="button" class="btn btn-outline-warning btn-lg btn-radius">本日熱門文章</a></button>
+                                                </div>
+                                             </nav>
                                         </div>
                                     </div>
                                 </div>
@@ -47,11 +56,11 @@
                     <div class="col-2">
                         <button type="button" class="btn btn-warning" v-on:click="showArticle('抱怨專區')"><a style="color:black">抱怨專區</a></button>
                     </div>
-                    
+
                     <div class="col-3">
                         <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
                         <span class="input-icon input-icon-sm ml-auto w-auto">
-                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" v-model="Filter"/>
+                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" v-model="Filter" />
                         </span>
                     </div>
                     <div class="col-2">
@@ -73,19 +82,19 @@
                                     <p style="color:black">
                                         {{article.content}}
                                     </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span @*class="text-secondary font-weight-bold"*@>{{article.date}}</span></p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span @*class="text-secondary font-weight-bold"*@>{{getTime(article.date)}}</span></p>
                                 </div>
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
                                     @*<span><i class="far fa-comment ml-2"></i> 3</span>*@
-                                    <button data-target="#articleModal" data-toggle="modal" type="button" >編輯</button>
+                                    <button data-target="#articleModal" data-toggle="modal" type="button">編輯</button>
                                     <button @@click="deleteArticle(article)">刪除</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                                        
-                    <ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
+
+                    @*<ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
                         <li class="page-item disabled">
                             <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
                         </li>
@@ -95,32 +104,34 @@
                         <li class="page-item">
                             <a class="page-link has-icon" href="javascript:void(0)"><i class="material-icons">下一頁</i></a>
                         </li>
-                    </ul>
+                    </ul>*@
                 </div>
 
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
                     <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
-                    <div class="card mb-2" v-for="article in fullArticles">
+                    <div class="card mb-2" v-for="articleReplys in articleReply">
                         <div class="card-body">
                             <div class="media forum-item">
                                 <a href="javascript:void(0)" class="card-link">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
                                     <small class="d-block text-center text-muted"></small>
                                 </a>
-                                <div class="media-body ml-3" >
+                                <div class="media-body ml-3">
                                     <a href="javascript:void(0)" class="text-secondary"></a>
-                                    <small class="text-muted ml-2">{{article.date}}</small>
+                                    <small class="text-muted ml-2">{{articleReplys.date}}</small>
                                     <h5 class="mt-1"></h5>
                                     <div class="mt-3 font-size-sm">
                                         <p>
-                                            {{article.content}}
+                                            {{articleReplys.content}}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="text-muted small text-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i></span>
-                                    <span><i class="far fa-comment ml-2"></i></span>
+                                    @*<span><i class="far fa-comment ml-2"></i></span>*@
+                                    <button data-target="#articleModal" data-toggle="modal" type="button">編輯</button>
+                                    <button @@click="deleteArticleReply(articleReplys)">刪除</button>
                                 </div>
                             </div>
                         </div>
@@ -146,10 +157,10 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="message">你的回覆 *</label> <!--之後要改資料庫，改成Required-->
-                                            <textarea id="message"  cols="30" rows="5" class="form-control" ></textarea>
+                                            <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticleReply.Content"></textarea>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="發文"  class="btn btn-primary px-3" >
+                                            <button type="button" class="btn btn-primary px-3" v-on:click="insertArticleReply(addArticleReply)">發文</button>
                                         </div>
                                     </form>
                                 </div>
@@ -165,26 +176,26 @@
                 <div class="modal-content">
                     <form>
                         <div class="modal-header d-flex align-items-center bg-primary text-white">
-                            <h6 class="modal-title mb-0" id="threadModalLabel">貼文</h6>                            
+                            <h6 class="modal-title mb-0" id="threadModalLabel">貼文</h6>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="Title">標題</label>
                                 <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="addArticle.Title" />
                             </div>
-                           @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
+                            @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
                             <div class="form-group">
                                 <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
                                 <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticle.Content"></textarea>
                             </div>
-                            <div class="form-group" id="Category" name="Category" >
+                            <div class="form-group" id="Category" name="Category">
                                 <select v-model="addArticle.Category">
                                     <option value="-1">請選擇文章類別</option>
                                     <option>心得分享</option>
                                     <option>發文解惑</option>
                                     <option>閒聊專區</option>
-                                    <option>抱怨專區</option>                                   
-                                </select>                       
+                                    <option>抱怨專區</option>
+                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -196,7 +207,7 @@
             </div>
         </div>
         <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" >
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header d-flex align-items-center bg-primary text-white">
@@ -394,16 +405,20 @@
             data: {
                 articles: [],
                 show: [],
-                postReply:"",
-                addArticle:{
+                postReply: "",
+                addArticle: {
                     Title: "",
                     Content: "",
                     Category: -1,
                 },
-                Filter:"",
-                FilterBox:"",
-                fullArticles:"",
-
+                addArticleReply: {
+                    Content: "",
+                },
+                Filter: "",
+                FilterBox: "",
+                fullArticles: "",
+                articleReply: "",
+               
             },
             mounted: function () {
                 let _self = this
@@ -416,10 +431,15 @@
                         _self.FilterBox = result
                         _self.fullArticles = result
                     })
-                fetch
+                fetch("/api/articlereply/getallreply")
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result)
+                        _self.articleReply = result
+                    })
             },
-            computed:{
-                
+            computed: {
+
             },
             methods: {
                 showArticle: function (type) {
@@ -439,7 +459,7 @@
                     if (this.Filter.length > 0) {
                         temp = temp.filter(function (temp) {
                             return temp.content.includes(_self.Filter)
-                        })         
+                        })
                     }
                     _self.FilterBox = temp
                     _self.fullArticles = _self.FilterBox
@@ -447,45 +467,70 @@
                 insertArticle: function (addArticle) {
                     console.log(addArticle)
                     addArticle = this.addArticle
-                    fetch("/api/article/postarticle", { 
-                        method: "POST" ,
+                    fetch("/api/article/postarticle", {
+                        method: "POST",
                         body: JSON.stringify(addArticle),
-                        headers:{"content-type":"application/json"}
-                    }).then(function(response) {return response.json()})
-                    .then(function(result) { 
-                        var al={
+                        headers: { "content-type": "application/json" }
+                    }).then(function (response) { return response.json() })
+                        .then(function (result) {
+                            var al = {
                                 position: 'center',
                                 icon: 'success',
                                 title: '發佈成功',
                                 showConfirmButton: false,
                                 timer: 3000
-                        };
-                        if(!result.status){
-                            al.icon="error";
-                            al.title="發佈失敗";
-                        }
-                        Swal.fire(al)
-                        window.location = "/article/index"
-                    })
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "發佈失敗";
+                            }
+                            Swal.fire(al)
+                            window.location = "/article/index"
+                        })
                 },
-                selectFullArticles:function () {
+                insertArticleReply: function (addArticleReply) {
+                    console.log(addArticleReply)
+                    addArticleReply = this.addArticleReply
+                    fetch("/api/articlereply/postarticlereply", {
+                        method: "POST",
+                        body: JSON.stringify(addArticleReply),
+                        headers: { "content-type": "application/json" }
+                    }).then(function (response) { return response.json() })
+                        .then(function (result) {
+                            var al = {
+                                position: 'center',
+                                icon: 'success',
+                                title: '發佈成功',
+                                showConfirmButton: false,
+                                timer: 3000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "發佈失敗";
+                            }
+                            Swal.fire(al)
+                            window.location = "/article/index"
+                        })
+                },
+                selectFullArticles: function () {
                     let _self = this
                     fetch("/api/article/getall")
                         .then(function (response) { return response.json() })
                         .then(function (result) {
                             console.log(result)
                             _self.fullArticles = result
-                    })
+                        })
                 },
                 deleteArticle: function (article) {
                     let _self = this;
                     console.log(article.id)
-                    var deleteArticleUrl = `/api/article/deletearticle/`+`${article.id}`
+                    var deleteArticleUrl = `/api/article/deletearticle/` + `${article.id}`
                     fetch(deleteArticleUrl, {
-                        method:"POST",
+                        method: "POST",
                         body: JSON.stringify(article.id),
-                        headers:{"content-type":"application/json"}
-                    }).then(function(response){return response.json()
+                        headers: { "content-type": "application/json" }
+                    }).then(function (response) {
+                        return response.json()
                             .then(function (result) {
                                 var al = {
                                     position: 'center',
@@ -500,20 +545,47 @@
                                 }
                                 Swal.fire(al)
                                 window.location = "/article/index"
-                            })                        
+                            })
+                    })
+                },
+                deleteArticleReply: function (articleReplys) {
+                    let _self = this;
+                    console.log(articleReplys.id)
+                    var deleteArticleReplyUrl = `/api/articlereply/deletearticlereply/` + `${articleReplys.id}`
+                    fetch(deleteArticleReplyUrl, {
+                        method: "POST",
+                        body: JSON.stringify(articleReplys.id),
+                        headers: { "content-type": "application/json" }
+                    }).then(function (response) {
+                        return response.json()
+                            .then(function (result) {
+                                var al = {
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: '刪除成功',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                };
+                                if (!result.status) {
+                                    al.icon = "error";
+                                    al.title = "刪除失敗";
+                                }
+                                Swal.fire(al)
+                                window.location = "/article/index"
+                            })
                     })
                 },
                 editArticle: function (fullArticles, addArticle) {
                     console.log(fullArticles)
                     let _self = this;
                     addArticle = _self.addArticle
-                    editArticleUrl = `/api/article/editarticle/`+`${fullArticles.id}`
+                    editArticleUrl = `/api/article/editarticle/` + `${fullArticles.id}`
                     fetch(editArticleUrl, {
-                        method:"POST",
+                        method: "POST",
                         body: JSON.stringify(fullArticles.id, addArticle),
-                        headers:{"content-type":"application/json"}
-                    }).then(function(response){return response.json()})
-                    .then(function(result){
+                        headers: { "content-type": "application/json" }
+                    }).then(function (response) { return response.json() })
+                        .then(function (result) {
                             var al = {
                                 position: 'center',
                                 icon: 'success',
@@ -526,7 +598,13 @@
                                 al.title = "編輯失敗";
                             }
                             Swal.fire(al)
-                    })
+                        })
+                },
+                getTime:function(day){
+                    let date = new Date();
+                    let dateTime = [date]
+                    return dateTime.toLocaleString();
+
                 },
             },
         });
