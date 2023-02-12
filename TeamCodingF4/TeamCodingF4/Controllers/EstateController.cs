@@ -8,6 +8,14 @@ namespace TeamCodingF4.Controllers
 {
     public class EstateController : Controller
     {
+        private readonly IWebHostEnvironment _environment;
+        private readonly ApplicationDbContext _context;
+
+        public EstateController(ApplicationDbContext context, IWebHostEnvironment environment)
+        {
+            _context = context;
+            _environment = environment;
+        }
         public IActionResult Index()
         {
             return View();
@@ -17,10 +25,10 @@ namespace TeamCodingF4.Controllers
         {
             return View();
         }
-        public IActionResult Detail()
+        public IActionResult Detail(int? id)
         {
+            ViewBag.Id = id;
             return View();
         }
-
     }
 }

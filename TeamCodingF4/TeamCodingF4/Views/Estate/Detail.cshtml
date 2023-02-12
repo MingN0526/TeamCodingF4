@@ -2,19 +2,20 @@
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">首頁</a>
-                <span class="breadcrumb-item active">物件刊登</span>
+                <a class="breadcrumb-item text-dark" href="#">首頁/</a>
+                <a class="breadcrumb-item text-dark" href="/estate/index">我的物件</a>
+                <span class="breadcrumb-item active">詳細物件</span>
             </nav>
         </div>
     </div>
 </div>
 
 <div class="container-fluid" id="createEstate">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">物件刊登</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">詳細物件</span></h2>
     <div class="row px-xl-5 ">
         <div class="col-lg-12 mb-5" id="estateDetail">
             <div class="contact-form bg-light p-30">
-                <div class="row">
+                <div class="row" v-for="inf in data">
                     <div class="col-md-6 form-group">
                         <div class="control-group">
                             <label>標題:</label>
@@ -82,7 +83,7 @@
                     <div class="col-md-6 form-group">
                         <div class="control-group">
                             <label>擁有設備:</label>
-                            <div class="form-control" v-for="item in inf.Equipment">
+                            <div v-for="item in inf.equipment">
                                 <span class="form-control">{{item}}</span>
                             </div>
                             <p class="help-block text-danger"></p>
@@ -91,11 +92,10 @@
                                 <span class="form-control">{{inf.lease}}</span>
                                 <p class="help-block text-danger"></p>
                             </div>
-
                             <div class="control-group">
-                                <label>條件:</label>
+                                <label>接受條件:</label>
                                 <div class="form-control" v-for="item in inf.conditions">
-                                    <span class="form-control">{{item}}</span>
+                                    <span>{{item}}</span>
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="control-group">
                                 <label>影片:</label>
-                                <span class="form-control">{{inf.estateVideo}}</span>
+                                <img src="inf.estateVideo"></img>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
@@ -137,15 +137,17 @@
         let app = new Vue({
             el: "#estateDetail",
             data: {
-                inf: {}
+                data: {
+
+                },
             },
             mounted: function () {
                 let self = this;
-                fetch(`/Api/EstateApi/Detail`)
+                fetch(`/Api/EstateApi/Detail?id=` + @ViewBag.Id)
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
-                        self.inf = result
+                        self.data = result
                     })
             },
             methods: {

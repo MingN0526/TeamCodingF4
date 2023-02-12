@@ -83,13 +83,13 @@
                                 <div class="row">
                                     
                                     <span class="col-2">樓:</span>
-                                    <input type="text" class="form-control col-3" name="Floor" required v-model="addEstate.Floor" />
+                                    <input type="text" class="form-control col-3" name="Floor" required/>
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>價格(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Price" required id="Price" v-model="addEstate.Price" />
+                                <input type="number" min="0" class="form-control" name="Price" required id="Price"/>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
@@ -145,30 +145,29 @@
                                 <div class="form-control">
                                     <input type="checkbox" name="ConditionId" value="1" id="pet" />
                                     <label for="pet">寵物</label>
-
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
 
                             <div class="control-group">
                                 <label>照片</label>
-                                <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple v-model="addEstate.EstateImages" />
+                                <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple/>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>影片</label>
-                                <input type="file" class="form-control" name="EstateVideo" id="EstateVideo" v-model="addEstate.EstateVideo" />
+                                <input type="file" class="form-control" name="EstateVideo" id="EstateVideo" required />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>其他資訊</label>
-                                <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message" v-model="addEstate.message"></textarea>
+                                <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="reset">
                                 重設
                             </button>
-                            <button class="btn btn-primary py-2 px-4" type="submit" v-on:click="send(addEstate)">
+                            <button class="btn btn-primary py-2 px-4" type="submit">
                                 送出
                             </button>
                         </div>

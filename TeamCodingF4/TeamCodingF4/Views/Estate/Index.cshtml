@@ -43,7 +43,7 @@
                             {{item.meters}}
                         </td>
                         <td class="align-middle">
-                            <a href="/estate/detail">詳細資料</a>
+                            <a :href="send()">詳細資料</a>
                         </td>
                     </tr>
                 </tbody>
@@ -58,20 +58,32 @@
         var app = new Vue({
             el: "#estateIndex",
             data: {
-                inf: []
+                detailId:"",
+                inf: {
+                    id:"",
+                    tittle:"",
+                    roomType:"",
+                    price:"",
+                    miscellaneous:"",
+                    meters:"",
+                }
             },
             mounted: function () {
                 let self = this;
                 fetch(`/Api/EstateApi/Index`)
-                    .then(function (response) { return response.json() })
+                    .then(function (response) {
+                        return response.json()
+                    })
                     .then(function (result) {
-                        console.log(result)
                         self.inf = result
+                        console.log(self.inf)
+                        self.detailId = result.map(x => x.id)
+                        console.log(self.detailId)
                     })
             },
             methods:{
-                detail:function(){
-                    fetch(`/eatate/detail`)
+                send:function(){
+                    return "/Estate/Detail/" + this.detailId
                 }
             }
         })
