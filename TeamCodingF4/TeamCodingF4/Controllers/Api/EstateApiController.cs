@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using System.Collections.Generic;
 using TeamCodingF4.Data;
@@ -20,19 +21,18 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpGet]
-        
+
         public List<EstateIndexModel> Index()
         {
-            var data= _context.Estates.Select(x => new EstateIndexModel
+            return _context.Estates.Select(x => new EstateIndexModel
             {
-               Id = x.Id,
-               Tittle=x.Tittle,
-               RoomType=x.RoomType.Name,
-               Price=x.Price,
-               Miscellaneous=x.Miscellaneous,
-               Meters=x.Meters,
+                Id = x.Id,
+                Tittle = x.Tittle,
+                RoomType = x.RoomType.Name,
+                Price = x.Price,
+                Miscellaneous = x.Miscellaneous,
+                Meters = x.Meters,
             }).ToList();
-            return data;
         }
 
         [HttpPost]
@@ -93,36 +93,45 @@ namespace TeamCodingF4.Controllers.Api
             _context.Estates.Add(Data);
             _context.SaveChanges();
 
-            return RedirectToAction("Index","Estate");
+            return RedirectToAction("Index", "Estate");
+        }
+
+        public List<EstateDetailModel> Detail(int id)
+        {
+            return _context.Estates
+               .Include(x => x.Conditions).Include(x => x.Equipment).Include(x => x.EstateImage).Include(x => x.RoomType)
+               .Where(x => x.Id == id).Select(x => new EstateDetailModel
+               {
+                   Id = x.Id,
+                   Tittle = x.Tittle,
+                   Room = x.Room,
+                   hall = x.hall,
+                   bathroom = x.bathroom,
+                   City = x.City,
+                   District = x.District,
+                   Address = x.Address,
+                   Floor = x.Floor,
+                   Price = x.Price,
+                   Meters = x.Meters,
+                   Miscellaneous = x.Miscellaneous,
+                   Car = x.Car,
+                   Motorcycle = x.Motorcycle,
+                   Lease = x.Lease,
+                   EstateVideo = x.EstateVideoPath,
+                   message = x.message,
+                   RoomType = x.RoomType.Name,
+                   Conditions = x.Conditions.Select(x => x.Name).ToList(),
+                   Equipment = x.Equipment.Select(x => x.Name).ToList(),
+                   EstateImage = x.EstateImage.Select(x => x.ImagePath).ToList(),
+               }).ToList() ;
         }
 
 
-
-        //public async Task<string> Detail(int id, EstateDetailModel estateDetailModel)
+        //[HttpPost("{id}")]
+        //public async Task<ApiResultModel> Delete([FromBody] Int32 id)
         //{
-        //    var EstateDetail = _context.Estates.Where(emp => emp.Id == id).Select(emp => new EstateDetailModel
-        //    {
-        //        Id = emp.Id,
-        //        Tittle = emp.Tittle,
-        //        RoomTypeId = emp.RoomTypeId,
-        //        City = emp.City,
-        //        District = emp.District,
-        //        Address = emp.Address,
-        //        Floor = emp.Floor,
-        //        Price = emp.Price,
-        //        Miscellaneous = emp.Miscellaneous,
-        //        Meters = emp.Meters,
-        //        Car = emp.Car,
-        //        Motorcycle = emp.Motorcycle,
-        //        Lease = emp.Lease,
-        //    }).ToList();
-
-        //    if (EstateDetail == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    return EstateDetail.ToJson();
+        //    Estate estate = _context.Estates.Find(id);
+        //    _context.Estates.Remove(estate);
         //}
-    }
+    } 
 }

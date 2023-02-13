@@ -43,13 +43,7 @@
                             {{item.meters}}
                         </td>
                         <td class="align-middle">
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-times">
-                                    <a action="Estate/Delete"></a>
-                                </i>
-                            </button>
-                            <a action="Estate/Edit">編輯物件</a>
-                            <a action="Estate/Detail">詳細資料</a>
+                            <a :href="send()">詳細資料</a>
                         </td>
                     </tr>
                 </tbody>
@@ -61,23 +55,30 @@
 @section Scripts
     {
     <script>
-        let app = new Vue({
+        var app = new Vue({
             el: "#estateIndex",
             data: {
-                inf: []
+                detailId:"",
+                inf: {},
             },
             mounted: function () {
                 let self = this;
                 fetch(`/Api/EstateApi/Index`)
-                    .then(function (response) { return response.json() })
+                    .then(function (response) {
+                        return response.json()
+                    })
                     .then(function (result) {
-                        console.log(result)
                         self.inf = result
+                        console.log(self.inf)
+                        self.detailId = result.map(x => x.id)
+                        console.log(self.detailId)
                     })
             },
-            mothods: {
-
-            },
+            methods:{
+                send:function(){
+                    return "/Estate/Detail/" + this.detailId[0]
+                }
+            }
         })
     </script>
     }
