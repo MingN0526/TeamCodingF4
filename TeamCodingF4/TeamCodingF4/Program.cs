@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TeamCodingF4.Controllers.Services;
 using TeamCodingF4.Data;
-using TeamCodingF4.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

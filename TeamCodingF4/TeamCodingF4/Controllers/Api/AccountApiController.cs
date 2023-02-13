@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using TeamCodingF4.Data;
 using TeamCodingF4.Data.Entity;
 using TeamCodingF4.Models.Account;
-using TeamCodingF4.Models.ApiModel;
 using TeamCodingF4.Models.Common;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Identity;
-using System.Reflection.Metadata.Ecma335;
 using TeamCodingF4.Controllers.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace TeamCodingF4.Controllers.Api
 {
@@ -20,13 +19,13 @@ namespace TeamCodingF4.Controllers.Api
         private readonly ApplicationDbContext _context;
         private readonly MailService mailService;
 
-        public AccountApiController(ApplicationDbContext context,MailService mailService)
+        public AccountApiController(ApplicationDbContext context, MailService mailService)
         {
             _context = context;
             this.mailService = mailService;
         }
         [HttpPost]
-        public ResponseModel<PostToRegisterResponseModel> PostToRegister([FromBody]PostToRegisterRequestModel model)
+        public ResponseModel<PostToRegisterResponseModel> PostToRegister([FromBody] PostToRegisterRequestModel model)
         {
             var result = new ResponseModel<PostToRegisterResponseModel>();
             if (!ModelState.IsValid || _context.Members.Any(m => m.Email == model.Email))
@@ -44,24 +43,25 @@ namespace TeamCodingF4.Controllers.Api
                 var _register = new Member
                 {
                     Name = model.Name,
+                    Role = model.Role,
                     Email = model.Email,
                     Password = hashStr,
                     PasswordHash = salt,
                     Account = model.Email,
+                    Token = Guid.NewGuid(),
+                    TokenExpireDate = DateTime.Now.AddDays(01),
                 };
 
                 _context.Members.Add(_register);
                 _context.SaveChanges();
 
-
-                mailService.SendMail();
+                mailService.SendMail(_register);
 
                 result.IsOk = true;
                 return result;
             }
         }
     }
-
 
 
 

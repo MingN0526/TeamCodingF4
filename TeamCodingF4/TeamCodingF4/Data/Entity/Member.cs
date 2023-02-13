@@ -10,7 +10,7 @@ namespace TeamCodingF4.Data.Entity
         /// <summary>
         /// 會員身分別
         /// </summary>
-        public string Role { get; set; }
+        public string? Role { get; set; }
 
         /// <summary>
         /// 會員姓名
@@ -20,12 +20,12 @@ namespace TeamCodingF4.Data.Entity
         /// <summary>
         /// 會員電話
         /// </summary>
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         /// <summary>
         /// 會員帳號
         /// </summary>
-        public string Account { get; set; }
+        public string? Account { get; set; }
 
         /// <summary>
         /// 會員密碼
@@ -33,7 +33,7 @@ namespace TeamCodingF4.Data.Entity
         public string Password { get; set; }
 
 
-        public string PasswordHash { get; set; }
+        public string? PasswordHash { get; set; }
 
         /// <summary>
         /// 會員信箱
@@ -44,29 +44,33 @@ namespace TeamCodingF4.Data.Entity
         /// <summary>
         /// 會員身分證
         /// </summary>
-        public string Identity { get; set; }
+        public string? Identity { get; set; }
 
         /// <summary>
         /// 會員生日
         /// </summary>       
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// 會員性別
         /// </summary>
-        public int Gender { get; set; }
+        public int? Gender { get; set; }
 
         /// <summary>
         /// 會員信用等級
         /// </summary>
-        public int Rate { get; set; }
+        public int? Rate { get; set; }
 
         /// <summary>
         /// 會員職業
         /// </summary>
-        public string Job { get; set; }
+        public string? Job { get; set; }
 
-        public string PicturePath { get; set; }
+        public string? PicturePath { get; set; }
+
+        public Guid? Token { get; set; }
+
+        public DateTime? TokenExpireDate { get; set; }
 
         public bool IsActive { get; set; }
 

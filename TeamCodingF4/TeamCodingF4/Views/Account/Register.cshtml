@@ -7,30 +7,37 @@
                 <h2>請註冊一個帳號</h2>
                 <hr />
                 <div class="text-danger"></div>
+                <label name="Role" class="form-label">我想要當 </label>
+                <select id="Role" name="Role" V-model="Role" required>
+                    <option value="0">房東</option>
+                    <option value="1" selected>房客</option>
+                </select>
                 <div class="form-floating">
                     <label name="Name" class="form-label">使用者名稱</label>
-                    <input name="Name" id="Name" v-model="Name" class="form-control" autocomplete="username" placeholder="王小明" aria-required="true" />
+                    <input name="Name" id="Name" v-model="Name" class="form-control" autocomplete="username" placeholder="王小明" aria-required="true" required />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                    <label name="Email"  class="form-label">信箱</label>
-                    <input name="Email" id="Email" v-model="Email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" />
+                    <label name="Email" class="form-label">信箱</label>
+                    <input name="Email" id="Email" v-model="Email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" required />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
                     <label name="Password" class="form-label">密碼</label>
-                    <input name="Password" id="Password" v-model="Password" class="form-control" autocomplete="current-password" placeholder="密碼" aria-required="true" />
+                    <input type="password" name="Password" id="Password" v-model="Password" class="form-control" autocomplete="current-password" placeholder="密碼" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div class="form-floating">
                     <label name="ConfirmePassword" class="form-label">再次確認密碼</label>
-                    <input name="ConfirmePassword" id="ConfirmePassword" v-model="ConfirmePassword" class="form-control" autocomplete="current-password" placeholder="再次輸入密碼" aria-required="true" />
+                    <input type="password" name="ConfirmePassword" id="ConfirmePassword" v-model="ConfirmePassword" class="form-control" autocomplete="current-password" placeholder="再次輸入密碼" aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
                 <div>
-                    <button id="login-submit"
+                    <button id="Regist-submit"
                             v-on:click="DoRegister()"
-                    class="w-100 btn btn-lg btn-primary">註冊</button>
+                            class="w-100 btn btn-lg btn-primary">
+                        註冊
+                    </button>
                 </div>
                 <div>
                     @*                    <p>
@@ -47,6 +54,7 @@
         let app = new Vue({
             el: '#app',
             data: {
+                Role: "",
                 Name: "",
                 Email: "",
                 Password: "",
@@ -55,7 +63,10 @@
             methods: {
                 DoRegister: function () {
                     let _self = this
-                    if (this.Password == "" || this.Password != this.ConfirmePassword) {
+                    if (this.Role == "" || this.Name == "" || this.Email == "") {
+                        alert("請確認所有欄位皆已填寫");
+                        return;
+                    } else if (this.Password == "" || this.Password != this.ConfirmePassword) {
                         alert("密碼未設定或密碼不相同");
                         return;
                     }
@@ -64,24 +75,24 @@
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
+                            Role: this.Role,
                             Name: this.Name,
                             Email: this.Email,
                             Password: this.Password,
                             ConfirmePassword: this.ConfirmePassword
                         })
-                    }).then(function(response){
+                    }).then(function (response) {
                         return response.json()
-                    }).then(function(result){
+                    }).then(function (result) {
                         console.log(result)
-                        if(result.isOk==false){
-                            swal(
-                                '註冊結果', '信箱重複註冊或輸入格式不正確，請檢查。', 'error'
-                            );
+                        if (result.isOk == false) {
+                            swal('註冊結果', '信箱重複註冊或輸入格式不正確，請檢查。', 'error')
                         }
-                        else
-                        {
-                            swal('註冊結果', '註冊成功，請至信箱收取認證信。', 'success')
-                            
+                        else {
+                            swal('註冊結果', '註冊成功，即將回到登入頁面，請至信箱收取認證信。', 'success')
+                                .then(function () {
+                                    window.location = "https://localhost:7213/account/signin";
+                                });
                         }
                     }).catch((error) => {
                         swal('註冊結果', '不知原因錯誤，請洽管理員。', 'error')
@@ -90,6 +101,6 @@
             },
         })
 
-        
+
     </script>
 }
