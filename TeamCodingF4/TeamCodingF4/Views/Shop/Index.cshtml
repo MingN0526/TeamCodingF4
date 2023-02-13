@@ -92,9 +92,9 @@
             <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租金</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+         
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="price-all">
+                        <input type="checkbox" class="custom-control-input" checked id="price-all" >
                         <label class="custom-control-label" for="price-all">不限</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
@@ -133,260 +133,238 @@
                         <label class="custom-control-label" for="price-7">30000元以上</label>
                         <span class="badge border font-weight-normal">168</span>
                     </div>
-                </form>
+             
             </div>
             <!-- Price End -->
             <!-- Color Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">類型</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+        
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="RoomType-all">
+                    <input type="checkbox" class="custom-control-input" checked id="RoomType-all" @@click="showAllRoom">
                         <label class="custom-control-label" for="RoomType-all">不限</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                     
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="RoomType-1">
+                        <input type="checkbox" class="custom-control-input" id="RoomType-1" v-on:click="showRoomType('透天')">
                         <label class="custom-control-label" for="RoomType-1">透天</label>
-                        <span class="badge border font-weight-normal">150</span>
+                     
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="RoomType-2">
-                        <label class="custom-control-label" for="RoomType-2">獨立套房</label>
-                        <span class="badge border font-weight-normal">295</span>
+                        <input type="checkbox" class="custom-control-input" id="RoomType-2" v-on:click="showRoomType('套房')">
+                        <label class="custom-control-label" for="RoomType-2">套房</label>
+                        
                     </div>
+                   
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="RoomType-3">
-                        <label class="custom-control-label" for="RoomType-3">分租套房</label>
-                        <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="RoomType-4">
+                        <input type="checkbox" class="custom-control-input" id="RoomType-4" v-on:click="showRoomType('雅房')">
                         <label class="custom-control-label" for="RoomType-4">雅房</label>
-                        <span class="badge border font-weight-normal">145</span>
+                        
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="RoomType-5">
+                    <input type="checkbox" class="custom-control-input" id="RoomType-5" v-on:click="showRoomType('其他')">
                         <label class="custom-control-label" for="RoomType-5">其他</label>
-                        <span class="badge border font-weight-normal">168</span>
+                       
                     </div>
-                </form>
+               
             </div>
             <!-- Color End -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">樓層</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+            
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="floor-all">
                         <label class="custom-control-label" for="floor-all">不限</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                       
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="floor-1">
                         <label class="custom-control-label" for="floor-1">1層</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                       
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="floor-2">
                         <label class="custom-control-label" for="floor-2">2-6層</label>
-                        <span class="badge border font-weight-normal">150</span>
+                   
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="floor-3">
                         <label class="custom-control-label" for="floor-3">6-12層</label>
-                        <span class="badge border font-weight-normal">295</span>
+                       
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="floor-4">
                         <label class="custom-control-label" for="floor-4">12層以上</label>
-                        <span class="badge border font-weight-normal">246</span>
+                    
                     </div>
-                </form>
+           
             </div>
 
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">設備</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+              
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="equipment-all">
                         <label class="custom-control-label" for="equipment-all">不限</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                       
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="AirCondintioner">
                         <label class="custom-control-label" for="AirCondintioner">冷氣</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                      
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Television">
                         <label class="custom-control-label" for="Television">電視</label>
-                        <span class="badge border font-weight-normal">150</span>
+                        
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="WetDry">
                         <label class="custom-control-label" for="WetDry">乾溼分離</label>
-                        <span class="badge border font-weight-normal">295</span>
+                
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Balcony">
                         <label class="custom-control-label" for="Balcony">陽台</label>
-                        <span class="badge border font-weight-normal">246</span>
+                     
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="WashingMachine">
                         <label class="custom-control-label" for="WashingMachine">洗衣機</label>
-                        <span class="badge border font-weight-normal">145</span>
+                  
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="WaterDispenser">
                         <label class="custom-control-label" for="WaterDispenser">飲水機</label>
-                        <span class="badge border font-weight-normal">168</span>
+          
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Refrigerator">
                         <label class="custom-control-label" for="Refrigerator">冰箱</label>
-                        <span class="badge border font-weight-normal">295</span>
+             
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Internet">
                         <label class="custom-control-label" for="Internet">網路</label>
-                        <span class="badge border font-weight-normal">295</span>
+                     
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Bed">
                         <label class="custom-control-label" for="Bed">床</label>
-                        <span class="badge border font-weight-normal">295</span>
+                     
                     </div>
 
-                </form>
             </div>
 
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">雜費</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+               
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="miscellaneous-all">
                         <label class="custom-control-label" for="miscellaneous-all">不限</label>
-                        <span class="badge border font-weight-normal">1000</span>
+            
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="Miscellaneous-managementfee">
                         <label class="custom-control-label" for="Miscellaneous-managementfee">管理費</label>
-                        <span class="badge border font-weight-normal">1000</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="Miscellaneous-utilitycost">
-                        <label class="custom-control-label" for="Miscellaneous-utilitycost">水電費</label>
-                        <span class="badge border font-weight-normal">150</span>
+             
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="pet">
                         <label class="custom-control-label" for="pet">可養寵物</label>
-                        <span class="badge border font-weight-normal">150</span>
+                    
                     </div>
 
-                </form>
+            
             </div>
 
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">須知</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="notice-all">
                         <label class="custom-control-label" for="notice-all">不限</label>
-                        <span class="badge border font-weight-normal">1000</span>
+              
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="gender-all">
                         <label class="custom-control-label" for="gender-all">男女皆可</label>
-                        <span class="badge border font-weight-normal">150</span>
+                    
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="gender-male">
                         <label class="custom-control-label" for="gender-male">限男生</label>
-                        <span class="badge border font-weight-normal">295</span>
+               
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="gender-male">
                         <label class="custom-control-label" for="gender-male">限女生</label>
-                        <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="gender-male">
-                        <label class="custom-control-label" for="gender-male">排除頂樓加蓋</label>
-                        <span class="badge border font-weight-normal">145</span>
+               
                     </div>
 
-                </form>
+
+               
             </div>
 
 
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租約期</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+               
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="lease-all">
                         <label class="custom-control-label" for="lease-all">不限</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                 
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="lease-1">
                         <label class="custom-control-label" for="lease-1">3個月以內</label>
-                        <span class="badge border font-weight-normal">150</span>
+                 
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="lease-1">
                         <label class="custom-control-label" for="lease-1">3-6個月</label>
-                        <span class="badge border font-weight-normal">295</span>
+              
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="lease-3">
                         <label class="custom-control-label" for="lease-3">6-12個月</label>
-                        <span class="badge border font-weight-normal">246</span>
+                 
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="lease-4">
                         <label class="custom-control-label" for="lease-4">1年以上</label>
-                        <span class="badge border font-weight-normal">145</span>
+                
                     </div>
 
-                </form>
+                
             </div>
             <!-- Size Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">車位</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+             
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="notice-all">
                         <label class="custom-control-label" for="notice-all">不限</label>
-                        <span class="badge border font-weight-normal">1000</span>
+           
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="notice-1">
-                        <label class="custom-control-label" for="notice-1">室內汽車車位</label>
-                        <span class="badge border font-weight-normal">150</span>
+                        <label class="custom-control-label" for="notice-1">汽車車位</label>
+                   
                     </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="notice-2">
-                        <label class="custom-control-label" for="notice-2">室外汽車車位</label>
-                        <span class="badge border font-weight-normal">295</span>
-                    </div>
+                    
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="notice-3">
-                        <label class="custom-control-label" for="notice-3">室內機車車位</label>
-                        <span class="badge border font-weight-normal">246</span>
+                        <label class="custom-control-label" for="notice-3">機車車位</label>
+                 
                     </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="notice-4">
-                        <label class="custom-control-label" for="notice-4">室外機車車位</label>
-                        <span class="badge border font-weight-normal">145</span>
-                    </div>
+                   
 
-                </form>
+                
             </div>
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">坪數</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+               
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="radio" class="custom-control-input" id="Meters-all" name="size">
                         <label class="custom-control-label" for="Meters-all">不限</label>
@@ -419,7 +397,7 @@
                         <input type="radio" class="custom-control-input" id="Meters-over30" name="size">
                         <label class="custom-control-label" for="Meters-over30">30坪以上</label>
                     </div>
-                </form>
+               
             </div>
 
         </div>
@@ -453,7 +431,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 pb-1" v-for="estateHouse in allHouse">
+                <div class="col-lg-4 col-md-6 col-sm-6 pb-1" v-for="estateHouse in homeRoomType">
                     <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" :src="estateHouse.estateImage[0].imagePath" alt="">
@@ -505,18 +483,39 @@
             el: "#estateIndex",
             data: {
                 allHouse: "",
+                homeRoomType:[],
+
             },
             mounted: function () {
-                let _self = this
+                let _self = this               
                 fetch("/api/house/GetAllHouse")
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
                         _self.allHouse = result
+                        _self.homeRoomType = result
                     })
             },
             methods: {
-
+                showAllRoom:function(){
+                    let _self = this
+                    fetch("/api/house/GetAllHouse")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {
+                            console.log(result)
+                            _self.allHouse = result
+                            _self.homeRoomType = result
+                        })
+                },
+                showRoomType:function(roomType){
+                    var temp = []
+                    for (let i = 0; i <= 4; i++){
+                        if (this.allHouse[i].roomType.name == roomType) {
+                            temp.push(this.allHouse[i])
+                        }
+                    }
+                    this.homeRoomType = temp
+                },
             },
         });
     </script>

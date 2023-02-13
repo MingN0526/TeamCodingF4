@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeamCodingF4.Data;
 
@@ -11,9 +12,10 @@ using TeamCodingF4.Data;
 namespace TeamCodingF4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230213041856_InsertEquipmentPicture")]
+    partial class InsertEquipmentPicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,50 +288,6 @@ namespace TeamCodingF4.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Equipments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "冷氣",
-                            Picture = "\\Picture\\C231702674-SP-10837585.jpg"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "電視",
-                            Picture = "\\Picture\\4acd260998f15b994caa60ef32d7891e-1000x675.jpg"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "乾溼分離",
-                            Picture = "\\Picture\\12323323232-4.jpg"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "陽台",
-                            Picture = "\\Picture\\large-glass-enclosed-balcony-picture-id1344082102.jpg"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "洗衣機",
-                            Picture = "\\Picture\\TAW-R1208DB.jpg"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "飲水機",
-                            Picture = "\\Picture\\m_ed93aaa626b305bdc2f1c6b2aa269905-fbQg0.jpg"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "冰箱",
-                            Picture = "\\Picture\\87021356646430.jpg"
-                        });
                 });
 
             modelBuilder.Entity("TeamCodingF4.Data.Entity.Estate", b =>
