@@ -62,16 +62,6 @@ namespace TeamCodingF4.Controllers.Api
 
 
             var root = _environment.WebRootPath;
-            var ev = estateModel.EstateVideo;
-            if (ev != null)
-            {
-                var videoName = DateTime.Now.Ticks + ev.FileName;
-                var videopath = $@"{root}\Video\{videoName}";
-                ev.CopyTo(System.IO.File.Create(videopath));
-                Data.EstateVideoPath = $@"\Video\{videoName}";
-            }
-
-
             var ep = estateModel.EstateImages;
             if (ep != null)
             {
@@ -117,7 +107,6 @@ namespace TeamCodingF4.Controllers.Api
                    Car = x.Car,
                    Motorcycle = x.Motorcycle,
                    Lease = x.Lease,
-                   EstateVideo = x.EstateVideoPath,
                    message = x.message,
                    RoomType = x.RoomType.Name,
                    Conditions = x.Conditions.Select(x => x.Name).ToList(),
