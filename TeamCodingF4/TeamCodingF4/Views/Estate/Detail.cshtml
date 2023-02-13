@@ -103,13 +103,13 @@
                             <div class="control-group">
                                 <label>照片:</label>
                                 <div class="form-control" v-for="item in inf.estateImages">
-                                    <span class="form-control">{{item}}</span>
+                                    <img src="~\Picture\\638118425062933522-essence-of-house.jpg" />
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>影片:</label>
-                                <img src="inf.estateVideo"></img>
+                                <img :src="require("this.inf.estateVideo")"/>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">

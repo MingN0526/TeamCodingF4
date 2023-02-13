@@ -59,14 +59,7 @@
             el: "#estateIndex",
             data: {
                 detailId:"",
-                inf: {
-                    id:"",
-                    tittle:"",
-                    roomType:"",
-                    price:"",
-                    miscellaneous:"",
-                    meters:"",
-                }
+                inf: {},
             },
             mounted: function () {
                 let self = this;
@@ -83,7 +76,7 @@
             },
             methods:{
                 send:function(){
-                    return "/Estate/Detail/" + this.detailId
+                    return "/Estate/Detail/" + this.detailId[0]
                 }
             }
         })
