@@ -28,7 +28,6 @@ namespace TeamCodingF4.Controllers.Api
                 Conditions= x.Conditions,
                 District= x.District,
                 Equipment= x.Equipment,
-                EstateVideoPath = x.EstateVideoPath,
                 Floor = x.Floor,
                 hall= x.hall,
                 Id= x.Id,

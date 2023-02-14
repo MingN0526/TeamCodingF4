@@ -366,6 +366,9 @@ namespace TeamCodingF4.Migrations
                     b.Property<int>("Lease")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MemberId")
+                        .HasColumnType("int");
+
                     b.Property<float>("Meters")
                         .HasColumnType("real");
 
@@ -398,6 +401,8 @@ namespace TeamCodingF4.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("RoomTypeId");
 
@@ -456,28 +461,25 @@ namespace TeamCodingF4.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Account")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Gender")
+                    b.Property<int?>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("Identity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Job")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -489,23 +491,25 @@ namespace TeamCodingF4.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PicturePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("Token")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("TokenExpireDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -721,7 +725,7 @@ namespace TeamCodingF4.Migrations
             modelBuilder.Entity("TeamCodingF4.Data.Entity.Articles", b =>
                 {
                     b.HasOne("TeamCodingF4.Data.Entity.Member", "Member")
-                        .WithMany()
+                        .WithMany("Articles")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -731,6 +735,10 @@ namespace TeamCodingF4.Migrations
 
             modelBuilder.Entity("TeamCodingF4.Data.Entity.Estate", b =>
                 {
+                    b.HasOne("TeamCodingF4.Data.Entity.Member", null)
+                        .WithMany("Estates")
+                        .HasForeignKey("MemberId");
+
                     b.HasOne("TeamCodingF4.Data.Entity.RoomType", "RoomType")
                         .WithMany("Estate")
                         .HasForeignKey("RoomTypeId")
@@ -778,7 +786,11 @@ namespace TeamCodingF4.Migrations
                 {
                     b.Navigation("ArticleLikes");
 
+                    b.Navigation("Articles");
+
                     b.Navigation("EstateLikes");
+
+                    b.Navigation("Estates");
                 });
 
             modelBuilder.Entity("TeamCodingF4.Data.Entity.RoomType", b =>

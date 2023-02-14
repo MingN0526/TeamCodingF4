@@ -47,6 +47,11 @@ namespace TeamCodingF4.Data.Entity
         public string? Identity { get; set; }
 
         /// <summary>
+        /// 會員住址
+        /// </summary>
+        public string? Address { get; set; }
+
+        /// <summary>
         /// 會員生日
         /// </summary>       
         public DateTime? BirthDate { get; set; }
@@ -77,5 +82,7 @@ namespace TeamCodingF4.Data.Entity
 
         public virtual ICollection<ArticleLike> ArticleLikes { get; set; }
         public virtual ICollection<EstateLike> EstateLikes { get; set; }
+        public virtual ICollection<Estate> Estates { get; set; }
+        public virtual ICollection<Articles> Articles { get; set; }
     }
 }
