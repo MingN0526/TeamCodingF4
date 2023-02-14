@@ -118,10 +118,17 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-        //[HttpPost]
-        //public ApiResultModel Delete([FromBody] int id)
-        //{
-            
-        //}
+        [HttpPost]
+        public IActionResult Delete([FromBody] int id)
+        {
+
+            return RedirectToAction("Index", "Estate");
+        }
+        [HttpPost]
+        public IActionResult Edit([FromBody] int id)
+        {
+
+            return RedirectToAction("Index", "Estate");
+        }
     } 
 }

@@ -51,9 +51,7 @@ namespace TeamCodingF4.Controllers.Api
                 PublisherId = 1,                                    
             };
             _db.Articles.Add(articles);
-            await _db.SaveChangesAsync();
-
-            
+            await _db.SaveChangesAsync();            
             return new ApiResultModel
             {
                 Status = true,
@@ -99,7 +97,11 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
+<<<<<<< HEAD
+        //[HttpPost]
+=======
         [HttpPost]
+>>>>>>> a2557c02216421889a8e3dad4d97cb2b821a4c66
         //public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
         //{
         //    if (id != articleModel.Id)
