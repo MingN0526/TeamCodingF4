@@ -32,10 +32,12 @@ namespace TeamCodingF4.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            TempData["active"] = "member";
             return View();
         }
         public IActionResult Signin()
         {
+            TempData["active"] = "member";
             return View();
         }
 

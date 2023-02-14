@@ -16,8 +16,10 @@ namespace TeamCodingF4.Controllers
         
         public IActionResult Index()
         {
+            
             if(User.Identity.IsAuthenticated)
             {
+                TempData["active"] = "member";
                 return View();
             }
             else
