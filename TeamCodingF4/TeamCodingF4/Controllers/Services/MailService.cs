@@ -8,29 +8,30 @@ using System.Security.Policy;
 using System;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
+using TeamCodingF4.Data.Entity;
 
 namespace TeamCodingF4.Controllers.Services
 {
     public class MailService
     {
 
-        public void SendMail()
+        public void SendMail(Member member)
         {
             var mail = new MailMessage();
 
-            var activationUrl = "http://localhost:7213/api/ConfirmEmail/";
-            //var activationUrl = "http://localhost:7213/MySampleApplication/ActivateAccount.aspx?UserID=" + FetchUserId(emailId) + "&EmailId=" + emailId;
+            var activationUrl = "https://localhost:7213/Account/UserValidation/" + member.Token;
 
             mail.Subject = "請點選會員認證信中的連結以完成會員認證。";
             mail.SubjectEncoding = Encoding.UTF8;
             mail.IsBodyHtml = true;
             mail.BodyEncoding = Encoding.UTF8;
-            mail.Body = @$"<h2>親愛的會員您好，<br>
+            mail.Body = @$"<h2>親愛的會員 {member.Name} 您好，<br>
                                請點選下方連結以完成會員認證。<br></h2> 
                                <a href='{activationUrl}'>請點我完成會員認證</a>";
             mail.From = new MailAddress("TeamCodingF4@gmail.com", "會員認證中心");
 
             mail.To.Add(new MailAddress("a790712a@gmail.com"));
+            //mail.To.Add(new MailAddress(member.Email));
 
             ////取得檔案
             //Attachment attachment = new Attachment(@"{_environment.WebRootPath}\upload\638096522971437290298619.png");

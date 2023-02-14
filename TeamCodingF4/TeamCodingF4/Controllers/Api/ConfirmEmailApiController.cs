@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TeamCodingF4.Controllers.Services;
 using TeamCodingF4.Data;
@@ -21,9 +22,12 @@ namespace TeamCodingF4.Controllers.Api
 
         //public IActionResult confirmEmail(string email)
         //{
-            
+
         //    var existId = _context.Members.FirstOrDefault(m => m.Email == email);
+
+        //    var token = 
         //}
+
 
 
     }

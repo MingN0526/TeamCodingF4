@@ -1,81 +1,106 @@
 ﻿@model TeamCodingF4.Models.Account.LoginModel
 
 
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <h1>會員登入</h1>
-        <section>
-            <form id="account" method="post" action="/account/login">
+<div id="app">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1>會員登入</h1>
+            <section>
+                @*<form id="account" method="post" action="/Account/Login">*@
                 <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="text-danger"></div>
                 <div class="form-floating">
-                    <label asp-for="Email" class="form-label">帳號</label>
-                    <input asp-for="Email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label name="Email" class="form-label">帳號</label>
+                    <input id="Email" name="Email" v-model="Email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" />
+                    <span class="text-danger"></span>
                 </div>
                 <br />
                 <div class="form-floating">
-                    <label asp-for="Password" class="form-label">密碼</label>
-                    <input asp-for="Password" class="form-control" autocomplete="current-password" placeholder=密碼 aria-required="true" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <label name="Password" class="form-label">密碼</label>
+                    <input type="password" id="Password" name="Password" v-model="Password" class="form-control" autocomplete="current-password" placeholder=密碼 aria-required="true" />
+                    <span class="text-danger"></span>
                 </div>
-                <div class="checkbox">
-                    <label asp-for="RememberMe" class="form-label">
-                        <br />
-                        <input class="form-check-input" asp-for="RememberMe" />
-                        記住我
-                    </label>
-                </div>
+                @*                    <h7 style="color:red">@TempData["error"]?.ToString()</h7>*@
+                @*                    <div class="checkbox">
+                <label class="form-label">
+                <br />
+                <input type="checkbox" class="form-check-input" id="RememberMe" name="RememberMe" v-model="Rememberme" v-on:change="DoRememberMe()"/>
+                記住我
+                </label>
+                </div>*@
+
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">登入</button>
+                    <button id="login-submit"
+                            v-on:click="DoLogin()"
+                            class="w-100 btn btn-lg btn-primary">
+                        登入
+                    </button>
                 </div>
                 <div>
                     <p>
-                        <a id="forgot-password" >忘記密碼了嗎?</a>
+                        <a id="forgot-password">忘記密碼了嗎?</a>
                         <br />
                         <a href="/Account/register">註冊新帳號</a>
-                        <br />
-                        <a id="resend-confirmation" >重新寄發認證信</a>
+
                     </p>
                 </div>
-            </form>
-        </section>
+            </section>
+        </div>
     </div>
-    @*<div class="col-md-6 col-md-offset-2">
-    <section>
-    <h3>Use another service to log in.</h3>
-    <hr />
-    @{
-    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-    {
-    <div>
-    <p>
-    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-    article
-    about setting up this ASP.NET application to support logging in via external services
-    </a>.
-    </p>
-    </div>
-    }
-    else
-    {
-    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-    <div>
-    <p>
-    @foreach (var provider in Model.ExternalLogins)
-    {
-    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-    }
-    </p>
-    </div>
-    </form>
-    }
-    }
-    </section>
-    </div>*@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @*    <partial name="_ValidationScriptsPartial" />*@
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                Email: "",
+                Password: "",
+            },
+            methods: {
+                DoLogin: function () {
+                    let _self = this
+                    if (this.Email == "" || this.Password == "") {
+                        alert("請輸入帳號及密碼。");
+                        return;
+                    }
+
+                    fetch('/Account/Signin', {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            Email: this.Email,
+                            Password: this.Password,
+                        })
+                    }).then(function (response) {
+                        return response.json()
+                    }).then(function (result) {
+                        console.log(result)
+                        if (result.isOk == false) {
+                            swal('登入失敗', '請檢察輸入的Email或密碼。', 'error')
+                                .then(function () {
+                                    window.location = "https://localhost:7213/account/signin";
+                                });
+                        }
+                        else {
+                            swal({
+                                title: '登入成功',
+                                text: '5秒後自動跳轉至首頁',
+                                icon: 'success',
+                                timer: 5000,
+                            }).then(function () {
+                                window.location = "https://localhost:7213/home/index";
+                            });
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                        swal('登入失敗', '不知原因錯誤，請洽管理員。', 'error')
+                    })
+                }
+            },
+        })
+
+    </script>
 }
