@@ -3,13 +3,13 @@
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
                 <a class="breadcrumb-item text-dark" href="#">首頁</a>
-                <span class="breadcrumb-item active">物件刊登</span>
+                <span class="breadcrumb-item active">我的物件</span>
             </nav>
         </div>
     </div>
 </div>
 
-<div class="container-fluid" id="createEstate">
+<div class="container-fluid" id="estateEdit">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">物件刊登</span></h2>
     <form action="/Api/EstateApi/Create" method="post" enctype="multipart/form-data">
         <div class="row px-xl-5 ">
@@ -75,21 +75,21 @@
                                         <option>金門縣</option>
                                     </select>
                                     <select class="col-3 form-control" id="District" name="District" required>
-                                         <option value="">請選擇區域</option>
+                                        <option value="">請選擇區域</option>
                                     </select>
-                                    <input type="text" class="form-control col-5" name="Address" required placeholder="請填詳細"/>
+                                    <input type="text" class="form-control col-5" name="Address" required placeholder="請填詳細" />
                                 </div>
                                 <p class="help-block text-danger"></p>
                                 <div class="row">
-                                    
+
                                     <span class="col-2">樓:</span>
-                                    <input type="text" class="form-control col-3" name="Floor" required/>
+                                    <input type="text" class="form-control col-3" name="Floor" required />
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>價格(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Price" required id="Price"/>
+                                <input type="number" min="0" class="form-control" name="Price" required id="Price" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
@@ -151,8 +151,8 @@
 
                             <div class="control-group">
                                 <label>照片</label>
-                                <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple/>
-                                   <p class="help-block text-danger"></p>
+                                <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple />
+                                <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>宣傳資訊</label>
@@ -175,4 +175,26 @@
 
 @section Scripts{
     <script src="~/js/CityDistrict.js"></script>
+    <script>
+            let app = new Vue({
+                el: "#estateEdit",
+                data: {
+                    editinf: "",
+                    editId: @ViewBag.Id
+            },
+            //mounted: function () {
+            //    let self = this;
+            //    fetch(`/Api/EstateApi/Detail?id=` + self.editId)
+            //        .then(function (response) { return response.json() })
+            //        .then(function (result) {
+            //            console.log(result)
+            //            self.detailinf = result
+            //        })
+            },
+            methods: {
+                
+            },
+        })
+    </script>
+         
 }
