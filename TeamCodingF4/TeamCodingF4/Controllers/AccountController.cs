@@ -62,6 +62,8 @@ namespace TeamCodingF4.Controllers
                         {
                             new Claim(ClaimTypes.Role, dbAccount.Role),
                             new Claim(ClaimTypes.Name, dbAccount.Name),
+                            new Claim(ClaimTypes.Email, dbAccount.Email),
+
                         };
                     }
                     else

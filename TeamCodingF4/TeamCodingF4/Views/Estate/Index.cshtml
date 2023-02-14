@@ -43,7 +43,7 @@
                             {{item.meters}}
                         </td>
                         <td class="align-middle">
-                            <a :href="send()">詳細資料</a>
+                            <a :href="send(item.id)">詳細資料</a>
                         </td>
                     </tr>
                 </tbody>
@@ -75,8 +75,8 @@
                     })
             },
             methods:{
-                send:function(){
-                    return "/Estate/Detail/" + this.detailId[0]
+                send:function(id){
+                    return "/Estate/Detail/" + id
                 }
             }
         })
