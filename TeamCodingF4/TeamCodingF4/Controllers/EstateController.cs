@@ -18,11 +18,13 @@ namespace TeamCodingF4.Controllers
         }
         public IActionResult Index()
         {
+            TempData["active"] = "management";
             return View();
         }
 
         public IActionResult Create()
         {
+            TempData["active"] = "management";
             return View();
         }
         public IActionResult Detail(int? id)
