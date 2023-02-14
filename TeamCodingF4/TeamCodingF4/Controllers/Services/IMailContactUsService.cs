@@ -25,9 +25,9 @@ namespace TeamCodingF4.Controllers.Services
 			mail.SubjectEncoding = Encoding.UTF8;
 			mail.IsBodyHtml = true;
 			mail.BodyEncoding = Encoding.UTF8;
-			mail.Body = @$"<h2>名稱: {member.Name} <br>
-                               Email: {} <br>內容: {} </h2> 
-                               ";
+			//mail.Body = @$"<h2>名稱: {member.Name} <br>
+   //                            Email: {} <br>內容: {} </h2> 
+   //                            ";
 			mail.From = new MailAddress("TeamCodingF4@gmail.com", "會員認證中心");
 
 			mail.To.Add(new MailAddress("TeamCodingF4@gmail.com"));
