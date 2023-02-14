@@ -1,4 +1,15 @@
-﻿<div class="container-fluid">
+﻿<style>
+    .btnblue {
+        background-color: cornflowerblue;
+        color: white;
+    }
+    .btnred{
+        background-color:red;
+        color:white;
+    }
+</style>
+
+<div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
@@ -103,7 +114,7 @@
                             <div class="control-group">
                                 <label>照片:</label>
                                 <div class="row" v-for="item in inf.estateImage">
-                                    <img class="col-6" :src="item" style="width:50%;height:50%"/>
+                                    <img class="col-lg-6" :src="item" style="width:50%;height:50%"/>
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -112,12 +123,25 @@
                                 <textarea class="form-control" rows="8" readonly>{{inf.message}}</textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <button class="btn py-2 px-4" style="background-color:red;color:white" type="button">
-                                刪除
-                            </button>
-                            <button class="btn btn-primary py-2 px-4" style="background-color:cornflowerblue;color:white" type="button">
-                                修改
-                            </button>
+                            <a class="btn btn-primary py-2 px-4 btnred" data-toggle="modal" href="#delModal">刪除</a>
+                            <div class="modal fade" id="delModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3>刪除資料</h3>
+                                            <button type="button" class="fa fa-times" data-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span style="color:black">您確定要刪除這筆資料</span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary py-2 px-4 btnblue" data-dismiss="modal" type="button">取消</button>
+                                            <button class="btn btn-primary py-2 px-4 btnred" v-on:click="deleteEstate">刪除</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary py-2 px-4 btnblue" type="button" v-on:click="editEstate">修改</button>
                         </div>
                     </div>
                 </div>
@@ -125,6 +149,7 @@
         </div>
     </div>
 </div>
+
 
 @section Scripts
     {
@@ -145,7 +170,17 @@
                     })
             },
             methods: {
-
+                deleteEstate:function(){
+                    let self = this;
+                    fetch(`/Api/EstateApi/Delete`,{
+                        method: "POST",
+                        body: self.detailId,
+                        headers: { "content-type": "application/json" }
+                    })
+                },
+                editEstate: function () {
+                   
+                },
             },
         })
     </script>
