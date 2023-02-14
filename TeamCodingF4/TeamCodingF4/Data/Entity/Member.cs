@@ -82,7 +82,5 @@ namespace TeamCodingF4.Data.Entity
 
         public virtual ICollection<ArticleLike> ArticleLikes { get; set; }
         public virtual ICollection<EstateLike> EstateLikes { get; set; }
-        public virtual ICollection<Estate> Estates { get; set; }
-        public virtual ICollection<Articles> Articles { get; set; }
     }
 }
