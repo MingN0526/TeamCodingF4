@@ -99,9 +99,8 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-        [HttpPost("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<ApiResultModel> EditArticle(Int32 id, [FromBody] ArticleModel articleModel)
+        [HttpPost]
+        public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
         {
             if (id != articleModel.Id)
             {
