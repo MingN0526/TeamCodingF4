@@ -11,84 +11,85 @@
     </div>
 </div>
 <!-- Breadcrumb End -->
-<!-- Checkout Start -->
-<div class="container-fluid">
-    <div class="row px-xl-5">
-        <div class="col-lg-12">
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">會員基本資料</span></h5>
-        </div>
+<!-- Body Start -->
+<div id="app">
+    <div class="container-fluid">
         <div class="row px-xl-5">
-            <div class="col-lg-3">
-                <div class="bg-light p-30 mb-5">大頭貼</div>
-                <br />
-                <div class="col-md-12 form-group">
-                    <label>會員編號</label>
-                    <input class="form-control" type="text">
-                </div>
-                <div class="col-md-12 form-group">
-                    <label>信用等級</label>
-                    <input class="form-control" type="text">
-                </div>
-                <div class="col-md-12 form-group">
-                    <label>Email</label>
-                    <input class="form-control" type="text">
-                </div>
+            <div class="col-lg-12">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">會員基本資料</span></h5>
             </div>
-            <div class="col-lg-9">
-                <div class="bg-light p-30 mb-5">
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label>姓名</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="col-md-2 form-group">
-                            <label>性別</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="col-md-2 form-group">
-                            <label>生日</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>身份證字號</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>職業別</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>手機</label>
-                            <input class="form-control" type="text">
-                        </div>
-
-                        <div class="col-md-3 form-group">
-                            <label>國家</label>
-                            <select class="custom-select">
-                                <option selected>---請選擇---</option>
-                                <option>台灣</option>
-                                <option>美國</option>
-                                <option>日本</option>
-                                <option>韓國</option>
-                                <option>德國</option>
-                                <option>法國</option>
-                            </select>
-                        </div>
-                        <div class="col-md-9 form-group">
-                            <label>地址</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>State</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
+            <div class="row px-xl-5">
+                <div class="col-lg-3">
+                    <div class="bg-light p-30 mb-5">大頭貼</div>
+                    <br />
+                    <div class="col-md-12 form-group">
+                        <label>會員編號</label>
+                        <p name="Id" id="Id" v-model="Id" class="form-control" type="text">
+                    </div>
+                    @*<div class="col-md-12 form-group">
+                        <label>信用等級</label>
+                        <input class="form-control" type="text">
+                    </div>*@
+                    <div class="col-md-12 form-group">
+                        <label>Email</label>
+                        <input id="Email" name="Email" v-model="Email" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="bg-light p-30 mb-5">
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>姓名</label>
+                                <input id="Name" name="Name" v-model="Name" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label>性別</label>
+                                <input id="Gender" name="Gender" v-model="Gender" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label>生日</label>
+                                <input id="BirthDate" name="BirthDate" v-model="BirthDate" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>身份證字號</label>
+                                <input id="Identity" name="Identity" v-model="Identity" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>職業別</label>
+                                <input id="Job" name="Job" v-model="Job" class="form-control" type="text">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>手機</label>
+                                <input id="Phone" name="Phone" v-model="Phone" class="form-control" type="text">
+                            </div>
+@*                            <div class="col-md-3 form-group">
+                                <label>國家</label>
+                                <select class="custom-select">
+                                    <option selected>---請選擇---</option>
+                                    <option>台灣</option>
+                                    <option>美國</option>
+                                    <option>日本</option>
+                                    <option>韓國</option>
+                                    <option>德國</option>
+                                    <option>法國</option>
+                                </select>
+                            </div>*@
+                            <div class="col-md-9 form-group">
+                                <label>地址</label>
+                                <input id="Address" name="Address" v-model="Address" class="form-control" type="text">
+                            </div>
+@*                            <div class="col-md-6 form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>State</label>
+                                <input class="form-control" type="text" placeholder="New York">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>ZIP Code</label>
+                                <input class="form-control" type="text" placeholder="123">
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -96,4 +97,73 @@
         </div>
     </div>
 </div>
-<!-- Checkout End -->
+<!-- Body End -->
+
+@section scripts{
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                Id: "",
+                Email: "",
+                Name: "",
+                Gender: "",
+                BirthDate: "",
+                Identity: "",
+                Job: "",
+                Phone: "",
+            },
+            mounted: function(){
+                var _self = this;
+                fetch('/api/Account/GetProfile')
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result)
+                        _self.Id = result.Id
+                        _self.Email = result.Id
+                        _self.Name = result.Name
+                        _self.Gender = result.Gender
+                        _self.BirthDate = result.BirthDate
+                        _self.Identity = result.Identity
+                        _self.Job = result.Job
+                        _self.Phone = result.Phone
+                    })
+            },
+            methods: {
+                GetUserProfile: function(){
+                    var _self = this;
+
+                    fetch('/api/Account/PostToProfile',{
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            Id: this.Role,
+                            Email: this.Email,
+                            Name: this.Name,
+                            Gender: this.Gender,
+                            BirthDate: this.BirthDate,
+                            Identity: this.Identity,
+                            Job: this.Job,
+                            Phone: this.Phone,
+                        })
+                    }).then(function (response) {
+                        return response.json()
+                    }).then(function (result) {
+                        console.log(result)
+                    //    if (result.isOk == false) {
+                    //        swal('註冊結果', '信箱重複註冊或輸入格式不正確，請檢查。', 'error')
+                    //    }
+                    //    else {
+                    //        swal('註冊結果', '註冊成功，即將回到登入頁面，請至信箱收取認證信。', 'success')
+                    //            .then(function () {
+                    //                window.location = "https://localhost:7213/account/signin";
+                    //            });
+                    //    }
+                    //}).catch((error) => {
+                    //    swal('註冊結果', '不知原因錯誤，請洽管理員。', 'error')
+                    //})
+                }
+            },
+        }) 
+    </script>
+}

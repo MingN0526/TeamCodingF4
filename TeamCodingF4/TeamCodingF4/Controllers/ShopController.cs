@@ -6,6 +6,7 @@ namespace TeamCodingF4.Controllers
     {
         public IActionResult Index(int xxx,string xxxaaa)
         {
+            TempData["active"] = "shop";
             return View();
         }
     }

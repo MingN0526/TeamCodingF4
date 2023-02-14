@@ -1,788 +1,142 @@
-﻿    <!-- Breadcrumb Start -->
-    <div class="container-fluid">
+﻿<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">首頁</a>
+                    <a class="breadcrumb-item text-dark" href="#">首頁</a>
                     <a class="breadcrumb-item text-dark" href="#">物件</a>
-                    <span class="breadcrumb-item active">物件清單</span>
+                    <span class="breadcrumb-item active">物件資料</span>
                 </nav>
             </div>
         </div>
-    </div>
+    
     <!-- Breadcrumb End -->
-    <!-- Shop Start -->
-    <div class="container-fluid">
+    <!-- Shop Detail Start -->
+
+    <div class="container-fluid pb-5" id="detailIndex">
+        <div class="row px-xl-5" v-for="allHouseDetail in houseDetail">
+            <div class="col-lg-5 mb-30">
+                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner bg-light">
+                        <div class="carousel-item active">
+                            <img class="w-100 h-100" :src="allHouseDetail.estateImage[0].imagePath" alt="Image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                        <i class="fa fa-2x fa-angle-left text-dark"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                        <i class="fa fa-2x fa-angle-right text-dark"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 h-auto mb-30">
+                <div class="h-100 bg-light p-30">
+                    <h3>{{allHouseDetail.tittle}}</h3>
+                    <div class="d-flex mb-3">
+                        <small class="pt-1"></small>
+                    </div>
+                    <h3 class="font-weight-semi-bold mb-4">${{allHouseDetail.price}}</h3>
+                    <p class="mb-4">
+                        {{allHouseDetail.message}}
+                    </p>
+                    <div class="d-flex mb-3">
+                        <strong class="text-dark mr-3">房型</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-1" name="size" checked>
+                            <label class="custom-control-label" for="size-1">{{allHouseDetail.roomType.name}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <strong class="text-dark mr-3">地址</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-5" name="color" checked>
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.address}}</label>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
         <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-4">
-                
-
-                       <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">地區</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="district-all" v-on:click="showdistict-all">
-                            <label class="custom-control-label" for="district-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="district-1" v-on:click="showdistrict-1">
-                            <label class="custom-control-label" for="district-1">中山區</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-2" v-on:click="showdistrict-2">
-                            <label class="custom-control-label" for="district-2">大安區</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-3" v-on:click="showdistrict-3">
-                            <label class="custom-control-label" for="district-3">信義區</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-4" v-on:click="showdistrict-4">
-                            <label class="custom-control-label" for="district-4">士林區</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-5" v-on:click="showdistrict-5">
-                            <label class="custom-control-label" for="district-5">內湖區</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-6" v-on:click="showdistrict-6">
-                            <label class="custom-control-label" for="district-6">中正區</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-7" v-on:click="showdistrict-7">
-                            <label class="custom-control-label" for="district-7">萬華區</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-8" v-on:click="showdistrcit-8">
-                            <label class="custom-control-label" for="district-8">松山區</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-9" v-on:click="showdistrict-9">
-                            <label class="custom-control-label" for="district-9">大同區</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-10" v-on:click="showdistrict-10">
-                            <label class="custom-control-label" for="district-10">文山區</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-11" v-on:click="showdistrict-11">
-                            <label class="custom-control-label" for="district-11">北投區</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="district-12" v-on:click="showdistrict-12"">
-                            <label class="custom-control-label" for="district-12">南港區</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-
-                </div>
-                <!-- Price Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租金</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all" v-on:click="showprice-all">
-                            <label class="custom-control-label" for="price-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1" v-on:click="showprice-1">
-                            <label class="custom-control-label" for="price-1">5000以下</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-2" v-on:click="showprice-2">
-                            <label class="custom-control-label" for="price-2">5000-10000元</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-3" v-on:click="showprice-3">
-                            <label class="custom-control-label" for="price-3">10000-15000元</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-4" v-on:click="showprice-4">
-                            <label class="custom-control-label" for="price-4">15000-20000元</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-5" v-on:click="showprice-5">
-                            <label class="custom-control-label" for="price-5">20000-25000元</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-6" v-on:click="showprice-6">
-                            <label class="custom-control-label" for="price-6">25000-30000元</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-7" v-on:click="showprice-7">
-                            <label class="custom-control-label" for="price-7">30000元以上</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Price End -->
-                <!-- Color Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">類型</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="RoomType-all" v-on:click="RoomType-all">
-                            <label class="custom-control-label" for="RoomType-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="RoomType-1" v-on:click="RoomType-1">
-                            <label class="custom-control-label" for="RoomType-1">透天</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="RoomType-2" v-on:click="RoomType-2">
-                            <label class="custom-control-label" for="RoomType-2">獨立套房</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="RoomType-3" v-on:click="RoomType-3">
-                            <label class="custom-control-label" for="RoomType-3">分租套房</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="RoomType-4" v-on:click="RoomType-4">
-                            <label class="custom-control-label" for="RoomType-4">雅房</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="RoomType-5" v-on:click="RoomType-5">
-                            <label class="custom-control-label" for="RoomType-5">其他</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Color End -->
-                       <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">樓層</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="floor-all" v-on:click="floor-all"  >
-                            <label class="custom-control-label" for="floor-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="floor-1" v-on:click="floor-1" >
-                            <label class="custom-control-label" for="floor-1">1層</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="floor-2" v-on:click="floor-2" >
-                            <label class="custom-control-label" for="floor-2">2-6層</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="floor-3" v-on:click="floor-3" >
-                            <label class="custom-control-label" for="floor-3">6-12層</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="floor-4" v-on:click="floor-4" >
-                            <label class="custom-control-label" for="floor-4">12層以上</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                    </form>
-                </div>
-
-                       <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">設備</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="equipment-all" v-on:click="equipment-all">
-                            <label class="custom-control-label" for="equipment-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="AirCondintioner" v-on:click="AirCondintioner">
-                            <label class="custom-control-label" for="AirCondintioner">冷氣</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="Television" v-on:click="Television">
-                            <label class="custom-control-label" for="Television">電視</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="WetDry" v-on:click="WetDry">
-                            <label class="custom-control-label" for="WetDry">乾溼分離</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="Balcony" v-on:click="Balcony">
-                            <label class="custom-control-label" for="Balcony">陽台</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="WashingMachine" v-on:click="WashingMachine">
-                            <label class="custom-control-label" for="WashingMachine">洗衣機</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="WaterDispenser" v-on:click="WaterDispenser">
-                            <label class="custom-control-label" for="WaterDispenser">飲水機</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="Refrigerator" v-on:click="Refrigerator">
-                            <label class="custom-control-label" for="Refrigerator">冰箱</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="Internet" v-on:click="Internet">
-                            <label class="custom-control-label" for="Internet">網路</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="Bed" v-on:click="Bed">
-                            <label class="custom-control-label" for="Bed">床</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-
-                    </form>
-                </div>
-
-                       <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">雜費</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="miscellaneous-all" v-on:click="Miscellaneous-all">
-                            <label class="custom-control-label" for="miscellaneous-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="Miscellaneous-managementfee" v-on:click="Miscellaneous-managementfee">
-                            <label class="custom-control-label" for="Miscellaneous-managementfee">管理費</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="Miscellaneous-utilitycost" v-on:click="Miscellaneous-utilitycost">
-                            <label class="custom-control-label" for="Miscellaneous-utilitycost">水電費</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="pet" v-on:click="pet">
-                            <label class="custom-control-label" for="pet">可養寵物</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-
-                    </form>
-                </div>
-
-                        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">須知</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="notice-all">
-                            <label class="custom-control-label" for="notice-all" v-on:click="notice-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="gender-all" v-on:click="gender-all">
-                            <label class="custom-control-label" for="gender-all">男女皆可</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="gender-male" v-on:click="gender-male">
-                            <label class="custom-control-label" for="gender-male">限男生</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="gender-male" v-on:click="gender-female">
-                            <label class="custom-control-label" for="gender-male">限女生</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="gender-male" v-on:click="rooftop-addon">
-                            <label class="custom-control-label" for="gender-male">排除頂樓加蓋</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-
-                    </form>
-                </div>
-
-
-                        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租約期</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="lease-all" v-on:click="Lease-all">
-                            <label class="custom-control-label" for="lease-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="lease-1" v-on:click="Lease-minus3">
-                            <label class="custom-control-label" for="lease-1">3個月以內</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="lease-1" v-on:click="Lease-minus6">
-                            <label class="custom-control-label" for="lease-1">3-6個月</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="lease-3" v-on:click="Lease-minus12">
-                            <label class="custom-control-label" for="lease-3">6-12個月</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="lease-4" v-on:click="Lease-over12">
-                            <label class="custom-control-label" for="lease-4">1年以上</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-
-                    </form>
-                </div>
-                <!-- Size Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">車位</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="notice-all">
-                            <label class="custom-control-label" for="notice-all" v-on:click="Car-all">不限</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="notice-1" v-on:click="Car-indoor">
-                            <label class="custom-control-label" for="notice-1">室內汽車車位</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="notice-2" v-on:click="Car-outdoor">
-                            <label class="custom-control-label" for="notice-2">室外汽車車位</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="notice-3" v-on:click="Motorcycle-indoor">
-                            <label class="custom-control-label" for="notice-3">室內機車車位</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="notice-4" v-on:click="Motorcycle-outdoor">
-                            <label class="custom-control-label" for="notice-4">室外機車車位</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-
-                    </form>
-                </div>
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">坪數</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-all" name="size" v-on:click="Meters-all">
-                            <label class="custom-control-label" for="Meters-all">不限</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-minus5" name="size" v-on:click="Meters-minus5">
-                            <label class="custom-control-label" for="Meters-minus5">5坪以內</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-minus10" name="size" v-on:click="Meters-minus10">
-                            <label class="custom-control-label" for="Meters-minus10">5-10坪</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-minus15" name="size" v-on:click="Meters-minus15">
-                            <label class="custom-control-label" for="Meters-minus15">10-15坪</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-minus20" name="size" v-on:click="Meters-minus20">
-                            <label class="custom-control-label" for="Meters-minus20">15-20坪</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-minus25" name="size" v-on:click="Meters-minus25">
-                            <label class="custom-control-label" for="Meters-minus25">20-25坪</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-minus30" name="size" v-on:click="Meters-minus30">
-                            <label class="custom-control-label" for="Meters-minus30">25-30坪</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="radio" class="custom-control-input" id="Meters-over30" name="size" v-on:click="Meters-over30">
-                            <label class="custom-control-label" for="Meters-over30">30坪以上</label>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <!-- Shop Sidebar End -->
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-8">
-                <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
-                            </div>
-                            <div class="ml-2">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Latest</a>
-                                        <a class="dropdown-item" href="#">Popularity</a>
-                                        <a class="dropdown-item" href="#">Best Rating</a>
+            <div class="col">
+                <div class="bg-light p-30">
+                    <div class="nav nav-tabs mb-4">
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">房東回覆 </a>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab-pane-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">產品名稱</h4>
+                                    <div class="media mb-4">
+                                        <img src="~/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                        <div class="media-body">
+                                            <h6>房東姓名<small> - <i>回覆時間</i></small></h6>
+                                            <div class="text-primary mb-2">
+                                            </div>
+                                            <p>回覆內文</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="btn-group ml-2">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Showing</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">10</a>
-                                        <a class="dropdown-item" href="#">20</a>
-                                        <a class="dropdown-item" href="#">30</a>
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">回覆房東</h4>
+                                    <small></small>
+                                    <div class="d-flex my-3">
+                                        <div class="text-primary">
+                                        </div>
                                     </div>
+                                    
+                                        <div class="form-group">
+                                            <label for="message">你的回覆</label>
+                                            <textarea id="message" cols="30" rows="5" class="form-control" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">姓名</label>
+                                            <input type="text" class="form-control" id="name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">信箱</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                                        </div>
+                                    
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-1.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-2.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-3.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-4.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-5.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-6.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-7.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-8.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="~/img/product-9.jpg" alt="">
-                                <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small class="far fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <nav>
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>
-            <!-- Shop Product End -->
         </div>
     </div>
-    <!-- Shop End -->
+</div>
+<!-- Shop Detail End -->
 
 @section Scripts
     {
     <script>
         let app = new Vue({
-            el: '#estateIndex',
+            el: "#detailIndex",
             data: {
-                estate: [],
-                show: [],
-                postReply:"",
-                addEstate:{
-                    Title: "",
-                    Content: "",
-                    Category: -1,
-                },
-                Filter:"",
+                houseDetail: "",
             },
             mounted: function () {
                 let _self = this
-                fetch("/api/EstateApi/getall")
+                fetch("/api/detail/getallhousedetail")
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
-                        _self.articles = result
-                        _self.show = result
+                        _self.houseDetail = result
                     })
             },
             methods: {
-                showArticle: function (type) {
-                    var temp = [];
-                    for (let i = 0; i < this.articles.length; i++) {
-                        //console.log(this.articles[i])
-                        if (this.articles[i].category == type) {
-                            temp.push(this.articles[i])
-                        }
-                    }
-                    this.show = temp;
-                },
-                insertArticle: function (addArticle) {
-                    addArticle = this.addArticle
-                    fetch("/api/article/postarticle", { 
-                        method: "POST" ,
-                        body: JSON.stringify(addArticle),
-                        headers:{"content-type":"application/json"}
-                    }).then(function(response) {return response.json()})
-                    .then(function(result) { 
-                        var al={
-                                position: 'top-end',
-                                icon: 'success',
-                                title: '發佈成功',
-                                showConfirmButton: false,
-                                timer: 1500
-                        };
-                        if(!result.status){
-                            al.icon="error";
-                            al.title="發佈失敗";
-                        }
-                        Swal.fire(al)
-                        window.location = "/article/index"
-                    })
-                },
-                filterArticles:function(){
-                    var _self=this
-                    var temp = this.articles
-                    if(this.Filter.length > 0){
-                        temp=temp.filter
-                    }
-                },
-                                },
-            });
-        </script>
+
+            },
+        });
+    </script>
 }

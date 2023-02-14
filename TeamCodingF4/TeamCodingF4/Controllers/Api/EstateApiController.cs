@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using System.Collections.Generic;
 using TeamCodingF4.Data;
@@ -19,6 +20,21 @@ namespace TeamCodingF4.Controllers.Api
             _environment = environment;
         }
 
+        [HttpGet]
+
+        public List<EstateIndexModel> Index()
+        {
+            return _context.Estates.Select(x => new EstateIndexModel
+            {
+                Id = x.Id,
+                Tittle = x.Tittle,
+                RoomType = x.RoomType.Name,
+                Price = x.Price,
+                Miscellaneous = x.Miscellaneous,
+                Meters = x.Meters,
+            }).ToList();
+        }
+
         [HttpPost]
         public IActionResult Create(EstateCreateModel estateModel)
         {
@@ -27,8 +43,8 @@ namespace TeamCodingF4.Controllers.Api
                 Tittle = estateModel.Tittle,
                 RoomTypeId = estateModel.RoomTypeId,
                 Room = estateModel.Room,
-                hall=estateModel.hall,
-                bathroom=estateModel.bathroom,
+                hall = estateModel.hall,
+                bathroom = estateModel.bathroom,
                 City = estateModel.City,
                 District = estateModel.District,
                 Address = estateModel.Address,
@@ -39,83 +55,73 @@ namespace TeamCodingF4.Controllers.Api
                 Car = estateModel.Car,
                 Motorcycle = estateModel.Motorcycle,
                 Lease = estateModel.Lease,
-                message = estateModel.message,
+                message = estateModel.message, 
             };
-
-
+            if(estateModel.ConditionId != null)
+            {
+                Data.Conditions = _context.Conditions.Where(x => estateModel.ConditionId.Contains(x.Id)).ToList();
+            };
+            if (estateModel.EquipmentId != null)
+            {
+                Data.Equipment = _context.Equipments.Where(x => estateModel.EquipmentId.Contains(x.Id)).ToList();
+            };
             var root = _environment.WebRootPath;
-            var ev = estateModel.EstateVideo;
-            if (ev != null)
-            {
-                var videoName = DateTime.Now.Ticks + ev.FileName;
-                var videopath = $@"{root}\Video\{videoName}";
-                ev.CopyTo(System.IO.File.Create(videopath));
-                Data.EstateVideoPath = $@"\Video\{videoName}";
-            }
-
-            var ee = estateModel.EquipmentId;
-            foreach(var em in ee)
-            {
-                Data.Equipment.Add(new Equipment()
-                {
-                    Id = em
-                });
-            }
-
-            var ec = estateModel.ConditionId;
-            foreach(var cd in ec)
-            {
-                Data.Conditions.Add(new Condition()
-                {
-                    Id = cd
-                });
-            }
-
             var ep = estateModel.EstateImages;
-            foreach (var picture in ep)
+            if (ep != null)
             {
-                var pictureName = DateTime.Now.Ticks + picture.FileName;
-                var picturepath = $@"{root}\Picture\{pictureName}";
-                picture.CopyTo(System.IO.File.Create(picturepath));
-                Data.EstateImage.Add(new EstateImage()
+                var pictureList = new List<EstateImage>();
+                foreach (var picture in ep)
                 {
-                    ImagePath = $@"\Picture\{pictureName}"
-                });
-            }
+                    var path = $@"\Picture\{DateTime.Now.Ticks}-{picture.FileName}";
+                    using (var stream = new FileStream($@"{root}{path}", FileMode.Create))
+                    {
+                        picture.CopyTo(stream);
+                    }
+                    pictureList.Add(new EstateImage() { ImagePath = path });
 
+                }
+                Data.EstateImage = pictureList;
+            }
             _context.Estates.Add(Data);
             _context.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Estate");
+        }
+
+        public List<EstateDetailModel> Detail(int id)
+        {
+            return _context.Estates
+               .Include(x => x.Conditions).Include(x => x.Equipment).Include(x => x.EstateImage).Include(x => x.RoomType)
+               .Where(x => x.Id == id).Select(x => new EstateDetailModel
+               {
+                   Id = x.Id,
+                   Tittle = x.Tittle,
+                   Room = x.Room,
+                   hall = x.hall,
+                   bathroom = x.bathroom,
+                   City = x.City,
+                   District = x.District,
+                   Address = x.Address,
+                   Floor = x.Floor,
+                   Price = x.Price,
+                   Meters = x.Meters,
+                   Miscellaneous = x.Miscellaneous,
+                   Car = x.Car,
+                   Motorcycle = x.Motorcycle,
+                   Lease = x.Lease,
+                   message = x.message,
+                   RoomType = x.RoomType.Name,
+                   Conditions = x.Conditions.Select(x => x.Name).ToList(),
+                   Equipment = x.Equipment.Select(x => x.Name).ToList(),
+                   EstateImage = x.EstateImage.Select(x => x.ImagePath).ToList(),
+               }).ToList() ;
         }
 
 
-
-        //public async Task<string> Detail(int id, EstateDetailModel estateDetailModel)
+        //[HttpPost]
+        //public ApiResultModel Delete([FromBody] int id)
         //{
-        //    var EstateDetail = _context.Estates.Where(emp => emp.Id == id).Select(emp => new EstateDetailModel
-        //    {
-        //        Id = emp.Id,
-        //        Tittle = emp.Tittle,
-        //        RoomTypeId = emp.RoomTypeId,
-        //        City = emp.City,
-        //        District = emp.District,
-        //        Address = emp.Address,
-        //        Floor = emp.Floor,
-        //        Price = emp.Price,
-        //        Miscellaneous = emp.Miscellaneous,
-        //        Meters = emp.Meters,
-        //        Car = emp.Car,
-        //        Motorcycle = emp.Motorcycle,
-        //        Lease = emp.Lease,
-        //    }).ToList();
-
-        //    if (EstateDetail == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    return EstateDetail.ToJson();
+            
         //}
-    }
+    } 
 }

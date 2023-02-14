@@ -26,42 +26,40 @@ namespace TeamCodingF4.Controllers.Api
             {
                 Id = x.ArticleId,
                 Content = x.Content,
-                Date = DateTime.Now,
+                Date = x.Date.ToString("d"),
                 Title = x.Title,
                 ViewCount = x.ViewCount,
                 Category = x.Category,
                 PublisherId = x.PublisherId,
+                ReplyId = x.ReplyId
             }).ToList();
         }
 
-       
         [HttpPost]
         public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
         {
             //var memberId = User.Claims.GetMemberId();
+            //var articleId = User.Claims.GetArticleId();
             Articles articles = new Articles
             {
                 Title = model.Title,
                 Content = model.Content,
-                Category= model.Category,
-                Date = DateTime.Now,
+                Category = model.Category,
+                Date = DateTime.UtcNow,
                 ViewCount = 1,  //TODO Viewcount function
                 //PublisherId = memberId, TODO
-                PublisherId = 1,
-            };          
+                PublisherId = 1,                                    
+            };
             _db.Articles.Add(articles);
             await _db.SaveChangesAsync();
 
+            
             return new ApiResultModel
             {
-                Status=true,
-                Message="加入成功"
+                Status = true,
+                Message = "加入成功"
             };
-            return new ApiResultModel
-            {
-                Status = false,
-                Message = "加入失敗"
-            };
+           
         }
 
         //public async Task<Articles> GetId(int id)
@@ -76,39 +74,43 @@ namespace TeamCodingF4.Controllers.Api
 
 
 
-        [HttpPost("{id}")]
-        //[ValidateAntiForgeryToken]
-        public async Task<ApiResultModel> DeleteArticle(ArticleDeleteModel id)
+        [HttpPost]
+        public async Task<ApiResultModel> DeleteArticle([FromBody] int id)
         {
             Articles articles = await _db.Articles.FindAsync(id);
-            _db.Articles.Remove(articles);
-            await _db.SaveChangesAsync();            
+            if (articles != null)
+            {
+                var replies =_db.ArticlesReply.Where(x => x.ArticleId == id).ToList();
+                _db.ArticlesReply.RemoveRange(replies);
+                _db.Articles.Remove(articles);
+                await _db.SaveChangesAsync();
                 return new ApiResultModel
                 {
                     Status = true,
                     Message = "刪除成功"
                 };
-                return new ApiResultModel
-                {
-                    Status = false,
-                    Message = "刪除失敗"
-                };                                 
+            }
+
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "刪除失敗"
+            };
         }
 
-        
-        //[HttpPut("{id}")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<string> PutArticle(int id, ArticleModel articleModel)
+
+        [HttpPost]
+        //public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
         //{
         //    if (id != articleModel.Id)
         //    {
         //        return null;
         //    }
-        //    Articles? articles = await _db.Articles.FindAsync(articleModel.Id);
+        //    Articles articles = await _db.Articles.FindAsync(articleModel.Id);
         //    articles.Content = articleModel.Content;
         //    articles.Title = articleModel.Title;
+        //    articles.Category = articleModel.Category;
         //    _db.Entry(articles).State = EntityState.Modified;
-
         //    try
         //    {
         //        await _db.SaveChangesAsync();
@@ -117,18 +119,23 @@ namespace TeamCodingF4.Controllers.Api
         //    {
         //        if (!ArticleExists(id))
         //        {
-        //            return "找不到欲修改的紀錄!";
+        //            return new ApiResultModel
+        //            {
+        //                Status = false,
+        //                Message = "找不到需編輯的文章"
+        //            };
         //        }
         //        else
         //        {
         //            throw;
         //        }
         //    }
-        //    return "修改成功!";
+        //    return new ApiResultModel
+        //    {
+        //        Status = true,
+        //        Message = "編輯成功"
+        //    };
         //}
-
-       
- 
 
         private bool ArticleExists(int id)
         {

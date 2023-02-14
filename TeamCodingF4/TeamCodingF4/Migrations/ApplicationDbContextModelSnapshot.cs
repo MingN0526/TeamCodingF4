@@ -169,6 +169,9 @@ namespace TeamCodingF4.Migrations
                     b.Property<int>("PublisherId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ReplyId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -190,6 +193,7 @@ namespace TeamCodingF4.Migrations
                             Content = "心得分享!",
                             Date = new DateTime(2008, 3, 1, 7, 0, 1, 0, DateTimeKind.Unspecified),
                             PublisherId = 1,
+                            ReplyId = 0,
                             Title = "範例",
                             ViewCount = 0
                         },
@@ -200,6 +204,7 @@ namespace TeamCodingF4.Migrations
                             Content = "發文解惑~",
                             Date = new DateTime(2008, 3, 1, 7, 0, 2, 0, DateTimeKind.Unspecified),
                             PublisherId = 2,
+                            ReplyId = 0,
                             Title = "範例",
                             ViewCount = 0
                         },
@@ -210,6 +215,7 @@ namespace TeamCodingF4.Migrations
                             Content = "閒聊專區~",
                             Date = new DateTime(2008, 3, 1, 7, 0, 3, 0, DateTimeKind.Unspecified),
                             PublisherId = 3,
+                            ReplyId = 0,
                             Title = "範例",
                             ViewCount = 0
                         },
@@ -220,6 +226,7 @@ namespace TeamCodingF4.Migrations
                             Content = "抱怨專區~",
                             Date = new DateTime(2008, 3, 1, 7, 0, 4, 0, DateTimeKind.Unspecified),
                             PublisherId = 4,
+                            ReplyId = 0,
                             Title = "範例",
                             ViewCount = 0
                         },
@@ -230,6 +237,7 @@ namespace TeamCodingF4.Migrations
                             Content = "找尋室友~",
                             Date = new DateTime(2008, 3, 1, 7, 0, 4, 0, DateTimeKind.Unspecified),
                             PublisherId = 5,
+                            ReplyId = 0,
                             Title = "範例",
                             ViewCount = 0
                         });
@@ -271,6 +279,10 @@ namespace TeamCodingF4.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Equipments");
@@ -279,37 +291,44 @@ namespace TeamCodingF4.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "冷氣"
+                            Name = "冷氣",
+                            Picture = "\\Picture\\C231702674-SP-10837585.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "電視"
+                            Name = "電視",
+                            Picture = "\\Picture\\4acd260998f15b994caa60ef32d7891e-1000x675.jpg"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "乾溼分離"
+                            Name = "乾溼分離",
+                            Picture = "\\Picture\\12323323232-4.jpg"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "陽台"
+                            Name = "陽台",
+                            Picture = "\\Picture\\large-glass-enclosed-balcony-picture-id1344082102.jpg"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "洗衣機"
+                            Name = "洗衣機",
+                            Picture = "\\Picture\\TAW-R1208DB.jpg"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "飲水機"
+                            Name = "飲水機",
+                            Picture = "\\Picture\\m_ed93aaa626b305bdc2f1c6b2aa269905-fbQg0.jpg"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "冰箱"
+                            Name = "冰箱",
+                            Picture = "\\Picture\\87021356646430.jpg"
                         });
                 });
 
@@ -347,6 +366,9 @@ namespace TeamCodingF4.Migrations
                     b.Property<int>("Lease")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MemberId")
+                        .HasColumnType("int");
+
                     b.Property<float>("Meters")
                         .HasColumnType("real");
 
@@ -379,6 +401,8 @@ namespace TeamCodingF4.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("RoomTypeId");
 
@@ -437,28 +461,25 @@ namespace TeamCodingF4.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Account")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Gender")
+                    b.Property<int?>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("Identity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Job")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -470,23 +491,25 @@ namespace TeamCodingF4.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PicturePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("Token")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("TokenExpireDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -702,7 +725,7 @@ namespace TeamCodingF4.Migrations
             modelBuilder.Entity("TeamCodingF4.Data.Entity.Articles", b =>
                 {
                     b.HasOne("TeamCodingF4.Data.Entity.Member", "Member")
-                        .WithMany()
+                        .WithMany("Articles")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -712,6 +735,10 @@ namespace TeamCodingF4.Migrations
 
             modelBuilder.Entity("TeamCodingF4.Data.Entity.Estate", b =>
                 {
+                    b.HasOne("TeamCodingF4.Data.Entity.Member", null)
+                        .WithMany("Estates")
+                        .HasForeignKey("MemberId");
+
                     b.HasOne("TeamCodingF4.Data.Entity.RoomType", "RoomType")
                         .WithMany("Estate")
                         .HasForeignKey("RoomTypeId")
@@ -759,7 +786,11 @@ namespace TeamCodingF4.Migrations
                 {
                     b.Navigation("ArticleLikes");
 
+                    b.Navigation("Articles");
+
                     b.Navigation("EstateLikes");
+
+                    b.Navigation("Estates");
                 });
 
             modelBuilder.Entity("TeamCodingF4.Data.Entity.RoomType", b =>
