@@ -25,11 +25,7 @@
 
                                                 <div class="row mb-4 ml-5">
                                                     <button type="button" class="btn btn-outline-warning btn-lg btn-radius " style="font-size:15px ">最新文章</a></button>
-                                                </div>
-
-                                                <div class="row mb-4 ml-5">
-                                                    <button type="button" class="btn btn-outline-warning btn-lg btn-radius" style="font-size:15px">熱門文章</a></button>
-                                                </div>
+                                                </div>                                               
                                             </nav>
                                         </div>
                                     </div>
@@ -94,17 +90,7 @@
                         </div>
                     </div>
 
-                    @*<ul class="pagination pagination-sm pagination-circle justify-content-center mb-0">
-                    <li class="page-item disabled">
-                    <span class="page-link has-icon"><i class="material-icons">上一頁</i></span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                    <li class="page-item active"><span class="page-link">2</span></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link has-icon" href="javascript:void(0)"><i class="material-icons">下一頁</i></a>
-                    </li>
-                    </ul>*@
+                   
                 </div>
 
 
@@ -128,8 +114,7 @@
                                     </div>
                                 </div>
                                 <div class="text-muted small text-center">
-                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i></span>
-                                    @*<span><i class="far fa-comment ml-2"></i></span>*@
+                              
                                     <button data-target="#articleModal" data-toggle="modal" type="button">編輯</button>
                                     <button @@click="deleteArticleReply(articleReplys)">刪除</button>
                                 </div>
@@ -143,20 +128,11 @@
                                     <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle" width="50" alt="User" />
                                     <small class="d-block text-center text-muted">Pro</small>
                                 </a>
-                                @*<div class="media-body ml-3 row-cols-12">
-                                <a href="javascript:void(0)" class="text-secondary">drewdan</a>
-                                <small class="text-muted ml-2">1 hour ago</small>
-                                <div class="mt-3 font-size-sm">
-                                <p>What exactly doesn't work with your ajax calls?</p>
-                                <p>Also, WebSockets are a great solution for realtime data on a dashboard. Laravel offers this out of the box using broadcasting</p>
-                                </div>
-                                <button class="btn btn-xs text-muted has-icon"><i class="fa fa-heart" aria-hidden="true"></i>1</button>
-                                <a href="javascript:void(0)" class="text-muted small">Reply</a>
-                                </div>*@
+                             
                                 <div class="media-body ml-3 row-cols-12">
                                     <form>
                                         <div class="form-group">
-                                            <label for="message">你的回覆 *</label> <!--之後要改資料庫，改成Required-->
+                                            <label for="message">你的回覆 *</label> 
                                             <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticleReply.Content"></textarea>
                                         </div>
                                         <div class="form-group mb-0">
@@ -183,7 +159,7 @@
                                 <label for="Title">標題</label>
                                 <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="addArticle.Title" />
                             </div>
-                            @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
+                      
                             <div class="form-group">
                                 <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
                                 <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticle.Content"></textarea>
@@ -418,7 +394,6 @@
                 FilterBox: "",
                 fullArticles: "",
                 articleReply: "",
-
             },
             mounted: function () {
                 let _self = this
