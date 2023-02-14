@@ -55,12 +55,16 @@ namespace TeamCodingF4.Controllers.Api
                 Car = estateModel.Car,
                 Motorcycle = estateModel.Motorcycle,
                 Lease = estateModel.Lease,
-                message = estateModel.message,
-                Conditions = _context.Conditions.Where(x => estateModel.ConditionId.Contains(x.Id)).ToList(),
-                Equipment = _context.Equipments.Where(x => estateModel.EquipmentId.Contains(x.Id)).ToList(),
+                message = estateModel.message, 
             };
-
-
+            if(estateModel.ConditionId != null)
+            {
+                Data.Conditions = _context.Conditions.Where(x => estateModel.ConditionId.Contains(x.Id)).ToList();
+            };
+            if (estateModel.EquipmentId != null)
+            {
+                Data.Equipment = _context.Equipments.Where(x => estateModel.EquipmentId.Contains(x.Id)).ToList();
+            };
             var root = _environment.WebRootPath;
             var ep = estateModel.EstateImages;
             if (ep != null)
@@ -78,8 +82,6 @@ namespace TeamCodingF4.Controllers.Api
                 }
                 Data.EstateImage = pictureList;
             }
-
-
             _context.Estates.Add(Data);
             _context.SaveChanges();
 
@@ -116,11 +118,26 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-        //[HttpPost("{id}")]
-        //public async Task<ApiResultModel> Delete([FromBody] Int32 id)
-        //{
-        //    Estate estate = _context.Estates.Find(id);
-        //    _context.Estates.Remove(estate);
-        //}
+        [HttpPost("{id}")]
+        public  ApiResultModel Delete([FromBody] int id)
+        {
+            Estate estate =  _context.Estates.Find(id);
+            if (estate != null)
+            {
+                _context.Estates.Remove(estate);
+                _context.SaveChangesAsync();
+                return new ApiResultModel
+                {
+                    Status = true,
+                    Message = "刪除成功"
+                };
+            }
+
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "刪除失敗"
+            };
+        }
     } 
 }

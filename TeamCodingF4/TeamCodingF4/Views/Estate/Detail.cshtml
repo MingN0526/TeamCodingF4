@@ -15,7 +15,7 @@
     <div class="row px-xl-5 ">
         <div class="col-lg-12 mb-5" id="estateDetail">
             <div class="contact-form bg-light p-30">
-                <div class="row" v-for="inf in data">
+                <div class="row" v-for="inf in detailinf">
                     <div class="col-md-6 form-group">
                         <div class="control-group">
                             <label>標題:</label>
@@ -43,9 +43,9 @@
                         <div class="control-group">
                             <label>地址:</label>
                             <div class="row">
-                                <span class="form-control col-3">{{inf.city}}</span>
-                                <span class="form-control col-3">{{inf.district}}</span>
-                                <span class="form-control col-3">{{inf.address}}</span>
+                                <span class="form-control col-2">{{inf.city}}</span>
+                                <span class="form-control col-2">{{inf.district}}</span>
+                                <span class="form-control col-5">{{inf.address}}</span>
                             </div>
                             <p class="help-block text-danger"></p>
                             <div class="row">
@@ -102,14 +102,14 @@
 
                             <div class="control-group">
                                 <label>照片:</label>
-                                <div class="form-control" v-for="item in inf.estateImages">
-                                    <img src="~\Picture\\638118425062933522-essence-of-house.jpg" />
+                                <div class="row" v-for="item in inf.estateImage">
+                                    <img class="col-6" :src="item" style="width:50%;height:50%"/>
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <label>其他資訊:</label>
-                                <span class="form-control">{{inf.message}}</span>
+                                <label>宣傳資訊:</label>
+                                <textarea class="form-control" rows="8" readonly>>{{inf.message}}</textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <button class="btn py-2 px-4" style="background-color:red;color:white" type="button">
@@ -132,21 +132,47 @@
         let app = new Vue({
             el: "#estateDetail",
             data: {
-                data: {
-
-                },
+                detailinf: "",
+                detailId: @ViewBag.Id
             },
             mounted: function () {
                 let self = this;
-                fetch(`/Api/EstateApi/Detail?id=` + @ViewBag.Id)
+                fetch(`/Api/EstateApi/Detail?id=` + self.detailId)
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
-                        self.data = result
+                        self.detailinf = result
                     })
             },
             methods: {
+                delete: function () {
+                    let self = this;
+                    fetch(`/api/estateapi/delete/` + self.detailId, {
+                        method: "POST",
+                        body: JSON.stringify(detailId),
+                        headers: { "content-type": "application/json" }
+                    }).then(function (response) {
+                        return response.json()
+                            .then(function (result) {
+                                var al = {
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: '刪除成功',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                };
+                                if (!result.status) {
+                                    al.icon = "error";
+                                    al.title = "刪除失敗";
+                                }
+                                Swal.fire(al)
+                                window.location = "/estate/index"
+                            })
+                    })
+                },
+                edit: function (){
 
+                }
             },
         })
     </script>

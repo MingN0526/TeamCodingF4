@@ -53,16 +53,13 @@ namespace TeamCodingF4.Controllers.Api
             _db.Articles.Add(articles);
             await _db.SaveChangesAsync();
 
+            
             return new ApiResultModel
             {
                 Status = true,
                 Message = "加入成功"
             };
-            return new ApiResultModel
-            {
-                Status = false,
-                Message = "加入失敗"
-            };
+           
         }
 
         //public async Task<Articles> GetId(int id)
