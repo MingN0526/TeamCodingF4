@@ -15,7 +15,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //{
 //    options.SignIn.RequireConfirmedAccount = true;
 //}).AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddTransient<MailService>();
+builder.Services.AddTransient<IMailService,QQMialService>();
+builder.Services.AddTransient<System.Security.Cryptography.SHA256Managed>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

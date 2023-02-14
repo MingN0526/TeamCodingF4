@@ -18,12 +18,14 @@ namespace TeamCodingF4.Controllers.Api
     public class AccountApiController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly MailService mailService;
+        private readonly IMailService mailService;
+        private readonly SHA256Managed sHA256Managed;
 
-        public AccountApiController(ApplicationDbContext context, MailService mailService)
+        public AccountApiController(ApplicationDbContext context, IMailService mailService, SHA256Managed sHA256Managed)
         {
             _context = context;
             this.mailService = mailService;
+            this.sHA256Managed = sHA256Managed;
         }
         [HttpPost]
         public ResponseModel<PostToRegisterResponseModel> PostToRegister([FromBody] PostToRegisterRequestModel model)
@@ -38,7 +40,7 @@ namespace TeamCodingF4.Controllers.Api
             {
                 string salt = Guid.NewGuid().ToString();
                 byte[] addSalt = Encoding.UTF8.GetBytes(model.Password + salt);
-                byte[] hashByte = new SHA256Managed().ComputeHash(addSalt);
+                byte[] hashByte = sHA256Managed.ComputeHash(addSalt);
                 string hashStr = Convert.ToBase64String(hashByte);
 
                 var _register = new Member
@@ -56,7 +58,7 @@ namespace TeamCodingF4.Controllers.Api
                 _context.Members.Add(_register);
                 _context.SaveChanges();
 
-                mailService.SendMail(_register);
+                mailService.Send(_register);
 
                 result.IsOk = true;
                 return result;

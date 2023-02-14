@@ -19,6 +19,7 @@ namespace TeamCodingF4.Controllers
 
         public IActionResult Index()
         {
+            TempData["active"] = "home";
             return View();
         }
 

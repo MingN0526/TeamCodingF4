@@ -12,10 +12,10 @@ using TeamCodingF4.Data.Entity;
 
 namespace TeamCodingF4.Controllers.Services
 {
-    public class MailService
+    public class MailService:IMailService
     {
 
-        public void SendMail(Member member)
+        public bool Send(Member member)
         {
             var mail = new MailMessage();
 
@@ -47,6 +47,7 @@ namespace TeamCodingF4.Controllers.Services
             try
             {
                 client.Send(mail);
+                return true;
             }
             catch (Exception ex)
             {
@@ -56,9 +57,11 @@ namespace TeamCodingF4.Controllers.Services
             {
                 //attachment.Dispose();
                 mail.Dispose();
-                client.Dispose();
+                client.Dispose();                
             }
         }
+
+
     }
 }
 
