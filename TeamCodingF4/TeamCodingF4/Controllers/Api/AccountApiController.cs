@@ -9,6 +9,7 @@ using TeamCodingF4.Controllers.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using TeamCodingF4.Models.ApiModel;
 
 namespace TeamCodingF4.Controllers.Api
 {
@@ -63,11 +64,54 @@ namespace TeamCodingF4.Controllers.Api
                 return result;
             }
         }
+
+        public ResponseModel<PostToProfileResponseModel> PostToProfile([FromBody] PostToProfileRequestModel model)
+        {
+            var result = new ResponseModel<PostToProfileResponseModel>();
+            if (!ModelState.IsValid || User.Identity.IsAuthenticated == false)
+            {
+                result.IsOk = false;
+                return result;
+            }
+            else
+            {
+                var user = _context.Members.FirstOrDefault(x => x.Name == User.Identity.Name && x.Name == model.Name);
+
+                var profile = new PostToProfileResponseModel
+                {
+                    //    Id = x.Id,
+                    //    Address = x.Address,
+                    //    BirthDate = x.BirthDate,
+                    //    Email = x.Email,
+                    //    Gender = x.Gender,
+                    //    Identity = x.Identity,
+                    //    Job = x.Job,
+                    //    Name = x.Name,
+                    //    Phone = x.Phone,
+                    //    PicturePath = x.PicturePath,
+                };
+
+                result.IsOk = true;
+                return result;
+            }
+        }
+
+        public List<MemberModel> GetProfile()
+        {            
+            return _context.Members.Select(x => new MemberModel
+            {
+                Id = x.Id,
+                Address = x.Address,
+                BirthDate = x.BirthDate,
+                Email = x.Email,
+                Gender = x.Gender,
+                Identity = x.Identity,
+                Job = x.Job,
+                Name = x.Name,
+                Phone = x.Phone,
+                PicturePath = x.PicturePath,
+            }).ToList();
+        }
+
     }
-
-
-
-
-
-
 }

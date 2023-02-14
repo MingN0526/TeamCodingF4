@@ -1,16 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TeamCodingF4.Data.Entity
+namespace TeamCodingF4.Models.ApiModel
 {
-    public class Member
+    public class MemberModel
     {
         [Key]
         public int Id { get; set; }
-
-        /// <summary>
-        /// 會員身分別
-        /// </summary>
-        public string? Role { get; set; }
 
         /// <summary>
         /// 會員姓名
@@ -21,19 +16,6 @@ namespace TeamCodingF4.Data.Entity
         /// 會員電話
         /// </summary>
         public string? Phone { get; set; }
-
-        /// <summary>
-        /// 會員帳號
-        /// </summary>
-        public string? Account { get; set; }
-
-        /// <summary>
-        /// 會員密碼
-        /// </summary>
-        public string Password { get; set; }
-
-
-        public string? PasswordHash { get; set; }
 
         /// <summary>
         /// 會員信箱
@@ -47,11 +29,6 @@ namespace TeamCodingF4.Data.Entity
         public string? Identity { get; set; }
 
         /// <summary>
-        /// 會員住址
-        /// </summary>
-        public string? Address { get; set; }
-
-        /// <summary>
         /// 會員生日
         /// </summary>       
         public DateTime? BirthDate { get; set; }
@@ -62,25 +39,13 @@ namespace TeamCodingF4.Data.Entity
         public int? Gender { get; set; }
 
         /// <summary>
-        /// 會員信用等級
-        /// </summary>
-        public int? Rate { get; set; }
-
-        /// <summary>
         /// 會員職業
         /// </summary>
         public string? Job { get; set; }
 
         public string? PicturePath { get; set; }
-
-        public Guid? Token { get; set; }
-
-        public DateTime? TokenExpireDate { get; set; }
-
-        public bool IsActive { get; set; }
+        public string? Address { get; set; }
 
 
-        public virtual ICollection<ArticleLike> ArticleLikes { get; set; }
-        public virtual ICollection<EstateLike> EstateLikes { get; set; }
     }
 }
