@@ -13,9 +13,8 @@ using TeamCodingF4.Models;
 
 namespace TeamCodingF4.Controllers.Services
 {
-    public interface IMaiContactUsService
+    public interface IMailContactUsService
     {
         public bool Send(ContactusEmailContentModel contactUsTempContainer);
     }
-}
 }
