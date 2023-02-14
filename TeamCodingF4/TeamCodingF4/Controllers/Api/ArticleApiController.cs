@@ -74,13 +74,14 @@ namespace TeamCodingF4.Controllers.Api
 
 
 
-        [HttpPost("{id}")]
-        //[ValidateAntiForgeryToken]
-        public async Task<ApiResultModel> DeleteArticle([FromBody] Int32 id)
+        [HttpPost]
+        public async Task<ApiResultModel> DeleteArticle([FromBody] int id)
         {
             Articles articles = await _db.Articles.FindAsync(id);
             if (articles != null)
             {
+                var replies =_db.ArticlesReply.Where(x => x.ArticleId == id).ToList();
+                _db.ArticlesReply.RemoveRange(replies);
                 _db.Articles.Remove(articles);
                 await _db.SaveChangesAsync();
                 return new ApiResultModel

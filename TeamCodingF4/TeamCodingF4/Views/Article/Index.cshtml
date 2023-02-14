@@ -83,7 +83,7 @@
                                 <div class="text-muted small text-center align-self-center">
                                     <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> </span>
                                     @*<span><i class="far fa-comment ml-2"></i> 3</span>*@
-                                    <button data-target="#articleModal" data-toggle="modal" type="button">編輯</button>
+                                    <button data-target="#articleModal" data-toggle="modal" type="button" @@click="loadEdit(article)">編輯</button>
                                     <button @@click="deleteArticle(article)">刪除</button>
                                 </div>
                             </div>
@@ -192,15 +192,15 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="Title">標題</label>
-                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="addArticle.Title" />
+                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="edit.title" />
                             </div>
                             @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
                             <div class="form-group">
                                 <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
-                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="addArticle.Content"></textarea>
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="edit.content"></textarea>
                             </div>
                             <div class="form-group" id="Category" name="Category">
-                                <select v-model="addArticle.Category">
+                                <select v-model="edit.category">
                                     <option value="-1">請選擇文章類別</option>
                                     <option>心得分享</option>
                                     <option>發文解惑</option>
@@ -211,7 +211,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary px-3" v-on:click="editArticle(fullArticles,addArticle)">回覆</button>
+                            <button type="button" class="btn btn-primary px-3" v-on:click="editArticle()">修改</button>
                         </div>
                     </form>
                 </div>
@@ -382,6 +382,11 @@
                 articles: [],
                 show: [],
                 postReply: "",
+                edit:{
+                    title:"",
+                    content: "",
+                    category: "",
+                },
                 addArticle: {
                     Title: "",
                     Content: "",
@@ -414,6 +419,11 @@
                     })
             },
             methods: {
+                loadEdit:function(data){
+                    this.edit.title = data.title;
+                    this.edit.content = data.content;
+                    this.edit.category = data.category;
+                },
                 showArticle: function (type) {
                     var temp = [];
                     for (let i = 0; i < this.articles.length; i++) {
@@ -496,7 +506,7 @@
                 deleteArticle: function (article) {
                     let _self = this;
                     console.log(article.id)
-                    var deleteArticleUrl = `/api/article/deletearticle/` + `${article.id}`
+                    var deleteArticleUrl = `/api/article/deletearticle/`
                     fetch(deleteArticleUrl, {
                         method: "POST",
                         body: JSON.stringify(article.id),
@@ -523,7 +533,7 @@
                 deleteArticleReply: function (articleReplys) {
                     let _self = this;
                     console.log(articleReplys.id)
-                    var deleteArticleReplyUrl = `/api/articlereply/deletearticlereply/` + `${articleReplys.id}`
+                    var deleteArticleReplyUrl = `/api/articlereply/deletearticlereply/`
                     fetch(deleteArticleReplyUrl, {
                         method: "POST",
                         body: JSON.stringify(articleReplys.id),
@@ -547,14 +557,12 @@
                             })
                     })
                 },
-                editArticle: function (fullArticles, addArticle) {
-                    console.log(fullArticles)
+                editArticle: function () {
                     let _self = this;
-                    addArticle = _self.addArticle
-                    editArticleUrl = `/api/article/editarticle/` + `${fullArticles.id}`
+                    editArticleUrl = `/api/article/editarticle`
                     fetch(editArticleUrl, {
                         method: "POST",
-                        body: JSON.stringify(fullArticles.id, addArticle),
+                        body: JSON.stringify(_self.edit),
                         headers: { "content-type": "application/json" }
                     }).then(function (response) { return response.json() })
                         .then(function (result) {
@@ -572,12 +580,7 @@
                             Swal.fire(al)
                         })
                 },
-                //getTime:function(day){
-                //    let date = new Date();
-                //    let dateTime = [date]
-                //    return dateTime.toLocaleString();
-
-                //},
+                
             },
         });
     </script>
