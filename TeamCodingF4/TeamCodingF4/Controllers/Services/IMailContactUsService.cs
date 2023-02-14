@@ -26,9 +26,9 @@ namespace TeamCodingF4.Controllers.Services
 			mail.IsBodyHtml = true;
 			mail.BodyEncoding = Encoding.UTF8;
 			mail.Body = @$"<h2>名稱: {member.Name} <br>
-                               Email: {} <br>內容: {} </h2> 
+                               Email: {member.Name} <br>內容: {member.Name} </h2> 
                                ";
-			mail.From = new MailAddress("TeamCodingF4@gmail.com", "會員認證中心");
+			mail.From = new MailAddress("TeamCodingF4@gmail.com", "來自聯絡我們");
 
 			mail.To.Add(new MailAddress("TeamCodingF4@gmail.com"));
 			
@@ -50,7 +50,7 @@ namespace TeamCodingF4.Controllers.Services
 			}
 			finally
 			{
-				//attachment.Dispose();
+
 				mail.Dispose();
 				client.Dispose();
 			}
