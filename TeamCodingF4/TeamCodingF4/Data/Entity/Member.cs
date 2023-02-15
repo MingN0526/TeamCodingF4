@@ -46,10 +46,10 @@ namespace TeamCodingF4.Data.Entity
         /// </summary>
         public string? Identity { get; set; }
 
-        /// <summary>
-        /// 會員住址
-        /// </summary>
-        public string? Address { get; set; }
+        ///// <summary>
+        ///// 會員住址
+        ///// </summary>
+        //public string? Address { get; set; }
 
         /// <summary>
         /// 會員生日
