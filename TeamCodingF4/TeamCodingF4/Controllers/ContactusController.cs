@@ -1,47 +1,27 @@
-﻿using AutoMapper.Execution;
-using Microsoft.AspNetCore.Mvc;
-using System.Runtime.Intrinsics.Arm;
-using System.Security.Cryptography.X509Certificates;
-using TeamCodingF4.Controllers.Services;
-using TeamCodingF4.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using TeamCodingF4.Models.ApiModel;
+using TeamCodingF4.Services;
 
 namespace TeamCodingF4.Controllers
 {
     public class ContactusController : Controller
     {
 
-        //private readonly IMailContactUs mailFromContactUs;
-
-        //public ContactusController(IMailContactUs mailFromContactUs) 
-        //{
-        //    this.mailFromContactUs = mailFromContactUs;
-        //}
-        //public string SenderMessage([FromBody] EmailFromContactUsModel tempContainer)
-        //{
-        //    //call ur method
-        //    mailFromContactUs.Send();
-
-        private readonly MailContactUsService mailFromContactUs;
-
-        public ContactusController(MailContactUsService mailFromContactUs) 
+        private readonly IMailService _mailService;
+        
+        public ContactusController(IMailService mailService)
         {
-            this.mailFromContactUs = mailFromContactUs;
+            _mailService = mailService;
         }
-        //public string SenderMessage([FromBody] EmailFromContactUsModel tempContainer)
-        //{
-        //    //call ur method
-        //    var User = new EmailFromContactUsModel
-        //    {
-        //        Email = tempContainer.Email,
-        //        Message = tempContainer.Message,
-        //        Name = tempContainer.Name,
-        //        Subject = tempContainer.Subject,
 
-        //    };
-        //    mailFromContactUs.Send(User);
+        public string SenderMessage([FromBody] EmailFromContactUsModel data)
+        {
+            var msg = $@"dsfsfgfhg{data.Email}{data.Name}";
 
-        //    return tempContainer.Email;
-        //}
+            var mailMessage = _mailService.ToMail(data.Subject,msg, data.Email);
+            _mailService.Send(mailMessage);
+
+            return data.Email;
+        }
     }
 }

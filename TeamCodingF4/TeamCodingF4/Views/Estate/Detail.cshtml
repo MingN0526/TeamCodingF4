@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary py-2 px-4 btnblue" type="button" v-on:click="editEstate">修改</button>
+                            <a class="btn btn-primary py-2 px-4 btnblue" type="button" :href="editEstate(detailId)">修改</a>
                         </div>
                     </div>
                 </div>
@@ -176,10 +176,10 @@
                         method: "POST",
                         body: self.detailId,
                         headers: { "content-type": "application/json" }
-                    })
+                    }).then(window.history.back())
                 },
-                editEstate: function () {
-                   
+                editEstate: function (id) {
+                    return "/Estate/Edit/" + id
                 },
             },
         })

@@ -1,200 +1,217 @@
-﻿<div class="container-fluid">
+﻿<style>
+    .btnblue {
+        background-color: cornflowerblue;
+        color: white;
+    }
+
+    .btnred {
+        background-color: red;
+        color: white;
+    }
+</style>
+
+<div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
                 <a class="breadcrumb-item text-dark" href="#">首頁</a>
-                <span class="breadcrumb-item active">我的物件</span>
+                <a class="breadcrumb-item text-dark" href="/estate/index">我的物件</a>
+                <span class="breadcrumb-item active">修改物件</span>
             </nav>
         </div>
     </div>
 </div>
 
 <div class="container-fluid" id="estateEdit">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">物件刊登</span></h2>
-    <form action="/Api/EstateApi/Create" method="post" enctype="multipart/form-data">
-        <div class="row px-xl-5 ">
-            <div class="col-lg-12 mb-5">
-                <div class="contact-form bg-light p-30">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <div class="control-group">
-                                <label>標題</label>
-                                <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required v-model="addEstate.Tittle" />
-                                <p class="help-block text-danger"></p>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">修改物件</span></h2>
+    <div class="row px-xl-5 ">
+        <div class="col-lg-12 mb-5">
+            <div class="contact-form bg-light p-30">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <div class="control-group">
+                            <label>標題</label>
+                            <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required />
+                            <p class="help-block text-danger"></p>
 
-                            </div>
-                            <div class="control-group">
-                                <label>房型</label>
-                                <select class="form-control" name="RoomTypeId" id="RoomTypeId" required v-model="addEstate.RoomTypeId">
-                                    <option value="">請選擇房型</option>
-                                    <option value="1">透天</option>
-                                    <option value="2">套房</option>
-                                    <option value="3">雅房</option>
-                                    <option value="4">其他</option>
-                                </select>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>LDK</label>
-                                <div class="row">
-                                    <span class="col-1">房:</span>
-                                    <input type="number" class="form-control col-2" name="Room" required v-model="addEstate.Room" />
-                                    <span class="col-1">廳:</span>
-                                    <input type="number" class="form-control col-2" name="hall" required v-model="addEstate.hall" />
-                                    <span class="col-1">衛:</span>
-                                    <input type="number" class="form-control col-2" name="bathroom" required v-model="addEstate.bathroom" />
-                                </div>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>地址</label>
-                                <div class="row">
-                                    <select class="col-3 form-control" id="City" name="City" onchange="select()" required>
-                                        <option value="">請選擇縣市</option>
-                                        <option>臺北市</option>
-                                        <option>新北市</option>
-                                        <option>桃園市</option>
-                                        <option>臺中市</option>
-                                        <option>臺南市</option>
-                                        <option>高雄市</option>
-                                        <option>宜蘭縣</option>
-                                        <option>新竹縣</option>
-                                        <option>苗栗縣</option>
-                                        <option>彰化縣</option>
-                                        <option>南投縣</option>
-                                        <option>雲林縣</option>
-                                        <option>嘉義縣</option>
-                                        <option>屏東縣</option>
-                                        <option>臺東縣</option>
-                                        <option>花蓮縣</option>
-                                        <option>澎湖縣</option>
-                                        <option>基隆市</option>
-                                        <option>新竹市</option>
-                                        <option>嘉義市</option>
-                                        <option>連江縣</option>
-                                        <option>金門縣</option>
-                                    </select>
-                                    <select class="col-3 form-control" id="District" name="District" required>
-                                        <option value="">請選擇區域</option>
-                                    </select>
-                                    <input type="text" class="form-control col-5" name="Address" required placeholder="請填詳細" />
-                                </div>
-                                <p class="help-block text-danger"></p>
-                                <div class="row">
-
-                                    <span class="col-2">樓:</span>
-                                    <input type="text" class="form-control col-3" name="Floor" required />
-                                </div>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>價格(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Price" required id="Price" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>雜費(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" required v-model="addEstate.Miscellaneous" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>坪數</label>
-                                <input type="number" min="1" class="form-control" name="Meters" id="Meters" required v-model="addEstate.Meters" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>車位</label>
-                                <div class="row">
-                                    <span class="col-2">汽車:</span>
-                                    <input type="number" min="0" class="form-control col-3" name="Car" id="Car" required v-model="addEstate.Car" />
-                                    <span class="col-2">機車:</span>
-                                    <input type="number" min="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" required v-model="addEstate.Motorcycle" />
-                                </div>
-                                <p class="help-block text-danger"></p>
-                            </div>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <div class="control-group">
-                                <label>設備</label>
-                                <div class="form-control">
-                                    <input type="checkbox" name="EquipmentId" value="1" id="AirConditioner" />
-                                    <label for="AirConditioner">冷氣</label>
-                                    <input type="checkbox" name="EquipmentId" value="2" id="Television">
-                                    <label for="Television">電視</label>
-                                    <input type="checkbox" name="EquipmentId" value="3" id="WetDry" />
-                                    <label for="WetDry">乾溼分離</label>
-                                    <input type="checkbox" name="EquipmentId" value="4" id="Balcony" />
-                                    <label for="Balcony">陽台</label>
-                                    <input type="checkbox" name="EquipmentId" value="5" id="WashingMachine" />
-                                    <label for="WashingMachine">洗衣機</label>
-                                    <input type="checkbox" name="EquipmentId" value="6" id="WaterDispenser" />
-                                    <label for="WaterDispenser">飲水機</label>
-                                    <input type="checkbox" name="EquipmentId" value="7" id="Refrigerator" />
-                                    <label for="Refrigerator">冰箱</label>
-                                </div>
+                        <div class="control-group">
+                            <label>房型</label>
+                            <select class="form-control" name="RoomTypeId" id="RoomTypeId" required>
+                                <option value="">請選擇房型</option>
+                                <option value="1">透天</option>
+                                <option value="2">套房</option>
+                                <option value="3">雅房</option>
+                                <option value="4">其他</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>LDK</label>
+                            <div class="row">
+                                <span class="col-1">房:</span>
+                                <input type="number" class="form-control col-2" name="Room" required />
+                                <span class="col-1">廳:</span>
+                                <input type="number" class="form-control col-2" name="hall" required />
+                                <span class="col-1">衛:</span>
+                                <input type="number" class="form-control col-2" name="bathroom" required />
                             </div>
                             <p class="help-block text-danger"></p>
-                            <div class="control-group">
-                                <label>租約期(月)</label>
-                                <input type="number" min="1" class="form-control" name="Lease" id="Lease" required v-model="addEstate.Lease" />
-                                <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>地址</label>
+                            <div class="row">
+                                <select class="col-3 form-control" id="City" name="City" onchange="select()" required>
+                                    <option value="">請選擇縣市</option>
+                                    <option>臺北市</option>
+                                    <option>新北市</option>
+                                    <option>桃園市</option>
+                                    <option>臺中市</option>
+                                    <option>臺南市</option>
+                                    <option>高雄市</option>
+                                    <option>宜蘭縣</option>
+                                    <option>新竹縣</option>
+                                    <option>苗栗縣</option>
+                                    <option>彰化縣</option>
+                                    <option>南投縣</option>
+                                    <option>雲林縣</option>
+                                    <option>嘉義縣</option>
+                                    <option>屏東縣</option>
+                                    <option>臺東縣</option>
+                                    <option>花蓮縣</option>
+                                    <option>澎湖縣</option>
+                                    <option>基隆市</option>
+                                    <option>新竹市</option>
+                                    <option>嘉義市</option>
+                                    <option>連江縣</option>
+                                    <option>金門縣</option>
+                                </select>
+                                <select class="col-3 form-control" id="District" name="District" required>
+                                    <option value="">請選擇區域</option>
+                                </select>
+                                <input type="text" class="form-control col-5" name="Address" required />
                             </div>
+                            <p class="help-block text-danger"></p>
+                            <div class="row">
+                                <span class="col-2">樓:</span>
+                                <input type="text" class="form-control col-3" name="Floor" required />
+                            </div>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>價格(NT)</label>
+                            <input type="number" min="0" class="form-control" name="Price" required id="Price" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>雜費(NT)</label>
+                            <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>坪數</label>
+                            <input type="number" min="1" class="form-control" name="Meters" id="Meters" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>車位</label>
+                            <div class="row">
+                                <span class="col-2">汽車:</span>
+                                <input type="number" min="0" class="form-control col-3" name="Car" id="Car" required />
+                                <span class="col-2">機車:</span>
+                                <input type="number" min="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" required />
+                            </div>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <div class="control-group">
+                            <label>設備</label>
+                            <div class="form-control">
+                                <input type="checkbox" name="EquipmentId" value="1" id="AirConditioner" />
+                                <label for="AirConditioner">冷氣</label>
+                                <input type="checkbox" name="EquipmentId" value="2" id="Television">
+                                <label for="Television">電視</label>
+                                <input type="checkbox" name="EquipmentId" value="3" id="WetDry" />
+                                <label for="WetDry">乾溼分離</label>
+                                <input type="checkbox" name="EquipmentId" value="4" id="Balcony" />
+                                <label for="Balcony">陽台</label>
+                                <input type="checkbox" name="EquipmentId" value="5" id="WashingMachine" />
+                                <label for="WashingMachine">洗衣機</label>
+                                <input type="checkbox" name="EquipmentId" value="6" id="WaterDispenser" />
+                                <label for="WaterDispenser">飲水機</label>
+                                <input type="checkbox" name="EquipmentId" value="7" id="Refrigerator" />
+                                <label for="Refrigerator">冰箱</label>
+                            </div>
+                        </div>
+                        <p class="help-block text-danger"></p>
+                        <div class="control-group">
+                            <label>租約期(月)</label>
+                            <input type="number" min="1" class="form-control" name="Lease" id="Lease" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
 
-                            <div class="control-group">
-                                <label>條件</label>
-                                <div class="form-control">
-                                    <input type="checkbox" name="ConditionId" value="1" id="pet" />
-                                    <label for="pet">寵物</label>
+                        <div class="control-group">
+                            <label>條件</label>
+                            <div class="form-control">
+                                <input type="checkbox" name="ConditionId" value="1" id="pet" />
+                                <label for="pet">寵物</label>
+                            </div>
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="control-group">
+                            <label>照片</label>
+                            <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label>宣傳資訊</label>
+                            <textarea class="form-control" rows="8" name="message" id="message" required></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="button">取消</button>
+                        <button class="btn btn-primary py-2 px-4" type="button">確定</button>
+                        <div class="modal fade" id="delModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3>修改資料</h3>
+                                        <button type="button" class="fa fa-times" data-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <span style="color:black">您確定要修改這筆資料</span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary py-2 px-4 btnblue" data-dismiss="modal" type="button">取消</button>
+                                        <button class="btn btn-primary py-2 px-4 btnred" v-on:click="deleteEstate">確定</button>
+                                    </div>
                                 </div>
-                                <p class="help-block text-danger"></p>
                             </div>
-
-                            <div class="control-group">
-                                <label>照片</label>
-                                <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <label>宣傳資訊</label>
-                                <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message" required></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="reset">
-                                重設
-                            </button>
-                            <button class="btn btn-primary py-2 px-4" type="submit">
-                                送出
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 @section Scripts{
     <script src="~/js/CityDistrict.js"></script>
     <script>
-            let app = new Vue({
-                el: "#estateEdit",
-                data: {
-                    editinf: "",
-                    editId: @ViewBag.Id
+        let app = new Vue({
+            el: "#estateEdit",
+            data: {
+                editinf: "",
+                editId: @ViewBag.Id
             },
-            //mounted: function () {
-            //    let self = this;
-            //    fetch(`/Api/EstateApi/Detail?id=` + self.editId)
-            //        .then(function (response) { return response.json() })
-            //        .then(function (result) {
-            //            console.log(result)
-            //            self.detailinf = result
-            //        })
+            mounted: function () {
+
             },
             methods: {
-                
+
             },
         })
     </script>
-         
+
 }

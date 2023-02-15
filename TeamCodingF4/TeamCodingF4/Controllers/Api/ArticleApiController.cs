@@ -26,7 +26,7 @@ namespace TeamCodingF4.Controllers.Api
             {
                 Id = x.ArticleId,
                 Content = x.Content,
-                Date = x.Date.ToString("d"),
+                Date = x.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                 Title = x.Title,
                 ViewCount = x.ViewCount,
                 Category = x.Category,
@@ -36,22 +36,19 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
+        [Authorize]
+        public ApiResultModel PostArticle(ArticleInsertModel model)
         {
-            //var memberId = User.Claims.GetMemberId();
-            //var articleId = User.Claims.GetArticleId();
-            Articles articles = new Articles
-            {
+            var memberId = int.Parse(User.Claims.First(x=>x.Type=="Id").Value);
+            _db.Articles.Add(new Articles {
                 Title = model.Title,
                 Content = model.Content,
                 Category = model.Category,
                 Date = DateTime.UtcNow,
-                ViewCount = 1,  //TODO Viewcount function
-                //PublisherId = memberId, TODO
-                PublisherId = 1,                                    
-            };
-            _db.Articles.Add(articles);
-            await _db.SaveChangesAsync();            
+                ViewCount = 1,
+                PublisherId = memberId,                
+            });
+            _db.SaveChanges();            
             return new ApiResultModel
             {
                 Status = true,
@@ -97,46 +94,43 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-//<<<<<<< HEAD
-//        //[HttpPost]
-//=======
-//        [HttpPost]
-//>>>>>>> a2557c02216421889a8e3dad4d97cb2b821a4c66
-//        //public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
-//        //{
-//        //    if (id != articleModel.Id)
-//        //    {
-//        //        return null;
-//        //    }
-//        //    Articles articles = await _db.Articles.FindAsync(articleModel.Id);
-//        //    articles.Content = articleModel.Content;
-//        //    articles.Title = articleModel.Title;
-//        //    articles.Category = articleModel.Category;
-//        //    _db.Entry(articles).State = EntityState.Modified;
-//        //    try
-//        //    {
-//        //        await _db.SaveChangesAsync();
-//        //    }
-//        //    catch (DbUpdateConcurrencyException)
-//        //    {
-//        //        if (!ArticleExists(id))
-//        //        {
-//        //            return new ApiResultModel
-//        //            {
-//        //                Status = false,
-//        //                Message = "找不到需編輯的文章"
-//        //            };
-//        //        }
-//        //        else
-//        //        {
-//        //            throw;
-//        //        }
-//        //    }
-//        //    return new ApiResultModel
-//        //    {
-//        //        Status = true,
-//        //        Message = "編輯成功"
-//        //    };
+
+        //[HttpPost]
+        //public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
+        //{
+        //    if (id != articleModel.Id)
+        //    {
+        //        return null;
+        //    }
+        //    Articles articles = await _db.Articles.FindAsync(articleModel.Id);
+        //    articles.Content = articleModel.Content;
+        //    articles.Title = articleModel.Title;
+        //    articles.Category = articleModel.Category;
+        //    _db.Entry(articles).State = EntityState.Modified;
+        //    try
+        //    {
+        //        await _db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ArticleExists(id))
+        //        {
+        //            return new ApiResultModel
+        //            {
+        //                Status = false,
+        //                Message = "找不到需編輯的文章"
+        //            };
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    return new ApiResultModel
+        //    {
+        //        Status = true,
+        //        Message = "編輯成功"
+        //    };
         //}
 
         private bool ArticleExists(int id)

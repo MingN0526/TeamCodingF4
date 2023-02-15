@@ -5,11 +5,8 @@ using TeamCodingF4.Data.Entity;
 using TeamCodingF4.Models.Account;
 using TeamCodingF4.Models.Common;
 using System.Security.Cryptography;
-using TeamCodingF4.Controllers.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
 using TeamCodingF4.Models.ApiModel;
+using TeamCodingF4.Services;
 
 namespace TeamCodingF4.Controllers.Api
 {
@@ -58,7 +55,9 @@ namespace TeamCodingF4.Controllers.Api
                 _context.Members.Add(_register);
                 _context.SaveChanges();
 
-                mailService.Send(_register);
+
+                var mail = mailService.ToMail("","","");
+                mailService.Send(mail);
 
                 result.IsOk = true;
                 return result;
@@ -101,7 +100,7 @@ namespace TeamCodingF4.Controllers.Api
             return _context.Members.Select(x => new MemberModel
             {
                 Id = x.Id,
-                Address = x.Address,
+                //Address = x.Address,
                 BirthDate = x.BirthDate,
                 Email = x.Email,
                 Gender = x.Gender,
