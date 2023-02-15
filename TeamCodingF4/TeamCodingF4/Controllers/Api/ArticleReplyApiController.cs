@@ -15,6 +15,18 @@ namespace TeamCodingF4.Controllers.Api
         {
             _db = context;
         }
+        [HttpGet("{id}")]
+        public List<ArticleReplyModel> GetReplyById(int id)
+        {
+            return _db.ArticlesReply.Where(x => x.ArticleId == id).Select(x => new ArticleReplyModel
+            {
+                ArticleId = x.ArticleId,
+                Id = x.Id,
+                Date = x.Date.ToString("d"),
+                Content = x.Content,
+                PublisherId = x.PublisherId,                
+            }).ToList();
+        }
         public List<ArticleReplyModel> GetAllReply()
         {
             return _db.ArticlesReply.Select(x => new ArticleReplyModel

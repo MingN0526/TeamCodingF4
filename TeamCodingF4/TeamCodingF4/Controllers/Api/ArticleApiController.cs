@@ -26,7 +26,7 @@ namespace TeamCodingF4.Controllers.Api
             {
                 Id = x.ArticleId,
                 Content = x.Content,
-                Date = x.Date.ToString("d"),
+                Date = x.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                 Title = x.Title,
                 ViewCount = x.ViewCount,
                 Category = x.Category,
@@ -36,22 +36,19 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        public async Task<ApiResultModel> PostArticle(ArticleInsertModel model)
+        [Authorize]
+        public ApiResultModel PostArticle(ArticleInsertModel model)
         {
-            //var memberId = User.Claims.GetMemberId();
-            //var articleId = User.Claims.GetArticleId();
-            Articles articles = new Articles
-            {
+            var memberId = int.Parse(User.Claims.First(x=>x.Type=="Id").Value);
+            _db.Articles.Add(new Articles {
                 Title = model.Title,
                 Content = model.Content,
                 Category = model.Category,
                 Date = DateTime.UtcNow,
-                ViewCount = 1,  //TODO Viewcount function
-                //PublisherId = memberId, TODO
-                PublisherId = 1,                                    
-            };
-            _db.Articles.Add(articles);
-            await _db.SaveChangesAsync();            
+                ViewCount = 1,
+                PublisherId = memberId,                
+            });
+            _db.SaveChanges();            
             return new ApiResultModel
             {
                 Status = true,
