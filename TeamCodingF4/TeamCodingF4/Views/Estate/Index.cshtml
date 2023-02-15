@@ -58,7 +58,6 @@
         var app = new Vue({
             el: "#estateIndex",
             data: {
-                detailId:"",
                 inf: "",
             },
             mounted: function () {
@@ -69,9 +68,6 @@
                     })
                     .then(function (result) {
                         self.inf = result
-                        console.log(self.inf)
-                        self.detailId = result.map(x => x.id)
-                        console.log(self.detailId)
                     })
             },
             methods:{

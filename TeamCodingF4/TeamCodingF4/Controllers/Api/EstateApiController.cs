@@ -118,26 +118,17 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-        [HttpPost("{id}")]
-        public  ApiResultModel Delete([FromBody] int id)
+        [HttpPost]
+        public IActionResult Delete([FromBody] int id)
         {
-            Estate estate =  _context.Estates.Find(id);
-            if (estate != null)
-            {
-                _context.Estates.Remove(estate);
-                _context.SaveChangesAsync();
-                return new ApiResultModel
-                {
-                    Status = true,
-                    Message = "刪除成功"
-                };
-            }
 
-            return new ApiResultModel
-            {
-                Status = false,
-                Message = "刪除失敗"
-            };
+            return RedirectToAction("Index", "Estate");
+        }
+        [HttpPost]
+        public IActionResult Edit([FromBody] int id)
+        {
+
+            return RedirectToAction("Index", "Estate");
         }
     } 
 }

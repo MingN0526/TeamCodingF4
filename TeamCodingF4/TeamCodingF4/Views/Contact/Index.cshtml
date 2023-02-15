@@ -20,27 +20,27 @@
                 <form name="sentMessage" id="contactForm" novalidate="novalidate">
                     <div class="control-group">
                         <input type="text" class="form-control" id="name" placeholder="請輸入姓名"
-                               required="required" data-validation-required-message="請輸入姓名" v-model="sender-name" />
+                               required="required" data-validation-required-message="請輸入姓名" v-model="sender.name" />
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
                         <input type="email" class="form-control" id="email" placeholder="請輸入email"
-                               required="required" data-validation-required-message="請輸入email"  v-model="sender-email"/>
+                               required="required" data-validation-required-message="請輸入email"  v-model="sender.email"/>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
                         <input type="text" class="form-control" id="subject" placeholder="請輸入主題"
-                               required="required" data-validation-required-message="請輸入主題"  v-model="sender-subject"/>
+                               required="required" data-validation-required-message="請輸入主題"  v-model="sender.subject"/>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
                         <textarea class="form-control" rows="8" id="message" placeholder="請輸入內容"
                                   required="required"
-                                  data-validation-required-message="請輸入內容" v-model="sender-message"></textarea>
+                                  data-validation-required-message="請輸入內容" v-model="sender.message"></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div>
-                        <button class="btn btn-primary py-2 px-4" type="submit" id="sendemail-contactus" v-on:click="sendemail-contactus">
+                        <button class="btn btn-primary py-2 px-4" type="button" id="sendemail-contactus" v-on:click="sendMail">
                             發送
                             
                         </button>
@@ -69,19 +69,31 @@
             let app = new Vue({
                 el: "#contactus",
                 data: {
-                    sender-name: "",
-                    sender-email: "",
-                    sender-subject: "",
-                    sender-message: ""
+                    sender:{
+                        name:"",
+                        email:"",
+                        subject:"",
+                        message:""
+                    },  
                 },
-                mounted: {
-                          
-                       
-                },
-                methods: {
-                    
-                    },
-                    },
+                methods: { 
+                    sendMail:function(){
+                        let _self = this
+                        console.log("asdasdasdasdasdasasda",this);
+                                fetch("/Contactus/SenderMessage",{
+                                    method:"post",
+                                    body:JSON.stringify(app.sender),
+                                    headers:{
+                                        'content-type':'application/json'
+                                    }
+                                })
+                            .then(function(response){return response.json()})
+                            .then(function(result){
+                                console.log(result)
+                                _self.sender.name = result
+
+                            })
+                    }
                 },
             });
         </script>
