@@ -121,7 +121,7 @@ namespace TeamCodingF4.Controllers.Api
         [HttpPost]
         public IActionResult Delete([FromBody] int id)
         {
-
+            
             return RedirectToAction("Index", "Estate");
         }
         [HttpPost]

@@ -97,46 +97,42 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-//<<<<<<< HEAD
-//        //[HttpPost]
-//=======
-//        [HttpPost]
-//>>>>>>> a2557c02216421889a8e3dad4d97cb2b821a4c66
-//        //public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
-//        //{
-//        //    if (id != articleModel.Id)
-//        //    {
-//        //        return null;
-//        //    }
-//        //    Articles articles = await _db.Articles.FindAsync(articleModel.Id);
-//        //    articles.Content = articleModel.Content;
-//        //    articles.Title = articleModel.Title;
-//        //    articles.Category = articleModel.Category;
-//        //    _db.Entry(articles).State = EntityState.Modified;
-//        //    try
-//        //    {
-//        //        await _db.SaveChangesAsync();
-//        //    }
-//        //    catch (DbUpdateConcurrencyException)
-//        //    {
-//        //        if (!ArticleExists(id))
-//        //        {
-//        //            return new ApiResultModel
-//        //            {
-//        //                Status = false,
-//        //                Message = "找不到需編輯的文章"
-//        //            };
-//        //        }
-//        //        else
-//        //        {
-//        //            throw;
-//        //        }
-//        //    }
-//        //    return new ApiResultModel
-//        //    {
-//        //        Status = true,
-//        //        Message = "編輯成功"
-//        //    };
+        [HttpPost]
+        //public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
+        //{
+        //    if (id != articleModel.Id)
+        //    {
+        //        return null;
+        //    }
+        //    Articles articles = await _db.Articles.FindAsync(articleModel.Id);
+        //    articles.Content = articleModel.Content;
+        //    articles.Title = articleModel.Title;
+        //    articles.Category = articleModel.Category;
+        //    _db.Entry(articles).State = EntityState.Modified;
+        //    try
+        //    {
+        //        await _db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ArticleExists(id))
+        //        {
+        //            return new ApiResultModel
+        //            {
+        //                Status = false,
+        //                Message = "找不到需編輯的文章"
+        //            };
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    return new ApiResultModel
+        //    {
+        //        Status = true,
+        //        Message = "編輯成功"
+        //    };
         //}
 
         private bool ArticleExists(int id)
