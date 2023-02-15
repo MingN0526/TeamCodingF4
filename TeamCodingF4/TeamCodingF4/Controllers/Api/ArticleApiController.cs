@@ -97,7 +97,8 @@ namespace TeamCodingF4.Controllers.Api
         }
 
 
-        [HttpPost]
+
+        //[HttpPost]
         //public async Task<ApiResultModel> EditArticle([FromBody] ArticleModel articleModel)
         //{
         //    if (id != articleModel.Id)

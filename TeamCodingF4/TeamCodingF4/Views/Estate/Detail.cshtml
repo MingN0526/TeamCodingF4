@@ -176,7 +176,7 @@
                         method: "POST",
                         body: self.detailId,
                         headers: { "content-type": "application/json" }
-                    })
+                    }).then(window.history.back())
                 },
                 editEstate: function (id) {
                     return "/Estate/Edit/" + id
