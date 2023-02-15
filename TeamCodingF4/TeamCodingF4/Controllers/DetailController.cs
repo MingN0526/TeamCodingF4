@@ -12,6 +12,7 @@ namespace TeamCodingF4.Controllers
         }
         public IActionResult Index ()
         {
+            TempData["active"] = "detail";
             return View();
         }
         public async Task<IActionResult> HouseDetail(int id = 1)
@@ -25,8 +26,7 @@ namespace TeamCodingF4.Controllers
             {
                 return NotFound();
             }
-            ViewBag.id = id;
-            TempData["active"] = "detail";
+            ViewBag.id = id;          
             return View();
         }
        
