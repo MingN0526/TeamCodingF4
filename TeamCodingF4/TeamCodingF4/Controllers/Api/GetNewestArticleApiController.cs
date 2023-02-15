@@ -15,9 +15,11 @@ namespace TeamCodingF4.Controllers.Api
         {
             _db = data;
         }
+
+
         //public List<ArticleModel> GetAll()
         //{
-            
+        //    return _db.Articles.Where(x => new ArticleModel.OrderByDescending(x => x.Date).Take(1); }
         //    return _db.Articles.Select(x=>new ArticleModel
         //    {
         //       NewestArticleTitle = x.Title
