@@ -15,14 +15,15 @@
     <!-- Shop Detail Start -->
 
     <div class="container-fluid pb-5" id="detailIndex">
-        <div class="row px-xl-5" v-for="allHouseDetail in houseDetail">
+        <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner bg-light">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" :src="allHouseDetail.estateImage[0].imagePath" alt="Image">
-                        </div>
+                  <div class="carousel-inner bg-light">
+                    <div class="carousel-item active" v-for="house in ">
+                            <img class="w-100 h-100" :src="houseDetail.estateImage.imagePath" alt="Image">
                     </div>
+                   
+                </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                         <i class="fa fa-2x fa-angle-left text-dark"></i>
                     </a>
@@ -31,76 +32,82 @@
                     </a>
                 </div>
             </div>
-
+@*            {{houseDetail.roomType.name}}*@
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
-                    <h3>{{allHouseDetail.tittle}}</h3>
+                    <h3>{{houseDetail.tittle}}</h3>
                     <div class="d-flex ">
                         <small class="pt-1"></small>
                     </div>
-                    <h3 class="font-weight-semi-bold ">${{allHouseDetail.price}}</h3>
+                    <h3 class="font-weight-semi-bold ">${{houseDetail.price}}</h3>
                     <p>
-                        {{allHouseDetail.message}}
+                        {{houseDetail.message}}
                     </p>
                     <div class="row">
                         <div class="d-flex col-4 ">
                             <strong class="text-dark mr-3">房型</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="size-1">{{allHouseDetail.roomType.name}}</label>
+                                <label class="custom-control-label" for="size-1"></label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">樓層</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.floor}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.floor}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">坪數</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.meters}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.meters}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">房間</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.room}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.room}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">衛浴</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.bathroom}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.bathroom}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">大廳</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.hall}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.hall}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">租約</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.lease}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.lease}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">汽車</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.car}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.car}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">機車</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.motorcycle}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.motorcycle}}</label>
                             </div>
                         </div>
                         <div class="d-flex col-4">
                             <strong class="text-dark mr-3">雜費</strong>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.miscellaneous}}</label>
+                                <label class="custom-control-label" for="color-5">{{houseDetail.miscellaneous}}</label>
+                            </div>
+                        </div>
+                        <div class="d-flex col-8">
+                            <strong class="text-dark mr-3">地址</strong>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-control-label" for="color-5">{{houseDetail.address}}</label>
                             </div>
                         </div>
 @*                        <div class="d-flex col-6" >
@@ -208,16 +215,43 @@
         let app = new Vue({
             el: "#detailIndex",
             data: {
-                houseDetail: "",
+                houseDetail: {
+                    id:"",
+                    address: "",
+                    bathroom: "",
+                    car: "",
+                    city:"",
+                    conditions: "",
+                    district: "",
+                    equipment: "",
+                    estateImage: "",
+                    estateVideoPath: "",
+                    floor: "",
+                    hall:"",
+                    lease: "",
+                    message: "",
+                    meters: "",
+                    miscellaneous: "",
+                    motorcycle: "",
+                    price: "",
+                    room: "",
+                    roomType: "",
+                    roomTypeId: "",
+                    tittle: "",
+                },
                 equipmentName :[],
             },
             mounted: function () {
                 let _self = this
-                fetch("/api/detail/getallhousedetail")
-                    .then(function (response) { return response.json() })
+                fetch("/api/detail/GetHouseDetailById/" + "@ViewBag.id")
+                    .then(function (response) { 
+                        console.log(response)
+                        return response.json() 
+                    })
                     .then(function (result) {
                         console.log(result)
                         _self.houseDetail = result
+                        _self.houseDetail.id = result.Id
                     })
             },
             methods: {
