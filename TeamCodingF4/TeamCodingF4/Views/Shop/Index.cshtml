@@ -276,7 +276,7 @@
                         allHouse:"",
                         equipment:"",
                         houseEquipment:"",
-                        houseDetailsLink:"/Detail/index/",
+                        houseDetailsLink:"/Detail/HouseDetail/",
                       
                     },
                     mounted: function () {
@@ -311,7 +311,7 @@
                         },
                         showRoomType:function(roomType){
                             var temp = []
-                            for (let i = 0; i <= 4; i++){
+                                for (let i = 0; i <= this.allHouse.length; i++){
                                 if (this.allHouse[i].roomType.name == roomType) {
                                     temp.push(this.allHouse[i])
                                 }
@@ -321,7 +321,7 @@
                         },
                         showRoomEquipment:function(equipment){
                             var temp = []
-                                for (let i = 0; i <= 7; i++){
+                                    for (let i = 0; i <= this.allHouse.length; i++){
                                     if (this.allHouse[i].equipment[i].name == equipment) {
                                     temp.push(this.house[i])
                                 }
