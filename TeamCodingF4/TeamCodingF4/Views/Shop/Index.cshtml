@@ -16,7 +16,6 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-4">
-
             <input type="text" placeholder="房屋搜尋" class="section-title position-relative text-uppercase mb-3" v-model="Filter">
                         <button type="button" @@click="filterHouse">
                             <span class=" text-primary">
@@ -26,48 +25,38 @@
             <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租金</span></h5>
             <div class="bg-light p-4 mb-30">
-
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="price-all" >
-                        <label class="custom-control-label" for="price-all">不限</label>
-                      
+                        <label class="custom-control-label" for="price-all">不限</label>                      
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">5000以下</label>
-                       
+                        <label class="custom-control-label" for="price-1">5000以下</label>                       
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">5000-10000元</label>
-                       
+                        <label class="custom-control-label" for="price-2">5000-10000元</label>                       
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-3">
                         <label class="custom-control-label" for="price-3">10000-15000元</label>
-
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">15000-20000元</label>
-                  
+                        <label class="custom-control-label" for="price-4">15000-20000元</label>                  
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">20000-25000元</label>
-               
+                        <label class="custom-control-label" for="price-5">20000-25000元</label>               
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-6">
-                        <label class="custom-control-label" for="price-6">25000-30000元</label>
-            
+                        <label class="custom-control-label" for="price-6">25000-30000元</label>            
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-7">
-                        <label class="custom-control-label" for="price-7">30000元以上</label>
-                      
+                        <label class="custom-control-label" for="price-7">30000元以上</label>                     
                     </div>
-
             </div>
             <!-- Price End -->
             <!-- Color Start -->
@@ -94,7 +83,6 @@
                     <input type="checkbox" class="custom-control-input" id="RoomType-5" v-on:click="showRoomType('其他')">
                         <label class="custom-control-label" for="RoomType-5">其他</label>
                     </div>
-
             </div>
             <!-- Color End -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">樓層</span></h5>
@@ -122,7 +110,6 @@
             </div>
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">設備</span></h5>
             <div class="bg-light p-4 mb-30">
-
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="equipment-all" @@click="showAllRoom">
                         <label class="custom-control-label" for="equipment-all">不限</label>
@@ -130,32 +117,26 @@
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="AirCondintioner" v-on:click="showRoomEquipment('冷氣')">
                         <label class="custom-control-label" for="AirCondintioner">冷氣</label>
-
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Television"  v-on:click="showRoomEquipment('電視')">
                         <label class="custom-control-label" for="Television">電視</label>
-
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="WetDry"  v-on:click="showRoomEquipment('乾濕分離')">
                         <label class="custom-control-label" for="WetDry">乾溼分離</label>
-
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Balcony"  v-on:click="showRoomEquipment('陽台')">
                         <label class="custom-control-label" for="Balcony">陽台</label>
-
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="WashingMachine"  v-on:click="showRoomEquipment('洗衣機')">
                         <label class="custom-control-label" for="WashingMachine">洗衣機</label>
-
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="WaterDispenser"  v-on:click="showRoomEquipment('飲水機')">
                         <label class="custom-control-label" for="WaterDispenser">飲水機</label>
-
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="Refrigerator"  v-on:click="showRoomEquipment('冰箱')">
@@ -169,8 +150,6 @@
                         <label class="custom-control-label" for="equipment-all">{{houseEquipments.name}}</label>
                     </div>                   
             </div>*@
-
-
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租約期</span></h5>
             <div class="bg-light p-4 mb-30">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -237,8 +216,6 @@
             <div class="row pb-3" >
                 <div class="col-12 pb-1" >
                     <div class="d-flex align-items-center justify-content-between mb-4">
-
-
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 pb-1" v-for="estateHouse in allHouse">
@@ -265,84 +242,84 @@
 <!-- Shop End -->
 @section Scripts
     {
-            <script>
-                let app = new Vue({
-                    el: "#estateIndex",
-                    data: {
-                        house: "",
-                        homeRoomType:[],
-                        Filter:"",
-                        FilterBox:"",
-                        allHouse:"",
-                        equipment:"",
-                        houseEquipment:"",
-                        houseDetailsLink:"/Detail/HouseDetail/",
-                      
-                    },
-                    mounted: function () {
-                        let _self = this               
-                        fetch("/api/shop/GetAllHouse")
-                            .then(function (response) { return response.json() })
-                            .then(function (result) {
-                                console.log(result)
-                                _self.house = result
-                                _self.homeRoomType = result
-                                _self.allHouse = result
-                                _self.houseRoomType = result
-                            })
-                           fetch("/api/equipment/GetAllHouseEquipment")
-                             .then(function (response) { return response.json() })
-                             .then(function (result) {
-                                 console.log(result)
-                                 _self.houseEquipment = result
-                            })
-                    },
-                    methods: {
-                        showAllRoom:function(){
-                            let _self = this
+                    <script>
+                        let app = new Vue({
+                            el: "#estateIndex",
+                            data: {
+                                house: "",
+                                homeRoomType:[],
+                                Filter:"",
+                                FilterBox:"",
+                                allHouse:"",
+                                equipment:"",
+                                houseEquipment:"",
+                                houseDetailsLink:"/Detail/HouseDetail/",
+
+                            },
+                            mounted: function () {
+                                let _self = this               
                                 fetch("/api/shop/GetAllHouse")
-                                .then(function (response) { return response.json() })
-                                .then(function (result) {
-                                    console.log(result)
-                                    _self.house = result
-                                    _self.homeRoomType = result
-                                    _self.allHouse = result
-                                })                        
-                        },
-                        showRoomType:function(roomType){
-                            var temp = []
-                                for (let i = 0; i <= this.allHouse.length; i++){
-                                if (this.allHouse[i].roomType.name == roomType) {
-                                    temp.push(this.allHouse[i])
-                                }
-                            }
-                            this.homeRoomType = temp
-                            this.allHouse = this.homeRoomType
-                        },
-                        showRoomEquipment:function(equipment){
-                            var temp = []
-                                    for (let i = 0; i <= this.allHouse.length; i++){
-                                    if (this.allHouse[i].equipment[i].name == equipment) {
-                                    temp.push(this.house[i])
-                                }
-                            }
-                            this.equipment = temp
-                            this.allHouse = this.equipment
-                        },                        
-                        filterHouse: function () {                      
-                                var temp = this.house
-                            if (this.Filter.length > 0) {
-                                temp = temp.filter(function (temp) {
-                                      return temp.tittle.includes(this.Filter)
-                                })
-                            }
-                            this.FilterBox = temp
-                            this.allHouse = this.FilterBox
-                        },
-                        getHouseDetailsLink:function(houseId){
-                                return this.houseDetailsLink + houseId
-                        },
-                    },
-                });
-            </script>
+                                    .then(function (response) { return response.json() })
+                                    .then(function (result) {
+                                        console.log(result)
+                                        _self.house = result
+                                        _self.homeRoomType = result
+                                        _self.allHouse = result
+                                        _self.houseRoomType = result
+                                    })
+                                   fetch("/api/equipment/GetAllHouseEquipment")
+                                     .then(function (response) { return response.json() })
+                                     .then(function (result) {
+                                         console.log(result)
+                                         _self.houseEquipment = result
+                                    })
+                            },
+                            methods: {
+                                showAllRoom:function(){
+                                    let _self = this
+                                        fetch("/api/shop/GetAllHouse")
+                                        .then(function (response) { return response.json() })
+                                        .then(function (result) {
+                                            console.log(result)
+                                            _self.house = result
+                                            _self.homeRoomType = result
+                                            _self.allHouse = result
+                                        })                        
+                                },
+                                showRoomType:function(roomType){
+                                    var temp = []
+                                        for (let i = 0; i <= this.allHouse.length; i++){
+                                        if (this.allHouse[i].roomType.name == roomType) {
+                                            temp.push(this.allHouse[i])
+                                        }
+                                    }
+                                    this.homeRoomType = temp
+                                    this.allHouse = this.homeRoomType
+                                },
+                                showRoomEquipment:function(equipment){
+                                    var temp = []
+                                            for (let i = 0; i <= this.allHouse.length; i++){
+                                            if (this.allHouse[i].equipment[i].name == equipment) {
+                                            temp.push(this.house[i])
+                                        }
+                                    }
+                                    this.equipment = temp
+                                    this.allHouse = this.equipment
+                                },                        
+                                filterHouse: function () {                      
+                                        var temp = this.house
+                                    if (this.Filter.length > 0) {
+                                        temp = temp.filter(function (temp) {
+                                              return temp.tittle.includes(this.Filter)
+                                        })
+                                    }
+                                    this.FilterBox = temp
+                                    this.allHouse = this.FilterBox
+                                },
+                                getHouseDetailsLink:function(houseId){
+                                        return this.houseDetailsLink + houseId
+                                },
+                            },
+                        });
+                    </script>
 }
