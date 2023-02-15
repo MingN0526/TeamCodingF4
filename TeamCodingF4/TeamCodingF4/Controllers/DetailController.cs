@@ -10,7 +10,11 @@ namespace TeamCodingF4.Controllers
         {
             _db = context;
         }
-        public async Task<IActionResult> Index(int id = 1)
+        public IActionResult Index ()
+        {
+            return View();
+        }
+        public async Task<IActionResult> HouseDetail(int id = 1)
         {
             if (id == null || _db.Estates == null)
             {
