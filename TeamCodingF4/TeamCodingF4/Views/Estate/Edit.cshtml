@@ -160,12 +160,25 @@
                                 <textarea class="form-control" rows="8" name="message" id="message" placeholder="Message" required></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="reset">
-                                重設
-                            </button>
-                            <button class="btn btn-primary py-2 px-4" type="submit">
-                                送出
-                            </button>
+                            <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="reset">取消 </button>
+                            <button class="btn btn-primary py-2 px-4" type="submit">確定</button>
+                            <div class="modal fade" id="delModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3>修改資料</h3>
+                                            <button type="button" class="fa fa-times" data-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span style="color:black">您確定要修改這筆資料</span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary py-2 px-4 btnblue" data-dismiss="modal" type="button">取消</button>
+                                            <button class="btn btn-primary py-2 px-4 btnred" v-on:click="deleteEstate">確定</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -184,13 +197,13 @@
                     editId: @ViewBag.Id
             },
             mounted: function () {
-                let self = this;
-                fetch(`/Api/EstateApi/Detail?id=` + self.editId)
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result)
-                        self.detailinf = result
-                    })
+                //let self = this;
+                //fetch(`/Api/EstateApi/Detail?id=` + self.editId)
+                //    .then(function (response) { return response.json() })
+                //    .then(function (result) {
+                //        console.log(result)
+                //        self.detailinf = result
+                //    })
             },
             methods: {
                 

@@ -117,18 +117,40 @@ namespace TeamCodingF4.Controllers.Api
                }).ToList() ;
         }
 
-
         [HttpPost]
-        public IActionResult Delete([FromBody] int id)
+        public void Delete([FromBody] int id)
         {
-            
-            return RedirectToAction("Index", "Estate");
+            var img = _context.EstateImages.Where(x => x.EstateId == id).ToList();
+            _context.EstateImages.RemoveRange(img);
+
+            Estate estate = _context.Estates.Find(id);
+            if (estate.Conditions != null)
+            {
+                var conditions = new List<Condition>();
+                conditions.AddRange(estate.Conditions.Select(x => x));
+                foreach (var condition in conditions)
+                {
+                    estate.Conditions.Remove(condition);
+                }
+            }
+            if (estate.Equipment != null)
+            {
+                var equipments = new List<Equipment>();
+                equipments.AddRange(estate.Equipment.Select(x => x));
+                foreach (var equipment in equipments)
+                {
+                    estate.Equipment.Remove(equipment);
+                }
+            }
+            _context.Estates.Remove(estate);
+            _context.SaveChanges();
         }
+
         [HttpPost]
         public IActionResult Edit([FromBody] int id)
         {
 
-            return RedirectToAction("Index", "Estate");
+            return View();
         }
     } 
 }
