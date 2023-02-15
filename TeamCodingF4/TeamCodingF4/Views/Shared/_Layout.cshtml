@@ -189,7 +189,8 @@
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">熱門文章</h5>
-                        <p>(熱門文章主題)</p>
+                        <div class="row px-xl-5" id = "newestArticle" v-for="Article in newestArticleTitle"><p>(熱門文章主題)</p>
+                            </div>
                         <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="請輸入">
@@ -221,6 +222,23 @@
 
 
     <!-- JavaScript Libraries -->
+    @section Scripts
+    {
+    <script>
+            let app = new Vue({
+                el: "#newestArticleTitle",
+                data: {
+                    newestArticleTitle: "",
+                    
+                },
+                mounted:function()
+                {
+                let _self = this
+                fetch("/")
+                }
+    </script>
+    }
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/easing/easing.min.js"></script>
