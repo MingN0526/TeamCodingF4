@@ -10,6 +10,18 @@ namespace TeamCodingF4.Controllers
 {
     public class ContactusController : Controller
     {
+
+        //private readonly IMailContactUs mailFromContactUs;
+
+        //public ContactusController(IMailContactUs mailFromContactUs) 
+        //{
+        //    this.mailFromContactUs = mailFromContactUs;
+        //}
+        //public string SenderMessage([FromBody] EmailFromContactUsModel tempContainer)
+        //{
+        //    //call ur method
+        //    mailFromContactUs.Send();
+
         private readonly MailContactUsService mailFromContactUs;
 
         public ContactusController(MailContactUsService mailFromContactUs) 
@@ -28,6 +40,7 @@ namespace TeamCodingF4.Controllers
 
         //    };
         //    mailFromContactUs.Send(User);
+
         //    return tempContainer.Email;
         //}
     }
