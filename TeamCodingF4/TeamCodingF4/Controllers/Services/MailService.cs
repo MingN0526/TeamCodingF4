@@ -14,7 +14,7 @@ namespace TeamCodingF4.Controllers.Services
 {
     public class MailService:IMailService
     {
-
+            
         public bool Send(Member member)
         {
             var mail = new MailMessage();
@@ -31,12 +31,6 @@ namespace TeamCodingF4.Controllers.Services
             mail.From = new MailAddress("TeamCodingF4@gmail.com", "會員認證中心");
 
             mail.To.Add(new MailAddress("a790712a@gmail.com"));
-            //mail.To.Add(new MailAddress(member.Email));
-
-            ////取得檔案
-            //Attachment attachment = new Attachment(@"{_environment.WebRootPath}\upload\638096522971437290298619.png");
-            ////加入信件
-            //mail.Attachments.Add(attachment);
 
             var client = new SmtpClient();
             client.Host = "smtp.gmail.com";
@@ -55,7 +49,6 @@ namespace TeamCodingF4.Controllers.Services
             }
             finally
             {
-                //attachment.Dispose();
                 mail.Dispose();
                 client.Dispose();                
             }

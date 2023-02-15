@@ -27,9 +27,14 @@ namespace TeamCodingF4.Controllers
             TempData["active"] = "management";
             return View();
         }
-        public IActionResult Detail(int? id)
+        public IActionResult Detail(int id)
         {
             ViewBag.Id = id;
+            return View();
+        }
+        public IActionResult Edit(int id)
+        {
+            ViewBag.Id=id;
             return View();
         }
     }
