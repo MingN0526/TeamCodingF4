@@ -56,6 +56,7 @@ namespace TeamCodingF4.Controllers
             if (dbAccount.Password != hashStr) return result;
 
             var claims = new List<Claim> { 
+                new Claim("Id",dbAccount.Id.ToString()),
                 new Claim(ClaimTypes.Name, dbAccount.Name),
                 new Claim(ClaimTypes.Role, dbAccount.IsActive? dbAccount.Role: ClaimsEnum.訪客.ToString()),
             };
@@ -81,6 +82,11 @@ namespace TeamCodingF4.Controllers
         }
 
         public IActionResult Validationfail()
+        {
+            return View();
+        }
+
+        public IActionResult ForgetPwd()
         {
             return View();
         }
