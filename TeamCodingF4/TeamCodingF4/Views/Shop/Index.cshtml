@@ -60,12 +60,12 @@
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-6">
                         <label class="custom-control-label" for="price-6">25000-30000元</label>
-                        <span class="badge border font-weight-normal">168</span>
+            
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-7">
                         <label class="custom-control-label" for="price-7">30000元以上</label>
-                        <span class="badge border font-weight-normal">168</span>
+                      
                     </div>
 
             </div>
@@ -281,7 +281,7 @@
                     },
                     mounted: function () {
                         let _self = this               
-                        fetch("/api/house/GetAllHouse")
+                        fetch("/api/shop/GetAllHouse")
                             .then(function (response) { return response.json() })
                             .then(function (result) {
                                 console.log(result)
@@ -300,7 +300,7 @@
                     methods: {
                         showAllRoom:function(){
                             let _self = this
-                            fetch("/api/house/GetAllHouse")
+                                fetch("/api/shop/GetAllHouse")
                                 .then(function (response) { return response.json() })
                                 .then(function (result) {
                                     console.log(result)
@@ -328,8 +328,7 @@
                             }
                             this.equipment = temp
                             this.allHouse = this.equipment
-                        },
-                        
+                        },                        
                         filterHouse: function () {                      
                                 var temp = this.house
                             if (this.Filter.length > 0) {
