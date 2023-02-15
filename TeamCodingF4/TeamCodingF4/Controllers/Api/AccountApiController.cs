@@ -101,7 +101,7 @@ namespace TeamCodingF4.Controllers.Api
             return _context.Members.Select(x => new MemberModel
             {
                 Id = x.Id,
-                Address = x.Address,
+                //Address = x.Address,
                 BirthDate = x.BirthDate,
                 Email = x.Email,
                 Gender = x.Gender,
