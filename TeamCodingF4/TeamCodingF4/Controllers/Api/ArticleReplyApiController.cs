@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamCodingF4.Data;
 using TeamCodingF4.Data.Entity;
@@ -22,9 +23,9 @@ namespace TeamCodingF4.Controllers.Api
             {
                 ArticleId = x.ArticleId,
                 Id = x.Id,
-                Date = x.Date.ToString("d"),
+                Date = x.Date.ToString("yyyy-MM-dd HH:mm:ss"),
                 Content = x.Content,
-                PublisherId = x.PublisherId,                
+                PublisherId = x.PublisherId,
             }).ToList();
         }
         public List<ArticleReplyModel> GetAllReply()
@@ -32,32 +33,32 @@ namespace TeamCodingF4.Controllers.Api
             return _db.ArticlesReply.Select(x => new ArticleReplyModel
             {
                 ArticleId = x.ArticleId,
-                Id= x.Id,
-                Date= x.Date.ToString("d"),
-                Content= x.Content,
-                PublisherId= x.PublisherId,
+                Id = x.Id,
+                Date = x.Date.ToString("d"),
+                Content = x.Content,
+                PublisherId = x.PublisherId,
             }).ToList();
         }
         [HttpPost]
-        public async Task<ApiResultModel> PostArticleReply(ArticleReplyInsertModel model)
+        [Authorize]
+        public ApiResultModel PostArticleReply(ArticleReplyInsertModel model)
         {
-            
-            ArticleReply articlesReply = new ArticleReply
+            var memberId = int.Parse(User.Claims.First(x => x.Type == "Id").Value);
+            _db.ArticlesReply.Add(new ArticleReply
             {
-                PublisherId= 1,
-                ArticleId= 1,
-                Content= model.Content,
-                Date= DateTime.UtcNow
-            };
-            _db.ArticlesReply.Add(articlesReply);
-            await _db.SaveChangesAsync();
+                PublisherId = memberId,
+                ArticleId = model.ArticleId,
+                Content = model.Content,
+                Date = DateTime.UtcNow                
+            });
+            _db.SaveChanges();
 
             return new ApiResultModel
             {
                 Status = true,
                 Message = "加入成功"
             };
-            
+
         }
         [HttpPost]
         public async Task<ApiResultModel> DeleteArticleReply([FromBody] int id)

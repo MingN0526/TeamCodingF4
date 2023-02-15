@@ -1,31 +1,45 @@
-﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+    integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
 
 <div class="container" id="articleIndex">
     <div class="main-body p-0">
         <div class="inner-wrapper">
             <div class="inner-sidebar">
                 <div class="inner-sidebar-header justify-content-center">
-                    <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+                    <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal"
+                        data-target="#threadModal">
                         發表文章
                     </button>
                 </div>
                 <div class="inner-sidebar-body p-0">
                     <div class="p-3 h-100" data-simplebar="init">
                         <div class="simplebar-wrapper" style="margin: -16px;">
-                            <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                            <div class="simplebar-height-auto-observer-wrapper">
+                                <div class="simplebar-height-auto-observer"></div>
+                            </div>
                             <div class="simplebar-mask">
                                 <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                    <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                    <div class="simplebar-content-wrapper"
+                                        style="height: 100%; overflow: hidden scroll;">
                                         <div class="simplebar-content" style="padding: 16px;">
                                             <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                                 <div class="row mb-4 ml-5">
-                                                    <button type="button" :class="['btn btn-outline-warning btn-lg btn-radius h-40px h-100px',optionOfArticles=='all'?'active':'']" style="font-size:15px" @@click="optionArticles('all')">所有文章</button>
+                                                    <button type="button"
+                                                        :class="['btn btn-outline-warning btn-lg btn-radius h-40px h-100px',optionOfArticles=='all'?'active':'']"
+                                                        style="font-size:15px"
+                                                        @@click="optionArticles('all')">所有文章</button>
                                                 </div>
                                                 <div class="row mb-4 ml-5">
-                                                    <button type="button" :class="['btn btn-outline-warning btn-lg btn-radius h-40px h-100px',optionOfArticles=='new'?'active':'']" style="font-size:15px" @@click="optionArticles('new')">最新文章</button>
+                                                    <button type="button"
+                                                        :class="['btn btn-outline-warning btn-lg btn-radius h-40px h-100px',optionOfArticles=='new'?'active':'']"
+                                                        style="font-size:15px"
+                                                        @@click="optionArticles('new')">最新文章</button>
                                                 </div>
                                                 <div class="row mb-4 ml-5">
-                                                    <button type="button" :class="['btn btn-outline-warning btn-lg btn-radius h-40px h-100px',optionOfArticles=='my'?'active':'']" style="font-size:15px" @@click="optionArticles('my')">我的文章</button>
+                                                    <button type="button"
+                                                        :class="['btn btn-outline-warning btn-lg btn-radius h-40px h-100px',optionOfArticles=='my'?'active':'']"
+                                                        style="font-size:15px"
+                                                        @@click="optionArticles('my')">我的文章</button>
                                                 </div>
                                             </nav>
                                         </div>
@@ -34,50 +48,74 @@
                             </div>
                             <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
                         </div>
-                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
-                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                            <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                        </div>
+                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                            <div class="simplebar-scrollbar"
+                                style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="inner-main">
                 <div class="inner-main-header">
                     <div class="col-2">
-                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='心得分享'}]" v-on:click="typeArticles('心得分享')">心得分享</button>
+                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='心得分享'}]"
+                            v-on:click="typeArticles('心得分享')">心得分享</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='發文解惑'}]" v-on:click="typeArticles('發文解惑')">發文解惑</button>
+                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='發文解惑'}]"
+                            v-on:click="typeArticles('發文解惑')">發文解惑</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='閒聊專區'}]" v-on:click="typeArticles('閒聊專區')">閒聊專區</button>
+                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='閒聊專區'}]"
+                            v-on:click="typeArticles('閒聊專區')">閒聊專區</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='抱怨專區'}]" v-on:click="typeArticles('抱怨專區')">抱怨專區</button>
+                        <button type="button" :class="['btn btn-outline-warning',{active:typeOfArticles=='抱怨專區'}]"
+                            v-on:click="typeArticles('抱怨專區')">抱怨專區</button>
                     </div>
 
                     <div class="col-3">
-                        <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
+                        <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#"
+                            data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
                         <span class="input-icon input-icon-sm ml-auto w-auto">
-                            <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search" v-model="searchText" />
+                            <input type="text"
+                                class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
+                                placeholder="Search" v-model="searchText" />
                         </span>
-                    </div>                    
+                    </div>
                 </div>
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
                     <div class="card mb-2" v-for="article in filteredArticles">
                         <div class="card-body p-2 p-sm-3">
                             <div class="media forum-item">
-                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                                <div class="media-body" data-toggle="collapse" data-target=".forum-content" @@click="openArticleReply(article)">
-                                    
-                                    <h6>{{article.title}}</h6>
+                                <div>
+                                    <a href="#" data-toggle="collapse" data-target=".forum-content"><img
+                                            src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                            class="p-0 rounded-circle" width="50" alt="User" /></a>
+                                    <div class="text-dark font-weight-bold" style="text-align:center">
+                                        {{article.userName}}</div>
+                                </div>
+                                <div class="media-body ml-3" data-toggle="collapse" data-target=".forum-content"
+                                    @@click="openArticleReply(article)">
+                                    <div class="row">
+                                        <h5 class="col-auto">{{article.title}}</h5>
+                                        <h6 class="col-3 text-info">{{article.category}}</h6>
+                                    </div>
                                     <p style="color:black">
                                         {{article.content}}
                                     </p>
-                                    <p class="text-muted"><a href="javascript:void(0)"></a><span @*class="text-secondary font-weight-bold"*@>{{article.date}}</span></p>
+                                    <p class="text-muted"><a href="javascript:void(0)"></a><span
+                                            class="text-dark">發文時間:{{article.date}}</span></p>
                                 </div>
-                                <div class="text-muted small text-center align-self-center">
-                                    <button data-target="#articleModal" data-toggle="modal" type="button" >編輯</button>
-                                    <button @@click="deleteArticle(article)">刪除</button>
+                                <div v-if="article.publisherId == user.id"
+                                    class="text-muted small text-center align-self-center">
+                                    <button class="btn btn-primary px-3" data-target="#articleModal" data-toggle="modal"
+                                        type="button" @@click="openEditArticle(article)">編輯</button>
+                                    <button class="btn btn-danger px-3" @@click="deleteArticle(article)">刪除</button>
                                 </div>
                             </div>
                         </div>
@@ -86,37 +124,38 @@
 
 
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
-                    <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse" data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
+                    <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse"
+                        data-target=".forum-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>
                     <div class="card mb-2" v-for="reply in articleOfReply">
                         <div class="card-body">
                             <div class="media forum-item">
                                 <a href="javascript:void(0)" class="card-link">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle"
+                                        width="50" alt="User" />
                                     <small class="d-block text-center text-muted"></small>
                                 </a>
                                 <div class="media-body ml-3">
-                                    <a href="javascript:void(0)" class="text-secondary"></a>
-                                    <small class="text-muted ml-2">{{reply.date}}</small>
-                                    <h5 class="mt-1"></h5>
-                                    <div class="mt-3 font-size-sm">
+                                    <div class="mt-3 font-size-md">
                                         <p>
                                             {{reply.content}}
                                         </p>
                                     </div>
+                                    <small class="text-muted">發文時間:{{reply.date}}</small>
                                 </div>
-                                <div class="text-muted small text-center">
-
-                                    <button data-target="#articleModal" data-toggle="modal" type="button">編輯</button>
-                                    <button @@click="deleteArticleReply(reply)">刪除</button>
+                                <div class="text-muted small text-center" v-if="reply.publisherId == user.id">
+                                    @*<button class="btn btn-primary px-3" data-target="#articleModal" data-toggle="modal"
+                                        type="button">編輯</button>*@
+                                    <button class="btn btn-danger px-3" @@click="deleteArticleReply(reply)">刪除</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-2 ">
+                    <div v-if="user.id !='' " class="card mb-2 ">
                         <div class="card-body">
                             <div class="media forum-item">
                                 <a href="javascript:void(0)" class="card-link">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle" width="50" alt="User" />
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle"
+                                        width="50" alt="User" />
                                     <small class="d-block text-center text-muted">Pro</small>
                                 </a>
 
@@ -124,10 +163,12 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="message">你的回覆 *</label>
-                                            <textarea id="Content" name="Content" cols="30" rows="5" class="form-control"></textarea>
+                                            <textarea id="Content" name="Content" cols="30" rows="5"
+                                                class="form-control" v-model="replyText"></textarea>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <button type="button" class="btn btn-primary px-3" >發文</button>
+                                            <button type="button" class="btn btn-primary px-3"
+                                                @@click="addReply">發文</button>
                                         </div>
                                     </form>
                                 </div>
@@ -138,7 +179,8 @@
             </div>
 
         </div>
-        <div class="modal fade" id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+        <div class="modal fade" id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form>
@@ -148,11 +190,13 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="Title">標題</label>
-                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="post.title" />
+                                <input type="text" class="form-control" id="Title" name="Title" autofocus=""
+                                    v-model="post.title" />
                             </div>
                             <div class="form-group">
-                                <label for="Content">你的貼文</label> 
-                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="post.content"></textarea>
+                                <label for="Content">你的貼文</label>
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control"
+                                    v-model="post.content"></textarea>
                             </div>
                             <div class="form-group" id="Category" name="Category">
                                 <select v-model="post.category">
@@ -172,7 +216,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form>
@@ -182,16 +227,15 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="Title">標題</label>
-                                <input type="text" class="form-control" id="Title" name="Title" autofocus="" v-model="edit.title" />
+                                <input type="text" class="form-control" v-model="edit.title" />
                             </div>
-                            @* <textarea class="form-control summernote" id="postArticle" placeholder="請輸入內文" style="display: none;" v-model="postArticle">12345</textarea>*@
                             <div class="form-group">
-                                <label for="Content">你的貼文</label> <!--之後要改資料庫，改成Required-->
-                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control" v-model="edit.content"></textarea>
+                                <label for="Content">你的貼文</label>
+                                <textarea id="Content" name="Content" cols="30" rows="5" class="form-control"
+                                    v-model="edit.content"></textarea>
                             </div>
                             <div class="form-group" id="Category" name="Category">
                                 <select v-model="edit.category">
-                                    <option value="-1">請選擇文章類別</option>
                                     <option>心得分享</option>
                                     <option>發文解惑</option>
                                     <option>閒聊專區</option>
@@ -201,7 +245,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary px-3" v-on:click="editArticle()">修改</button>
+                            <button type="button" class="btn btn-primary px-3" v-on:click="editArticle">修改</button>
                         </div>
                     </form>
                 </div>
@@ -229,11 +273,13 @@
             height: calc(100vh - 3.5rem - 48px);
         }
     }
+
     @@media (max-width: 767.98px) {
         .inner-sidebar {
             left: -235px !important;
         }
     }
+
     .inner-main,
     .inner-sidebar {
         position: absolute;
@@ -276,10 +322,10 @@
         flex: 1 1 auto;
     }
 
-        .inner-main-body .sticky-top,
-        .inner-sidebar-body .sticky-top {
-            z-index: 999;
-        }
+    .inner-main-body .sticky-top,
+    .inner-sidebar-body .sticky-top {
+        z-index: 999;
+    }
 
     .inner-main-footer,
     .inner-main-header {
@@ -308,12 +354,17 @@
         transform: translate3d(235px, 0, 0);
     }
 
-    .nav .show > .nav-link.nav-link-faded, .nav-link.nav-link-faded.active, .nav-link.nav-link-faded:active, .nav-pills .nav-link.nav-link-faded.active, .navbar-nav .show > .nav-link.nav-link-faded {
+    .nav .show>.nav-link.nav-link-faded,
+    .nav-link.nav-link-faded.active,
+    .nav-link.nav-link-faded:active,
+    .nav-pills .nav-link.nav-link-faded.active,
+    .navbar-nav .show>.nav-link.nav-link-faded {
         color: #3367b5;
         background-color: #c9d8f0;
     }
 
-    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
         color: #fff;
         background-color: #467bcb;
     }
@@ -336,7 +387,7 @@
     }
 
     .card {
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
     }
 
     .card {
@@ -347,7 +398,7 @@
         word-wrap: break-word;
         background-color: #fff;
         background-clip: border-box;
-        border: 0 solid rgba(0,0,0,.125);
+        border: 0 solid rgba(0, 0, 0, .125);
         border-radius: .25rem;
     }
 
@@ -358,90 +409,113 @@
     }
 </style>
 @section Scripts
-    {
+{
 <script>
     let app = new Vue({
         el: '#articleIndex',
         data: {
-            user:{
-                id:1
+            user: {
+                id: ""
             },
-            post:{
-                category:-1
+            post: {
+                category: -1
             },
-            edit:{},
-            sourceArticles:[],
-            articleOfReply:[],
-            optionOfArticles:'all',
-            typeOfArticles:'',
-            searchText:'',
-            
+            edit: {
+                id: "",
+                title: "",
+                content: "",
+                category: ""
+            },
+            sourceArticles: [],
+            articleOfReply: [],
+            optionOfArticles: 'all',
+            typeOfArticles: '',
+            searchText: '',
+            replyText: "",
+            currentArticleId: ""
         },
         mounted: function () {
             this.apiGetAllArticles();
             this.apiGetUserInfo();
         },
-        computed:{
-            filteredArticles:function(){
+        computed: {
+            filteredArticles: function () {
                 let _self = this;
-                return this.typeLogic(this.filterLogic(this.sourceArticles))
-                .filter(x=>x.content.includes(_self.searchText));
+                return this.typeLogic(this.filterLogic([...this.sourceArticles]))
+                    .filter(x => x.content.includes(_self.searchText));
             },
         },
         methods: {
-            apiGetReply:function(id){
+            apiGetReply: function (id) {
                 let _self = this
-                fetch("/api/articlereply/GetReplyById/"+id)
-                .then(res=> res.json())
-                .then(res=> _self.articleOfReply = res)
+                fetch("/api/articlereply/GetReplyById/" + id)
+                    .then(res => res.json())
+                    .then(res => _self.articleOfReply = res)
             },
-            apiGetUserInfo:function(){
+            apiGetUserInfo: function () {
                 let _self = this
-                //fetch("/api/article/getall")
-                //.then(res=> res.json())
-                //.then(res=> _self.user = res)
+                fetch("/api/GetProfile/GetProfile")
+                    .then(res => res.json())
+                    .then(res => _self.user = res)
             },
-            apiGetAllArticles:function(){
+            apiGetAllArticles: function () {
                 let _self = this
                 fetch("/api/article/getall")
-                .then(res=> res.json())
-                .then(res=> _self.sourceArticles = res)
+                    .then(res => res.json())
+                    .then(res => _self.sourceArticles = res)
             },
-            filterLogic:function(data){
+            filterLogic: function (data) {
                 console.log(data)
                 let self = this;
-                if(this.optionOfArticles =='all'){
+                if (this.optionOfArticles == 'all') {
                     return data;
                 }
-                if(this.optionOfArticles =='new'){
-                    return data.sort((n,o)=> Math.floor(new Date(n.date) / 1000)- Math.floor(new Date(o.date) / 1000))
+                if (this.optionOfArticles == 'new') {
+                    return data.sort((n, o) => Math.floor(new Date(o.date) / 1000) - Math.floor(new Date(n.date) / 1000))
                 }
-                if(this.optionOfArticles =='my'){
-                    return data.filter(x=> x.publisherId == self.user.id)
+                if (this.optionOfArticles == 'my') {
+                    return data.filter(x => x.publisherId == self.user.id)
                 }
             },
-            typeLogic:function(data){
+            typeLogic: function (data) {
                 let self = this;
-                if(self.typeOfArticles =="") return data;
-                return data.filter(x=> x.category==self.typeOfArticles)
+                if (self.typeOfArticles == "") return data;
+                return data.filter(x => x.category == self.typeOfArticles)
             },
             optionArticles: function (opt) {
                 this.optionOfArticles = opt;
             },
-            typeArticles:function(type){                
-                this.typeOfArticles=this.typeOfArticles == type? "": type;
+            typeArticles: function (type) {
+                this.typeOfArticles = this.typeOfArticles == type ? "" : type;
             },
-            openArticleReply:function(article){
+            openArticleReply: function (article) {
+                this.currentArticleId = article.id;
                 this.apiGetReply(article.id);
             },
-            postArticle:function(){
+            openEditArticle: function (data) {
+                console.log(data);
+                this.edit.id = data.id;
+                this.edit.title = data.title;
+                this.edit.content = data.content;
+                this.edit.category = data.category;
+            },
+            postArticle: function () {
                 let self = this;
+                if (self.post.category == -1) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: '請選擇類別',
+                        timer: 3000
+                    })
+                    return;
+                }
                 fetch("/api/article/postarticle", {
                     method: "POST",
                     body: JSON.stringify(self.post),
                     headers: { "content-type": "application/json" }
-                }).then(function (response) { return response.json() })
-                    .then(function (result) {
+                }).then(res => res.json())
+                    .then(res => {
                         var al = {
                             position: 'center',
                             icon: 'success',
@@ -449,114 +523,114 @@
                             showConfirmButton: false,
                             timer: 3000
                         };
-                        if (!result.status) {
+                        if (!res.status) {
                             al.icon = "error";
                             al.title = "發佈失敗";
                         }
-                        Swal.fire(al)
-                        window.location = "/article/index"
+                        Swal.fire(al).then(() => { window.location.reload() })
                     })
             },
-            insertArticleReply: function (addArticleReply) {
-                console.log(addArticleReply)
-                addArticleReply = this.addArticleReply
+            addReply: function () {
+                let _self = this;
+                if (_self.replyText.length == 0) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: '請輸入內容',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    return;
+                }
                 fetch("/api/articlereply/postarticlereply", {
                     method: "POST",
-                    body: JSON.stringify(addArticleReply),
+                    body: JSON.stringify({
+                        Content: _self.replyText,
+                        ArticleId: _self.currentArticleId
+                    }),
                     headers: { "content-type": "application/json" }
-                }).then(function (response) { return response.json() })
-                    .then(function (result) {
+                }).then(res => res.json())
+                    .then(res => {
                         var al = {
                             position: 'center',
                             icon: 'success',
                             title: '發佈成功',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 1500
                         };
-                        if (!result.status) {
+                        if (!res.status) {
                             al.icon = "error";
                             al.title = "發佈失敗";
                         }
+                        _self.apiGetReply(_self.currentArticleId);
                         Swal.fire(al)
-                        window.location = "/article/index"
                     })
             },
             deleteArticle: function (article) {
                 let _self = this;
-                console.log(article.id)
-                var deleteArticleUrl = `/api/article/deletearticle/`
-                fetch(deleteArticleUrl, {
+                fetch("/api/article/deletearticle/", {
                     method: "POST",
                     body: JSON.stringify(article.id),
                     headers: { "content-type": "application/json" }
-                }).then(function (response) {
-                    return response.json()
-                        .then(function (result) {
-                            var al = {
-                                position: 'center',
-                                icon: 'success',
-                                title: '刪除成功',
-                                showConfirmButton: false,
-                                timer: 3000
-                            };
-                            if (!result.status) {
-                                al.icon = "error";
-                                al.title = "刪除失敗";
-                            }
-                            Swal.fire(al)
-                            window.location = "/article/index"
-                        })
-                })
+                }).then(res => res.json())
+                    .then(res => {
+                        var al = {
+                            position: 'center',
+                            icon: 'success',
+                            title: '刪除成功',
+                            showConfirmButton: false,
+                            timer: 1500
+                        };
+                        if (!res.status) {
+                            al.icon = "error";
+                            al.title = "刪除失敗";
+                        }
+                        Swal.fire(al).then(() => { window.location.reload() })
+                    })
             },
             deleteArticleReply: function (articleReplys) {
                 let _self = this;
-                console.log(articleReplys.id)
-                var deleteArticleReplyUrl = `/api/articlereply/deletearticlereply/`
-                fetch(deleteArticleReplyUrl, {
+                fetch("/api/articlereply/deletearticlereply", {
                     method: "POST",
                     body: JSON.stringify(articleReplys.id),
                     headers: { "content-type": "application/json" }
-                }).then(function (response) {
-                    return response.json()
-                        .then(function (result) {
-                            var al = {
-                                position: 'center',
-                                icon: 'success',
-                                title: '刪除成功',
-                                showConfirmButton: false,
-                                timer: 3000
-                            };
-                            if (!result.status) {
-                                al.icon = "error";
-                                al.title = "刪除失敗";
-                            }
-                            Swal.fire(al)
-                            window.location = "/article/index"
-                        })
+                }).then(r => r.json()).then(r => {
+                    var al = {
+                        position: 'center',
+                        icon: 'success',
+                        title: '刪除成功',
+                        showConfirmButton: false,
+                        timer: 3000
+                    };
+                    if (!r.status) {
+                        al.icon = "error";
+                        al.title = "刪除失敗";
+                    }
+                    _self.apiGetReply(_self.currentArticleId);
+                    Swal.fire(al);
                 })
             },
             editArticle: function () {
-                //let _self = this;
-                //editArticleUrl = `/api/article/editarticle`
-                //fetch(editArticleUrl, {
-                //    method: "POST",
-                //    body: JSON.stringify(_self.edit),
-                //    headers: { "content-type": "application/json" }
-                //}).then(function (response) { return response.json() })
-                //    .then(function (result) {
-                //        var al = {
-                //            position: 'center',
-                //            icon: 'success',
-                //            title: '編輯成功',
-                //            showConfirmButton: false,
-                //            timer: 3000
-                //        };
-                //        if (!result.status) {
-                //            al.icon = "error";
-                //            al.title = "編輯失敗";
-                //        }
-                //        Swal.fire(al)
-                //    })
+                let _self = this;
+                fetch("/api/article/EditArticle", {
+                    method: "POST",
+                    body: JSON.stringify(_self.edit),
+                    headers: { "content-type": "application/json" }
+                }).then(function (response) { return response.json() })
+                    .then(function (result) {
+                        var al = {
+                            position: 'center',
+                            icon: 'success',
+                            title: '編輯成功',
+                            showConfirmButton: false,
+                            timer: 1500
+                        };
+                        if (!result.status) {
+                            al.icon = "error";
+                            al.title = "編輯失敗";
+                        }
+                        Swal.fire(al).then(() => { window.location.reload() })
+                    })
             },
 
         },

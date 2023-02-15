@@ -10,5 +10,6 @@
         public string Category { get; set; }
         public int ViewCount { get; set; }
         public int ReplyId { get; set; }
+        public string UserName { get; set; }
     }
 }
