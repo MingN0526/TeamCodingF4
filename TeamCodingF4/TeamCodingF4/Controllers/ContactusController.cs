@@ -8,17 +8,17 @@ namespace TeamCodingF4.Controllers
 {
     public class ContactusController : Controller
     {
-        private readonly IMailContactUs mailFromContactUs;
+        //private readonly IMailContactUs mailFromContactUs;
 
-        public ContactusController(IMailContactUs mailFromContactUs) 
-        {
-            this.mailFromContactUs = mailFromContactUs;
-        }
-        public string SenderMessage([FromBody] EmailFromContactUsModel tempContainer)
-        {
-            //call ur method
-            mailFromContactUs.Send();
-            return tempContainer.Email;
-        }
+        //public ContactusController(IMailContactUs mailFromContactUs) 
+        //{
+        //    this.mailFromContactUs = mailFromContactUs;
+        //}
+        //public string SenderMessage([FromBody] EmailFromContactUsModel tempContainer)
+        //{
+        //    //call ur method
+        //    mailFromContactUs.Send();
+        //    return tempContainer.Email;
+        //}
     }
 }
