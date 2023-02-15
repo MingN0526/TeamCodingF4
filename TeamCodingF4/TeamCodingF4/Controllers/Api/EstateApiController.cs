@@ -146,10 +146,10 @@ namespace TeamCodingF4.Controllers.Api
             _context.SaveChanges();
         }
 
+
         [HttpPost]
         public IActionResult Edit([FromBody] int id)
         {
-
             return View();
         }
     } 

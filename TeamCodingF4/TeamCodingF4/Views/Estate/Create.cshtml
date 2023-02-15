@@ -19,13 +19,13 @@
                         <div class="col-md-6 form-group">
                             <div class="control-group">
                                 <label>標題</label>
-                                <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required v-model="addEstate.Tittle" />
+                                <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required />
                                 <p class="help-block text-danger"></p>
 
                             </div>
                             <div class="control-group">
                                 <label>房型</label>
-                                <select class="form-control" name="RoomTypeId" id="RoomTypeId" required v-model="addEstate.RoomTypeId">
+                                <select class="form-control" name="RoomTypeId" id="RoomTypeId" required>
                                     <option value="">請選擇房型</option>
                                     <option value="1">透天</option>
                                     <option value="2">套房</option>
@@ -38,11 +38,11 @@
                                 <label>LDK</label>
                                 <div class="row">
                                     <span class="col-1">房:</span>
-                                    <input type="number" class="form-control col-2" name="Room" required v-model="addEstate.Room" />
+                                    <input type="number" class="form-control col-2" name="Room" required/>
                                     <span class="col-1">廳:</span>
-                                    <input type="number" class="form-control col-2" name="hall" required v-model="addEstate.hall" />
+                                    <input type="number" class="form-control col-2" name="hall" required/>
                                     <span class="col-1">衛:</span>
-                                    <input type="number" class="form-control col-2" name="bathroom" required v-model="addEstate.bathroom" />
+                                    <input type="number" class="form-control col-2" name="bathroom" required/>
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -94,21 +94,21 @@
                             </div>
                             <div class="control-group">
                                 <label>雜費(NT)</label>
-                                <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" required v-model="addEstate.Miscellaneous" />
+                                <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" required/>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>坪數</label>
-                                <input type="number" min="1" class="form-control" name="Meters" id="Meters" required v-model="addEstate.Meters" />
+                                <input type="number" min="1" class="form-control" name="Meters" id="Meters" required/>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
                                 <label>車位</label>
                                 <div class="row">
                                     <span class="col-2">汽車:</span>
-                                    <input type="number" min="0" class="form-control col-3" name="Car" id="Car" required v-model="addEstate.Car" />
+                                    <input type="number" min="0" class="form-control col-3" name="Car" id="Car" required/>
                                     <span class="col-2">機車:</span>
-                                    <input type="number" min="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" required v-model="addEstate.Motorcycle" />
+                                    <input type="number" min="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" required/>
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -136,7 +136,7 @@
                             <p class="help-block text-danger"></p>
                             <div class="control-group">
                                 <label>租約期(月)</label>
-                                <input type="number" min="1" class="form-control" name="Lease" id="Lease" required v-model="addEstate.Lease" />
+                                <input type="number" min="1" class="form-control" name="Lease" id="Lease" required/>
                                 <p class="help-block text-danger"></p>
                             </div>
 
