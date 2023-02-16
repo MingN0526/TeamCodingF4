@@ -10,11 +10,14 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using TeamCodingF4.Models.ApiModel;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace TeamCodingF4.Controllers.Api
 {
     [Route("api/Account/[action]")]
     [ApiController]
+
     public class AccountApiController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -65,7 +68,9 @@ namespace TeamCodingF4.Controllers.Api
             }
         }
 
-        public ResponseModel<PostToProfileResponseModel> PostToProfile([FromBody] PostToProfileRequestModel model)
+        [HttpPost]
+        [Authorize]
+        public ResponseModel<PostToProfileResponseModel> EditProfile([FromBody] PostToProfileRequestModel model)
         {
             var result = new ResponseModel<PostToProfileResponseModel>();
             if (!ModelState.IsValid || User.Identity.IsAuthenticated == false)
@@ -75,43 +80,24 @@ namespace TeamCodingF4.Controllers.Api
             }
             else
             {
-                var user = _context.Members.FirstOrDefault(x => x.Name == User.Identity.Name && x.Name == model.Name);
+                var userClaim = User.Claims.FirstOrDefault(x => x.Type == "Id");
+                Member user = _context.Members.FirstOrDefault(x => x.Id == int.Parse(userClaim.Value));
 
-                var profile = new PostToProfileResponseModel
-                {
-                    //    Id = x.Id,
-                    //    Address = x.Address,
-                    //    BirthDate = x.BirthDate,
-                    //    Email = x.Email,
-                    //    Gender = x.Gender,
-                    //    Identity = x.Identity,
-                    //    Job = x.Job,
-                    //    Name = x.Name,
-                    //    Phone = x.Phone,
-                    //    PicturePath = x.PicturePath,
-                };
+                user.BirthDate = model.BirthDate;
+                user.Email = model.Email;
+                user.Gender = model.Gender;
+                user.Identity = model.Identity;
+                user.Job = model.Job;
+                user.Name = model.Name;
+                user.Phone = model.Phone;
+                user.PicturePath = model.PicturePath;
 
-                result.IsOk = true;
-                return result;
-            }
+                _context.Entry(user).State = EntityState.Modified;
+
+                _context.SaveChanges();
+            };
+            result.IsOk = true;
+            return result;
         }
-
-        public List<MemberModel> GetProfile()
-        {            
-            return _context.Members.Select(x => new MemberModel
-            {
-                Id = x.Id,
-                //Address = x.Address,
-                BirthDate = x.BirthDate,
-                Email = x.Email,
-                Gender = x.Gender,
-                Identity = x.Identity,
-                Job = x.Job,
-                Name = x.Name,
-                Phone = x.Phone,
-                PicturePath = x.PicturePath,
-            }).ToList();
-        }
-
     }
 }
