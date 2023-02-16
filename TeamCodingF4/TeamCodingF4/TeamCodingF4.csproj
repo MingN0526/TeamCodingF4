@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Services\**" />
     <Compile Remove="Data\Migrations\**" />
+    <Content Remove="Controllers\Services\**" />
     <Content Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Controllers\Services\**" />
     <EmbeddedResource Remove="Data\Migrations\**" />
+    <None Remove="Controllers\Services\**" />
     <None Remove="Data\Migrations\**" />
   </ItemGroup>
 
@@ -31,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Services\" />
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Video\" />
     <Folder Include="wwwroot\Picture\" />

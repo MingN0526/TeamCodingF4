@@ -1,17 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 using System.Text;
 using TeamCodingF4.Data;
-using TeamCodingF4.Data.Entity;
 using TeamCodingF4.Models.Account;
 using TeamCodingF4.Models.Common;
-using System.Security.Cryptography;
-using TeamCodingF4.Models.ApiModel;
-<<<<<<< HEAD
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-=======
 using TeamCodingF4.Services;
->>>>>>> 2c32b404227c72e88e99878eb5d20650358502a6
+using Member = TeamCodingF4.Data.Entity.Member;
 
 namespace TeamCodingF4.Controllers.Api
 {
@@ -61,8 +57,14 @@ namespace TeamCodingF4.Controllers.Api
                 _context.Members.Add(_register);
                 _context.SaveChanges();
 
-
-                var mail = mailService.ToMail("","","");
+                var activationUrl = "https://localhost:7213/Account/UserValidation/" + _register.Token;
+                var mail = mailService.ToMail(
+                    "請點選會員認證信中的連結以完成會員認證。",
+                    @$"<h2>親愛的會員 {_register.Name} 您好，<br>
+                       請點選下方連結以完成會員認證。<br></h2> 
+                       <a href='{activationUrl}'>請點我完成會員認證</a>",
+                    _register.Email
+                    );
                 mailService.Send(mail);
 
                 result.IsOk = true;

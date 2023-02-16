@@ -37,7 +37,7 @@ namespace TeamCodingF4.Services
                 SubjectEncoding = Encoding.UTF8,
                 IsBodyHtml = true,
                 BodyEncoding = Encoding.UTF8,
-                From = new MailAddress("TeamCodingF4@gmail.com", "來自聯絡我們"),
+                From = new MailAddress("TeamCodingF4@gmail.com", "【Perfect Haven避風港】會員中心"),
             };
             mail.To.Add(new MailAddress(to));
             return mail;
