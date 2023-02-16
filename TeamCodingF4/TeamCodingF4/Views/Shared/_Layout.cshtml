@@ -99,8 +99,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="/Home/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "home" ? "active" : "") ">首頁</a>
-                            <a href="/shop/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "shop" ? "active" : "") ">物件瀏覽</a>
-                            <a href="/detail/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "detail" ? "active" : "") ">物件資料</a>
+                            <a href="/shop/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "shop" ? "active" : "") ">物件瀏覽</a>                           
                             <div class="nav-item dropdown">
                                 @*@if (User.Claims.FirstOrDefault().Value == "0")
                                 {

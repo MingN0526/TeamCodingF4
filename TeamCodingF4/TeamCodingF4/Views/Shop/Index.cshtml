@@ -17,12 +17,7 @@
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-4">
 
-            <input type="text" placeholder="房屋搜尋" class="section-title position-relative text-uppercase mb-3" v-model="Filter">
-            <button type="button" @@click="filterHouse">
-                <span class=" text-primary">
-                    <i class="fa fa-search "></i>
-                </span>
-            </button>
+            
             <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租金</span></h5>
             <div class="bg-light p-4 mb-30">
@@ -171,8 +166,7 @@
             data: {
                 house: "",
                 homeRoomType: [],
-                Filter: "",
-                FilterBox: "",
+                
                 allHouse: [],
                 equipment: [],                
                 houseDetailsLink: "/Detail/HouseDetail/",
@@ -222,16 +216,6 @@
                         }))
                     }
                     return house
-                },
-                filterHouse: function () {
-                    var temp = this.house
-                    if (this.Filter.length > 0) {
-                        temp = temp.filter(function (temp) {
-                            return temp.tittle.includes(this.Filter)
-                        })
-                    }
-                    this.FilterBox = temp
-                    this.allHouse = this.FilterBox
                 },
                 getHouseDetailsLink: function (houseId) {
                     return this.houseDetailsLink + houseId
