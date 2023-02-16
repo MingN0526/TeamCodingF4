@@ -14,11 +14,11 @@
 <!-- Shop Detail Start -->
 <div class="container-fluid pb-5" id="detailIndex">
     <div class="row px-xl-5" v-for="allHouseDetail in houseDetail">
-        <div class="col-lg-5 mb-30">
+        <div class="col-lg-5 mb-35">
             <div class="carousel slide" data-ride="carousel">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" :src="allHouseDetail.estateImage[0].imagePath" alt="">
+                        <img class="img-fluid w-100" :src="allHouseDetail.estateImage[0].imagePath" style="height:300px;width:400px;" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" :href="getHouseDetailsLink(allHouseDetail.id)"><i class="fa fa-search"></i></a>
                         </div>
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="col-lg-7 h-auto mb-30">
+        <div class="col-lg-7 mb-30">
             <div class="h-100 bg-light p-30">
                 <h3>{{allHouseDetail.tittle}}</h3>
                 <div class="d-flex mb-3">
