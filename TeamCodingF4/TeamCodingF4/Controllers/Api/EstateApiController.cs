@@ -170,9 +170,6 @@ namespace TeamCodingF4.Controllers.Api
                     Lease = x.Lease,
                     message = x.message,
                     RoomType = x.RoomType.Name,
-                    Conditions = x.Conditions.Select(x => x.Name).ToList(),
-                    Equipment = x.Equipment.Select(x => x.Name).ToList(),
-                    EstateImage = x.EstateImage.Select(x => x.ImagePath).ToList(),
                 }).ToList();
         }
     } 
