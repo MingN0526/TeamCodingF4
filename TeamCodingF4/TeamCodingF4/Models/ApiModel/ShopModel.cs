@@ -11,8 +11,8 @@ namespace TeamCodingF4.Models.ApiModel
         public int RoomTypeId { get; set; }
 
         public int Room { get; set; }
-        public int hall { get; set; }
-        public int bathroom { get; set; }
+        public int Hall { get; set; }
+        public int Bathroom { get; set; }
 
         public string City { get; set; }
         public string District { get; set; }
@@ -24,12 +24,12 @@ namespace TeamCodingF4.Models.ApiModel
         public int Car { get; set; }
         public int Motorcycle { get; set; }
         public int Lease { get; set; }
-        public string EstateVideoPath { get; set; }
-        public string? message { get; set; }
+      
+        public string? Message { get; set; }
 
-        public virtual ICollection<Equipment> Equipment { get; set; }
-        public virtual ICollection<Condition> Conditions { get; set; }
-        public virtual RoomType RoomType { get; set; }
-        public virtual ICollection<EstateImage> EstateImage { get; set; }
+        public List<string> EquipmentName { get; set; }
+        public List<string> Conditions { get; set; }
+        public string RoomType { get; set; }
+        public List<string> EstateImage { get; set; }
     }
 }
