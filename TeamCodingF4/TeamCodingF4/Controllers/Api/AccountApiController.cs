@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 using System.Text;
 using TeamCodingF4.Data;
-using TeamCodingF4.Data.Entity;
 using TeamCodingF4.Models.Account;
 using TeamCodingF4.Models.Common;
-using System.Security.Cryptography;
-using TeamCodingF4.Models.ApiModel;
 using TeamCodingF4.Services;
+using Member = TeamCodingF4.Data.Entity.Member;
 
 namespace TeamCodingF4.Controllers.Api
 {
     [Route("api/Account/[action]")]
     [ApiController]
+
     public class AccountApiController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -55,8 +57,14 @@ namespace TeamCodingF4.Controllers.Api
                 _context.Members.Add(_register);
                 _context.SaveChanges();
 
-
-                var mail = mailService.ToMail("","","");
+                var activationUrl = "https://localhost:7213/Account/UserValidation/" + _register.Token;
+                var mail = mailService.ToMail(
+                    "請點選會員認證信中的連結以完成會員認證。",
+                    @$"<h2>親愛的會員 {_register.Name} 您好，<br>
+                       請點選下方連結以完成會員認證。<br></h2> 
+                       <a href='{activationUrl}'>請點我完成會員認證</a>",
+                    _register.Email
+                    );
                 mailService.Send(mail);
 
                 result.IsOk = true;
@@ -64,7 +72,9 @@ namespace TeamCodingF4.Controllers.Api
             }
         }
 
-        public ResponseModel<PostToProfileResponseModel> PostToProfile([FromBody] PostToProfileRequestModel model)
+        [HttpPost]
+        [Authorize]
+        public ResponseModel<PostToProfileResponseModel> EditProfile([FromBody] PostToProfileRequestModel model)
         {
             var result = new ResponseModel<PostToProfileResponseModel>();
             if (!ModelState.IsValid || User.Identity.IsAuthenticated == false)
@@ -74,43 +84,24 @@ namespace TeamCodingF4.Controllers.Api
             }
             else
             {
-                var user = _context.Members.FirstOrDefault(x => x.Name == User.Identity.Name && x.Name == model.Name);
+                var userClaim = User.Claims.FirstOrDefault(x => x.Type == "Id");
+                Member user = _context.Members.FirstOrDefault(x => x.Id == int.Parse(userClaim.Value));
 
-                var profile = new PostToProfileResponseModel
-                {
-                    //    Id = x.Id,
-                    //    Address = x.Address,
-                    //    BirthDate = x.BirthDate,
-                    //    Email = x.Email,
-                    //    Gender = x.Gender,
-                    //    Identity = x.Identity,
-                    //    Job = x.Job,
-                    //    Name = x.Name,
-                    //    Phone = x.Phone,
-                    //    PicturePath = x.PicturePath,
-                };
+                user.BirthDate = model.BirthDate;
+                user.Email = model.Email;
+                user.Gender = model.Gender;
+                user.Identity = model.Identity;
+                user.Job = model.Job;
+                user.Name = model.Name;
+                user.Phone = model.Phone;
+                user.PicturePath = model.PicturePath;
 
-                result.IsOk = true;
-                return result;
-            }
+                _context.Entry(user).State = EntityState.Modified;
+
+                _context.SaveChanges();
+            };
+            result.IsOk = true;
+            return result;
         }
-
-        public List<MemberModel> GetProfile()
-        {            
-            return _context.Members.Select(x => new MemberModel
-            {
-                Id = x.Id,
-                //Address = x.Address,
-                BirthDate = x.BirthDate,
-                Email = x.Email,
-                Gender = x.Gender,
-                Identity = x.Identity,
-                Job = x.Job,
-                Name = x.Name,
-                Phone = x.Phone,
-                PicturePath = x.PicturePath,
-            }).ToList();
-        }
-
     }
 }
