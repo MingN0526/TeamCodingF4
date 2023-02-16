@@ -64,7 +64,6 @@ namespace TeamCodingF4.Controllers.Api
                District= data.District,
                Equipment= data.Equipment,
                EstateImage= data.EstateImage,
-               EstateVideoPath= data.EstateVideoPath,
                Floor= data.Floor,
                hall= data.hall,
                Lease = data.Lease,
