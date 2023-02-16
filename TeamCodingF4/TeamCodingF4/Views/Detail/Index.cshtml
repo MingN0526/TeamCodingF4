@@ -14,7 +14,7 @@
 <!-- Shop Detail Start -->
 <div class="container-fluid pb-5" id="detailIndex">
     <div class="row px-xl-5" v-for="allHouseDetail in houseDetail">
-        <div class="col-lg-5 mb-35">
+        <div class="col-lg-5 mb-30">
             <div class="carousel slide" data-ride="carousel">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
@@ -26,7 +26,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-lg-7 mb-30">
             <div class="h-100 bg-light p-30">
                 <h3>{{allHouseDetail.tittle}}</h3>
@@ -34,9 +33,7 @@
                     <small class="pt-1"></small>
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">${{allHouseDetail.price}}</h3>
-                <p class="mb-4">
-                    {{allHouseDetail.message}}
-                </p>
+
                 <div class="row">
                     <div class="d-flex col-4 ">
                         <strong class="text-dark mr-3">房型</strong>
@@ -121,7 +118,7 @@
             },
             mounted: function () {
                 let _self = this
-                fetch("/api/detail/getallhousedetail")
+                fetch("/api/shop/GetAllHouse")
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
