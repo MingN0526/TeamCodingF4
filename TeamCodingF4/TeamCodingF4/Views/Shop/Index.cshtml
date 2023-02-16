@@ -48,7 +48,7 @@
 
                 </div>
                 <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                    <input type="checkbox" class="custom-control-input" id="price-4" >
+                    <input type="checkbox" class="custom-control-input" id="price-4" v-on:click="showPrice()">
                     <label class="custom-control-label" for="price-4">15000-20000元</label>
 
                 </div>
@@ -201,20 +201,7 @@
                         console.log(result)
                         _self.allHouse = result
                     })
-            },
-            computed: {
-                showPrice: function () {
-                    let temp = []
-                    for (let i = 0; i < this.allHouse.length; i++) {
-                        if (this.allHouse.filter(item => item.price >= 15000 && item.price <= 20000)) {
-                            temp.push(this.allHouse[i])
-                        } else {
-                            return this.allHouse
-                        }
-                    }
-                    this.allHouse = temp
-                },                
-            },
+            },          
             methods: {
                 showAllRoom: function () {
                     let _self = this
@@ -232,10 +219,12 @@
                     for (let i = 0; i < this.allHouse.length; i++) {
                         if (this.allHouse[i].roomType == roomType) {
                             temp.push(this.allHouse[i])
+                            
+                            
                         }                       
                     }
                     this.homeRoomType = temp
-                    this.allHouse = this.homeRoomType
+                    this.allHouse = this.homeRoomType                   
                 },
                 showRoomEquipment: function (equipment) {
                     var temp = []
@@ -248,6 +237,16 @@
                     this.equipment = temp
                     this.allHouse = this.equipment
                 },
+                showPrice: function () {
+                    let temp = []
+                    for (let i = 0; i < this.allHouse.length; i++) {
+                        if (this.allHouse[i].filter(item => item.price >= 15000 && item.price <= 20000)) {
+                            temp.push(this.allHouse[i])
+
+                        }
+                    }
+                    this.allHouse = temp
+                },
                 filterHouse: function () {
                     var temp = this.house
                     if (this.Filter.length > 0) {
@@ -258,6 +257,7 @@
                     this.FilterBox = temp
                     this.allHouse = this.FilterBox
                 },
+
                 getHouseDetailsLink: function (houseId) {
                     return this.houseDetailsLink + houseId
                 },
