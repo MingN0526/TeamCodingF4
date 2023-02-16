@@ -21,7 +21,7 @@ namespace TeamCodingF4.Models.ApiModel
         public int Car { get; set; }
         public int Motorcycle { get; set; }
         public int Lease { get; set; }
-        public string? message { get; set; }
+        public string message { get; set; }
         public List<IFormFile> EstateImages { get; set; }
         public IFormFile EstateVideo { get; set; }
         public List<int> EquipmentId { get; set; }

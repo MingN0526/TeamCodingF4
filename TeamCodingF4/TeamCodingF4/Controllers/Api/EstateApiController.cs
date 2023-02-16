@@ -117,18 +117,63 @@ namespace TeamCodingF4.Controllers.Api
                }).ToList() ;
         }
 
-
         [HttpPost]
-        public IActionResult Delete([FromBody] int id)
+        public void Delete([FromBody] int id)
         {
+            var img = _context.EstateImages.Where(x => x.EstateId == id).ToList();
+            _context.EstateImages.RemoveRange(img);
 
-            return RedirectToAction("Index", "Estate");
+            Estate estate = _context.Estates.Find(id);
+            if (estate.Conditions != null)
+            {
+                var conditions = new List<Condition>();
+                conditions.AddRange(estate.Conditions.Select(x => x));
+                foreach (var condition in conditions)
+                {
+                    estate.Conditions.Remove(condition);
+                }
+            }
+            if (estate.Equipment != null)
+            {
+                var equipments = new List<Equipment>();
+                equipments.AddRange(estate.Equipment.Select(x => x));
+                foreach (var equipment in equipments)
+                {
+                    estate.Equipment.Remove(equipment);
+                }
+            }
+            _context.Estates.Remove(estate);
+            _context.SaveChanges();
         }
-        [HttpPost]
-        public IActionResult Edit([FromBody] int id)
-        {
 
-            return RedirectToAction("Index", "Estate");
+
+        public List<EstateEditModel> Edit(int id)
+        {
+            return _context.Estates
+                .Include(x => x.Conditions).Include(x => x.Equipment).Include(x => x.EstateImage).Include(x => x.RoomType)
+                .Where(x => x.Id == id).Select(x => new EstateEditModel
+                {
+                    Id = x.Id,
+                    Tittle = x.Tittle,
+                    Room = x.Room,
+                    hall = x.hall,
+                    bathroom = x.bathroom,
+                    City = x.City,
+                    District = x.District,
+                    Address = x.Address,
+                    Floor = x.Floor,
+                    Price = x.Price,
+                    Meters = x.Meters,
+                    Miscellaneous = x.Miscellaneous,
+                    Car = x.Car,
+                    Motorcycle = x.Motorcycle,
+                    Lease = x.Lease,
+                    message = x.message,
+                    RoomType = x.RoomType.Name,
+                    Conditions = x.Conditions.Select(x => x.Name).ToList(),
+                    Equipment = x.Equipment.Select(x => x.Name).ToList(),
+                    EstateImage = x.EstateImage.Select(x => x.ImagePath).ToList(),
+                }).ToList();
         }
     } 
 }

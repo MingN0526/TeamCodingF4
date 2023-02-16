@@ -6,19 +6,19 @@ using TeamCodingF4.Models.ApiModel;
 
 namespace TeamCodingF4.Controllers.Api
 {
-    [Route("api/house/[action]")]
+    [Route("api/shop/[action]")]
     [ApiController]
-    public class HouseApiController : ControllerBase
+    public class ShopApiController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
-        public HouseApiController(ApplicationDbContext context)
+        public ShopApiController(ApplicationDbContext context)
         {
             _db = context;
         }
-        public List<HouseModel> GetAllHouse()
+        public List<ShopModel> GetAllHouse()
         {
             //var eq = _db.Estates.Include(e => e.Equipment).Select( e => e.Equipment);
-            return _db.Estates.Select(x => new HouseModel
+            return _db.Estates.Select(x => new ShopModel
             {
                 Address= x.Address,
                 City= x.City,

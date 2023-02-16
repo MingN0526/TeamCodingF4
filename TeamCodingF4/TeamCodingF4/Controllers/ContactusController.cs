@@ -1,24 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Runtime.Intrinsics.Arm;
-using System.Security.Cryptography.X509Certificates;
-using TeamCodingF4.Controllers.Services;
 using TeamCodingF4.Models.ApiModel;
+using TeamCodingF4.Services;
 
 namespace TeamCodingF4.Controllers
 {
     public class ContactusController : Controller
     {
-        //private readonly IMailContactUs mailFromContactUs;
 
-        //public ContactusController(IMailContactUs mailFromContactUs) 
-        //{
-        //    this.mailFromContactUs = mailFromContactUs;
-        //}
-        //public string SenderMessage([FromBody] EmailFromContactUsModel tempContainer)
-        //{
-        //    //call ur method
-        //    mailFromContactUs.Send();
-        //    return tempContainer.Email;
-        //}
+        private readonly IMailService _mailService;
+        
+        public ContactusController(IMailService mailService)
+        {
+            _mailService = mailService;
+        }
+
+        public string SenderMessage([FromBody] EmailFromContactUsModel data)
+        {
+            var msg = $@"dsfsfgfhg{data.Email}{data.Name}";
+
+            var mailMessage = _mailService.ToMail(data.Subject,msg, data.Email);
+            _mailService.Send(mailMessage);
+
+            return data.Email;
+        }
     }
 }

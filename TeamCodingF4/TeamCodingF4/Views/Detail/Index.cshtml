@@ -1,6 +1,5 @@
 ﻿<!-- Breadcrumb Start -->
 <div class="container-fluid">
-
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
@@ -10,198 +9,111 @@
             </nav>
         </div>
     </div>
-
-    <!-- Breadcrumb End -->
-    <!-- Shop Detail Start -->
-
-    <div class="container-fluid pb-5" id="detailIndex">
-        <div class="row px-xl-5" v-for="allHouseDetail in houseDetail">
-            <div class="col-lg-5 mb-30">
-                <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner bg-light">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" :src="allHouseDetail.estateImage[0].imagePath" alt="Image">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-7 h-auto mb-30">
-                <div class="h-100 bg-light p-30">
-                    <h3>{{allHouseDetail.tittle}}</h3>
-                    <div class="d-flex ">
-                        <small class="pt-1"></small>
-                    </div>
-                    <h3 class="font-weight-semi-bold ">${{allHouseDetail.price}}</h3>
-                    <p>
-                        {{allHouseDetail.message}}
-                    </p>
-                    <div class="row">
-                        <div class="d-flex col-4 ">
-                            <strong class="text-dark mr-3">房型</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="size-1">{{allHouseDetail.roomType.name}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">樓層</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.floor}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">坪數</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.meters}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">房間</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.room}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">衛浴</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.bathroom}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">大廳</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.hall}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">租約</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.lease}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">汽車</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.car}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">機車</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.motorcycle}}</label>
-                            </div>
-                        </div>
-                        <div class="d-flex col-4">
-                            <strong class="text-dark mr-3">雜費</strong>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-control-label" for="color-5">{{allHouseDetail.miscellaneous}}</label>
-                            </div>
-                        </div>
-@*                        <div class="d-flex col-6" >
-                            <strong class="text-dark mr-3">設備</strong>
-                            <div class="custom-control custom-radio custom-control-inline" v-for="equipment in allHouseDetail.equipment.name">
-                                <label class="custom-control-label" for="color-5">{{equipment}}</label>
-                            </div>
-                        </div>*@
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Detail Start -->
+<div class="container-fluid pb-5" id="detailIndex">
+    <div class="row px-xl-5" v-for="allHouseDetail in houseDetail">
+        <div class="col-lg-5 mb-30">
+            <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner bg-light">
+                    <div class="carousel-item active">
+                        <img class="w-100 h-100" :src="allHouseDetail.estateImage[0].imagePath" alt="Image">
                     </div>
                 </div>
+                <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                    <i class="fa fa-2x fa-angle-left text-dark"></i>
+                </a>
+                <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                    <i class="fa fa-2x fa-angle-right text-dark"></i>
+                </a>
             </div>
         </div>
-    </div>
-</div>
-<div class="row px-xl-5">
-    <div class="col">
-        <div class="bg-light p-30">
-            <div class="nav nav-tabs mb-4">
-                <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">房屋介紹</a>
-                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">房屋資料</a>
-                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">房東回覆</a>
-            </div>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab-pane-1">
-                    <h4 class="mb-3">房屋介紹</h4>
-                    <p></p>
-                    <p></p>
+
+        <div class="col-lg-7 h-auto mb-30">
+            <div class="h-100 bg-light p-30">
+                <h3>{{allHouseDetail.tittle}}</h3>
+                <div class="d-flex mb-3">
+                    <small class="pt-1"></small>
                 </div>
-                <div class="tab-pane fade" id="tab-pane-2">
-                    <h4 class="mb-3">房屋資料</h4>
-                    <p></p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item px-0">
-
-                                </li>
-                                <li class="list-group-item px-0">
-
-                                </li>
-                                <li class="list-group-item px-0">
-
-                                </li>
-                                <li class="list-group-item px-0">
-
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item px-0">
-
-                                </li>
-                                <li class="list-group-item px-0">
-
-                                </li>
-                                <li class="list-group-item px-0">
-
-                                </li>
-                                <li class="list-group-item px-0">
-
-                                </li>
-                            </ul>
+                <h3 class="font-weight-semi-bold mb-4">${{allHouseDetail.price}}</h3>
+                <p class="mb-4">
+                    {{allHouseDetail.message}}
+                </p>
+                <div class="row">
+                    <div class="d-flex col-4 ">
+                        <strong class="text-dark mr-3">房型</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="size-1"></label>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="tab-pane-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="mb-4">房東回覆</h4>
-                            <div class="media mb-4">
-                                <img src="~/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                <div class="media-body">
-                                    <h6>房東姓名<small> - <i>回覆時間</i></small></h6>
-
-                                    <p>回覆內文</p>
-                                </div>
-                            </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">樓層</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.floor}}</label>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="message">你的回覆</label>
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">會員名稱</label>
-                            </div>
-                            <div class="form-group mb-0">
-                                <input type="submit" value="回覆" class="btn btn-primary px-3">
-                            </div>
-
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">坪數</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.meters}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">房間</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.room}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">衛浴</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.bathroom}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">大廳</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.hall}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">租約</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.lease}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">汽車</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.car}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">機車</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.motorcycle}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-4">
+                        <strong class="text-dark mr-3">雜費</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.miscellaneous}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex col-8">
+                        <strong class="text-dark mr-3">地址</strong>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.address}}</label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-    </div>
+    </div>    
 </div>
 <!-- Shop Detail End -->
+
 @section Scripts
     {
     <script>
@@ -209,7 +121,6 @@
             el: "#detailIndex",
             data: {
                 houseDetail: "",
-                equipmentName :[],
             },
             mounted: function () {
                 let _self = this
@@ -221,11 +132,7 @@
                     })
             },
             methods: {
-                //equipment:function(){
-                //    for (var i = 0; i <= allHouseDetail.equipment.length; i++){
-                //        this.equipmentName.push()
-                //    }
-                //},
+
             },
         });
     </script>

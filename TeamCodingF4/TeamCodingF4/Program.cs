@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using TeamCodingF4.Controllers.Services;
 using TeamCodingF4.Data;
+using TeamCodingF4.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,14 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(TeamCodingProjectconnectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-//builder.Services.AddDefaultIdentity<MemberModel>(options =>
-//{
-//    options.SignIn.RequireConfirmedAccount = true;
-//}).AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddTransient<IMailService,MailService>();
-//builder.Services.AddTransient<IMailContactUs, IMailContactUsService>();
-
 builder.Services.AddTransient<System.Security.Cryptography.SHA256Managed>();
 builder.Services.AddControllersWithViews();
 

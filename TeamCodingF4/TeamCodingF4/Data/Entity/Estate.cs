@@ -14,7 +14,6 @@ namespace TeamCodingF4.Data.Entity
         public int Room { get; set; }
         public int hall { get; set; }
         public int bathroom { get; set; }
-
         public string City { get; set; }
         public string District { get; set; }
         public string Address { get; set; }
@@ -25,8 +24,8 @@ namespace TeamCodingF4.Data.Entity
         public int Car { get; set; }
         public int Motorcycle { get; set; }
         public int Lease { get; set; }
-        public string EstateVideoPath { get; set; }
-        public string? message { get; set; }
+        public string? EstateVideoPath { get; set; }
+        public string message { get; set; }
 
         public virtual ICollection<Equipment> Equipment { get; set; }
         public virtual ICollection<Condition> Conditions { get; set; }

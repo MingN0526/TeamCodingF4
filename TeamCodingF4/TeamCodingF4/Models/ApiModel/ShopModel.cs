@@ -3,7 +3,7 @@ using TeamCodingF4.Data.Entity;
 
 namespace TeamCodingF4.Models.ApiModel
 {
-    public class HouseModel
+    public class ShopModel
     {
         public int Id { get; set; }
         public string Tittle { get; set; }

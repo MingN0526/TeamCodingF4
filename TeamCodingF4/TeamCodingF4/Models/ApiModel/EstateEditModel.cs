@@ -4,7 +4,10 @@
     {
         public int Id { get; set; }
         public string Tittle { get; set; }
-        public int RoomTypeId { get; set; }
+        public int Room { get; set; }
+        public int hall { get; set; }
+        public int bathroom { get; set; }
+
         public string City { get; set; }
         public string District { get; set; }
         public string Address { get; set; }
@@ -15,10 +18,11 @@
         public int Car { get; set; }
         public int Motorcycle { get; set; }
         public int Lease { get; set; }
-        public string EstateVideoPath { get; set; }
-        public string? message { get; set; }
-        public List<IFormFile> EstateImages { get; set; }
-        public IFormFile EstateVideo { get; set; }
-        public List<int> EquipmentId { get; set; }
+        public string message { get; set; }
+
+        public virtual List<string>? Equipment { get; set; }
+        public virtual List<string>? Conditions { get; set; }
+        public virtual string RoomType { get; set; }
+        public virtual List<string> EstateImage { get; set; }
     }
 }
