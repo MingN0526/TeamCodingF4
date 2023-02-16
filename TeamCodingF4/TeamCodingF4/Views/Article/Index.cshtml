@@ -178,7 +178,7 @@
                                          width="50" alt="User" />
                                     <small class="d-block text-center text-muted">Pro</small>
                                 </a>
-
+                                <div>{{article.userName}}</div>
                                 <div class="media-body ml-3 row-cols-12">
                                     <form>
                                         <div class="form-group">
@@ -528,6 +528,15 @@
                             position: 'center',
                             icon: 'error',
                             title: '請選擇類別',
+                            timer: 3000
+                        })
+                        return;
+                    }
+                    if(self.user.id==""){
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: '請登入會員',
                             timer: 3000
                         })
                         return;
