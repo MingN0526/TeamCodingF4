@@ -46,7 +46,7 @@ namespace TeamCodingF4.Controllers.Api
                 var _register = new Member
                 {
                     Name = model.Name,
-                    Role = model.Role,
+                    //Role = model.Role,
                     Email = model.Email,
                     Password = hashStr,
                     PasswordHash = salt,

@@ -5,8 +5,8 @@ namespace TeamCodingF4.Models.Account
 {
     public class PostToRegisterRequestModel
     {
-        [Required(ErrorMessage = "請選擇身份別")]
-        public string Role { get; set; }
+        //[Required(ErrorMessage = "請選擇身份別")]
+        //public string Role { get; set; }
 
         [Required(ErrorMessage = "請輸入使用者名稱")]
         public string Name { get; set; }

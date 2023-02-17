@@ -6,12 +6,12 @@
             <section>
                 <h2>請註冊一個帳號</h2>
                 <hr />
-                <div class="text-danger"></div>
+@*                <div class="text-danger"></div>
                 <label name="Role" class="form-label">我想要當 </label>
                 <select id="Role" name="Role" V-model="Role" required>
                     <option value="0">房東</option>
                     <option value="1" selected>房客</option>
-                </select>
+                </select>*@
                 <div class="form-floating">
                     <label name="Name" class="form-label">使用者名稱</label>
                     <input name="Name" id="Name" v-model="Name" class="form-control" autocomplete="username" placeholder="王小明" aria-required="true" required />
@@ -55,7 +55,7 @@
         let app = new Vue({
             el: '#app',
             data: {
-                Role: "",
+                //Role: "",
                 Name: "",
                 Email: "",
                 Password: "",
@@ -64,7 +64,7 @@
             methods: {
                 DoRegister: function () {
                     let _self = this
-                    if (this.Role == "" || this.Name == "" || this.Email == "") {
+                    if (this.Name == "" || this.Email == "") {
                         alert("請確認所有欄位皆已填寫");
                         return;
                     } else if (this.Password == "" || this.Password != this.ConfirmePassword) {
@@ -90,10 +90,14 @@
                             swal('註冊結果', '信箱重複註冊或輸入格式不正確，請檢查。', 'error')
                         }
                         else {
-                            swal('註冊結果', '註冊成功，即將回到登入頁面，請至信箱收取認證信。', 'success')
-                                .then(function () {
-                                    window.location = "https://localhost:7213/account/signin";
-                                });
+                            swal({
+                                title: '註冊結果',
+                                text: '註冊成功，5秒後自動回到登入頁面，請至信箱收取認證信。',
+                                icon: 'success',
+                                timer: 5000,
+                            }).then(function () {
+                                window.location = "https://localhost:7213/account/signin";
+                            });
                         }
                     }).catch((error) => {
                         swal('註冊結果', '不知原因錯誤，請洽管理員。', 'error')
