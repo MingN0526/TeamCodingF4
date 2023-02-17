@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using TeamCodingF4.Data;
 using TeamCodingF4.Models.Account;
+using TeamCodingF4.Models.ApiModel;
 using TeamCodingF4.Models.Common;
 using TeamCodingF4.Services;
 using Member = TeamCodingF4.Data.Entity.Member;
@@ -73,7 +74,7 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public ResponseModel<PostToProfileResponseModel> EditProfile([FromBody] PostToProfileRequestModel model)
         {
             var result = new ResponseModel<PostToProfileResponseModel>();
@@ -102,6 +103,26 @@ namespace TeamCodingF4.Controllers.Api
             };
             result.IsOk = true;
             return result;
+        }
+
+        public GetProfileModel GetUser()
+        {
+            var userClaim = User.Claims.FirstOrDefault(x => x.Type == "Id");
+            var profile = _context.Members.FirstOrDefault(x => x.Id == int.Parse(userClaim.Value));
+
+            GetProfileModel _user = new GetProfileModel
+            {
+                Id = profile.Id,
+                Name = profile.Name,
+                Email = profile.Email,
+                Gender = profile.Gender,
+                Identity = profile.Identity,
+                Job = profile.Job,
+                Phone = profile.Phone,
+                PicturePath = profile.PicturePath,
+            };
+
+            return _user;
         }
     }
 }

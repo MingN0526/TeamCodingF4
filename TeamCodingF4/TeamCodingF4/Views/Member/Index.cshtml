@@ -90,7 +90,7 @@
                                 <label>ZIP Code</label>
                                 <input class="form-control" type="text" placeholder="123">
                             </div>*@
-                            <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" v-on:click="GetUserProfile">
+                            <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" v-on:click="EditProfile">
                                 編輯
                             </button>
                         </div>
@@ -126,12 +126,12 @@
 
             mounted: function () {
                 var _self = this
-                fetch("/api/Account/EditProfile")
+                fetch("/api/GetProfile/GetProfile")
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
                         _self.Id = result.Id
-                        _self.Email = result.Id
+                        _self.Email = result.Email
                         _self.Name = result.Name
                         _self.Gender = result.Gender
                         _self.BirthDate = result.BirthDate
@@ -141,7 +141,7 @@
                     })
             },
             methods: {
-                GetUserProfile: function(){
+                EditProfile: function () {
                     var _self = this;
 
                     fetch('/api/Account/EditProfile',{
