@@ -118,7 +118,7 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        public void Delete([FromBody] int id)
+        public ApiResultModel Delete([FromBody] int id)
         {
             var img = _context.EstateImages.Where(x => x.EstateId == id).ToList();
             _context.EstateImages.RemoveRange(img);
@@ -144,9 +144,12 @@ namespace TeamCodingF4.Controllers.Api
             }
             _context.Estates.Remove(estate);
             _context.SaveChanges();
+            return new ApiResultModel
+            {
+                Status = true,
+                Message = "加入成功"
+            };
         }
-
-
         public List<EstateEditModel> Edit(int id)
         {
             return _context.Estates
@@ -170,9 +173,6 @@ namespace TeamCodingF4.Controllers.Api
                     Lease = x.Lease,
                     message = x.message,
                     RoomType = x.RoomType.Name,
-                    Conditions = x.Conditions.Select(x => x.Name).ToList(),
-                    Equipment = x.Equipment.Select(x => x.Name).ToList(),
-                    EstateImage = x.EstateImage.Select(x => x.ImagePath).ToList(),
                 }).ToList();
         }
     } 
