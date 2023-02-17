@@ -15,36 +15,30 @@
 <div class="container-fluid pb-5" id="detailIndex">
     <div class="row px-xl-5" v-for="allHouseDetail in houseDetail">
         <div class="col-lg-5 mb-30">
-            <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner bg-light">
-                    <div class="carousel-item active">
-                        <img class="w-100 h-100" :src="allHouseDetail.estateImage[0].imagePath" alt="Image">
+            <div class="carousel slide" data-ride="carousel">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" :src="allHouseDetail.estateImage[0].imagePath" style="height:300px;width:400px;" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" :href="getHouseDetailsLink(allHouseDetail.id)"><i class="fa fa-search"></i></a>
+                        </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                    <i class="fa fa-2x fa-angle-left text-dark"></i>
-                </a>
-                <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                    <i class="fa fa-2x fa-angle-right text-dark"></i>
-                </a>
             </div>
         </div>
-
-        <div class="col-lg-7 h-auto mb-30">
+        <div class="col-lg-7 mb-30">
             <div class="h-100 bg-light p-30">
                 <h3>{{allHouseDetail.tittle}}</h3>
                 <div class="d-flex mb-3">
                     <small class="pt-1"></small>
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">${{allHouseDetail.price}}</h3>
-                <p class="mb-4">
-                    {{allHouseDetail.message}}
-                </p>
+
                 <div class="row">
                     <div class="d-flex col-4 ">
                         <strong class="text-dark mr-3">房型</strong>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <label class="custom-control-label" for="size-1"></label>
+                            <label class="custom-control-label" for="color-5">{{allHouseDetail.roomType.name}}</label>
                         </div>
                     </div>
                     <div class="d-flex col-4">
@@ -110,10 +104,9 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 <!-- Shop Detail End -->
-
 @section Scripts
     {
     <script>
@@ -121,10 +114,11 @@
             el: "#detailIndex",
             data: {
                 houseDetail: "",
+                houseDetailLink: "/Detail/HouseDetail/",
             },
             mounted: function () {
                 let _self = this
-                fetch("/api/detail/getallhousedetail")
+                fetch("/api/shop/GetAllHouse")
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
@@ -132,7 +126,9 @@
                     })
             },
             methods: {
-
+                getHouseDetailsLink: function (houseId) {
+                    return this.houseDetailLink + houseId
+                },
             },
         });
     </script>

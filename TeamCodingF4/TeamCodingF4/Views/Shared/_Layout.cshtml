@@ -99,8 +99,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="/Home/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "home" ? "active" : "") ">首頁</a>
-                            <a href="/shop/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "shop" ? "active" : "") ">物件瀏覽</a>
-                            <a href="/detail/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "detail" ? "active" : "") ">物件資料</a>
+                            <a href="/shop/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "shop" ? "active" : "") ">物件瀏覽</a>                           
                             <div class="nav-item dropdown">
                                 @*@if (User.Claims.FirstOrDefault().Value == "0")
                                 {
@@ -184,12 +183,13 @@
                             <a class="text-secondary mb-2" href="/member/index"><i class="fa fa-angle-right mr-2"></i>會員資料</a>
                             <a class="text-secondary mb-2" href="/estate/index"><i class="fa fa-angle-right mr-2"></i>我的物件</a>
                             <a class="text-secondary mb-2" href="/estate/create"><i class="fa fa-angle-right mr-2"></i>物件刊登</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>我的文章(未)</a>
+                            <a class="text-secondary mb-2" href="/article/index"><i class="fa fa-angle-right mr-2"></i>我的文章</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">熱門文章</h5>
-                        <p>(熱門文章主題)</p>
+                        <h5 class="text-secondary text-uppercase mb-4">最新文章</h5>
+                        <div class="row px-xl-5" id = "newestArticle" v-for="Article in newestArticleTitle"><p>(最新文章主題)</p>
+                            </div>
                         <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="請輸入">
@@ -221,6 +221,23 @@
 
 
     <!-- JavaScript Libraries -->
+    @section Scripts
+    {
+    <script>
+            let app = new Vue({
+                el: "#newestArticleTitle",
+                data: {
+                    newestArticleTitle: "",
+                    
+                },
+                mounted:function()
+                {
+                let _self = this
+                fetch("/api/GetNewestArticleApi/")
+                }
+    </script>
+    }
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/easing/easing.min.js"></script>

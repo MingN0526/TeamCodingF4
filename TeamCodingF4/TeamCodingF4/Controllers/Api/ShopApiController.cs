@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TeamCodingF4.Data;
+using TeamCodingF4.Data.Entity;
 using TeamCodingF4.Models.ApiModel;
 
 namespace TeamCodingF4.Controllers.Api
@@ -17,35 +18,31 @@ namespace TeamCodingF4.Controllers.Api
         }
         public List<ShopModel> GetAllHouse()
         {
-            //var eq = _db.Estates.Include(e => e.Equipment).Select( e => e.Equipment);
-            return _db.Estates.Select(x => new ShopModel
-            {
-                Address= x.Address,
-                City= x.City,
-                EstateImage= x.EstateImage,
-                bathroom= x.bathroom,
-                Car = x.Car,
-                Conditions= x.Conditions,
-                District= x.District,
-                Equipment= x.Equipment,
-                Floor = x.Floor,
-                hall= x.hall,
-                Id= x.Id,
-                Lease= x.Lease,
-                message= x.message,
-                Meters= x.Meters,
-                Miscellaneous = x.Miscellaneous,
-                Motorcycle= x.Motorcycle,
-                Price= x.Price,
-                Room= x.Room,
-                RoomType= x.RoomType,
-                RoomTypeId= x.RoomTypeId,
-                Tittle= x.Tittle,
-            }).ToList();
-
-
-
-
+            return _db.Estates.Include(x => x.Equipment).Include(x => x.Conditions)
+                .Include(x => x.RoomType).Include(x => x.EstateImage).Select(x => new ShopModel
+                {
+                    Car = x.Car,
+                    Bathroom = x.bathroom,
+                    Address = x.Address,
+                    City = x.City,
+                    District = x.District,
+                    Floor = x.Floor,
+                    Hall = x.hall,
+                    Id = x.Id,
+                    Lease = x.Lease,
+                    Message = x.message,
+                    Meters = x.Meters,
+                    Miscellaneous = x.Miscellaneous,
+                    Motorcycle = x.Motorcycle,
+                    Price = x.Price,
+                    Room = x.Room,
+                    RoomTypeId = x.RoomTypeId,
+                    Tittle = x.Tittle,
+                    EquipmentName = x.Equipment.Select(x => x.Name).ToList(),
+                    Conditions = x.Conditions.Select(x => x.Name).ToList(),
+                    RoomType = x.RoomType.Name,
+                    EstateImage = x.EstateImage.Select(x => x.ImagePath).ToList()
+                }).ToList();
         }
     }
 }
