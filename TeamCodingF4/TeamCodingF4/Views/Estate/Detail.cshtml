@@ -175,7 +175,17 @@
                         method: "POST",
                         body: self.detailId,
                         headers: { "content-type": "application/json" }
-                    }).then(window.history.back())
+                    }).then(res => res.json())
+                        .then(res => {
+                            var al = {
+                                position: 'center',
+                                icon: 'success',
+                                title: '刪除成功',
+                                showConfirmButton: false,
+                                timer: 2000
+                            };
+                            Swal.fire(al).then(() => { window.history.go(-1) })
+                        })
                 },
                 editEstate: function (id) {
                     return "/Estate/Edit/" + id
