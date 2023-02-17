@@ -16,9 +16,9 @@ namespace TeamCodingF4.Controllers
 
         public string SenderMessage([FromBody] EmailFromContactUsModel data)
         {
-            var msg = $@"dsfsfgfhg{data.Email}{data.Name}";
+            var msg = $@"聯絡信箱{data.Email}<br>名稱{data.Name}<br>主題{data.Subject}<br>內容{data.Message}";
 
-            var mailMessage = _mailService.ToMail(data.Subject,msg, data.Email);
+            var mailMessage = _mailService.ToMail(data.Subject,msg, data.TargetAddress);
             _mailService.Send(mailMessage);
 
             return data.Email;
