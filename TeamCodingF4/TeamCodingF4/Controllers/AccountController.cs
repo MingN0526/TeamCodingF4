@@ -9,6 +9,7 @@ using TeamCodingF4.Common;
 using TeamCodingF4.Data;
 using TeamCodingF4.Models.Account;
 using TeamCodingF4.Models.Common;
+using TeamCodingF4.Services;
 
 namespace TeamCodingF4.Controllers
 {
@@ -58,7 +59,7 @@ namespace TeamCodingF4.Controllers
             var claims = new List<Claim> { 
                 new Claim("Id",dbAccount.Id.ToString()),
                 new Claim(ClaimTypes.Name, dbAccount.Name),
-                new Claim(ClaimTypes.Role, dbAccount.IsActive? dbAccount.Role: ClaimsEnum.訪客.ToString()),
+                new Claim(ClaimTypes.Role, dbAccount.IsActive? "會員": ClaimsEnum.訪客.ToString()),
             };
             var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
             HttpContext.SignInAsync(claimsPrincipal);
@@ -86,9 +87,89 @@ namespace TeamCodingF4.Controllers
             return View();
         }
 
+        [HttpPost]
+
+
+        [HttpGet]
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return View("~/Views/Home/Index.cshtml");
+        }
+
         public IActionResult ForgetPwd()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        public ResponseModel<string> ForgetPwd([FromBody]ForgetPwdRquestModel model)
+        {
+            ResponseModel<string> _result = new ResponseModel<string>();
+
+            var user = _context.Members.FirstOrDefault(x => x.Email == model.Email);
+            if (user == null)
+            {
+                _result.IsOk = false;
+                _result.Message = "找無此使用者，請確認Email。";
+                return _result;
+            }
+            _result.IsOk = true;
+
+            user.IsActive = false;
+            user.Token = Guid.NewGuid();
+
+            _context.SaveChanges();
+
+            var activationUrl = "https://localhost:7213/Account/SetNewPwd/" + user.Token;
+            var mail = new MailService();
+
+            mail.Send(mail.ToMail(
+                "請點選連結進入重置密碼頁面。",
+                @$"<h2>請點選下方連結進行新密碼設定。</h2><br>
+                <a href='{activationUrl}'>請點我前往修改密碼</a>",
+                model.Email
+                )
+            );
+
+            return _result;
+        }
+
+        public IActionResult SetNewPwd(string id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ResponseModel<string> SetNewPwd([FromBody]SetNewPwdRequestModel model)
+        {
+            ResponseModel<string> _result = new ResponseModel<string>();
+
+            var _member = _context.Members.FirstOrDefault(x => x.Token.Equals(Guid.Parse(model.Token)));
+            if (_member == null)
+            {
+                _result.IsOk = false;
+                _result.Message = "驗證失敗，請重新操作。";
+                return _result;
+            }
+            _result.IsOk = true;
+
+            string salt = Guid.NewGuid().ToString();
+            byte[] addSalt = Encoding.UTF8.GetBytes(model.NewPwd + salt);
+            byte[] hashByte = sHA256Managed.ComputeHash(addSalt);
+            string hashStr = Convert.ToBase64String(hashByte);
+
+            _member.IsActive = true;
+            _member.Password = hashStr;
+            _member.PasswordHash = salt;
+
+            _context.SaveChanges();
+
+            return _result;
         }
     }
 }

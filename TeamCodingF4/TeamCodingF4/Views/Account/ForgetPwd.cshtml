@@ -1,0 +1,81 @@
+﻿<div id="app">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1>忘記密碼</h1>
+            <section>
+                @*<form id="account" method="post" action="/Account/Login">*@
+                <hr />
+                <div class="text-danger"></div>
+                <div class="form-floating">
+                    <label name="Email" class="form-label">請輸入帳號</label>
+                    <input id="Email" name="Email" v-model="Email" class="form-control" autocomplete="username" placeholder="name@example.com" aria-required="true" />
+                    <span class="text-danger"></span>
+                </div>
+                <br />
+                <div>
+                    <button id="login-submit"
+                            v-on:click="ForgetPwd()"
+                            class="w-100 btn btn-lg btn-primary">
+                        修改密碼
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                Email: "",
+            },
+            methods: {
+                ForgetPwd: function () {
+                    let _self = this
+                    if (this.Email == "") {
+                        swal('重設失敗', '請輸入帳號。', 'error')
+                            .then(function () {
+                                window.location = "https://localhost:7213/account/ForgetPwd";
+                            });
+                        return;
+                    }
+                    console.log(this.Email);
+                    fetch('/Account/ForgetPwd', {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            Email: this.Email,
+                        })
+                    }).then(function (response) {
+                        return response.json()
+                    }).then(function (result) {
+                        console.log(result)
+                        if (result.isOk == false) {
+                            swal('重設失敗', '請檢查輸入的Email。', 'error')
+                                .then(function () {
+                                    window.location = "https://localhost:7213/account/ForgetPwd";
+                                });
+                        }
+                        else {
+                            swal({
+                                title: '重設成功',
+                                text: '5秒後自動跳轉至登入頁面，請至Email收信。',
+                                icon: 'success',
+                                timer: 5000,
+                            }).then(function () {
+                                //window.location = "https://localhost:7213/account/SetNewPwd";
+                            });
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                        swal('重設失敗', '不知原因錯誤，請洽管理員。', 'error')
+                    })
+                }
+            },
+        })
+
+    </script>
+}

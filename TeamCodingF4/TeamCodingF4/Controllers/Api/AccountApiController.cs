@@ -46,7 +46,6 @@ namespace TeamCodingF4.Controllers.Api
                 var _register = new Member
                 {
                     Name = model.Name,
-                    //Role = model.Role,
                     Email = model.Email,
                     Password = hashStr,
                     PasswordHash = salt,
@@ -88,7 +87,7 @@ namespace TeamCodingF4.Controllers.Api
                 var userClaim = User.Claims.FirstOrDefault(x => x.Type == "Id");
                 Member user = _context.Members.FirstOrDefault(x => x.Id == int.Parse(userClaim.Value));
 
-                user.BirthDate = model.BirthDate;
+                //user.BirthDate = model.BirthDate;
                 user.Email = model.Email;
                 user.Gender = model.Gender;
                 user.Identity = model.Identity;
@@ -121,7 +120,6 @@ namespace TeamCodingF4.Controllers.Api
                 Phone = profile.Phone,
                 PicturePath = profile.PicturePath,
             };
-
             return _user;
         }
     }

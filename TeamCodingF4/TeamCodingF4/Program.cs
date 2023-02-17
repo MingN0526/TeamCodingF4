@@ -21,7 +21,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         opt.LoginPath = "/account/login";
         opt.LogoutPath = "/Account/Logout"; //TODO logout page
         opt.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-        opt.Cookie.Name = "loginSuccess";
+        opt.Cookie.Name = Guid.NewGuid().ToString();
         opt.Cookie.HttpOnly = true;
     }
     );

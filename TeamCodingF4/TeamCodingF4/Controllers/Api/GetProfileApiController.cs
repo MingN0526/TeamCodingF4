@@ -30,9 +30,9 @@ namespace TeamCodingF4.Controllers.Api
                 Identity = profile.Identity,
                 Job = profile.Job,
                 Phone = profile.Phone,
+                BirthDate = profile.BirthDate.HasValue ? profile.BirthDate.Value.ToString("yyyy/MM/dd") : string.Empty,
                 PicturePath = profile.PicturePath,
             };
-
             return _user;
         }
     }

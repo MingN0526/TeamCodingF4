@@ -15,7 +15,7 @@ namespace TeamCodingF4.Models.Account
 
         public string? Identity { get; set; }
      
-        public DateTime? BirthDate { get; set; }
+        public string BirthDate { get; set; }
 
         public int? Gender { get; set; }
 
@@ -23,6 +23,6 @@ namespace TeamCodingF4.Models.Account
 
         public string? PicturePath { get; set; }
 
-        public string Address { get; set; }
+        //public string Address { get; set; }
     }
 }

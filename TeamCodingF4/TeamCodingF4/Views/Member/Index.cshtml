@@ -22,17 +22,30 @@
                 <div class="col-lg-3">
                     <div class="bg-light p-30 mb-5">大頭貼</div>
                     <br />
-                    <div class="col-md-12 form-group">
-                        <label>會員編號</label>
-                        <p name="Id" id="Id" class="form-control">{{form.Id}}</p>
+@*                    <div class="control-group">
+                        <label>照片</label>
+                        <input type="file" class="form-control" name="EstateImages" id="EstateImage" multiple required />
+                        <p class="help-block text-danger"></p>
                     </div>
+                    <br />
+
+                    <div>
+                        <img src="previewImage" class="uploading-image" />
+                        <input type="file" accept="image/jpeg" on:change="uploadImage($event)">
+                    </div>*@
+
+
+                    @*                    <div class="col-md-12 form-group">
+                    <label>會員編號</label>
+                    <p name="Id" id="Id" class="form-control">{{form.Id}}</p>
+                    </div>*@
                     @*<div class="col-md-12 form-group">
-                        <label>信用等級</label>
-                        <input class="form-control" type="text">
+                    <label>信用等級</label>
+                    <input class="form-control" type="text">
                     </div>*@
                     <div class="col-md-12 form-group">
                         <label>Email</label>
-                        <input id="Email" name="Email" v-model="form.Email" class="form-control">
+                        <input id="Email" name="Email" v-model="form.Email" class="form-control" readonly>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -40,59 +53,75 @@
                         <div class="row">
                             <div class="col-md-4 form-group">
                                 <label>姓名</label>
-                                <input id="Name" name="Name" v-model="form.Name" class="form-control">
+                                <input id="Name" name="Name" v-model="form.Name" class="form-control" :disabled="mode == 'view'">
                             </div>
                             <div class="col-md-2 form-group">
                                 <label>性別</label>
-                                <input id="Gender" name="Gender" v-model="form.Gender" class="form-control" type="text">
+                                <select id="Gender" v-model="form.Gender" class="form-control" :disabled="mode == 'view'">
+                                    <option value="1">男性</option>
+                                    <option value="2">女性</option>
+                                </select>
                             </div>
                             <div class="col-md-2 form-group">
                                 <label>生日</label>
-                                <input id="BirthDate" name="BirthDate" v-model="form.BirthDate" class="form-control" type="text">
+                                <input id="BirthDate" name="BirthDate" placeholder="2023/02/18" v-model="form.BirthDate" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>身份證字號</label>
-                                <input id="Identity" name="Identity" v-model="form.Identity" class="form-control" type="text">
+                                <input id="Identity" name="Identity" v-model="form.Identity" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>職業別</label>
-                                <input id="Job" name="Job" v-model="form.Job" class="form-control" type="text">
+                                <input id="Job" name="Job" v-model="form.Job" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>手機</label>
-                                <input id="Phone" name="Phone" v-model="form.Phone" class="form-control" type="text">
+                                <input id="Phone" name="Phone" v-model="form.Phone" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
-@*                            <div class="col-md-3 form-group">
-                                <label>國家</label>
-                                <select class="custom-select">
-                                    <option selected>---請選擇---</option>
-                                    <option>台灣</option>
-                                    <option>美國</option>
-                                    <option>日本</option>
-                                    <option>韓國</option>
-                                    <option>德國</option>
-                                    <option>法國</option>
-                                </select>
+                            @*                            <div class="col-md-3 form-group">
+                            <label>國家</label>
+                            <select class="custom-select">
+                            <option selected>---請選擇---</option>
+                            <option>台灣</option>
+                            <option>美國</option>
+                            <option>日本</option>
+                            <option>韓國</option>
+                            <option>德國</option>
+                            <option>法國</option>
+                            </select>
                             </div>*@
-                            <div class="col-md-9 form-group">
-                                <label>地址</label>
-                                <input id="Address" name="Address"  class="form-control" type="text">
-                            </div>
-@*                            <div class="col-md-6 form-group">
-                                <label>City</label>
-                                <input class="form-control" type="text" placeholder="New York">
+                            @*                            <div class="col-md-9 form-group">
+                            <label>地址</label>
+                            <input id="Address" name="Address" class="form-control" type="text" :disabled="mode == 'view'">
+                            </div>*@
+                            @*                            <div class="col-md-6 form-group">
+                            <label>City</label>
+                            <input class="form-control" type="text" placeholder="New York">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>State</label>
-                                <input class="form-control" type="text" placeholder="New York">
+                            <label>State</label>
+                            <input class="form-control" type="text" placeholder="New York">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>ZIP Code</label>
-                                <input class="form-control" type="text" placeholder="123">
+                            <label>ZIP Code</label>
+                            <input class="form-control" type="text" placeholder="123">
                             </div>*@
-                            <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" v-on:click="EditProfile">
-                                編輯
-                            </button>
+                        </div>
+                        <div class="row px-xl-5">
+                            <div class="col-md-9 form-group"></div>
+                            <div class="col-md-3 form-group" v-if="mode == 'view'">
+                                <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" v-on:click="ToEdit">
+                                    編輯
+                                </button>
+                            </div>
+                            <div class="col-md-3 form-group" v-if="mode == 'edit'">
+                                <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" v-on:click="EditProfile">
+                                    完成
+                                </button>
+                                <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" v-on:click="ToView">
+                                    取消
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,17 +130,12 @@
     </div>
 </div>
 <!-- Body End -->
-
 @section scripts{
     <script>
         let app = new Vue({
             el: '#app',
-            data: function() {
-                var data = {
-                    form: {}
-                };
-
-                data.form = {
+            data: {
+                form: {
                     Id: "",
                     Email: "",
                     Name: "",
@@ -120,8 +144,8 @@
                     Identity: "",
                     Job: "",
                     Phone: "",
-                }
-                return data
+                },
+                mode: 'view'
             },
 
             mounted: function () {
@@ -130,51 +154,74 @@
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result)
-                        _self.Id = result.Id
-                        _self.Email = result.Email
-                        _self.Name = result.Name
-                        _self.Gender = result.Gender
-                        _self.BirthDate = result.BirthDate
-                        _self.Identity = result.Identity
-                        _self.Job = result.Job
-                        _self.Phone = result.Phone
+                        _self.form.Id = result.id
+                        _self.form.Email = result.email
+                        _self.form.Name = result.name
+                        _self.form.Gender = result.gender
+                        _self.form.BirthDate = result.birthDate
+                        _self.form.Identity = result.identity
+                        _self.form.Job = result.job
+                        _self.form.Phone = result.phone
+                        console.log(_self.form)
                     })
             },
             methods: {
+                ToEdit: function () {
+                    var _self = this;
+                    _self.OldData = Object.assign({}, _self.form)
+                    _self.mode = 'edit';
+                    console.log(_self)
+                },
+                ToView: function () {
+                    var _self = this;
+                    _self.form = Object.assign({}, _self.OldData)
+                    _self.mode = 'view';
+                },
+                //uploadImage: function (e) {
+                //    conso
+                //    const image = e.target.files[0];
+                //    const reader = new FileReader();
+                //    reader.readAsDataURL(image);
+                //    reader.onload = e => {
+                //        this.previewImage = e.target.result;
+                //        console.log(this.previewImage);
+                //    };
+                //},
                 EditProfile: function () {
                     var _self = this;
+                    _self.mode = 'edit';
 
-                    fetch('/api/Account/EditProfile',{
+                    fetch('/api/Account/EditProfile', {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            Id: this.Role,
-                            Email: this.Email,
-                            Name: this.Name,
-                            Gender: this.Gender,
-                            BirthDate: this.BirthDate,
-                            Identity: this.Identity,
-                            Job: this.Job,
-                            Phone: this.Phone,
+                            Id: this.form.Id,
+                            Email: this.form.Email,
+                            Name: this.form.Name,
+                            Gender: this.form.Gender,
+                            BirthDate: this.form.BirthDate,
+                            Identity: this.form.Identity,
+                            Job: this.form.Job,
+                            Phone: this.form.Phone,
                         })
                     }).then(function (response) {
                         return response.json()
-                    }).then(function (result) {
-                        console.log(result)
-                        if (result.isOk == false) {
-                            swal('修改結果', '修改失敗，請檢查內容。', 'error')
-                        }
-                        else {
+                    }).then(function (_result) {
+                        console.log(_result);
+                        if (_result.isOk == true) {
                             swal('修改結果', '修改成功，將回到會員資料頁面。', 'success')
                                 .then(function () {
                                     window.location = "https://localhost:7213/member/index";
                                 });
+                        }
+                        else {
+                            swal('修改結果', '修改失敗，請檢查內容。', 'error')
                         }
                     }).catch((error) => {
                         swal('註冊結果', '不知原因錯誤，請洽管理員。', 'error')
                     })
                 }
             },
-        }) 
+        })
     </script>
 }

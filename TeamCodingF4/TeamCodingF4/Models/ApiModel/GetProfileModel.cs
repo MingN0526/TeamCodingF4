@@ -19,6 +19,8 @@ namespace TeamCodingF4.Models.ApiModel
 
         public string? Job { get; set; }
 
+        public string? BirthDate { get; set; }
+
         public string? PicturePath { get; set; }
 
     }
