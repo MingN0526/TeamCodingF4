@@ -16,7 +16,11 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-4">
-
+            <span class="input-icon input-icon-sm ml-auto w-auto">
+                <input type="text"
+                       class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
+                       placeholder="Search" v-model="searchText" />
+            </span>
             
             <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">租金</span></h5>
@@ -172,11 +176,13 @@
                 houseDetailsLink: "/Detail/HouseDetail/",
                 roomType:[],
                 price:[],
-                
+                searchText:"",
             },
             computed:{
                 filteredHouse:function(){
+                    let _self = this
                     return this.showPrice(this.showRoomEquipment(this.showRoomType([...this.allHouse])))
+                           .filter(x=>x.tittle.includes(_self.searchText))
                 }
             },
             mounted: function () {
