@@ -91,6 +91,7 @@ namespace TeamCodingF4.Controllers.Api
                 user.Email = model.Email;
                 user.Gender = model.Gender;
                 user.Identity = model.Identity;
+                user.BirthDate = Convert.ToDateTime(model.BirthDate);
                 user.Job = model.Job;
                 user.Name = model.Name;
                 user.Phone = model.Phone;

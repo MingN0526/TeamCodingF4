@@ -19,42 +19,21 @@
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">會員基本資料</span></h5>
             </div>
             <div class="row px-xl-5">
-                <div class="col-lg-3">
-                    <div class="bg-light p-30 mb-5">大頭貼</div>
-                    <br />
-@*                    <div class="control-group">
-                        <label>照片</label>
-                        <input type="file" class="form-control" name="EstateImages" id="EstateImage" multiple required />
-                        <p class="help-block text-danger"></p>
+                <div class="col-lg-12">
+                    <div class="row bg-light p-30 mb-5">
+
                     </div>
-                    <br />
-
-                    <div>
-                        <img src="previewImage" class="uploading-image" />
-                        <input type="file" accept="image/jpeg" on:change="uploadImage($event)">
-                    </div>*@
-
-
-                    @*                    <div class="col-md-12 form-group">
-                    <label>會員編號</label>
-                    <p name="Id" id="Id" class="form-control">{{form.Id}}</p>
-                    </div>*@
-                    @*<div class="col-md-12 form-group">
-                    <label>信用等級</label>
-                    <input class="form-control" type="text">
-                    </div>*@
-                    <div class="col-md-12 form-group">
-                        <label>Email</label>
-                        <input id="Email" name="Email" v-model="form.Email" class="form-control" readonly>
-                    </div>
-                </div>
-                <div class="col-lg-9">
                     <div class="bg-light p-30 mb-5">
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-md-4 form-group">
                                 <label>姓名</label>
                                 <input id="Name" name="Name" v-model="form.Name" class="form-control" :disabled="mode == 'view'">
                             </div>
+                            <div class="col-md-3 form-group">
+                                <label>Email</label>
+                                <input id="Email" name="Email" v-model="form.Email" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-5 form-group"></div>
                             <div class="col-md-2 form-group">
                                 <label>性別</label>
                                 <select id="Gender" v-model="form.Gender" class="form-control" :disabled="mode == 'view'">
@@ -66,11 +45,12 @@
                                 <label>生日</label>
                                 <input id="BirthDate" name="BirthDate" placeholder="2023/02/18" v-model="form.BirthDate" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-3 form-group">
                                 <label>身份證字號</label>
                                 <input id="Identity" name="Identity" v-model="form.Identity" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-5 form-group"></div>
+                            <div class="col-md-3 form-group">
                                 <label>職業別</label>
                                 <input id="Job" name="Job" v-model="form.Job" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
@@ -78,6 +58,7 @@
                                 <label>手機</label>
                                 <input id="Phone" name="Phone" v-model="form.Phone" class="form-control" type="text" :disabled="mode == 'view'">
                             </div>
+                            <div class="col-md-5 form-group"></div>
                             @*                            <div class="col-md-3 form-group">
                             <label>國家</label>
                             <select class="custom-select">
@@ -108,7 +89,7 @@
                             </div>*@
                         </div>
                         <div class="row px-xl-5">
-                            <div class="col-md-9 form-group"></div>
+
                             <div class="col-md-3 form-group" v-if="mode == 'view'">
                                 <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" v-on:click="ToEdit">
                                     編輯
