@@ -180,9 +180,28 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult Edition([FromBody] int id)
+        public ApiResultModel Edition([FromBody]EstateEditionModel estate)
         {
-            return View();
+            var data = _context.Estates.FirstOrDefault(x => x.Id == estate.Id);
+            data.Tittle = estate.Tittle;
+            data.Room = estate.Room;
+            data.hall = estate.hall;
+            data.bathroom = estate.bathroom;
+            data.Address=estate.Address;
+            data.Floor = estate.Floor;
+            data.Price = estate.Price;
+            data.Meters = estate.Meters;
+            data.Miscellaneous = estate.Miscellaneous;
+            data.Car = estate.Car;
+            data.Motorcycle = estate.Motorcycle;
+            data.Lease = estate.Lease;
+            data.message = estate.message;
+            _context.SaveChanges();
+            return new ApiResultModel
+            {
+                Status = true,
+                Message = "加入成功"
+            };
         }
     } 
 }
