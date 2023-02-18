@@ -6,12 +6,6 @@
             <section>
                 <h2>請註冊一個帳號</h2>
                 <hr />
-@*                <div class="text-danger"></div>
-                <label name="Role" class="form-label">我想要當 </label>
-                <select id="Role" name="Role" V-model="Role" required>
-                    <option value="0">房東</option>
-                    <option value="1" selected>房客</option>
-                </select>*@
                 <div class="form-floating">
                     <label name="Name" class="form-label">使用者名稱</label>
                     <input name="Name" id="Name" v-model="Name" class="form-control" autocomplete="username" placeholder="王小明" aria-required="true" required />
@@ -40,11 +34,6 @@
                         註冊
                     </button>
                 </div>
-                <div>
-                    @*                    <p>
-                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">重新寄發認證信</a>
-                    </p>*@
-                </div>
             </section>
         </div>
     </div>
@@ -55,7 +44,6 @@
         let app = new Vue({
             el: '#app',
             data: {
-                //Role: "",
                 Name: "",
                 Email: "",
                 Password: "",

@@ -4,7 +4,6 @@
         <div class="col-md-4">
             <h1>忘記密碼</h1>
             <section>
-                @*<form id="account" method="post" action="/Account/Login">*@
                 <hr />
                 <div class="text-danger"></div>
                 <div class="form-floating">
@@ -65,9 +64,7 @@
                                 text: '5秒後自動跳轉至登入頁面，請至Email收信。',
                                 icon: 'success',
                                 timer: 5000,
-                            }).then(function () {
-                                //window.location = "https://localhost:7213/account/SetNewPwd";
-                            });
+                            })
                         }
                     }).catch((error) => {
                         console.log(error);

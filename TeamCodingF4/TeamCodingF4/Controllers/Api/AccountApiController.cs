@@ -73,7 +73,6 @@ namespace TeamCodingF4.Controllers.Api
         }
 
         [HttpPost]
-        //[Authorize]
         public ResponseModel<PostToProfileResponseModel> EditProfile([FromBody] PostToProfileRequestModel model)
         {
             var result = new ResponseModel<PostToProfileResponseModel>();
@@ -87,7 +86,6 @@ namespace TeamCodingF4.Controllers.Api
                 var userClaim = User.Claims.FirstOrDefault(x => x.Type == "Id");
                 Member user = _context.Members.FirstOrDefault(x => x.Id == int.Parse(userClaim.Value));
 
-                //user.BirthDate = model.BirthDate;
                 user.Email = model.Email;
                 user.Gender = model.Gender;
                 user.Identity = model.Identity;

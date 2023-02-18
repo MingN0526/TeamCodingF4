@@ -22,7 +22,5 @@ namespace TeamCodingF4.Models.Account
         public string? Job { get; set; }
 
         public string? PicturePath { get; set; }
-
-        //public string Address { get; set; }
     }
 }

@@ -34,8 +34,8 @@
     <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-4">
             <a href="" class="text-decoration-none">
-                <span class="h1 text-uppercase text-primary bg-dark px-2">Perfect</span>
-                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Haven</span>
+                <span href="/Home/index" class="h1 text-uppercase text-primary bg-dark px-2">Perfect</span>
+                <span href="/Home/index" class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Haven</span>
             </a>
         </div>
         <div class="col-lg-4 col-6 text-left">
@@ -98,17 +98,9 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="/Home/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "home" ? "active" : "") ">首頁</a>
+                            <a href="/Home/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "home" ? "active" : "") ">首頁</a>                           
                             <a href="/shop/index" class="nav-item nav-link @(TempData["active"]?.ToString() == "shop" ? "active" : "") ">物件瀏覽</a>                           
                             <div class="nav-item dropdown">
-                                @*@if (User.Claims.FirstOrDefault().Value == "0")
-                                {
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">物件管理<i class="fa fa-angle-down mt-1"></i></a>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                <a href="/estate/index" class="dropdown-item">我的物件</a>
-                                <a href="/estate/create" class="dropdown-item">物件刊登</a>
-                                </div>
-                                }*@
                                 <a href="#" class="nav-link dropdown-toggle @(TempData["active"]?.ToString() == "management" ? "active" : "")" data-toggle="dropdown">物件管理<i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="/estate/index" class="dropdown-item">我的物件</a>

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TeamCodingF4.Models;
 
 namespace TeamCodingF4.Controllers
 {
+
     public class ArticleController : Controller
     {
         public IActionResult Index()

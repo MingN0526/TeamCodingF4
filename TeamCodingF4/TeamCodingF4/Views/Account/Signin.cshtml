@@ -7,7 +7,6 @@
         <div class="col-md-4">
             <h1>會員登入</h1>
             <section>
-                @*<form id="account" method="post" action="/Account/Login">*@
                 <hr />
                 <div class="text-danger"></div>
                 <div class="form-floating">
@@ -21,14 +20,6 @@
                     <input type="password" id="Password" name="Password" v-model="Password" class="form-control" autocomplete="current-password" placeholder=密碼 aria-required="true" />
                     <span class="text-danger"></span>
                 </div>
-                @*                    <h7 style="color:red">@TempData["error"]?.ToString()</h7>*@
-                @*                    <div class="checkbox">
-                <label class="form-label">
-                <br />
-                <input type="checkbox" class="form-check-input" id="RememberMe" name="RememberMe" v-model="Rememberme" v-on:change="DoRememberMe()"/>
-                記住我
-                </label>
-                </div>*@
                 <br />
                 <div>
                     <button id="login-submit"
@@ -51,7 +42,6 @@
 </div>
 
 @section Scripts {
-    @*    <partial name="_ValidationScriptsPartial" />*@
     <script>
         let app = new Vue({
             el: '#app',
