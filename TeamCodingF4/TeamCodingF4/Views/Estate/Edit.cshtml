@@ -27,67 +27,68 @@
     <div class="row px-xl-5 ">
         <div class="col-lg-12 mb-5">
             <div class="contact-form bg-light p-30">
-                <div class="row" v-for="inf in editinf">
+                <form>
+                <div class="row">
                     <div class="col-md-6 form-group">
                         <div class="control-group">
                             <label>標題</label>
-                            <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required v-model="inf.tittle"/>
+                            <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required v-model="inf[0].tittle"/>
                             <p class="help-block text-danger"></p>
 
                         </div>
                         <div class="control-group">
                             <label>房型</label>
-                            <span class="form-control">{{inf.roomType}}</span>
+                            <span class="form-control">{{inf[0].roomType}}</span>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <label>LDK</label>
                             <div class="row">
                                 <span class="col-1">房:</span>
-                                <input type="number" class="form-control col-2" name="Room" required v-model="inf.room"/>
+                                <input type="number" class="form-control col-2" name="Room" required v-model="inf[0].room"/>
                                 <span class="col-1">廳:</span>
-                                <input type="number" class="form-control col-2" name="hall" required v-model="inf.hall"/>
+                                <input type="number" class="form-control col-2" name="hall" required v-model="inf[0].hall"/>
                                 <span class="col-1">衛:</span>
-                                <input type="number" class="form-control col-2" name="bathroom" required v-model="inf.bathroom"/>
+                                <input type="number" class="form-control col-2" name="bathroom" required v-model="inf[0].bathroom" />
                             </div>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <label>地址:</label>
                             <div class="row">
-                                <span class="form-control col-2">{{inf.city}}</span>
-                                <span class="form-control col-2">{{inf.district}}</span>
-                                <input class="form-control col-5" v-model="inf.address"/>
+                                <span class="form-control col-2">{{inf[0].city}}</span>
+                                <span class="form-control col-2">{{inf[0].district}}</span>
+                                <input class="form-control col-5" v-model="inf[0].address" />
                             </div>
                             <p class="help-block text-danger"></p>
                             <div class="row">
                                 <span class="col-2">樓:</span>
-                                <input class="col-3 form-control" v-model="inf.floor" />
+                                <input class="col-3 form-control" v-model="inf[0].floor" />
                             </div>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <label>價格(NT)</label>
-                            <input type="number" min="0" class="form-control" name="Price" required id="Price" v-model="inf.price"/>
+                            <input type="number" min="0" class="form-control" name="Price" required id="Price" v-model="inf[0].price"/>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <label>雜費(NT)</label>
-                            <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" required v-model="inf.miscellaneous" />
+                            <input type="number" min="0" class="form-control" name="Miscellaneous" id="Miscellaneous" required v-model="inf[0].miscellaneous" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <label>坪數</label>
-                            <input type="number" min="1" class="form-control" name="Meters" id="Meters" required v-model="inf.meters"/>
+                            <input type="number" min="1" class="form-control" name="Meters" id="Meters" required v-model="inf[0].meters" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <label>車位</label>
                             <div class="row">
                                 <span class="col-2">汽車:</span>
-                                <input type="number" min="0" class="form-control col-3" name="Car" id="Car" required v-model="inf.car"/>
+                                <input type="number" min="0" class="form-control col-3" name="Car" id="Car" required v-model="inf[0].car" />
                                 <span class="col-2">機車:</span>
-                                <input type="number" min="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" required v-model="inf.motorcycle"/>
+                                <input type="number" min="0" class="form-control col-3" name="Motorcycle" id="Motorcycle" required v-model="inf[0].motorcycle" />
                             </div>
                             <p class="help-block text-danger"></p>
                         </div>
@@ -115,7 +116,7 @@
                         <p class="help-block text-danger"></p>
                         <div class="control-group">
                             <label>租約期(月)</label>
-                            <input type="number" min="1" class="form-control" name="Lease" id="Lease" required v-model="inf.lease"/>
+                            <input type="number" min="1" class="form-control" name="Lease" id="Lease" required v-model="inf[0].lease" />
                             <p class="help-block text-danger"></p>
                         </div>
 
@@ -132,7 +133,7 @@
                             <label>照片</label>
                             <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple />
                             <p class="help-block text-danger"></p>
-                            <div class="row" v-for="item in inf.estateImage">
+                            <div class="row" v-for="item in inf[0].estateImage">
                                 <img class="col-lg-6" :src="item" style="width:50%;height:50%" />
                             </div>
                             <img :href="inf"/>
@@ -140,13 +141,14 @@
                         </div>
                         <div class="control-group">
                             <label>宣傳資訊</label>
-                            <textarea class="form-control" rows="8" name="message" id="message" required v-model="inf.message"></textarea>
+                            <textarea class="form-control" rows="8" name="message" id="message" required v-model="inf[0].message"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="button" v-on:click="back()">取消</button>
-                        <button class="btn btn-primary py-2 px-4" type="button">確定</button>
+                        <button class="btn btn-primary py-2 px-4" type="button" v-on:click=btnsub()>確定</button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -158,7 +160,7 @@
         let app = new Vue({
             el: "#estateEdit",
             data: {
-                editinf: "",
+                inf: "",
                 editId: @ViewBag.Id
             },
             mounted: function () {
@@ -166,12 +168,46 @@
                 fetch(`/Api/EstateApi/Edit?id=` + self.editId)
                     .then(function (response) { return response.json() })
                     .then(function (result) {
-                        self.editinf = result
+                        self.inf = result
                     })
             },
             methods: {
                 back:function(){
                     window.history.back();
+                },
+                btnsub:function(){
+                    let self=this;
+                    const data = {
+                        id:self.editId,
+                        tittle: self.inf[0].tittle,
+                        room: self.inf[0].room,
+                        hall: self.inf[0].hall,
+                        bathroom: self.inf[0].bathroom,
+                        address: self.inf[0].address,
+                        floor: self.inf[0].floor,
+                        price: self.inf[0].price,
+                        meters: self.inf[0].meters,
+                        miscellaneous: self.inf[0].miscellaneous,
+                        car: self.inf[0].car,
+                        motorcycle: self.inf[0].motorcycle,
+                        lease: self.inf[0].lease,
+                        message: self.inf[0].message
+                    };
+                    fetch(`/Api/EstateApi/Edition`, {
+                        method: "POST",
+                        body: JSON.stringify(data),
+                        headers: { "Content-Type": "application/json" }
+                    }).then(res => res.json())
+                        .then(res => {
+                            var al = {
+                                position: 'center',
+                                icon: 'success',
+                                title: '修改成功',
+                                showConfirmButton: false,
+                                timer: 2000
+                            };
+                            Swal.fire(al).then(() => { history.go(-2)})
+                        })
                 }
             },
         })
