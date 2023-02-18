@@ -27,11 +27,11 @@
     <div class="row px-xl-5 ">
         <div class="col-lg-12 mb-5">
             <div class="contact-form bg-light p-30">
-                <div class="row">
+                <div class="row" v-for="inf in editinf">
                     <div class="col-md-6 form-group">
                         <div class="control-group">
                             <label>標題</label>
-                            <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required v-model="inf.Tittle"/>
+                            <input type="text" class="form-control" name="Tittle" id="Tittle" placeholder="仁愛街新裝潢套房！離捷運站近" required v-model="inf.tittle"/>
                             <p class="help-block text-danger"></p>
 
                         </div>
@@ -57,12 +57,12 @@
                             <div class="row">
                                 <span class="form-control col-2">{{inf.city}}</span>
                                 <span class="form-control col-2">{{inf.district}}</span>
-                                <span class="form-control col-5">{{inf.address}}</span>
+                                <input class="form-control col-5" v-model="inf.address"/>
                             </div>
                             <p class="help-block text-danger"></p>
                             <div class="row">
                                 <span class="col-2">樓:</span>
-                                <span class="col-3 form-control">{{inf.floor}}</span>
+                                <input class="col-3 form-control" v-model="inf.floor" />
                             </div>
                             <p class="help-block text-danger"></p>
                         </div>
@@ -132,13 +132,18 @@
                             <label>照片</label>
                             <input type="file" class="form-control" name="EstateImages" id="EstateImage" required multiple />
                             <p class="help-block text-danger"></p>
+                            <div class="row" v-for="item in inf.estateImage">
+                                <img class="col-lg-6" :src="item" style="width:50%;height:50%" />
+                            </div>
+                            <img :href="inf"/>
+                            <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <label>宣傳資訊</label>
                             <textarea class="form-control" rows="8" name="message" id="message" required v-model="inf.message"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
-                        <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="button">取消</button>
+                        <button class="btn py-2 px-4" style="background-color:cornflowerblue;color:white" type="button" v-on:click="back()">取消</button>
                         <button class="btn btn-primary py-2 px-4" type="button">確定</button>
                     </div>
                 </div>
@@ -153,19 +158,21 @@
         let app = new Vue({
             el: "#estateEdit",
             data: {
-                inf: "",
+                editinf: "",
                 editId: @ViewBag.Id
             },
             mounted: function () {
                 let self = this;
                 fetch(`/Api/EstateApi/Edit?id=` + self.editId)
+                    .then(function (response) { return response.json() })
                     .then(function (result) {
-                        console.log(result)
-                        self.inf = result
+                        self.editinf = result
                     })
             },
             methods: {
-
+                back:function(){
+                    window.history.back();
+                }
             },
         })
     </script>

@@ -153,27 +153,36 @@ namespace TeamCodingF4.Controllers.Api
         public List<EstateEditModel> Edit(int id)
         {
             return _context.Estates
-                .Include(x => x.Conditions).Include(x => x.Equipment).Include(x => x.EstateImage).Include(x => x.RoomType)
-                .Where(x => x.Id == id).Select(x => new EstateEditModel
-                {
-                    Id = x.Id,
-                    Tittle = x.Tittle,
-                    Room = x.Room,
-                    hall = x.hall,
-                    bathroom = x.bathroom,
-                    City = x.City,
-                    District = x.District,
-                    Address = x.Address,
-                    Floor = x.Floor,
-                    Price = x.Price,
-                    Meters = x.Meters,
-                    Miscellaneous = x.Miscellaneous,
-                    Car = x.Car,
-                    Motorcycle = x.Motorcycle,
-                    Lease = x.Lease,
-                    message = x.message,
-                    RoomType = x.RoomType.Name,
-                }).ToList();
+              .Include(x => x.Conditions).Include(x => x.Equipment).Include(x => x.EstateImage).Include(x => x.RoomType)
+              .Where(x => x.Id == id).Select(x => new EstateEditModel
+              {
+                  Id = x.Id,
+                  Tittle = x.Tittle,
+                  Room = x.Room,
+                  hall = x.hall,
+                  bathroom = x.bathroom,
+                  City = x.City,
+                  District = x.District,
+                  Address = x.Address,
+                  Floor = x.Floor,
+                  Price = x.Price,
+                  Meters = x.Meters,
+                  Miscellaneous = x.Miscellaneous,
+                  Car = x.Car,
+                  Motorcycle = x.Motorcycle,
+                  Lease = x.Lease,
+                  message = x.message,
+                  RoomType = x.RoomType.Name,
+                  Conditions = x.Conditions.Select(x => x.Name).ToList(),
+                  Equipment = x.Equipment.Select(x => x.Name).ToList(),
+                  EstateImage = x.EstateImage.Select(x => x.ImagePath).ToList(),
+              }).ToList();
+        }
+
+        [HttpPost]
+        public IActionResult Edition([FromBody] int id)
+        {
+            return View();
         }
     } 
 }
