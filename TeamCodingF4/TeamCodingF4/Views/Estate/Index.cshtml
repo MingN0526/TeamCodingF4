@@ -60,7 +60,7 @@
             data: {
                 inf: "",
             },
-            mounted: function getinf() {
+            mounted: function () {
                 let self = this;
                 fetch(`/Api/EstateApi/Index`)
                     .then(function (response) {
@@ -69,7 +69,6 @@
                     .then(function (result) {
                         self.inf = result
                     })
-                setInterval(getinf(), 5000)
             },
             methods:{
                 send:function(id){
